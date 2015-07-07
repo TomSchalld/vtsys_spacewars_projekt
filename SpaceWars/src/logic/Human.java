@@ -2,8 +2,8 @@ package logic;
 
 public class Human extends Player {
 
-	public Human(String username) {
-		super(username);
+	public Human(String username, Game gamePlaying) {
+		super(username, gamePlaying);
 		// TODO Auto-generated constructor stub
 	}
 
