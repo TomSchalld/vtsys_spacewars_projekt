@@ -1,4 +1,4 @@
-package logik;
+package logic;
 
 public abstract class Spaceship {
 	protected final int ownerId;

@@ -1,4 +1,4 @@
-package logik;
+package logic;
 
 public abstract class Game {
 	protected String gameName;

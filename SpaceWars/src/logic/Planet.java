@@ -1,4 +1,4 @@
-package logik;
+package logic;
 
 public class Planet {
 	private String name;
