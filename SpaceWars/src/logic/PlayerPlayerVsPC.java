@@ -7,4 +7,10 @@ public class PlayerPlayerVsPC extends Game {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	protected void addPlayer(Player newPlayer) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

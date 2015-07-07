@@ -1,27 +1,28 @@
 package logic;
 
-public class Computer extends Player {
+public class Human extends Player {
 
-	public Computer() {
-		super("Computer");
+	public Human(String username) {
+		super(username);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void sendShips() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void buyBattlestar() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void buyFighter() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
