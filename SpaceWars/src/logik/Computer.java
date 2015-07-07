@@ -1,6 +1,6 @@
 package logik;
 
-public class Computer extends Spieler {
+public class Computer extends Player {
 
 	public Computer() {
 		super("Computer");
