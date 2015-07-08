@@ -1,16 +1,22 @@
 package logic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Planet {
 	private String name;
-	private Spaceship[] shipsInOrbit;
+	private List<Spaceship> shipsInOrbit;
+	private List<Spaceship> shipsTryToOrbit;
 	private int generatedCreditsPerShip;
 	private int generatedCredits;
 	private int planetId;
+	private boolean fightAfterRoundEnded = false;
 	public Planet(String planetName,int planetId){
 		this.name = planetName;
 		this.planetId=planetId;
 		this.generatedCreditsPerShip = (int)Math.random()*200+50;
-		this.shipsInOrbit = new Spaceship[5];
+		this.shipsInOrbit = new ArrayList<Spaceship>();
+		this.shipsTryToOrbit = new ArrayList<Spaceship>();
 	}
 	@Override
 	public int hashCode() {
@@ -37,9 +43,6 @@ public class Planet {
 	public String getName() {
 		return name;
 	}
-	public Spaceship[] getShipsInOrbit() {
-		return shipsInOrbit;
-	}
 	public int getGeneratedCreditsPerShip() {
 		return generatedCreditsPerShip;
 	}
@@ -49,25 +52,32 @@ public class Planet {
 	public int getPlanetId() {
 		return planetId;
 	}
-	public boolean addShipToOrbit(Spaceship newShip){
-		int i=0;
-		if(this.shipsInOrbit.length<5){
-			for(Spaceship s:shipsInOrbit){
-				if(s==null){
-					this.shipsInOrbit[i]=newShip;
+	public boolean isFightAfterRoundEnded() {
+		return fightAfterRoundEnded;
+	}
+	public void setFightAfterRoundEnded(boolean fightAfterRoundEnded) {
+		this.fightAfterRoundEnded = fightAfterRoundEnded;
+	}
+	public void addShipToOrbit(Spaceship newShip){
+		if(this.shipsInOrbit.isEmpty()){
+			this.shipsInOrbit.add(newShip);
+		}else{
+			if(this.shipsInOrbit.size()<6){
+				if(this.shipsInOrbit.get(0).getOwnerId()==newShip.getOwnerId()){
+					this.shipsInOrbit.add(newShip);
+				}else{
+					this.shipsTryToOrbit.add(newShip);
+					this.setFightAfterRoundEnded(true);
 				}
-				i++;
 			}
-			return true;
 		}
-		return false;
 	}
 	public boolean removeShipFromOrbit(Spaceship shipToRemove){
 		int i=0;
-		if(this.shipsInOrbit.length>0){
+		if(this.shipsInOrbit.size()>0){
 			for(Spaceship s:shipsInOrbit){
 				if(s.getClass()==shipToRemove.getClass()){
-					this.shipsInOrbit[i]=null;
+					this.shipsInOrbit.remove(i);
 				}
 				i++;
 			}
@@ -75,4 +85,32 @@ public class Planet {
 		}
 		return false;
 	}
+	public BattleReport fight(){
+		BattleReport report = new BattleReport();
+		int countOfAtackingFighters =0;
+		int countOfAtackingBattleships =0;		
+		int countOfDefendingFighters =0;
+		int countOfDefendingBattleships =0;
+		
+		for(Spaceship s:this.shipsInOrbit){
+			if(s instanceof Battlestar){
+				countOfDefendingBattleships++;
+			}else{
+				countOfDefendingFighters++;
+			}
+		}
+		for(Spaceship s:this.shipsTryToOrbit){
+			if(s instanceof Battlestar){
+				countOfAtackingBattleships++;
+			}else{
+				countOfAtackingFighters++;
+			}
+		}
+		if()
+		
+		
+		this.setFightAfterRoundEnded(false);
+		return report;
+	}
+	
 }

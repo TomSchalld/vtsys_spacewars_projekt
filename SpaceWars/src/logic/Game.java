@@ -18,4 +18,5 @@ public abstract class Game {
 		return universe;
 	}
 	protected abstract void addPlayer(Player newPlayer);
+	protected abstract void endRound();
 }

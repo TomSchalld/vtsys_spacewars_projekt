@@ -15,6 +15,10 @@ public class Universe {
 		this.createWorld();
 	}
 
+	public Map<String, Planet> getPlanets() {
+		return planets;
+	}
+
 	private void createWorld() {
 		switch (this.universeSize) {
 		case 1: {
@@ -55,4 +59,5 @@ public class Universe {
 		this.planets.put("Gemini", new Planet("Gemini", planetId++));
 		this.planets.put("Atlantis", new Planet("Atlantis", planetId++));
 	}
+
 }

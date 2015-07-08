@@ -25,4 +25,10 @@ public class PlayerPlayerVsPC extends Game {
 		this.addPlayer(new Computer(this));
 	}
 
+	@Override
+	protected void endRound() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

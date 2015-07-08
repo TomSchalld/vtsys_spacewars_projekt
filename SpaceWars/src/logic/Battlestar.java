@@ -1,10 +1,16 @@
 package logic;
 
 public class Battlestar extends Spaceship {
-
-	public Battlestar(int ownerId) {
-		super(ownerId);
-		this.price = 2000;
+	static final int price = 2000;
+	public Battlestar(Player owner) {
+		super(owner);
+	}
+	public static int getPrice() {
+		return price;
+	}
+	@Override
+	public int attack() {
+		return (int)Math.random()*200+10;
 	}
 
 }

@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.Map;
+
 public class PlayerVsPlayer extends Game {
 
 	public PlayerVsPlayer(String gameName, int universeSize) {
@@ -22,6 +24,28 @@ public class PlayerVsPlayer extends Game {
 		this.addPlayer(one);
 		this.addPlayer(two);
 	}
+	private boolean playersReady(){
+		if(this.players[0].isPlayerReady()==true&&this.players[1].isPlayerReady()==true){
+			return true;
+		}
+		return false;
+	}
+	private void setPlayersUnready(){
+		this.players[0].setPlayerReady(false);
+		this.players[1].setPlayerReady(false);				
+	}
+	@Override
+	protected void endRound() {
+		if(this.playersReady()){
+			Map<String,Planet>planets = this.getUniverse().getPlanets();
+			
+			
+			
+			
+			this.setPlayersUnready();
+		}
+	}
+	
 
 	
 
