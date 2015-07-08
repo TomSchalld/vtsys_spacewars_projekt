@@ -85,7 +85,7 @@ public abstract class Player {
 		String string = this.username+" Cash: "+this.cash+" Planeten: "+this.amountOfPlanets+" ";
 		for(Spaceship s:this.stock){
 			if(s!=null){
-				string+=s.toString();
+				string+="\n"+s.toString();
 			}
 		}
 		return string;

@@ -3,7 +3,7 @@ package logic;
 import java.util.Map;
 
 public class PlayerVsPlayer extends Game {
-
+	
 	public PlayerVsPlayer(String gameName, int universeSize) {
 		super(gameName,universeSize);
 		this.players = new Player[2];
@@ -49,9 +49,16 @@ public class PlayerVsPlayer extends Game {
 					p.getShipsInOrbit().get(0).getOwner().addCash(p.getGeneratedCredits());
 				}
 			}
-			
+
 			this.setPlayersUnready();
 			this.round++;
+			if(this.players[0].amountOfPlanets==this.getUniverse().getPlanets().size()){
+				this.gameFinished = true;
+				this.winner = this.players[0];
+			}else if(this.players[1].amountOfPlanets==this.getUniverse().getPlanets().size()){
+				this.gameFinished = true;
+				this.winner = this.players[1];
+			}
 			return report;
 		}
 		return null;

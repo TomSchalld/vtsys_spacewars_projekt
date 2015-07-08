@@ -10,7 +10,7 @@ public class Demo {
 		Player two = new Human("Fabian", firstTry);
 		firstTry.addPlayer(one);
 		firstTry.addPlayer(two);
-		while (true) {
+		while (!firstTry.gameFinished) {
 
 			while (!one.isPlayerReady()) {
 
@@ -60,7 +60,9 @@ public class Demo {
 				
 			}
 			BattleReport rep = firstTry.endRound().getBattleReport("Tatooine");
-			System.out.println(rep.getListOfDefeats());
+			for(String s:rep.getListOfDefeats()){
+				System.out.println(s);
+			}
 			System.out.println("Winner is: "+rep.getWinnersUsername());
 			System.out.println("Looser is: "+rep.getLoosersUsername());
 		}

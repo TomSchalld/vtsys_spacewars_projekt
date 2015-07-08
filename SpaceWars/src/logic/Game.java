@@ -3,6 +3,8 @@ package logic;
 public abstract class Game {
 	protected String gameName;
 	protected int gameId;
+	protected boolean gameFinished = false;
+	protected Player winner;
 	protected Player[] players;
 	protected Universe universe;
 	protected int round;

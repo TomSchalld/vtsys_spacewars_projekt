@@ -36,7 +36,8 @@ public class Battlestar extends Spaceship {
 	}
 	@Override
 	public int attack() {
-		return (int)Math.random()*100+this.rank.getAttackBoost();
+		int random = (int)(Math.random()*100+this.rank.getAttackBoost());
+		return random;
 	}
 	public String toString(){
 		String s ="Battlestar von ";
