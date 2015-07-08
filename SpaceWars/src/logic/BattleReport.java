@@ -64,4 +64,8 @@ public class BattleReport {
 		}
 		this.defeatedShips.clear();
 	}
+	public String[] getListOfDefeats() {
+		return listOfDefeats;
+	}
+	
 }

@@ -44,7 +44,14 @@ public class PlayerVsPlayer extends Game {
 					report.addBattleReport(p.fight());
 				}
 			}
+			for(Planet p: planets.values()){
+				if(!p.getShipsInOrbit().isEmpty()){
+					p.getShipsInOrbit().get(0).getOwner().addCash(p.getGeneratedCredits());
+				}
+			}
+			
 			this.setPlayersUnready();
+			this.round++;
 			return report;
 		}
 		return null;

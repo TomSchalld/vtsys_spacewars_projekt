@@ -48,27 +48,46 @@ public abstract class Player {
 
 	public void setPlayerReady(boolean playerReady) {
 		this.playerReady = playerReady;
+		/*if(playerReady){ for online use only
+			this.getGamePlaying().endRound();
+		}*/
 	}
 
 	protected void buyBattlestar() {
 		if (this.cash > this.cash - Battlestar.getPrice()) {
+			this.cash-=Battlestar.getPrice();
 			this.stock.add(new Battlestar(this));
+		}else {
+			System.out.println("Not enough Credits to buy Battlestar");
 		}
 	}
 
 	protected void buyFighter() {
 		if (this.cash > this.cash - Fighter.getPrice()) {
+			this.cash-=Fighter.getPrice();
 			this.stock.add(new Fighter(this));
+		}else {
+			System.out.println("Not enough Credits to buy Fighter");
 		}
 	}
 
 	protected void sendShip(Spaceship ship, Planet destination) {
 		if (ship.orbiting == null) {
 			this.stock.remove(this.stock.indexOf(ship));
+			destination.addShipToOrbit(ship);
 			ship.setOrbiting(destination);
 		} else {
 			ship.orbiting.removeShipFromOrbit(ship);
 			ship.setOrbiting(destination);
 		}
+	}
+	public String toString(){
+		String string = this.username+" Cash: "+this.cash+" Planeten: "+this.amountOfPlanets+" ";
+		for(Spaceship s:this.stock){
+			if(s!=null){
+				string+=s.toString();
+			}
+		}
+		return string;
 	}
 }
