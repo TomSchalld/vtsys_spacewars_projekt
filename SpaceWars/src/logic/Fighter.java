@@ -36,7 +36,7 @@ public class Fighter extends Spaceship {
 	}
 	@Override
 	public int attack() {
-		return (int)Math.random()*20+this.rank.getAttackBoost();
+		return (int)Math.random()*10+this.rank.getAttackBoost();
 	}
 
 }

@@ -36,7 +36,7 @@ public class Battlestar extends Spaceship {
 	}
 	@Override
 	public int attack() {
-		return (int)Math.random()*200+this.rank.getAttackBoost();
+		return (int)Math.random()*100+this.rank.getAttackBoost();
 	}
 
 }
