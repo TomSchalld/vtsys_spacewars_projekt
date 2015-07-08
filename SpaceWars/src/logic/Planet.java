@@ -58,6 +58,13 @@ public class Planet {
 	public void setFightAfterRoundEnded(boolean fightAfterRoundEnded) {
 		this.fightAfterRoundEnded = fightAfterRoundEnded;
 	}
+	
+	public List<Spaceship> getShipsInOrbit() {
+		return shipsInOrbit;
+	}
+	public List<Spaceship> getShipsTryToOrbit() {
+		return shipsTryToOrbit;
+	}
 	public void addShipToOrbit(Spaceship newShip){
 		if(this.shipsInOrbit.isEmpty()){
 			this.shipsInOrbit.add(newShip);
@@ -86,27 +93,10 @@ public class Planet {
 		return false;
 	}
 	public BattleReport fight(){
-		BattleReport report = new BattleReport();
-		int countOfAtackingFighters =0;
-		int countOfAtackingBattleships =0;		
-		int countOfDefendingFighters =0;
-		int countOfDefendingBattleships =0;
-		
-		for(Spaceship s:this.shipsInOrbit){
-			if(s instanceof Battlestar){
-				countOfDefendingBattleships++;
-			}else{
-				countOfDefendingFighters++;
-			}
+		BattleReport report = new BattleReport(this);
+		for(Spaceship s:this.getShipsTryToOrbit()){
+			
 		}
-		for(Spaceship s:this.shipsTryToOrbit){
-			if(s instanceof Battlestar){
-				countOfAtackingBattleships++;
-			}else{
-				countOfAtackingFighters++;
-			}
-		}
-		if()
 		
 		
 		this.setFightAfterRoundEnded(false);
