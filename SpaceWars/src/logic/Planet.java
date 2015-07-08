@@ -69,7 +69,7 @@ public class Planet {
 		if(this.shipsInOrbit.isEmpty()){
 			this.shipsInOrbit.add(newShip);
 		}else{
-			if(this.shipsInOrbit.size()<6){
+			if(this.shipsInOrbit.size()<5){
 				if(this.shipsInOrbit.get(0).getOwnerId()==newShip.getOwnerId()){
 					this.shipsInOrbit.add(newShip);
 				}else{
@@ -94,11 +94,20 @@ public class Planet {
 	}
 	public BattleReport fight(){
 		BattleReport report = new BattleReport(this);
+		List<Spaceship> shipsDefeated = new ArrayList<Spaceship>();
 		for(Spaceship s:this.getShipsTryToOrbit()){
-			
+			for(Spaceship d: this.getShipsInOrbit()){
+				if(s.attack()<d.attack()){
+					shipsDefeated.add(s);
+					break;
+				}else{
+					shipsDefeated.add(d);
+				}
+			}
+			this.getShipsInOrbit().removeAll(shipsDefeated);
+			this.getShipsTryToOrbit().removeAll(shipsDefeated);
+			report.setDefeatedShips(shipsDefeated);
 		}
-		
-		
 		this.setFightAfterRoundEnded(false);
 		return report;
 	}

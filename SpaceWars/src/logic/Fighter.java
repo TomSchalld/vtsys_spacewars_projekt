@@ -29,10 +29,15 @@ public class Fighter extends Spaceship {
 	}
 	public Fighter(Player owner) {
 		super(owner);
-		
 	}
 	public static int getPrice() {
 		return price;
+	}
+	public String toString(){
+		String s ="Fighter von ";
+		s+=this.owner.username+" mit Rang ";
+		s+=rank;
+		return s;
 	}
 	@Override
 	public int attack() {

@@ -35,15 +35,19 @@ public class PlayerVsPlayer extends Game {
 		this.players[1].setPlayerReady(false);				
 	}
 	@Override
-	protected void endRound() {
+	protected RoundReport endRound() {
 		if(this.playersReady()){
+			RoundReport report = new RoundReport();
 			Map<String,Planet>planets = this.getUniverse().getPlanets();
-			
-			
-			
-			
+			for(Planet p: planets.values()){
+				if(p.isFightAfterRoundEnded()){
+					report.addBattleReport(p.fight());
+				}
+			}
 			this.setPlayersUnready();
+			return report;
 		}
+		return null;
 	}
 	
 

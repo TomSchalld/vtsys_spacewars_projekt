@@ -38,5 +38,10 @@ public class Battlestar extends Spaceship {
 	public int attack() {
 		return (int)Math.random()*100+this.rank.getAttackBoost();
 	}
-
+	public String toString(){
+		String s ="Battlestar von ";
+		s+=this.owner.username+" mit Rang ";
+		s+=rank;
+		return s;
+	}
 }
