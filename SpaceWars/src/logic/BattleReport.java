@@ -1,8 +1,9 @@
 package logic;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class BattleReport implements Report{
+public class BattleReport implements Report,Serializable{
 	private Planet battleGround;
 	private String winnersUsername;
 	private String loosersUsername;

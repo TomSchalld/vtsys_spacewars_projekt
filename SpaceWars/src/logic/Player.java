@@ -1,15 +1,19 @@
 package logic;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import clientServer.Client;
 import clientServer.Server;
 
-public abstract class Player {
+public abstract class Player extends UnicastRemoteObject implements Client,Serializable{
 	protected Server server;
 	protected final String username;
 	protected final int ownerId;

@@ -28,7 +28,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 	}
 
 	@Override
-	public void openGame(Game newGame, PlayerProxyIf handle) throws Exception {
+	public void openGame(Game newGame) throws Exception,RemoteException {
 		String gameName = newGame.getGameName();
 		if(this.runningGames.containsKey(gameName)||this.lobby.containsKey(gameName)){
 			System.out.println("Game already existing!");
@@ -74,11 +74,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 	public void addEndReportToHighscore(Report report){
 		// TODO generate highscore
 	}
-	@Override
-	public List<GameProxy> getGames() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

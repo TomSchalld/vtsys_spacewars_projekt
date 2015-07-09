@@ -1,7 +1,14 @@
 package logic;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-public abstract class Game {
+public abstract class Game implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7271190791407114416L;
 	protected final String gameName;
 	protected String passwort;
 	protected int gameId;
@@ -13,7 +20,7 @@ public abstract class Game {
 	protected int round;
 	private static int gameCount=0;
 	protected Report endReport;
-	public Game(String gameName, int universeSize){
+	public Game(String gameName, int universeSize) throws RemoteException{
 		this.gameName=gameName;
 		this.gameId=gameCount;
 		this.universe=new Universe(universeSize);

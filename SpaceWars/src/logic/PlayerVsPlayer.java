@@ -1,10 +1,11 @@
 package logic;
 
+import java.rmi.RemoteException;
 import java.util.Map;
 
 public class PlayerVsPlayer extends Game {
 	
-	public PlayerVsPlayer(String gameName, int universeSize) {
+	public PlayerVsPlayer(String gameName, int universeSize) throws RemoteException {
 		super(gameName,universeSize);
 		this.players = new Player[2];
 		
@@ -17,6 +18,8 @@ public class PlayerVsPlayer extends Game {
 		}else if(this.players[1]==null){
 			this.players[1]=newPlayer;
 		}
+		newPlayer.setGamePlaying(this);
+
 	}
 	public void addPlayers(Player one, Player two){
 		one.setGamePlaying(this);

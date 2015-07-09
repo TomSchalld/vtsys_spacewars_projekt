@@ -1,9 +1,10 @@
 package logic;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Universe {
+public class Universe implements Serializable{
 	private Map<String, Planet> planets;
 	private int universeSize;
 	private int planetId;

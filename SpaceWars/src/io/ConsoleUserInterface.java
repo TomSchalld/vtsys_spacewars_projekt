@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import logic.GameIf;
 import logic.Human;
 import logic.Player;
 
@@ -21,7 +22,7 @@ public class ConsoleUserInterface {
 		} else {
 			human.joinGame("testgame");
 		}
-		while (!human.getGamePlaying().hasEnoughPlayer()) {
+		while (!player.getGamePlaying().hasEnoughPlayer()) {
 			System.out.println("waiting for other player.....");
 			Thread.sleep(1000);
 		}

@@ -1,6 +1,8 @@
 package logic;
 
-public abstract class Spaceship {
+import java.io.Serializable;
+
+public abstract class Spaceship implements Serializable{
 	protected final int ownerId;
 	protected final Player owner;
 	protected Planet orbiting;

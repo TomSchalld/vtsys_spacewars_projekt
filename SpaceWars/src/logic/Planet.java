@@ -1,9 +1,10 @@
 package logic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Planet {
+public class Planet implements Serializable{
 	private Player planetOwner;
 	private String name;
 	private List<Spaceship> shipsInOrbit;

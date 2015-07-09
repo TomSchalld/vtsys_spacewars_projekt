@@ -4,6 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class EndReport implements Report {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4004984865885813172L;
 	List<Report> roundReports;
 	Player winner[];
 	Player looser[];

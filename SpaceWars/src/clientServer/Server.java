@@ -10,10 +10,9 @@ import logic.Player;
 
 
 public interface Server extends Remote {
-	public void openGame(Game newGame, PlayerProxyIf handle) throws RemoteException, Exception;
+	public void openGame(Game newGame) throws RemoteException, Exception;
 	public void joinGame(String gameName, Player player)throws RemoteException;
 	public boolean closeGame(String username) throws RemoteException;
 
-	public List<GameProxy> getGames() throws RemoteException;
 
 }
