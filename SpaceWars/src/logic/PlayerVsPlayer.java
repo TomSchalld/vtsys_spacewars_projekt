@@ -41,7 +41,7 @@ public class PlayerVsPlayer extends Game {
 			Map<String,Planet>planets = this.getUniverse().getPlanets();
 			for(Planet p: planets.values()){
 				if(p.isFightAfterRoundEnded()){
-					report.addBattleReport(p.fight());
+					report.addReport(p.fight());
 				}
 			}
 			for(Planet p: planets.values()){
@@ -59,6 +59,7 @@ public class PlayerVsPlayer extends Game {
 				this.gameFinished = true;
 				this.winner = this.players[1];
 			}
+			this.endReport.addReport(report);
 			return report;
 		}
 		return null;

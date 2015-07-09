@@ -4,14 +4,15 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import logic.Game;
+
 
 
 public interface Server extends Remote {
-	public GameProxy subscribeUser(String username, PlayerProxy handle) throws RemoteException;
+	public void openGame(Game newGame, PlayerProxyIf handle) throws RemoteException, Exception;
 
-	public boolean unsubscribeUser(String username) throws RemoteException;
+	public boolean closeGame(String username) throws RemoteException;
 
-	public List<GameProxy> getUser() throws RemoteException;
+	public List<GameProxy> getGames() throws RemoteException;
 
-	public void sendMessage(String message, GameProxy server) throws RemoteException;
 }

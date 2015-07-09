@@ -2,7 +2,7 @@ package logic;
 
 import java.util.List;
 
-public class BattleReport {
+public class BattleReport implements Report{
 	private Planet battleGround;
 	private String winnersUsername;
 	private String loosersUsername;
@@ -66,6 +66,10 @@ public class BattleReport {
 	}
 	public String[] getListOfDefeats() {
 		return listOfDefeats;
+	}
+	@Override
+	public void addReport(Report report) {
+		
 	}
 	
 }
