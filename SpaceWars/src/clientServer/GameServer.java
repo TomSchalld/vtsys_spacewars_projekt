@@ -42,9 +42,8 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 	}
 
 	@Override
-	public void joinGame(String gameName,Player player) throws RemoteException {
+	public void joinGame(String gameName) throws RemoteException {
 		if(this.lobby.containsKey(gameName)){
-			this.lobby.get(gameName).addPlayer(player);
 			this.bringGameToRun(this.lobby.get(gameName));
 		}else{
 			System.out.println("There is no such game");

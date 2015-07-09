@@ -17,6 +17,7 @@ public class PlayerVsPlayer extends Game {
 			this.players[0]=newPlayer;
 		}else if(this.players[1]==null){
 			this.players[1]=newPlayer;
+			this.hasEnoughPlayer=true;
 		}
 		newPlayer.setGamePlaying(this);
 
@@ -67,10 +68,5 @@ public class PlayerVsPlayer extends Game {
 		}
 		return null;
 	}
-	
-
-	
-
-	
 
 }
