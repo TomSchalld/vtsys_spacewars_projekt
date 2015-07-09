@@ -25,7 +25,7 @@ public class Demo {
 					break;
 				}
 				case 2: {
-					one.sendShip(one.stock.get(0), firstTry.getUniverse().getPlanets().get("Tatooine"));
+					one.sendShip(one.getStock().get(0), firstTry.getUniverse().getPlanets().get("Tatooine"));
 					break;
 				}
 				default: {
@@ -48,7 +48,7 @@ public class Demo {
 					break;
 				}
 				case 2: {
-					two.sendShip(two.stock.get(0), firstTry.getUniverse().getPlanets().get("Tatooine"));
+					two.sendShip(two.getStock().get(0), firstTry.getUniverse().getPlanets().get("Tatooine"));
 					break;
 				}
 				default: {

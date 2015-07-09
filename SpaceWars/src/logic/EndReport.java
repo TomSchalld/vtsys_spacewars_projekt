@@ -35,4 +35,19 @@ public class EndReport implements Report {
 	public void addReport(Report report) {
 		this.addRoundReport((RoundReport)report);
 	}
+	@Override
+	public String toString() {
+		String s="";
+		for(Player p:this.winner){
+			s+=p.toString()+" ";
+		}
+		s+="\n";
+		for(Player p:this.looser){
+			s+=p.toString()+" ";
+		}
+		for(Report r:this.roundReports){
+			s+=r.toString()+"\n";
+		}
+		return s;
+	}
 }

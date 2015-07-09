@@ -4,15 +4,13 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.RMIClientSocketFactory;
-import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import logic.Game;
-import logic.PlayerVsPlayer;
+import logic.Player;
 import logic.Report;
 
 public class GameServer extends UnicastRemoteObject implements Server, Serializable {
@@ -42,6 +40,17 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			lobby.put(newGame.getGameName(), newGame);
 		}
 	}
+
+	@Override
+	public void joinGame(String gameName,Player player) throws RemoteException {
+		if(this.lobby.containsKey(gameName)){
+			this.lobby.get(gameName).addPlayer(player);
+			this.bringGameToRun(this.lobby.get(gameName));
+		}else{
+			System.out.println("There is no such game");
+		}
+	}
+
 	public void bringGameToRun(Game gameInLobby){
 		this.runningGames.put(gameInLobby.getGameName(),this.lobby.remove(gameInLobby.getGameName()));
 	}

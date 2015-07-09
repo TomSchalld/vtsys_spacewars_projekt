@@ -11,7 +11,7 @@ public class PlayerVsPlayer extends Game {
 	}
 
 	@Override
-	protected void addPlayer(Player newPlayer) {
+	public void addPlayer(Player newPlayer) {
 		if(this.players[0]==null){
 			this.players[0]=newPlayer;
 		}else if(this.players[1]==null){
@@ -35,7 +35,7 @@ public class PlayerVsPlayer extends Game {
 		this.players[1].setPlayerReady(false);				
 	}
 	@Override
-	protected RoundReport endRound() {
+	public RoundReport endRound() {
 		if(this.playersReady()){
 			RoundReport report = new RoundReport();
 			Map<String,Planet>planets = this.getUniverse().getPlanets();

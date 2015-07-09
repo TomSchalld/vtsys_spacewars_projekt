@@ -1,24 +1,32 @@
 package logic;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+import clientServer.Server;
+
 public abstract class Player {
-	protected String username;
+	protected Server server;
+	protected final String username;
 	protected final int ownerId;
 	private static int userCount = 0;
 	protected int cash;
 	protected int amountOfPlanets;
 	protected Game gamePlaying;
-	protected List<Spaceship> stock;
+	private List<Spaceship> stock;
 	protected boolean playerReady;
 
-	public Player(String username, Game gamePlaying) {
+	public Player(String username, Game gamePlaying) throws MalformedURLException, RemoteException, NotBoundException {
+		this.server =  (Server) Naming.lookup("rmi://localhost:1099/GameServer");
 		this.username = username;
 		this.ownerId = userCount;
 		this.cash = 10000;
 		this.gamePlaying = gamePlaying;
-		this.stock = new ArrayList<Spaceship>();
+		this.setStock(new ArrayList<Spaceship>());
 		userCount++;
 	}
 
@@ -53,27 +61,31 @@ public abstract class Player {
 		}*/
 	}
 
-	protected void buyBattlestar() {
+	public String getUsername() {
+		return username;
+	}
+
+	public void buyBattlestar() {
 		if (this.cash > this.cash - Battlestar.getPrice()) {
 			this.cash-=Battlestar.getPrice();
-			this.stock.add(new Battlestar(this));
+			this.getStock().add(new Battlestar(this));
 		}else {
 			System.out.println("Not enough Credits to buy Battlestar");
 		}
 	}
 
-	protected void buyFighter() {
+	public void buyFighter() {
 		if (this.cash > this.cash - Fighter.getPrice()) {
 			this.cash-=Fighter.getPrice();
-			this.stock.add(new Fighter(this));
+			this.getStock().add(new Fighter(this));
 		}else {
 			System.out.println("Not enough Credits to buy Fighter");
 		}
 	}
 
-	protected void sendShip(Spaceship ship, Planet destination) {
+	public void sendShip(Spaceship ship, Planet destination) {
 		if (ship.orbiting == null) {
-			this.stock.remove(this.stock.indexOf(ship));
+			this.getStock().remove(this.getStock().indexOf(ship));
 			destination.addShipToOrbit(ship);
 			ship.setOrbiting(destination);
 		} else {
@@ -83,11 +95,19 @@ public abstract class Player {
 	}
 	public String toString(){
 		String string = this.username+" Cash: "+this.cash+" Planeten: "+this.amountOfPlanets+" ";
-		for(Spaceship s:this.stock){
+		for(Spaceship s:this.getStock()){
 			if(s!=null){
 				string+="\n"+s.toString();
 			}
 		}
 		return string;
+	}
+
+	public List<Spaceship> getStock() {
+		return stock;
+	}
+
+	public void setStock(List<Spaceship> stock) {
+		this.stock = stock;
 	}
 }

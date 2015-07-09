@@ -41,6 +41,6 @@ public abstract class Game {
 		//TODO write something that terminates all references so GC can clean up
 		return true;
 	}
-	protected abstract void addPlayer(Player newPlayer);
-	protected abstract RoundReport endRound();
+	public abstract void addPlayer(Player newPlayer);
+	public abstract RoundReport endRound();
 }
