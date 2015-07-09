@@ -37,7 +37,7 @@ public class Human extends Player {
 
 	@Override
 	public void joinGame(String gameName) throws RemoteException {
-		this.server.joinGame(gameName, this);
+		this.server.getGameByName(gameName).addPlayer(this);
 
 	}
 
