@@ -15,7 +15,7 @@ public class PlayerVsPlayer extends Game {
 	public void addPlayer(Player newPlayer) {
 		if(this.players[0]==null){
 			this.players[0]=newPlayer;
-		}else if(this.players[1]==null){
+		}else{
 			this.players[1]=newPlayer;
 			this.hasEnoughPlayer=true;
 		}
