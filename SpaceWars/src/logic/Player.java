@@ -12,6 +12,7 @@ import java.util.List;
 
 import clientServer.Client;
 import clientServer.Server;
+import io.IO;
 
 public abstract class Player extends UnicastRemoteObject implements Client,Serializable{
 	protected Server server;
@@ -25,7 +26,8 @@ public abstract class Player extends UnicastRemoteObject implements Client,Seria
 	protected boolean playerReady;
 
 	public Player(String username, Game gamePlaying) throws MalformedURLException, RemoteException, NotBoundException {
-		this.server =  (Server) Naming.lookup("rmi://localhost:1099/GameServer");
+		String input = IO.readString("Bitte ServerAdresse eingeben.\n");
+		this.server =  (Server) Naming.lookup("rmi://"+input+":1099/GameServer");
 		this.username = username;
 		this.ownerId = userCount;
 		this.cash = 10000;
