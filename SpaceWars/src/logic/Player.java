@@ -105,16 +105,10 @@ public abstract class Player extends UnicastRemoteObject implements Client,Seria
 	}
 	
 	@Override
-	public void openGame(String gameName, int variation, int universeSize) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void openGame(String gameName, int variation, int universeSize) throws RemoteException;
 
 	@Override
-	public void joinGame(String gameName) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void joinGame(String gameName) throws RemoteException;
 
 	public String toString(){
 		String string = this.username+" Cash: "+this.cash+" Planeten: "+this.amountOfPlanets+" ";
