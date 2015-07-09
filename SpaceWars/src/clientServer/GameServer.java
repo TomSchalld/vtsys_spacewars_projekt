@@ -19,7 +19,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1339765285800347165L;
+	private static final long serialVersionUID = 1L;
 
 	public GameServer() throws RemoteException {
 		// TODO Auto-generated constructor stub
@@ -101,6 +101,16 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			ex.printStackTrace();
 			System.exit(0);
 		}
+	}
+
+	@Override
+	public Game getGameByName(String gameName) throws RemoteException {
+		if(this.runningGames.containsKey(gameName)){
+			return this.runningGames.get(gameName);
+		}else if(this.lobby.containsKey(gameName)){
+			return this.lobby.get(gameName);
+		}
+		return null;
 	}
 
 }

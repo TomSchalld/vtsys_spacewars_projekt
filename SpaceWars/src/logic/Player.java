@@ -15,6 +15,10 @@ import clientServer.Server;
 import io.IO;
 
 public abstract class Player extends UnicastRemoteObject implements Client,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Server server;
 	protected final String username;
 	protected final int ownerId;
@@ -99,6 +103,19 @@ public abstract class Player extends UnicastRemoteObject implements Client,Seria
 			ship.setOrbiting(destination);
 		}
 	}
+	
+	@Override
+	public void openGame(String gameName, int variation, int universeSize) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void joinGame(String gameName) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public String toString(){
 		String string = this.username+" Cash: "+this.cash+" Planeten: "+this.amountOfPlanets+" ";
 		for(Spaceship s:this.getStock()){

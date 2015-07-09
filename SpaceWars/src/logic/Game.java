@@ -8,7 +8,7 @@ public abstract class Game implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7271190791407114416L;
+	private static final long serialVersionUID = 1L;
 	protected final String gameName;
 	protected String passwort;
 	protected int gameId;

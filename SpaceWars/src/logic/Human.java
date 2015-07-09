@@ -32,6 +32,7 @@ public class Human extends Player {
 			
 		}
 	}
+	@Override
 	public void joinGame(String gameName){
 		try {
 			this.server.joinGame(gameName, this);
