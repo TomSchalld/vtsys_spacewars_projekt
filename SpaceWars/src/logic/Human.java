@@ -1,12 +1,13 @@
 package logic;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import clientServer.Client;
 
-public class Human extends Player {
+public class Human extends Player implements Serializable,Client{
 	/**
 	 * 
 	 */
@@ -37,6 +38,7 @@ public class Human extends Player {
 
 	@Override
 	public void joinGame(String gameName) throws RemoteException {
+		//TODO just in case get game, manipulate, copy back and overwrite
 		this.server.getGameByName(gameName).addPlayer(this);
 		this.server.joinGame(gameName);
 

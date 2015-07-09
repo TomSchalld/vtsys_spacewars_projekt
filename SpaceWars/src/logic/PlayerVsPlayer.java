@@ -1,5 +1,6 @@
 package logic;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.Map;
 

@@ -1,5 +1,6 @@
 package io;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -8,7 +9,12 @@ import logic.GameIf;
 import logic.Human;
 import logic.Player;
 
-public class ConsoleUserInterface {
+public class ConsoleUserInterface implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public void run() throws MalformedURLException, RemoteException, NotBoundException, InterruptedException {
 		int eingabe;
