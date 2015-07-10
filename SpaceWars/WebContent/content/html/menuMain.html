@@ -60,4 +60,22 @@
     <script src="../js/bootstrap.js"></script>
     <!-- IE10-Anzeigefenster-Hack für Fehler auf Surface und Desktop-Windows-8 -->
     <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+    function getUrlParameter(sParam)
+    {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) 
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) 
+            {
+                return sParameterName[1];
+            }
+        }
+    }
+    $(document).ready(function(){
+    	$('#username').text("Commander "+getUrlParameter("username")+" ist auf der Brücke")
+    });
+    </script>
 </body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script src="../js/jquery.js"></script>
+
+<title>Insert title here</title>
+</head>
+<body>
+<a href="content/index.html">Start Game</a>
+<a href="#" onclick="submitUser()">post</a>
+</body>
+<script >
+function submitUser(){
+	
+	
+	var username = "Thomas"
+		
+	$.ajax({
+		url : "/SpaceWars/login",
+		type : "POST",
+		data : {
+			"username" : username
+		}
+	});
+}
+</script>
+</html>
