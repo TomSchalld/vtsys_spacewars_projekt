@@ -6,7 +6,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import clientServer.Client;
-import clientServer.GameIf;
 
 public class Human extends Player implements Serializable,Client{
 	/**

@@ -1,19 +1,38 @@
 package logic;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 
-public class PlayerVsPlayer extends Game {
-	
+public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected final String gameName;
+	protected String passwort;
+	protected int gameId;
+	protected boolean hasEnoughPlayer=false;
+	protected boolean gameFinished = false;
+	protected Player winner;
+	protected Player[] players;
+	protected Universe universe;
+	protected int round;
+	private static int gameCount=0;
+	protected Report endReport;
 	public PlayerVsPlayer(String gameName, int universeSize) throws RemoteException {
-		super(gameName,universeSize);
+		this.gameName=gameName;
+		this.gameId=gameCount;
+		this.universe=new Universe(universeSize);
+		this.round = 0;
+		this.endReport = new EndReport();
+		gameCount++;
 		this.players = new Player[2];
 		
 	}
 
 	@Override
-	public void addPlayer(Player newPlayer) {
+	public void addPlayer(Player newPlayer) throws RemoteException{
 		if(this.players[0]==null){
 			this.players[0]=newPlayer;
 		}else{
@@ -23,7 +42,7 @@ public class PlayerVsPlayer extends Game {
 		newPlayer.setGamePlaying(this);
 
 	}
-	public void addPlayers(Player one, Player two){
+	public void addPlayers(Player one, Player two) throws RemoteException{
 		one.setGamePlaying(this);
 		two.setGamePlaying(this);
 		this.addPlayer(one);
@@ -68,6 +87,36 @@ public class PlayerVsPlayer extends Game {
 			return report;
 		}
 		return null;
+	}
+
+	@Override
+	public Universe getUniverse() throws RemoteException {
+		return this.universe;
+	}
+
+	@Override
+	public boolean hasEnoughPlayer() throws RemoteException {
+		return this.hasEnoughPlayer;
+	}
+
+	@Override
+	public boolean isGameFinished() throws RemoteException {
+		return this.gameFinished;
+	}
+
+	@Override
+	public Report getEndreport() throws RemoteException {
+		return this.endReport;
+	}
+
+	@Override
+	public String getGameName() throws RemoteException {
+		return this.gameName;
+	}
+
+	@Override
+	public boolean killAllReferences() throws RemoteException {
+		return false;
 	}
 
 }
