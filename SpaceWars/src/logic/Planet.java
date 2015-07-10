@@ -1,11 +1,14 @@
 package logic;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+import clientServer.Client;
+
 public class Planet implements Serializable{
-	private Player planetOwner;
+	private Client planetOwner;
 	private String name;
 	private List<Spaceship> shipsInOrbit;
 	private List<Spaceship> shipsTryToOrbit;
@@ -78,11 +81,11 @@ public class Planet implements Serializable{
 		return shipsTryToOrbit;
 	}
 
-	public Player getPlanetOwner() {
+	public Client getPlanetOwner() {
 		return planetOwner;
 	}
 
-	public void setPlanetOwner(Player planetOwner) {
+	public void setPlanetOwner(Client planetOwner) {
 		this.planetOwner = planetOwner;
 	}
 
@@ -118,9 +121,9 @@ public class Planet implements Serializable{
 		return false;
 	}
 
-	public BattleReport fight() {
-		Player attacker = this.getShipsTryToOrbit().get(0).getOwner();
-		Player defender = this.planetOwner;
+	public BattleReport fight() throws RemoteException {
+		Client attacker = this.getShipsTryToOrbit().get(0).getOwner();
+		Client defender = this.planetOwner;
 		BattleReport report = new BattleReport(this);
 		List<Spaceship> shipsDefeated = new ArrayList<Spaceship>();
 		for (Spaceship s : this.getShipsTryToOrbit()) {
@@ -142,12 +145,12 @@ public class Planet implements Serializable{
 		if (this.getShipsInOrbit().isEmpty()) {
 			this.getShipsInOrbit().addAll(this.getShipsTryToOrbit());
 			this.getShipsTryToOrbit().clear();
-			report.setWinnersUsername(attacker.username);
-			report.setLoosersUsername(defender.username);
+			report.setWinnersUsername(attacker.getUsername());
+			report.setLoosersUsername(defender.getUsername());
 			this.setPlanetOwner(attacker);
 		} else {
-			report.setWinnersUsername(defender.username);
-			report.setLoosersUsername(attacker.username);
+			report.setWinnersUsername(defender.getUsername());
+			report.setLoosersUsername(attacker.getUsername());
 		}
 		this.setFightAfterRoundEnded(false);
 		return report;

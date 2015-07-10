@@ -44,19 +44,19 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		newPlayer.setGamePlaying(this);
 
 	}
-	public void addPlayers(Player one, Player two) throws RemoteException{
+	public void addPlayers(Client one, Client two) throws RemoteException{
 		one.setGamePlaying(this);
 		two.setGamePlaying(this);
 		this.addPlayer(one);
 		this.addPlayer(two);
 	}
-	private boolean playersReady(){
+	private boolean playersReady() throws RemoteException{
 		if(this.players[0].isPlayerReady()==true&&this.players[1].isPlayerReady()==true){
 			return true;
 		}
 		return false;
 	}
-	private void setPlayersUnready(){
+	private void setPlayersUnready() throws RemoteException{
 		this.players[0].setPlayerReady(false);
 		this.players[1].setPlayerReady(false);				
 	}

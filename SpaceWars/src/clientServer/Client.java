@@ -15,31 +15,29 @@ public interface Client extends Remote {
 
 	public void joinGame(String gameName) throws RemoteException;
 
-	public void addCash(int cash);
+	public void addCash(int cash)throws RemoteException;
 
-	public int getCash();
-	public int getAmountOfPlanets();
-	public Game getGamePlaying();
+	public int getCash()throws RemoteException;
+	public int getAmountOfPlanets()throws RemoteException;
+	public Game getGamePlaying()throws RemoteException;
 
-	public void setGamePlaying(Game gamePlaying);
+	public void setGamePlaying(Game gamePlaying)throws RemoteException;
 
-	public int getOwnerId();
+	public int getOwnerId()throws RemoteException;
 
-	public boolean isPlayerReady();
+	public boolean isPlayerReady()throws RemoteException;
 
-	public void setPlayerReady(boolean playerReady);
+	public void setPlayerReady(boolean playerReady)throws RemoteException;
 
-	public String getUsername();
+	public String getUsername()throws RemoteException;
 
-	public void buyBattlestar();
+	public void buyBattlestar()throws RemoteException;
 
-	public void buyFighter();
+	public void buyFighter()throws RemoteException;
 
-	public void sendShip(Spaceship ship, Planet destination);
+	public void sendShip(Spaceship ship, Planet destination)throws RemoteException;
 
-	public String toString();
+	public List<Spaceship> getStock()throws RemoteException;
 
-	public List<Spaceship> getStock();
-
-	public void setStock(List<Spaceship> stock);
+	public void setStock(List<Spaceship> stock)throws RemoteException;
 }

@@ -1,5 +1,9 @@
 package logic;
 
+import java.rmi.RemoteException;
+
+import clientServer.Client;
+
 public class Fighter extends Spaceship {
 	static final int price = 200;
 	private enum Rank{
@@ -27,7 +31,7 @@ public class Fighter extends Spaceship {
 			}
 		}
 	}
-	public Fighter(Player owner) {
+	public Fighter(Client owner) throws RemoteException {
 		super(owner);
 	}
 	public static int getPrice() {
@@ -35,7 +39,12 @@ public class Fighter extends Spaceship {
 	}
 	public String toString(){
 		String s ="Fighter von ";
-		s+=this.owner.username+" mit Rang ";
+		try {
+			s+=this.owner.getUsername()+" mit Rang ";
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		s+=rank;
 		return s;
 	}

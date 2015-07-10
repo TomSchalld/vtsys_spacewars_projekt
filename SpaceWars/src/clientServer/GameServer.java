@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import logic.Game;
-import logic.Player;
 import logic.Report;
 
 public class GameServer extends UnicastRemoteObject implements Server, Serializable {

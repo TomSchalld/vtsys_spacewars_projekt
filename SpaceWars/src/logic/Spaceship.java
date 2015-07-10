@@ -1,12 +1,15 @@
 package logic;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
+
+import clientServer.Client;
 
 public abstract class Spaceship implements Serializable{
 	protected final int ownerId;
-	protected final Player owner;
+	protected final Client owner;
 	protected Planet orbiting;
-	public Spaceship(Player owner){
+	public Spaceship(Client owner) throws RemoteException{
 		this.ownerId=owner.getOwnerId();
 		this.owner=owner;
 	}
@@ -19,7 +22,7 @@ public abstract class Spaceship implements Serializable{
 	public void setOrbiting(Planet orbiting) {
 		this.orbiting = orbiting;
 	}
-	public Player getOwner() {
+	public Client getOwner() {
 		return owner;
 	}
 	public abstract int attack();

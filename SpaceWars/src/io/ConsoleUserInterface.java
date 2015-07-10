@@ -5,8 +5,8 @@ import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import clientServer.Client;
 import logic.Human;
-import logic.Player;
 
 public class ConsoleUserInterface implements Serializable{
 
@@ -17,15 +17,14 @@ public class ConsoleUserInterface implements Serializable{
 
 	public void run() throws MalformedURLException, RemoteException, NotBoundException, InterruptedException {
 		int eingabe;
-		Player player = new Human(IO.readString("Bitte Usernamen eingeben"), null);
-		Human human = (Human) player;
+		Client player = new Human(IO.readString("Bitte Usernamen eingeben"), null);
 		System.out.println("Hallo Commander " + player.getUsername() + "\twas willst du tun?");
 		System.out.println("(0) Neues Spiel erstellen\n(1) Spiel beitreten");
 		eingabe = IO.readInt();
 		if (eingabe == 0) {
-			human.openGame("testgame", 0, 3);
+			player.openGame("testgame", 0, 3);
 		} else {
-			human.joinGame("testgame");
+			player.joinGame("testgame");
 		}
 		while (!player.getGamePlaying().hasEnoughPlayer()) {
 			System.out.println("waiting for other player.....");
