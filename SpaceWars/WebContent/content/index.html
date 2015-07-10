@@ -34,21 +34,7 @@
 
 	</div>
 	<!-- /container -->
-	<script>
-		function submitUser() {
-			var username = $('#username').val();
-			$.ajax({
-				url : "/SpaceWars/login",
-				type : "POST",
-				data : {
-					"username" : username
-				},
-				success: function(result){
-					window.location.href = "html/menuMain.html"+result;
-				}
-			});
-		}
-	</script>
+	<script src="js/useful.js"></script>
 
 </body>
 </html>

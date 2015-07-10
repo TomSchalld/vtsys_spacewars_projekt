@@ -20,5 +20,8 @@ public class UserOnline {
 	public static void addUser(String uID, Client newUser) {
 		user.put(uID, newUser);
 	}
+	public static void logout(String uID) {
+		user.remove(uID);
+	}
 	
 }

@@ -34,8 +34,16 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("text/plain;charset=UTF-8");
 		HttpSession session = request.getSession();
+		String uname = request.getParameter("username");
+		if(request.getParameter("logout").equals("true")){
+			UserOnline.logout(session.getId()); 
+			System.out.println(uname+" successfully logged out");
+		}
 		System.out.println(session.getId());
+		PrintWriter out = response.getWriter();
+		out.write("?username=" + uname);
 	}
 
 	/**
@@ -48,7 +56,7 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 		String sessionId = session.getId();
 		PrintWriter out = response.getWriter();
-		String uname = (String) request.getParameter("username");
+		String uname = request.getParameter("username");
 		try {
 			if (!UserOnline.isUserExisting(sessionId)) {
 				UserOnline.addUser(sessionId, new Human(uname, "192.168.178.23"));
