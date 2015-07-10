@@ -1,0 +1,65 @@
+.nav {
+
+  list-style: outside none none;
+  margin-bottom: 0px;
+  margin-left: auto;
+
+
+}
+body{
+
+
+  margin:10px;
+}
+.menu-box {
+  background: rgba(238, 238, 238, 0.6);
+  max-width: 350px;
+  padding: 15px;
+  margin: auto;
+  border-radius: 6px;
+  margin-top: 80px;
+}
+.width-box{
+  max-width: 800px;
+  padding: 20px;
+  margin-top: 80px;
+
+}
+.game-box{
+  max-width: 1200px;
+  padding: 20px;
+  margin-top: 80px;
+
+}
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+  border-radius: 6px;
+}
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-radius: 6px;
+}
+.btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+  border-radius: 6px;
+}
+img {
+  width: 100%;
+  max-width: 239px;
+}
+.row{
+
+  margin-bottom: 15px;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: 1px solid #68838b;
+    line-height: 1.42857;
+    padding: 8px;
+    vertical-align: middle;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+
+.yscroll{
+max-height: 500px; overflow-y: scroll;
+}
+.col-md-12{
+  margin-bottom: 15px;
+}
