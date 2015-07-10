@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 
+import clientServer.Client;
+
 public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	/**
 	 * 
@@ -14,8 +16,8 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	protected int gameId;
 	protected boolean hasEnoughPlayer=false;
 	protected boolean gameFinished = false;
-	protected Player winner;
-	protected Player[] players;
+	protected Client winner;
+	protected Client[] players;
 	protected Universe universe;
 	protected int round;
 	private static int gameCount=0;
@@ -27,12 +29,12 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		this.round = 0;
 		this.endReport = new EndReport();
 		gameCount++;
-		this.players = new Player[2];
+		this.players = new Client[2];
 		
 	}
 
 	@Override
-	public void addPlayer(Player newPlayer) throws RemoteException{
+	public void addPlayer(Client newPlayer) throws RemoteException{
 		if(this.players[0]==null){
 			this.players[0]=newPlayer;
 		}else{
@@ -76,10 +78,10 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 
 			this.setPlayersUnready();
 			this.round++;
-			if(this.players[0].amountOfPlanets==this.getUniverse().getPlanets().size()){
+			if(this.players[0].getAmountOfPlanets()==this.getUniverse().getPlanets().size()){
 				this.gameFinished = true;
 				this.winner = this.players[0];
-			}else if(this.players[1].amountOfPlanets==this.getUniverse().getPlanets().size()){
+			}else if(this.players[1].getAmountOfPlanets()==this.getUniverse().getPlanets().size()){
 				this.gameFinished = true;
 				this.winner = this.players[1];
 			}

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import clientServer.Client;
 
@@ -42,6 +43,11 @@ public class Human extends Player implements Serializable,Client{
 		this.server.getGameByName(gameName).addPlayer(this);
 		this.server.joinGame(gameName);
 
+	}
+
+	@Override
+	public int getAmountOfPlanets() {
+		return this.amountOfPlanets;
 	}
 
 }

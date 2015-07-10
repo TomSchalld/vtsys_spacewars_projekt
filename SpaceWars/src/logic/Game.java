@@ -3,6 +3,8 @@ package logic;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import clientServer.Client;
+
 public interface Game extends Remote{
 	/**
 	 * 
@@ -21,7 +23,7 @@ public interface Game extends Remote{
 	
 	public boolean killAllReferences()throws RemoteException;
 	
-	public abstract void addPlayer(Player newPlayer)throws RemoteException;
+	public abstract void addPlayer(Client newPlayer)throws RemoteException;
 	
 	public abstract RoundReport endRound()throws RemoteException;
 }
