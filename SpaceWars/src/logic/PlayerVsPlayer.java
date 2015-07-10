@@ -40,7 +40,7 @@ public class PlayerVsPlayer extends Game {
 		this.players[1].setPlayerReady(false);				
 	}
 	@Override
-	public RoundReport endRound() {
+	public RoundReport endRound() throws RemoteException {
 		if(this.playersReady()){
 			RoundReport report = new RoundReport();
 			Map<String,Planet>planets = this.getUniverse().getPlanets();

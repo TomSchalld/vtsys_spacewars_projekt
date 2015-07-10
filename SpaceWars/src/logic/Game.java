@@ -1,10 +1,13 @@
 package logic;
 
 import java.io.Serializable;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public abstract class Game implements Serializable{
+import clientServer.GameIf;
+
+public abstract class Game extends UnicastRemoteObject implements Serializable, Remote{
 	/**
 	 * 
 	 */
@@ -28,26 +31,33 @@ public abstract class Game implements Serializable{
 		this.endReport = new EndReport();
 		gameCount++;
 	}
-	public Universe getUniverse() {
+	
+	public Universe getUniverse()throws RemoteException {
 		return universe;
 	}
-	public boolean hasEnoughPlayer(){
+	
+	public boolean hasEnoughPlayer()throws RemoteException{
 		return this.hasEnoughPlayer;
 	}
 	
-	public boolean isGameFinished() {
+	public boolean isGameFinished() throws RemoteException{
 		return gameFinished;
 	}
-	public Report getEndreport(){
+	
+	public Report getEndreport()throws RemoteException{
 		return this.endReport;
 	}
-	public String getGameName() {
+	
+	public String getGameName()throws RemoteException {
 		return gameName;
 	}
-	public boolean killAllReferences(){
+	
+	public boolean killAllReferences()throws RemoteException{
 		//TODO write something that terminates all references so GC can clean up
 		return true;
 	}
-	public abstract void addPlayer(Player newPlayer);
-	public abstract RoundReport endRound();
+	
+	public abstract void addPlayer(Player newPlayer)throws RemoteException;
+	
+	public abstract RoundReport endRound()throws RemoteException;
 }

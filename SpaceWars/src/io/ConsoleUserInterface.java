@@ -5,7 +5,7 @@ import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import logic.GameIf;
+import clientServer.GameIf;
 import logic.Human;
 import logic.Player;
 

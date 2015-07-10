@@ -50,7 +50,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		}
 	}
 
-	public void bringGameToRun(Game gameInLobby){
+	public void bringGameToRun(Game gameInLobby) throws RemoteException{
 		this.runningGames.put(gameInLobby.getGameName(),this.lobby.remove(gameInLobby.getGameName()));
 	}
 	@Override
