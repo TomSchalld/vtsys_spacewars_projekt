@@ -37,9 +37,12 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	public void addPlayer(Client newPlayer) throws RemoteException{
 		if(this.players[0]==null){
 			this.players[0]=newPlayer;
+			System.out.println(newPlayer.getUsername()+" has logged in");
 		}else{
 			this.players[1]=newPlayer;
 			this.hasEnoughPlayer=true;
+			System.out.println(newPlayer.getUsername()+" has logged in");
+
 		}
 		newPlayer.setGamePlaying(this);
 

@@ -34,9 +34,9 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			throw new Exception("Game Could not be Opened Exception");
 		}
 		if(newGame.hasEnoughPlayer()){
-			runningGames.put(newGame.getGameName(), newGame);
+			runningGames.put(gameName, newGame);
 		}else{
-			lobby.put(newGame.getGameName(), newGame);
+			lobby.put(gameName, newGame);
 		}
 	}
 

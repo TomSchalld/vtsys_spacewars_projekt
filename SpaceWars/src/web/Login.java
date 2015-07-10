@@ -34,8 +34,8 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		System.out.println(session.getId());
 	}
 
 	/**
@@ -47,12 +47,11 @@ public class Login extends HttpServlet {
 		response.setContentType("text/plain;charset=UTF-8");
 		HttpSession session = request.getSession();
 		String sessionId = session.getId();
-		System.out.println(session.getId());
 		PrintWriter out = response.getWriter();
 		String uname = (String) request.getParameter("username");
 		try {
 			if (!UserOnline.isUserExisting(sessionId)) {
-				UserOnline.addUser(sessionId, new Human(uname, null));
+				UserOnline.addUser(sessionId, new Human(uname, "192.168.178.23"));
 			}
 		} catch (NotBoundException e) {
 			// TODO Auto-generated catch block
@@ -64,21 +63,4 @@ public class Login extends HttpServlet {
 		response.getWriter().close();
 
 	}
-
-	/**
-	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doPut(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
 }

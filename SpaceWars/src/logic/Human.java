@@ -29,13 +29,11 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 	protected boolean playerReady;
 
 
-	public Human(String username, Game gamePlaying) throws MalformedURLException, RemoteException, NotBoundException {
-		String input = IO.readString("Bitte ServerAdresse eingeben.\n");
-		this.server =  (Server) Naming.lookup("rmi://"+input+":1099/GameServer");
+	public Human(String username,String serveraddress) throws MalformedURLException, RemoteException, NotBoundException {
+		this.server =  (Server) Naming.lookup("rmi://"+serveraddress+":1099/GameServer");
 		this.username = username;
 		this.ownerId = userCount;
 		this.cash = 10000;
-		this.gamePlaying = gamePlaying;
 		this.setStock(new ArrayList<Spaceship>());
 		userCount++;
 	}
