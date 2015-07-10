@@ -36,7 +36,13 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/plain;charset=UTF-8");
 		HttpSession session = request.getSession();
+		String uID = session.getId();
 		String uname = request.getParameter("username");
+		
+		if(request.getParameter("create").equals("true")){
+			//TODO .... 
+			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
+		}
 		if(request.getParameter("logout").equals("true")){
 			UserOnline.logout(session.getId()); 
 			System.out.println(uname+" successfully logged out");
