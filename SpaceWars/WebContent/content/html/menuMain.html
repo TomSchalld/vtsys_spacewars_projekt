@@ -44,21 +44,31 @@
 
 	<div class="menu-box">
 
-		<div class="btn-group">
-			<button class="btn btn-lg btn-primary btn-block" type="button">Scharmützel</button>
+		<div class="btn-group corners">
+			<button class="btn btn-lg btn-primary btn-block corners" type="button">Scharmützel</button>
 			<button type="button"
-				class="btn btn-lg btn-primary btn-block dropdown-toggle"
+				class="btn btn-lg btn-primary btn-block dropdown-toggle corners"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mehrspieler</button>
-			<ul class="btn btn-lg btn-primary btn-block dropdown-menu">
-				<li><a href="#" onclick="openCreateGame()">Spiel erstellen</a></li>
-				<li><a href="#" onclick="joinGame()">Spiel beitreten</a></li>
+			<ul class="btn btn-lg btn-block dropdown-menu btn-transparent">
+				<li><button class="btn btn-lg btn-primary btn-block corners"
+						type="button" onclick="openCreateGame()">Spiel erstellen</button></li>
+				<li><button class="btn btn-lg btn-primary btn-block corners"
+						type="button" onclick="joinGame()">Spiel beitreten</button></li>
 			</ul>
-			<button class="btn btn-lg btn-primary btn-block" type="button" onclick="getHighscore()">Highscore</button>
-			<button class="btn btn-lg btn-primary btn-block" type="button" onclick="showSettings()">Einstellungen</button>
-			<button class="btn btn-lg btn-primary btn-block" type="button" onclick="logout()">Spiel
-				verlassen</button>
-		</div>
+			<button class="btn btn-lg btn-primary btn-block corners" type="button"
+				onclick="getHighscore()">Highscore</button>
+			<button class="btn btn-lg btn-primary btn-block corners" type="button"
+				onclick="showSettings()">Einstellungen</button>
+			<button class="btn btn-lg btn-primary btn-block corners" type="button"
+				onclick="logout()">Spiel verlassen</button>
 
+
+
+
+
+
+		</div>
+	
 
 
 
