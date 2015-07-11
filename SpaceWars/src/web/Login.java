@@ -41,10 +41,12 @@ public class Login extends HttpServlet {
 		
 		if(request.getParameter("createGame").equals("true")){
 			//TODO .... 
-			System.out.println("createGame");
-			System.out.println(request.getParameter("gameName"));
+			String gameName = request.getParameter("gameName");
+			int variation = Integer.parseInt(request.getParameter("gameMode").trim()); //0= pvp 1= pvpc 2= ppvpc
+			int universeSize = Integer.parseInt(request.getParameter("universeSize").trim()); //0=3planets 1=5planets 2=7planets
+			System.out.println("createGame: "+gameName+" mode: "+variation+" universeSize: "+universeSize);
 			
-			//UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
+			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
 		}
 		if(request.getParameter("logout").equals("true")){
 			UserOnline.logout(session.getId()); 
