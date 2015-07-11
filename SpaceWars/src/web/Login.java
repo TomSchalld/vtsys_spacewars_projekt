@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import org.json.*;
 import logic.Human;
 
 /**
@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
 		if(request.getParameter("createGame").equals("true")){
 			//TODO .... 
 			System.out.println("createGame");
-			System.out.println(request.getParameter("game"));
+			System.out.println(request.getParameter("gameName"));
 			
 			//UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
 		}

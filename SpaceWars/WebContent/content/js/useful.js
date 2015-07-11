@@ -3,7 +3,12 @@ var data = {
 	"logout" : false,
 	"createGame" : false,
 	"joinGame" : false,
-	"game":null
+	"gameName":"",
+	"gamePw":"",
+	"race":"",
+	"universeSize":0,
+	"gameMode":2
+	
 };
 function getUrlParameter(sParam) {
 	var sPageURL = window.location.search.substring(1);
@@ -17,12 +22,9 @@ function getUrlParameter(sParam) {
 }
 function createGame() {
 	data.createGame = true;
-	var gameName =$('#gameName').val();
-	var pw = $('#inputPassword').val();
-	data.game = {
-			"gameName":gameName,
-			"password":pw
-	};
+	data.gameName =$('#gameName').val();
+	data.Pw = $('#inputPassword').val();
+	
 	$.ajax({
 		url : "/SpaceWars/login",
 		type : "GET",
@@ -80,4 +82,9 @@ function clearData(){
 	data.logout = false;
 	data.createGame = false;
 	data.joinGame=false;
+}
+function chooseRace(race){
+	data.race = race;
+	window.location.href = "./menuKarte.html" + result;
+
 }
