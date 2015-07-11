@@ -31,14 +31,29 @@ body{
   margin-top: 80px;
 
 }
+
+.text-box{
+  background: rgba(238, 238, 238, 0.6);
+  margin-right: 20px;
+  display: block;
+
+}
+.disabled {
+    opacity: 1 !important;
+  }
 .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
-  border-radius: 6px;
+
 }
 .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
-  border-radius: 6px;
+
 }
 .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
-  border-radius: 6px;
+
+}
+.center-button{
+float: right !important;
+margin-right: 15px;
+
 }
 img {
   width: 100%;
@@ -62,4 +77,12 @@ max-height: 500px; overflow-y: scroll;
 }
 .col-md-12{
   margin-bottom: 15px;
+}
+.chat-field{
+
+  min-height: 300px;
+
+}
+.belongs{
+  height: 250px;
 }
