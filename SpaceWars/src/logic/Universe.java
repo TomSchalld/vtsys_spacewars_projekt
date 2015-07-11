@@ -1,10 +1,13 @@
 package logic;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
-public class Universe implements Serializable{
+public class Universe implements Serializable {
 	private Map<String, Planet> planets;
 	private int universeSize;
 	private int planetId;
@@ -60,5 +63,20 @@ public class Universe implements Serializable{
 		this.planets.put("Gemini", new Planet("Gemini", planetId++));
 		this.planets.put("Atlantis", new Planet("Atlantis", planetId++));
 	}
+	public Planet getRandomPlanet(){
+		return getPlanetByName(getRandomPlanetName());
+	}
+	public Planet getPlanetByName(String name){
+		return this.getPlanets().get(name);
+	}
+	public String getRandomPlanetName() {
 
+		Map<String, Planet> planets = this.getPlanets();
+
+		Random random = new Random();
+		List<String> keys = new ArrayList<String>(planets.keySet());
+		String randomKey = keys.get(random.nextInt(keys.size()));
+		return randomKey;
+
+	}
 }
