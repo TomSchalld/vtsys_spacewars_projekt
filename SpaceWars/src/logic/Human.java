@@ -130,7 +130,7 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 			ship.setOrbiting(destination);
 		}
 	}
-
+	
 	public String toString(){
 		String string = this.username+" Cash: "+this.cash+" Planeten: "+this.amountOfPlanets+" ";
 		for(Spaceship s:this.getStock()){
@@ -147,5 +147,13 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 
 	public void setStock(List<Spaceship> stock) {
 		this.stock = stock;
+	}
+
+	@Override
+	public boolean equals(Client other) throws RemoteException {
+		if(this.getOwnerId() == other.getOwnerId()){
+			return true;
+		}
+		return false;
 	}
 }
