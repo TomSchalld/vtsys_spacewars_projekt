@@ -50,7 +50,28 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 				e.printStackTrace();
 			}
 			newGame.addPlayer(this);
-
+		}
+		else if (variation == 1) {
+			newGame = new PlayerVsPC(gameName, universeSize);
+			try {
+				this.server.openGame(newGame);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			newGame.addPlayer(this);
+		}
+		else if (variation == 2) {
+			//newGame = new PlayerPlayerVsPC(gameName, universeSize);
+			try {
+				//this.server.openGame(newGame);
+			//} catch (RemoteException e) {
+				//e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			//newGame.addPlayer(this);
 		}
 	}
 

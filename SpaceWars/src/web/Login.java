@@ -38,19 +38,25 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 		String uID = session.getId();
 		String uname = request.getParameter("username");
-		
-		if(request.getParameter("createGame").equals("true")){
-			//TODO .... 
+
+		if (request.getParameter("createGame").equals("true")) {
+			// TODO ....
 			String gameName = request.getParameter("gameName");
-			int variation = Integer.parseInt(request.getParameter("gameMode").trim()); //0= pvp 1= pvpc 2= ppvpc
-			int universeSize = Integer.parseInt(request.getParameter("universeSize").trim()); //0=3planets 1=5planets 2=7planets
-			System.out.println("createGame: "+gameName+" mode: "+variation+" universeSize: "+universeSize);
-			
+			int variation = Integer.parseInt(request.getParameter("gameMode").trim()); // 0=
+																						// pvp
+																						// 1=
+																						// pvpc
+																						// 2=
+																						// ppvpc
+			int universeSize = Integer.parseInt(request.getParameter("universeSize").trim()); // 0=3planets
+																								// 1=5planets
+																								// 2=7planets
 			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
+			System.out.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
 		}
-		if(request.getParameter("logout").equals("true")){
-			UserOnline.logout(session.getId()); 
-			System.out.println(uname+" successfully logged out");
+		if (request.getParameter("logout").equals("true")) {
+			UserOnline.logout(session.getId());
+			System.out.println(uname + " successfully logged out");
 		}
 		System.out.println(session.getId());
 		PrintWriter out = response.getWriter();
