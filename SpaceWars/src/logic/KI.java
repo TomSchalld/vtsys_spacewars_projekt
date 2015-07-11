@@ -14,9 +14,11 @@ public class KI extends Human {
 	}
 
 	public void ruleTheWorld() throws RemoteException {
+		
 		this.buyNewShips();
 		this.sendShips();
 		this.setPlayerReady(true);
+		System.out.println("Skynet is gonna rule");
 
 	}
 	
@@ -25,6 +27,7 @@ public class KI extends Human {
 		super.setGamePlaying(gamePlaying);
 		try {
 			this.ruleTheWorld();
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

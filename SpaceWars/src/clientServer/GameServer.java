@@ -28,6 +28,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 
 	@Override
 	public void openGame(Game newGame) throws Exception,RemoteException {
+		System.out.println("try to open new game");
 		String gameName = newGame.getGameName();
 		if(this.runningGames.containsKey(gameName)||this.lobby.containsKey(gameName)){
 			System.out.println("Game already existing!");
@@ -35,8 +36,11 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		}
 		if(newGame.hasEnoughPlayer()){
 			runningGames.put(gameName, newGame);
+			System.out.println("added new game to running games");
 		}else{
+			System.out.println("put game into lobby....");
 			lobby.put(gameName, newGame);
+			System.out.println("..done.");
 		}
 	}
 
@@ -72,7 +76,15 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 	public void addEndReportToHighscore(Report report){
 		// TODO generate highscore
 	}
-	
+	@Override
+	public Game getGameByName(String gameName) throws RemoteException {
+		if(this.runningGames.containsKey(gameName)){
+			return this.runningGames.get(gameName);
+		}else if(this.lobby.containsKey(gameName)){
+			return this.lobby.get(gameName);
+		}
+		return null;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -99,16 +111,6 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			ex.printStackTrace();
 			System.exit(0);
 		}
-	}
-
-	@Override
-	public Game getGameByName(String gameName) throws RemoteException {
-		if(this.runningGames.containsKey(gameName)){
-			return this.runningGames.get(gameName);
-		}else if(this.lobby.containsKey(gameName)){
-			return this.lobby.get(gameName);
-		}
-		return null;
 	}
 
 }

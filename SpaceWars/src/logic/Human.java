@@ -42,6 +42,7 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 		Game newGame;
 		if (variation == 0) {
 			newGame = new PlayerVsPlayer(gameName, universeSize);
+			System.out.println("erstelle neuese pvp game");
 			try {
 				this.server.openGame(newGame);
 			} catch (RemoteException e) {
@@ -50,7 +51,30 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 				e.printStackTrace();
 			}
 			newGame.addPlayer(this);
-
+		}
+		else if (variation == 1) {
+			newGame = new PlayerVsPC(gameName, universeSize);
+			newGame.addPlayer(this);
+			System.out.println("User added");
+			try {
+				this.server.openGame(newGame);
+				System.out.println("send game to server");
+			} catch ( Exception e) {
+				System.out.println("exception e");
+				e.printStackTrace();
+			} 
+			
+		}
+		else if (variation == 2) {
+			//newGame = new PlayerPlayerVsPC(gameName, universeSize);
+			try {
+				//this.server.openGame(newGame);
+			//} catch (RemoteException e) {
+				//e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			//newGame.addPlayer(this);
 		}
 	}
 
