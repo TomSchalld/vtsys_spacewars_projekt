@@ -3,15 +3,14 @@ package logic;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class KI extends Human {
 
 	public KI(String username, String serveraddress) throws MalformedURLException, RemoteException, NotBoundException {
 		super(username, serveraddress);
+		
 	}
 
 	public void ruleTheWorld() throws RemoteException {
@@ -19,6 +18,30 @@ public class KI extends Human {
 		this.sendShips();
 		this.setPlayerReady(true);
 
+	}
+	
+	@Override
+	public void setGamePlaying(Game gamePlaying) {
+		super.setGamePlaying(gamePlaying);
+		try {
+			this.ruleTheWorld();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void setPlayerReady(boolean playerReady) {
+		super.setPlayerReady(playerReady);
+		if(!playerReady){
+			try {
+				this.ruleTheWorld();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**

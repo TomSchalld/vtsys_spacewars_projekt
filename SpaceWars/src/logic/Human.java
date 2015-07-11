@@ -11,7 +11,6 @@ import java.util.List;
 
 import clientServer.Client;
 import clientServer.Server;
-import io.IO;
 
 public class Human extends UnicastRemoteObject implements Serializable,Client{
 	/**
