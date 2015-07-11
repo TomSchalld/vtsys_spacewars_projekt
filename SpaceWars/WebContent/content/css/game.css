@@ -1,9 +1,14 @@
 body {
- /* padding-top: 40px;
+	/* padding-top: 40px;
   padding-bottom: 40px;*/
-
-  background: url(bg-game.jpg) no-repeat center center fixed;
+	background: url(bg-game.jpg) no-repeat center center fixed;
 }
+
 h4, .h4 {
-    color: white;
+	color: white;
+}
+
+img {
+	max-height: 250px;
+	width: auto;
 }

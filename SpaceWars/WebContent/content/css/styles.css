@@ -102,3 +102,11 @@ img {
 .belongs {
 	height: 250px;
 }
+
+.popup {
+	position: absolute;
+	z-index: 3;
+	display: none;
+	background: rgba(255, 255, 255, 0.9);	
+	/*width: 80%;*/
+}

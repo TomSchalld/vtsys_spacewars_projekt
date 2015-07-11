@@ -45,9 +45,9 @@
 					<button type="button" class="btn btn-default  disabled">
 						Guthaben <span class="badge">4000 $</span>
 					</button>
-					<button type="button" class="btn btn-warning">
+					<button type="button" class="btn btn-warning" onclick="openShop()">
 						Schiffe kaufen <span class="glyphicon glyphicon-shopping-cart"
-							aria-hidden="true">
+							aria-hidden="true"></span>
 					</button>
 					<button type="button" class="btn btn-success">
 						Runde Beenden<span class="glyphicon glyphicon-chevron-right"
@@ -60,16 +60,16 @@
 		</div>
 	</nav>
 	<!----------------------------------------------------------Kaufmenü---------------------------------------------------------->
-	<div class="alert alert-dismissible fade in menu-box game-box">
+	<div id="shop" class="fade in menu-box game-box popup">
 
 		<div class="row">
 
 			<div class="col-md-12">
 				<h2>
 					Schiffe kaufen
-					<button type="button" class="close" data-dismiss="alert"
-						aria-label="Schließen">
-						<span aria-hidden="true">&times;</span>
+					<button type="button" class="close" aria-label="Schließen"
+						onclick="closeShop()">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
 				</h2>
 			</div>
@@ -131,16 +131,15 @@
 
 	</div>
 	<!----------------------------------------------------------Report---------------------------------------------------------->
-	<div class="alert alert-dismissible fade in menu-box game-box">
+	<div id="report" class="fade in menu-box game-box popup">
 
-		
-				<div class="row">
+
+		<div class="row">
 
 			<div class="col-md-12">
 				<h2>
 					Report
-					<button type="button" class="close" data-dismiss="alert"
-						aria-label="Schließen">
+					<button type="button" class="close" aria-label="Schließen">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</h2>
@@ -214,7 +213,7 @@
 					Erde
 				</h4>
 				<div class="btn-group">
-					<button type="button" class="btn btn-default ">
+					<button type="button" class="btn btn-default " onclick="battlestarPlus('erde')">
 						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
 					</button>
 					<button type="button" class="btn btn-default">
@@ -222,7 +221,7 @@
 					</button>
 					<button type="button"
 						class="btn btn-default disabled same samewidth">
-						Schlachtschiffe <span class="badge textright">4</span>
+						<span class="badge textright">4</span> Schlachtschiffe
 					</button>
 				</div>
 				<br>
@@ -234,7 +233,7 @@
 						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">
 					</button>
 					<button type="button" class="btn btn-default disabled samewidth">
-						Jäger <span class="badge textright">4</span>
+						<span class="badge textright">4</span> Jäger
 					</button>
 				</div>
 			</div>
@@ -255,7 +254,7 @@
 					</button>
 					<button type="button"
 						class="btn btn-default disabled same samewidth">
-						Schlachtschiffe <span class="badge textright">4</span>
+						<span class="badge textright">4</span> Schlachtschiffe
 					</button>
 				</div>
 				<br>
@@ -267,7 +266,7 @@
 						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">
 					</button>
 					<button type="button" class="btn btn-default disabled samewidth">
-						Jäger <span class="badge textright">4</span>
+						<span class="badge textright">4</span> Jäger
 					</button>
 				</div>
 			</div>
@@ -284,7 +283,7 @@
 					</button>
 					<button type="button"
 						class="btn btn-default disabled same samewidth">
-						Schlachtschiffe <span class="badge textright">4</span>
+						<span class="badge textright">4</span> Schlachtschiffe
 					</button>
 				</div>
 				<br>
@@ -296,7 +295,7 @@
 						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">
 					</button>
 					<button type="button" class="btn btn-default disabled samewidth">
-						Jäger <span class="badge textright">4</span>
+						<span class="badge textright">4</span> Jäger
 					</button>
 				</div>
 			</div>
@@ -310,29 +309,31 @@
 				<img src="../resources/images/planets/caprica.png" alt="...">
 				<h4 class="text-center">Caprica</h4>
 				<div class="btn-group">
-					<button type="button"
-						class="btn btn-default disabled same samewidth">
-						Schlachtschiffe <span class="badge textright">4</span>
-					</button>
+
 					<button type="button" class="btn btn-default ">
 						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
 					</button>
 					<button type="button" class="btn btn-default">
 						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">
+					</button>
+					<button type="button"
+						class="btn btn-default disabled same samewidth">
+						<span class="badge textright">4</span> Schlachtschiffe
 					</button>
 
 				</div>
 				<br>
 				<div class="btn-group">
-					<button type="button"
-						class="btn btn-default disabled same samewidth">
-						Schlachtschiffe <span class="badge textright">4</span>
-					</button>
+
 					<button type="button" class="btn btn-default ">
 						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
 					</button>
 					<button type="button" class="btn btn-default">
 						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">
+					</button>
+					<button type="button"
+						class="btn btn-default disabled same samewidth">
+						<span class="badge textright">4</span> Jäger
 					</button>
 				</div>
 			</div>
@@ -341,31 +342,33 @@
 				<img src="../resources/images/planets/endor.png" alt="...">
 				<h4 class="text-center">Endor</h4>
 				<div class="btn-group">
-					<button type="button"
-						class="btn btn-default disabled same samewidth">
-						Schlachtschiffe <span class="badge textright">4</span>
-					</button>
+
 					<button type="button" class="btn btn-default ">
 						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
 					</button>
 					<button type="button" class="btn btn-default">
 						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">
 					</button>
-
+					<button type="button"
+						class="btn btn-default disabled same samewidth">
+						<span class="badge textright">4</span> Schlachtschiffe
+					</button>
 				</div>
 				<br>
 				<div class="btn-group">
-					<button type="button"
-						class="btn btn-default disabled same samewidth">
-						Schlachtschiffe <span class="badge textright">4</span>
-					</button>
+
 					<button type="button" class="btn btn-default ">
 						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
 					</button>
 					<button type="button" class="btn btn-default">
 						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">
 					</button>
+					<button type="button"
+						class="btn btn-default disabled same samewidth">
+						<span class="badge textright">4</span> Jäger
+					</button>
 				</div>
+
 			</div>
 
 			<div class="col-md-3 "></div>
@@ -384,5 +387,6 @@
 	<script src="../js/ie10-viewport-bug-workaround.js"></script>
 	<script src="../js/useful.js"></script>
 	<script src="../js/loadUsername.js"></script>
+	<script src="../js/recenter.js"></script>
 </body>
 </html>
