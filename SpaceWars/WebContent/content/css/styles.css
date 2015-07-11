@@ -11,6 +11,10 @@ body{
 
   margin:10px;
 }
+.btn-transparent{
+	border: none;
+	background-color: transparent;
+}
 .menu-box {
   background: rgba(238, 238, 238, 0.6);
   max-width: 350px;
