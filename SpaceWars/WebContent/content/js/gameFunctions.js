@@ -33,39 +33,43 @@ var roundObject = {
 };
 var bs = "Battlestar";
 var fight = "Fighter";
-var priceFighter=200;
-var priceBattlestar =2000;
-var cash;
+var priceFighter = 200;
+var priceBattlestar = 2000;
+var cash = 5000;
+
 function fighterPlus(planet) {
-	
-	var string = planet+fight;
-	switch (planet) {
-	case 'atlantis':
-		
-		roundObject.atlantis.newFighter++;
-		
-		break;
-	case 'caprica':
-		roundObject.caprica.newFighter++;
-		break;
-	case 'coruscant':
-		roundObject.coruscant.newFighter++;
-		break;
-	case 'endor':
-		roundObject.endor.newFighter++;
-		break;
-	case 'erde':
-		roundObject.erde.newFighter++;
-		break;
-	case 'gemini':
-		roundObject.gemini.newFighter++;
-		break;
-	case 'tatooine':
-		roundObject.tatooine.newFighter++;
-		break;
-	default:
-		break;
+	alert("f+");
+	var cashToUse = cash - priceFighter;
+	if (cashToUse>0) {
+		roundObject.playersCash = cash;
+		$('#credits').text(roundObject.playersCash + " $");
+		switch (planet) {
+		case 'atlantis':
+			roundObject.atlantis.newFighter++;
+			break;
+		case 'caprica':
+			roundObject.caprica.newFighter++;
+			break;
+		case 'coruscant':
+			roundObject.coruscant.newFighter++;
+			break;
+		case 'endor':
+			roundObject.endor.newFighter++;
+			break;
+		case 'erde':
+			roundObject.erde.newFighter++;
+			break;
+		case 'gemini':
+			roundObject.gemini.newFighter++;
+			break;
+		case 'tatooine':
+			roundObject.tatooine.newFighter++;
+			break;
+		default:
+			break;
+		}
 	}
+
 }
 function fighterMinus(planet) {
 	switch (planet) {
@@ -95,33 +99,40 @@ function fighterMinus(planet) {
 	}
 }
 function battlestarPlus(planet) {
-	switch (planet) {
-	case 'atlantis':
-		roundObject.atlantis.newBattlestar++;
-		break;
-	case 'caprica':
-		roundObject.caprica.newBattlestar++;
-		break;
-	case 'coruscant':
-		roundObject.coruscant.newBattlestar++;
-		break;
-	case 'endor':
-		roundObject.endor.newBattlestar++;
-		break;
-	case 'erde':
-		roundObject.erde.newBattlestar++;
-		break;
-	case 'gemini':
-		roundObject.gemini.newBattlestar++;
-		break;
-	case 'tatooine':
-		roundObject.tatooine.newBattlestar++;
-		break;
-	default:
-		break;
+	var cashToUse = cash - priceBattlestar;
+	if (cashToUse>0) {
+		cash -= priceBattlestar;
+		roundObject.playersCash = cash;
+		$('#credits').text(roundObject.playersCash + " $");
+		switch (planet) {
+		case 'atlantis':
+			roundObject.atlantis.newBattlestar++;
+			break;
+		case 'caprica':
+			roundObject.caprica.newBattlestar++;
+			break;
+		case 'coruscant':
+			roundObject.coruscant.newBattlestar++;
+			break;
+		case 'endor':
+			roundObject.endor.newBattlestar++;
+			break;
+		case 'erde':
+			roundObject.erde.newBattlestar++;
+			break;
+		case 'gemini':
+			roundObject.gemini.newBattlestar++;
+			break;
+		case 'tatooine':
+			roundObject.tatooine.newBattlestar++;
+			break;
+		default:
+			break;
+		}
 	}
+
 }
-function fighterMinus(planet) {
+function battlestarMinus(planet) {
 	switch (planet) {
 	case 'atlantis':
 		roundObject.atlantis.newBattlestar--;
@@ -148,24 +159,25 @@ function fighterMinus(planet) {
 		break;
 	}
 }
-function init(){
-	roundObject.playersCash = 5000;
+function init() {
+	roundObject.playersCash = cash;
 	roundObject.fightersToBuy = 0;
 	roundObject.battlestarsToBuy = 0;
-	$('#credits').text(roundObject.playersCash+" $");
+	var i = 0;
+	$.each(roundObject, function(key, val) {
+		if (i < 7) {
+			i++
+			$("#" + key + bs).text(val.newBattlestar);
+			$("#" + key + fight).text(val.newFighter);
+		}
+	});
+	$('#credits').text(roundObject.playersCash + " $");
 	$('#fighter').text('0');
 	$('#battlestar').text('0');
 }
-function setValues(){
-	
+function setValues() {
+
 }
 $(document).ready(function() {
-    init();
+	init();
 });
-
-
-
-
-
-
-
