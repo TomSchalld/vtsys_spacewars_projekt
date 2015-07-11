@@ -4,8 +4,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import logic.Battlestar;
-import logic.Fighter;
 import logic.Game;
 import logic.Planet;
 import logic.Spaceship;

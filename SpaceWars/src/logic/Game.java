@@ -23,8 +23,8 @@ public interface Game extends Remote{
 	
 	public boolean killAllReferences()throws RemoteException;
 	
-	public abstract void addPlayer(Client newPlayer)throws RemoteException;
+	public void addPlayer(Client newPlayer)throws RemoteException;
 	
-	public abstract RoundReport endRound()throws RemoteException;
+	public RoundReport endRound()throws RemoteException;
 
 }

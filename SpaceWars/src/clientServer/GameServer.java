@@ -28,6 +28,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 
 	@Override
 	public void openGame(Game newGame) throws Exception,RemoteException {
+		System.out.println("try to open new game");
 		String gameName = newGame.getGameName();
 		if(this.runningGames.containsKey(gameName)||this.lobby.containsKey(gameName)){
 			System.out.println("Game already existing!");
@@ -36,7 +37,9 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		if(newGame.hasEnoughPlayer()){
 			runningGames.put(gameName, newGame);
 		}else{
+			System.out.println("put game into lobby....");
 			lobby.put(gameName, newGame);
+			System.out.println("..done.");
 		}
 	}
 
