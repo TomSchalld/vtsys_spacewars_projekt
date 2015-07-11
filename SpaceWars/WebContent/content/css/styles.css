@@ -1,100 +1,104 @@
 .nav {
-
-  list-style: outside none none;
-  margin-bottom: 0px;
-  margin-left: auto;
-
-
+	list-style: outside none none;
+	margin-bottom: 0px;
+	margin-left: auto;
 }
-body{
 
-
-  margin:10px;
+body {
+	margin: 10px;
 }
-.btn-transparent{
+
+.btn-transparent {
 	border: none;
 	background-color: transparent;
 }
+
 .corners {
-border-radius: 6px !important;
-	
+	border-radius: 6px !important;
 }
+
 .menu-box {
-  background: rgba(238, 238, 238, 0.6);
-  max-width: 350px;
-  padding: 15px;
-  margin: auto;
-  border-radius: 6px;
-  margin-top: 80px;
-}
-.width-box{
-  max-width: 800px;
-  padding: 20px;
-  margin-top: 80px;
-
-}
-.game-box{
-  max-width: 1200px;
-  padding: 20px;
-  margin-top: 70px;
-
-}
-.ingame{
+	background: rgba(238, 238, 238, 0.6);
+	max-width: 350px;
+	padding: 15px;
+	margin: auto;
+	border-radius: 6px;
 	margin-top: 80px;
-	
 }
-.samewidth{
+
+.width-box {
+	max-width: 800px;
+	padding: 20px;
+	margin-top: 80px;
+}
+
+.game-box {
+	max-width: 1200px;
+	padding: 20px;
+	margin-top: 70px;
+}
+
+.ingame {
+	margin-top: 80px;
+}
+
+.samewidth {
 	text-align: left;
 	width: 200px;
 }
-.textright{
-	float: right; !important;
+
+.textright {
+	float: right;
+	!
+	important;
 }
 
-.text-box{
-  background: rgba(238, 238, 238, 0.6);
-  margin-right: 20px;
-  display: block;
-
+.text-box {
+	background: rgba(238, 238, 238, 0.6);
+	margin-right: 20px;
+	display: block;
 }
+
 .disabled {
-    opacity: 1 !important;
-    
-  }
-
-.center-button{
-float: right !important;
-margin-right: 15px;
-
+	opacity: 1 !important;
 }
+
+.center-button {
+	float: right !important;
+	margin-right: 15px;
+}
+
 img {
-  width: 100%;
-  max-width: 239px;
-}
-.row{
-
-  margin-bottom: 15px;
-}
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-    border-top: 1px solid #68838b;
-    line-height: 1.42857;
-    padding: 8px;
-    vertical-align: middle;
-    background: rgba(255, 255, 255, 0.8);
+	width: 100%;
+	max-width: 239px;
 }
 
-
-.yscroll{
-max-height: 500px; overflow-y: scroll;
+.row {
+	margin-bottom: 15px;
 }
-.col-md-12{
-  margin-bottom: 15px;
-}
-.chat-field{
 
-  min-height: 300px;
-
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td,
+	.table>tbody>tr>td, .table>tfoot>tr>td {
+	border-top: 1px solid #68838b;
+	line-height: 1.42857;
+	padding: 8px;
+	vertical-align: middle;
+	background: rgba(255, 255, 255, 0.8);
 }
-.belongs{
-  height: 250px;
+
+.yscroll {
+	max-height: 500px;
+	overflow-y: scroll;
+}
+
+.col-md-12 {
+	margin-bottom: 15px;
+}
+
+.chat-field {
+	min-height: 300px;
+}
+
+.belongs {
+	height: 250px;
 }
