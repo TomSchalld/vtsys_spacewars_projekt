@@ -10,6 +10,19 @@ var data = {
 	"gameMode":2
 	
 };
+function chooseUniverse(size){
+	data.universeSize = size;
+	window.location.href = "./menuMultiplayerStart.html" + result;
+	$.ajax({
+		url : "/SpaceWars/login",
+		type : "GET",
+		data : data,
+		success : function(result) {
+			
+			clearData();
+		}
+	});
+}
 function getUrlParameter(sParam) {
 	var sPageURL = window.location.search.substring(1);
 	var sURLVariables = sPageURL.split('&');
@@ -84,8 +97,7 @@ function clearData(){
 	data.joinGame=false;
 }
 function chooseRace(race){
-	alert(race);
 	data.race = race;
-	window.location.href = "./menuKarte.html" + data.username;
+	window.location.href = "./menuKarte.html" + "?username="+data.username;
 
 }
