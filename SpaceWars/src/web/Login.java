@@ -39,9 +39,12 @@ public class Login extends HttpServlet {
 		String uID = session.getId();
 		String uname = request.getParameter("username");
 		
-		if(request.getParameter("create").equals("true")){
+		if(request.getParameter("createGame").equals("true")){
 			//TODO .... 
-			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
+			System.out.println("createGame");
+			System.out.println(request.getParameter("game"));
+			
+			//UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
 		}
 		if(request.getParameter("logout").equals("true")){
 			UserOnline.logout(session.getId()); 

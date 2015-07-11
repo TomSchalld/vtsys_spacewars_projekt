@@ -17,9 +17,11 @@ function getUrlParameter(sParam) {
 }
 function createGame() {
 	data.createGame = true;
+	var gameName =$('#gameName').val();
+	var pw = $('#inputPassword').val();
 	data.game = {
-			"gameName":$('#gameName').val(),
-			"password":$('#inputPassword').val()
+			"gameName":gameName,
+			"password":pw
 	};
 	$.ajax({
 		url : "/SpaceWars/login",
@@ -27,6 +29,7 @@ function createGame() {
 		data : data,
 		success : function(result) {
 			window.location.href = "./menuRasse.html" + result;
+			clearData();
 		}
 	});
 }
@@ -45,6 +48,7 @@ function joinGame() {
 		data : data,
 		success : function(result) {
 			window.location.href = "./menuMultiplayerJoin.html" + result;
+			clearData();
 		}
 	});
 }
@@ -56,6 +60,7 @@ function submitUser() {
 		data : data,
 		success : function(result) {
 			window.location.href = "html/menuMain.html" + result;
+			clearData();
 		}
 	});
 }
@@ -67,6 +72,12 @@ function logout() {
 		data : data,
 		success : function(result) {
 			window.location.href = "../index.html";
+			clearData();
 		}
 	});
+}
+function clearData(){
+	data.logout = false;
+	data.createGame = false;
+	data.joinGame=false;
 }
