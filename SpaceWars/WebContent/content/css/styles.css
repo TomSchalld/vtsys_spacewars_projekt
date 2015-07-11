@@ -28,8 +28,19 @@ body{
 .game-box{
   max-width: 1200px;
   padding: 20px;
-  margin-top: 80px;
+  margin-top: 70px;
 
+}
+.ingame{
+	margin-top: 80px;
+	
+}
+.samewidth{
+	text-align: left;
+	width: 200px;
+}
+.textright{
+	float: right; !important;
 }
 
 .text-box{
@@ -40,6 +51,7 @@ body{
 }
 .disabled {
     opacity: 1 !important;
+    
   }
 .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
 

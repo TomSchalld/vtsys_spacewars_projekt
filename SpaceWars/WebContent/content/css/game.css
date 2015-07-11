@@ -4,3 +4,6 @@ body {
 
   background: url(bg-game.jpg) no-repeat center center fixed;
 }
+h4, .h4 {
+    color: white;
+}
