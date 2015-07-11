@@ -72,7 +72,15 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 	public void addEndReportToHighscore(Report report){
 		// TODO generate highscore
 	}
-	
+	@Override
+	public Game getGameByName(String gameName) throws RemoteException {
+		if(this.runningGames.containsKey(gameName)){
+			return this.runningGames.get(gameName);
+		}else if(this.lobby.containsKey(gameName)){
+			return this.lobby.get(gameName);
+		}
+		return null;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -99,16 +107,6 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			ex.printStackTrace();
 			System.exit(0);
 		}
-	}
-
-	@Override
-	public Game getGameByName(String gameName) throws RemoteException {
-		if(this.runningGames.containsKey(gameName)){
-			return this.runningGames.get(gameName);
-		}else if(this.lobby.containsKey(gameName)){
-			return this.lobby.get(gameName);
-		}
-		return null;
 	}
 
 }

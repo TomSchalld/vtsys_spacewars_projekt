@@ -17,7 +17,7 @@ public class ConsoleUserInterface implements Serializable{
 
 	public void run() throws MalformedURLException, RemoteException, NotBoundException, InterruptedException {
 		int eingabe;
-		Client player = new Human(IO.readString("Bitte Usernamen eingeben"), null);
+		Client player = new Human(IO.readString("Bitte Usernamen eingeben"), "192.168.178.23");
 		System.out.println("Hallo Commander " + player.getUsername() + "\twas willst du tun?");
 		System.out.println("(0) Neues Spiel erstellen\n(1) Spiel beitreten");
 		eingabe = IO.readInt();
