@@ -26,4 +26,5 @@ public interface Game extends Remote{
 	public abstract void addPlayer(Client newPlayer)throws RemoteException;
 	
 	public abstract RoundReport endRound()throws RemoteException;
+
 }

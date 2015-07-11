@@ -10,11 +10,11 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-  	<servlet-name>SpaceWarsLogin</servlet-name>
-  	<servlet-class>web.Login</servlet-class>
+    <servlet-name>SpaceWarsLogin</servlet-name>
+    <servlet-class>web.Login</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>SpaceWarsLogin</servlet-name>
-  	<url-pattern>/login</url-pattern>
+    <servlet-name>SpaceWarsLogin</servlet-name>
+    <url-pattern>/login</url-pattern>
   </servlet-mapping>
 </web-app>
