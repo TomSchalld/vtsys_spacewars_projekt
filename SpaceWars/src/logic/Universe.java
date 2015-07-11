@@ -8,6 +8,10 @@ import java.util.Map;
 import java.util.Random;
 
 public class Universe implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Map<String, Planet> planets;
 	private int universeSize;
 	private int planetId;

@@ -36,6 +36,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		}
 		if(newGame.hasEnoughPlayer()){
 			runningGames.put(gameName, newGame);
+			System.out.println("added new game to running games");
 		}else{
 			System.out.println("put game into lobby....");
 			lobby.put(gameName, newGame);

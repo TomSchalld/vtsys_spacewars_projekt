@@ -76,7 +76,7 @@ public class Login extends HttpServlet {
 		String uname = request.getParameter("username");
 		try {
 			if (!UserOnline.isUserExisting(sessionId)) {
-				UserOnline.addUser(sessionId, new Human(uname, "192.168.178.23"));
+				UserOnline.addUser(sessionId, new Human(uname, "192.168.178.21"));
 			}
 		} catch (NotBoundException e) {
 			// TODO Auto-generated catch block

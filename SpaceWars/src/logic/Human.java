@@ -54,7 +54,8 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 		}
 		else if (variation == 1) {
 			newGame = new PlayerVsPC(gameName, universeSize);
-			System.out.println("Created new Game");
+			newGame.addPlayer(this);
+			System.out.println("User added");
 			try {
 				this.server.openGame(newGame);
 				System.out.println("send game to server");
@@ -62,8 +63,7 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 				System.out.println("exception e");
 				e.printStackTrace();
 			} 
-			newGame.addPlayer(this);
-			System.out.println("User added");
+			
 		}
 		else if (variation == 2) {
 			//newGame = new PlayerPlayerVsPC(gameName, universeSize);
