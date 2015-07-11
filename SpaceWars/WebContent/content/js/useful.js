@@ -12,7 +12,7 @@ var data = {
 };
 function chooseUniverse(size){
 	data.universeSize = size;
-	window.location.href = "./menuMultiplayerStart.html" + result;
+	window.location.href = "./menuTeam.html" + result;
 	$.ajax({
 		url : "/SpaceWars/login",
 		type : "GET",
