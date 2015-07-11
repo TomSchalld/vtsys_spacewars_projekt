@@ -84,7 +84,8 @@ function clearData(){
 	data.joinGame=false;
 }
 function chooseRace(race){
+	alert(race);
 	data.race = race;
-	window.location.href = "./menuKarte.html" + result;
+	window.location.href = "./menuKarte.html" + data.username;
 
 }
