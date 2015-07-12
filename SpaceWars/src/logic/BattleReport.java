@@ -12,6 +12,8 @@ public class BattleReport implements Report,Serializable{
 	private int countOfAtackingBattleships =0;		
 	private int countOfDefendingFighters =0;
 	private int countOfDefendingBattleships =0;
+	private int fighterAfterBattle =0;
+	private int battlestarsAfterBattle =0;
 	private List<Spaceship> defeatedShips;
 	private String listOfDefeats[];
 	public BattleReport(Planet battleGround){
@@ -34,6 +36,19 @@ public class BattleReport implements Report,Serializable{
 				this.countOfAtackingFighters++;
 			}
 		}
+	}
+	
+	public int getCountOfAtackingFighters() {
+		return countOfAtackingFighters;
+	}
+	public int getCountOfAtackingBattleships() {
+		return countOfAtackingBattleships;
+	}
+	public int getCountOfDefendingFighters() {
+		return countOfDefendingFighters;
+	}
+	public int getCountOfDefendingBattleships() {
+		return countOfDefendingBattleships;
 	}
 	public String getWinnersUsername() {
 		return winnersUsername;
@@ -67,6 +82,19 @@ public class BattleReport implements Report,Serializable{
 	}
 	public String[] getListOfDefeats() {
 		return listOfDefeats;
+	}
+	
+	public int getFighterAfterBattle() {
+		return fighterAfterBattle;
+	}
+	public void addFighterAfterBattle() {
+		this.fighterAfterBattle++;
+	}
+	public int getBattlestarsAfterBattle() {
+		return battlestarsAfterBattle;
+	}
+	public void addBattlestarsAfterBattle() {
+		this.battlestarsAfterBattle++;
 	}
 	@Override
 	public void addReport(Report report) {
