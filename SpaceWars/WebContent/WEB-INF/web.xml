@@ -17,4 +17,12 @@
     <servlet-name>SpaceWarsLogin</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>SpaceWarsGame</servlet-name>
+  	<servlet-class>web.Gaming</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SpaceWarsGame</servlet-name>
+  	<url-pattern>/gaming</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -4,12 +4,18 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import logic.Game;
 import logic.Planet;
 import logic.Spaceship;
 
 public interface Client extends Remote {
 	public void openGame(String gameName, int variation, int universeSize) throws RemoteException;
+
+	public JSONObject getRoundReport() throws RemoteException;
+
+	public void setRoundReport(JSONObject roundReport) throws RemoteException;
 
 	public void joinGame(String gameName) throws RemoteException;
 

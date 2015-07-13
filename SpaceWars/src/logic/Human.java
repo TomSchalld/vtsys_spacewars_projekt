@@ -9,6 +9,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import clientServer.Client;
 import clientServer.Server;
 
@@ -26,7 +28,7 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 	protected Game gamePlaying;
 	private List<Spaceship> stock;
 	protected boolean playerReady;
-
+	private JSONObject roundReport;
 
 	public Human(String username,String serveraddress) throws MalformedURLException, RemoteException, NotBoundException {
 		this.server =  (Server) Naming.lookup("rmi://"+serveraddress+":1099/GameServer");
@@ -85,6 +87,14 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 		this.server.joinGame(gameName);
 
 	}
+	
+	public JSONObject getRoundReport()throws RemoteException {
+		return roundReport;
+	}
+
+	public void setRoundReport(JSONObject roundReport) throws RemoteException{
+		this.roundReport = roundReport;
+	}
 
 	@Override
 	public int getAmountOfPlanets() {
@@ -114,11 +124,12 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 		return playerReady;
 	}
 
-	public void setPlayerReady(boolean playerReady) {
+	public void setPlayerReady(boolean playerReady) throws RemoteException {
 		this.playerReady = playerReady;
-		/*if(playerReady){ for online use only
+		if(this.getGamePlaying().playersReady()){
 			this.getGamePlaying().endRound();
-		}*/
+		}
+		
 	}
 
 	public String getUsername() {
@@ -126,7 +137,7 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 	}
 
 	public void buyBattlestar() throws RemoteException {
-		if (this.cash > this.cash - Battlestar.getPrice()) {
+		if (this.cash - Battlestar.getPrice()>0) {
 			this.cash-=Battlestar.getPrice();
 			this.getStock().add(new Battlestar(this));
 		}else {
@@ -135,7 +146,7 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 	}
 
 	public void buyFighter() throws RemoteException {
-		if (this.cash > this.cash - Fighter.getPrice()) {
+		if (this.cash - Fighter.getPrice()>0) {
 			this.cash-=Fighter.getPrice();
 			this.getStock().add(new Fighter(this));
 		}else {

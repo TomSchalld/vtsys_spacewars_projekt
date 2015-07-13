@@ -53,7 +53,8 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		this.addPlayer(one);
 		this.addPlayer(two);
 	}
-	private boolean playersReady() throws RemoteException{
+	@Override
+	public boolean playersReady() throws RemoteException{
 		if(this.players[0].isPlayerReady()==true&&this.players[1].isPlayerReady()==true){
 			return true;
 		}
@@ -80,6 +81,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			}
 
 			this.setPlayersUnready();
+			for(Client c:this.players){
+				c.setRoundReport(report.exportRoundToJSON());
+			}
 			this.round++;
 			if(this.players[0].getAmountOfPlanets()==this.getUniverse().getPlanets().size()){
 				this.gameFinished = true;

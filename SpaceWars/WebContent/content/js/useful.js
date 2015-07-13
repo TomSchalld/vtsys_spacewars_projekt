@@ -9,6 +9,15 @@ var data = {
 	"universeSize" : 0,
 	"gameMode" : 2
 };
+
+function openShop(){
+	$('#shop').show();
+
+}
+function closeShop(){
+	$('#shop').hide();
+}
+
 function chooseUniverse(size) {
 	data.universeSize = size;
 	$.ajax({

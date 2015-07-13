@@ -9,10 +9,10 @@
 <body>
 <a href="content/index.html">Start Game</a>
 <a href="#" onclick="submitUser()">post</a>
+<a href="#" onclick="sendJSON()">postToGaming</a>
 </body>
 <script >
 function submitUser(){
-	
 	
 	var username = "Thomas"
 		
@@ -21,6 +21,21 @@ function submitUser(){
 		type : "POST",
 		data : {
 			"username" : username
+		}
+	});
+}
+function sendJSON(){
+		var username = "hallo";
+	$.ajax({
+		url : "/SpaceWars/gaming",
+		type : "POST",
+		data : {
+			"username" : username,
+			"anderesObjekt":{
+				"wert1":1,
+				"wert2":"test",
+				"wert3":true
+			}
 		}
 	});
 }

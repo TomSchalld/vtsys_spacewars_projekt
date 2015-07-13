@@ -120,7 +120,7 @@ public class Planet implements Serializable{
 		}
 		return false;
 	}
-
+	
 	public BattleReport fight() throws RemoteException {
 		Client attacker = this.getShipsTryToOrbit().get(0).getOwner();
 		Client defender = this.planetOwner;
@@ -153,6 +153,13 @@ public class Planet implements Serializable{
 			report.setLoosersUsername(attacker.getUsername());
 		}
 		this.setFightAfterRoundEnded(false);
+		for (Spaceship s : this.getShipsInOrbit()) {
+			if(s instanceof Fighter){
+				report.addFighterAfterBattle();
+			}else{
+				report.addBattlestarsAfterBattle();
+			}
+		}
 		return report;
 	}
 
