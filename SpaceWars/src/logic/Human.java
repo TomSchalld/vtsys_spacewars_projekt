@@ -124,11 +124,12 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 		return playerReady;
 	}
 
-	public void setPlayerReady(boolean playerReady) {
+	public void setPlayerReady(boolean playerReady) throws RemoteException {
 		this.playerReady = playerReady;
-		/*if(playerReady){ for online use only
+		if(this.getGamePlaying().playersReady()){
 			this.getGamePlaying().endRound();
-		}*/
+		}
+		
 	}
 
 	public String getUsername() {
@@ -136,7 +137,7 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 	}
 
 	public void buyBattlestar() throws RemoteException {
-		if (this.cash > this.cash - Battlestar.getPrice()) {
+		if (this.cash - Battlestar.getPrice()>0) {
 			this.cash-=Battlestar.getPrice();
 			this.getStock().add(new Battlestar(this));
 		}else {
@@ -145,7 +146,7 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 	}
 
 	public void buyFighter() throws RemoteException {
-		if (this.cash > this.cash - Fighter.getPrice()) {
+		if (this.cash - Fighter.getPrice()>0) {
 			this.cash-=Fighter.getPrice();
 			this.getStock().add(new Fighter(this));
 		}else {

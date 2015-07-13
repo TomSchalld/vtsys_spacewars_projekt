@@ -35,7 +35,7 @@ public class KI extends Human {
 	}
 
 	@Override
-	public void setPlayerReady(boolean playerReady) {
+	public void setPlayerReady(boolean playerReady) throws RemoteException {
 		super.setPlayerReady(playerReady);
 		if(!playerReady){
 			try {

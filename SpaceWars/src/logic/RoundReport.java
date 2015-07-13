@@ -31,9 +31,10 @@ public class RoundReport implements Report {
 			val = new JSONObject();
 			val.put("winner", br.getWinnersUsername());
 			val.put("defeatedShips",br.getListOfDefeats());
+			val.put("fighterLeft", br.getFighterAfterBattle());
+			val.put("battlestarsLeft", br.getBattlestarsAfterBattle());
 			jo.put(br.getNameOfbattleGround(), val);
-			jo.put("fighterLeft", br.getFighterAfterBattle());
-			jo.put("battlestarsLeft", br.getBattlestarsAfterBattle());
+
 		}
 		return jo;
 	}
