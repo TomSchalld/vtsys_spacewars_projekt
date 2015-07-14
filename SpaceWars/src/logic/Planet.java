@@ -110,17 +110,8 @@ public class Planet implements Serializable{
 	}
 
 	public boolean removeShipFromOrbit(Spaceship shipToRemove) {
-		int i = 0;
-		if (this.shipsInOrbit.size() > 0) {
-			for (Spaceship s : shipsInOrbit) {
-				if (s.getClass() == shipToRemove.getClass()) {
-					this.shipsInOrbit.remove(i);
-				}
-				i++;
-			}
-			return true;
-		}
-		return false;
+		return this.shipsInOrbit.remove(shipToRemove);
+		
 	}
 	
 	public BattleReport fight() throws RemoteException {
