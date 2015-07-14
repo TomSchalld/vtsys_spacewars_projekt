@@ -84,7 +84,10 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			for(Client c:this.players){
 				c.setRoundReport(report.exportRoundToJSON());
 				for(Planet p: this.getUniverse().getPlanets().values()){
-					c.sendAllShipsToStock(p);
+					if(p.getPlanetOwner().equals(c)){
+						c.sendAllShipsToStock(p);
+					}
+					
 				}
 			}
 			this.round++;
