@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import clientServer.Client;
 import clientServer.Server;
 
-public class Human extends UnicastRemoteObject implements Serializable,Client{
+public class Human extends UnicastRemoteObject implements Serializable, Client {
 	/**
 	 * 
 	 */
@@ -30,8 +30,9 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 	protected boolean playerReady;
 	private JSONObject roundReport;
 
-	public Human(String username,String serveraddress) throws MalformedURLException, RemoteException, NotBoundException {
-		this.server =  (Server) Naming.lookup("rmi://"+serveraddress+":1099/GameServer");
+	public Human(String username, String serveraddress)
+			throws MalformedURLException, RemoteException, NotBoundException {
+		this.server = (Server) Naming.lookup("rmi://" + serveraddress + ":1099/GameServer");
 		this.username = username;
 		this.ownerId = userCount;
 		this.cash = 10000;
@@ -53,46 +54,44 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 				e.printStackTrace();
 			}
 			newGame.addPlayer(this);
-		}
-		else if (variation == 1) {
+		} else if (variation == 1) {
 			newGame = new PlayerVsPC(gameName, universeSize);
 			newGame.addPlayer(this);
 			System.out.println("User added");
 			try {
 				this.server.openGame(newGame);
 				System.out.println("send game to server");
-			} catch ( Exception e) {
+			} catch (Exception e) {
 				System.out.println("exception e");
 				e.printStackTrace();
-			} 
-			
-		}
-		else if (variation == 2) {
-			//newGame = new PlayerPlayerVsPC(gameName, universeSize);
+			}
+
+		} else if (variation == 2) {
+			// newGame = new PlayerPlayerVsPC(gameName, universeSize);
 			try {
-				//this.server.openGame(newGame);
-			//} catch (RemoteException e) {
-				//e.printStackTrace();
+				// this.server.openGame(newGame);
+				// } catch (RemoteException e) {
+				// e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			//newGame.addPlayer(this);
+			// newGame.addPlayer(this);
 		}
 	}
 
 	@Override
 	public void joinGame(String gameName) throws RemoteException {
-		//TODO just in case get game, manipulate, copy back and overwrite
+		// TODO just in case get game, manipulate, copy back and overwrite
 		this.server.getGameByName(gameName).addPlayer(this);
 		this.server.joinGame(gameName);
 
 	}
-	
-	public JSONObject getRoundReport()throws RemoteException {
+
+	public JSONObject getRoundReport() throws RemoteException {
 		return roundReport;
 	}
 
-	public void setRoundReport(JSONObject roundReport) throws RemoteException{
+	public void setRoundReport(JSONObject roundReport) throws RemoteException {
 		this.roundReport = roundReport;
 	}
 
@@ -100,6 +99,7 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 	public int getAmountOfPlanets() {
 		return this.amountOfPlanets;
 	}
+
 	public void addCash(int cash) {
 		this.cash += cash;
 	}
@@ -126,10 +126,10 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 
 	public void setPlayerReady(boolean playerReady) throws RemoteException {
 		this.playerReady = playerReady;
-		if(this.getGamePlaying().playersReady()){
+		if (this.getGamePlaying().playersReady()) {
 			this.getGamePlaying().endRound();
 		}
-		
+
 	}
 
 	public String getUsername() {
@@ -137,19 +137,19 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 	}
 
 	public void buyBattlestar() throws RemoteException {
-		if (this.cash - Battlestar.getPrice()>0) {
-			this.cash-=Battlestar.getPrice();
+		if (this.cash - Battlestar.getPrice() > 0) {
+			this.cash -= Battlestar.getPrice();
 			this.getStock().add(new Battlestar(this));
-		}else {
+		} else {
 			System.out.println("Not enough Credits to buy Battlestar");
 		}
 	}
 
 	public void buyFighter() throws RemoteException {
-		if (this.cash - Fighter.getPrice()>0) {
-			this.cash-=Fighter.getPrice();
+		if (this.cash - Fighter.getPrice() > 0) {
+			this.cash -= Fighter.getPrice();
 			this.getStock().add(new Fighter(this));
-		}else {
+		} else {
 			System.out.println("Not enough Credits to buy Fighter");
 		}
 	}
@@ -161,15 +161,22 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 			ship.setOrbiting(destination);
 		} else {
 			ship.orbiting.removeShipFromOrbit(ship);
-			ship.setOrbiting(destination);
+			if (destination != null) {
+				destination.addShipToOrbit(ship);
+				ship.setOrbiting(destination);
+			}else{
+				ship.setOrbiting(null);
+				this.getStock().add(ship);
+			}
 		}
+
 	}
-	
-	public String toString(){
-		String string = this.username+" Cash: "+this.cash+" Planeten: "+this.amountOfPlanets+" ";
-		for(Spaceship s:this.getStock()){
-			if(s!=null){
-				string+="\n"+s.toString();
+
+	public String toString() {
+		String string = this.username + " Cash: " + this.cash + " Planeten: " + this.amountOfPlanets + " ";
+		for (Spaceship s : this.getStock()) {
+			if (s != null) {
+				string += "\n" + s.toString();
 			}
 		}
 		return string;
@@ -185,9 +192,14 @@ public class Human extends UnicastRemoteObject implements Serializable,Client{
 
 	@Override
 	public boolean equals(Client other) throws RemoteException {
-		if(this.getOwnerId() == other.getOwnerId()){
+		if (this.getOwnerId() == other.getOwnerId()) {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void setCash(int cash) throws RemoteException {
+		this.cash = cash;
 	}
 }

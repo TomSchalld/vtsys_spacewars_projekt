@@ -48,4 +48,6 @@ public interface Client extends Remote {
 	public List<Spaceship> getStock() throws RemoteException;
 
 	public void setStock(List<Spaceship> stock) throws RemoteException;
+
+	public void setCash(int cash) throws RemoteException;
 }
