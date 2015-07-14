@@ -51,7 +51,9 @@ public class Gaming extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("application/json");
 		JSONObject roundObject = requestParamsToJSON(request);
+		System.out.println("input::::::");
 		System.out.println(roundObject.toString());
+		System.out.println("input::::::\n\n\n\n\n");
 		try {
 			doRound(roundObject, request.getRequestedSessionId());
 		} catch (JSONException e) {
