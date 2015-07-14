@@ -138,16 +138,18 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	}
 
 	public void buyBattlestar() throws RemoteException {
-		if (this.cash - Battlestar.getPrice() > 0) {
+		if (this.cash - Battlestar.getPrice() >= 0) {
+			System.out.println("cash before buy battlestar "+this.cash);
 			this.cash -= Battlestar.getPrice();
+			System.out.println("cash after" +this.cash);
 			this.getStock().add(new Battlestar(this));
 		} else {
-			System.out.println("Not enough Credits to buy Battlestar");
+			System.out.println("Not enough Credits to buy Battlestar "+this.cash);
 		}
 	}
 
 	public void buyFighter() throws RemoteException {
-		if (this.cash - Fighter.getPrice() > 0) {
+		if (this.cash - Fighter.getPrice() >= 0) {
 			this.cash -= Fighter.getPrice();
 			this.getStock().add(new Fighter(this));
 		} else {
