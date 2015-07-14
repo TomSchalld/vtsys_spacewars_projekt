@@ -7,6 +7,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -174,11 +175,16 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	@Override
 	public void sendAllShipsToStock(Planet origin) throws RemoteException {
+		List<Spaceship> tmp = new LinkedList<Spaceship>();
 		for (Spaceship s : origin.getShipsInOrbit()) {
 			if (s.getOwner().equals(this)) {
-				sendShip(s, null);
+				tmp.add(s);
 			}
 		}
+		for (Spaceship s : tmp) {
+			sendShip(s, null);
+		}
+		
 
 	}
 
