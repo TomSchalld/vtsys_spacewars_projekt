@@ -159,7 +159,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	public void sendShip(Spaceship ship, Planet destination) throws RemoteException {
 		if (ship.orbiting == null) {
-			this.getStock().remove(this.getStock().indexOf(ship));
+			this.getStock().remove(ship);
 			destination.addShipToOrbit(ship);
 			ship.setOrbiting(destination);
 		} else {
