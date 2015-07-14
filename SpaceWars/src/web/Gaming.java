@@ -49,7 +49,7 @@ public class Gaming extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-        response.setContentType("application/json");
+		response.setContentType("application/json");
 		JSONObject roundObject = requestParamsToJSON(request);
 		System.out.println(roundObject.toString());
 		try {
@@ -63,7 +63,7 @@ public class Gaming extends HttpServlet {
 		}
 		response.getWriter().write(roundObject.toString());
 		response.getWriter().close();
-		
+
 	}
 
 	/**
@@ -100,13 +100,14 @@ public class Gaming extends HttpServlet {
 
 	}
 
-	private void doRound(JSONObject roundObject, String sID) throws RemoteException, JSONException, InterruptedException {
+	private void doRound(JSONObject roundObject, String sID)
+			throws RemoteException, JSONException, InterruptedException {
 		Client user = UserOnline.getUserById(sID);
 		Game actual = user.getGamePlaying();
 		int actualRound = actual.getRound();
 		Universe universe = user.getGamePlaying().getUniverse();
-		int battlestarsInStockAfterRound=0;
-		int fighterInStockAfterRound=0;
+		int battlestarsInStockAfterRound = 0;
+		int fighterInStockAfterRound = 0;
 		String planets[] = { "atlantis", "caprica", "coruscant", "endor", "erde", "gemini", "tatooine" };
 		JSONObject planet;
 		user.setCash(roundObject.getInt("playersCash"));
@@ -133,10 +134,10 @@ public class Gaming extends HttpServlet {
 				}
 			}
 		}
-		for(Spaceship ships:user.getStock()){
-			if(ships instanceof Fighter){
+		for (Spaceship ships : user.getStock()) {
+			if (ships instanceof Fighter) {
 				fighterInStockAfterRound++;
-			}else{
+			} else {
 				battlestarsInStockAfterRound++;
 			}
 		}
@@ -145,20 +146,20 @@ public class Gaming extends HttpServlet {
 		roundObject.put("fightersToBuy", 0);
 		roundObject.put("battlestarsToBuy", 0);
 		user.setPlayerReady(true);
-		while(actualRound==actual.getRound()){
+		while (actualRound == actual.getRound()) {
 			Thread.sleep(1000);
 		}
 		for (String planetName : planets) {
-			Planet pl =universe.getPlanetByName(planetName);
-			planet = roundObject.getJSONObject(planetName);
-			planet.put("newFighter", pl.getFighterInOrbit());
-			planet.put("newBattlestar", pl.getBattlestarsInOrbit());
-			planet.put("sum", pl.getFighterInOrbit()+pl.getBattlestarsInOrbit());
+			Planet pl = universe.getPlanetByName(planetName);
+			if (pl != null) {
+				planet = roundObject.getJSONObject(planetName);
+				planet.put("newFighter", pl.getFighterInOrbit());
+				planet.put("newBattlestar", pl.getBattlestarsInOrbit());
+				planet.put("sum", pl.getFighterInOrbit() + pl.getBattlestarsInOrbit());
+			}
+
 		}
-		
-		
-		
-		
+
 	}
 
 	private void generateHighscore(Report endreport) {
