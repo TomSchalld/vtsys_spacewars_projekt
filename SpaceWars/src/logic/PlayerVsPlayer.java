@@ -125,12 +125,12 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	public boolean isGameFinished() throws RemoteException {
 		return this.gameFinished;
 	}
-
+	
 	@Override
 	public Report getEndreport() throws RemoteException {
 		return this.endReport;
 	}
-
+	
 	@Override
 	public String getGameName() throws RemoteException {
 		return this.gameName;
