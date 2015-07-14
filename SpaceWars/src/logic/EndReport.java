@@ -10,9 +10,9 @@ public class EndReport implements Report {
 	 * 
 	 */
 	private static final long serialVersionUID = 4004984865885813172L;
-	List<Report> roundReports;
-	Client winner[];
-	Client looser[];
+	List<Report> roundReports; 
+	public Client winner[];
+	public Client looser[];
 	public EndReport(){
 		this.roundReports = new LinkedList<Report>();
 	}
@@ -41,6 +41,7 @@ public class EndReport implements Report {
 	public void addReport(Report report) {
 		this.addRoundReport((RoundReport)report);
 	}
+	
 	@Override
 	public String toString() {
 		String s="";
