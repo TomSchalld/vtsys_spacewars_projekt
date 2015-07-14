@@ -7,6 +7,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -35,7 +36,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		this.server = (Server) Naming.lookup("rmi://" + serveraddress + ":1099/GameServer");
 		this.username = username;
 		this.ownerId = userCount;
-		this.cash = 10000;
+		this.cash = 5000;
 		this.setStock(new ArrayList<Spaceship>());
 		userCount++;
 	}
@@ -137,16 +138,18 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	}
 
 	public void buyBattlestar() throws RemoteException {
-		if (this.cash - Battlestar.getPrice() > 0) {
+		if (this.cash - Battlestar.getPrice() >= 0) {
+			System.out.println("cash before buy battlestar "+this.cash);
 			this.cash -= Battlestar.getPrice();
+			System.out.println("cash after" +this.cash);
 			this.getStock().add(new Battlestar(this));
 		} else {
-			System.out.println("Not enough Credits to buy Battlestar");
+			System.out.println("Not enough Credits to buy Battlestar "+this.cash);
 		}
 	}
 
 	public void buyFighter() throws RemoteException {
-		if (this.cash - Fighter.getPrice() > 0) {
+		if (this.cash - Fighter.getPrice() >= 0) {
 			this.cash -= Fighter.getPrice();
 			this.getStock().add(new Fighter(this));
 		} else {
@@ -156,7 +159,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	public void sendShip(Spaceship ship, Planet destination) throws RemoteException {
 		if (ship.orbiting == null) {
-			this.getStock().remove(this.getStock().indexOf(ship));
+			this.getStock().remove(ship);
 			destination.addShipToOrbit(ship);
 			ship.setOrbiting(destination);
 		} else {
@@ -174,11 +177,16 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	@Override
 	public void sendAllShipsToStock(Planet origin) throws RemoteException {
+		List<Spaceship> tmp = new LinkedList<Spaceship>();
 		for (Spaceship s : origin.getShipsInOrbit()) {
 			if (s.getOwner().equals(this)) {
-				sendShip(s, null);
+				tmp.add(s);
 			}
 		}
+		for (Spaceship s : tmp) {
+			sendShip(s, null);
+		}
+		
 
 	}
 

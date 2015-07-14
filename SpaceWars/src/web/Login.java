@@ -51,6 +51,7 @@ public class Login extends HttpServlet {
 			int universeSize = Integer.parseInt(request.getParameter("universeSize").trim()); // 0=3planets
 																								// 1=5planets
 																								// 2=7planets
+			universeSize = 2;
 			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
 			System.out.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
 		}
