@@ -47,22 +47,22 @@ var priceFighter = 200;
 var priceBattlestar = 2000;
 var cash = 5000;
 function buyFighter() {
-	var cashToUse = roundObject.playersCash - priceFighter;
+	var cashToUse = cash - priceFighter;
 	if (cashToUse >= 0) {
-		roundObject.playersCash -= priceFighter;
+		cash -= priceFighter;
 		roundObject.fightersToBuy++;
 		roundObject.fightersInStock++;
-		$('#credits').text(roundObject.playersCash + " $");
+		$('#credits').text(cash + " $");
 		$('#fighter').text(roundObject.fightersToBuy);
 	}
 }
 function buyBattlestar() {
-	var cashToUse = roundObject.playersCash - priceBattlestar;
+	var cashToUse = cash - priceBattlestar;
 	if (cashToUse >= 0) {
-		roundObject.playersCash -= priceBattlestar;
+		cash -= priceBattlestar;
 		roundObject.battlestarsToBuy++;
 		roundObject.battlestarsInStock++;
-		$('#credits').text(roundObject.playersCash + " $");
+		$('#credits').text(cash + " $");
 		$('#battlestar').text(roundObject.battlestarsToBuy);
 	}
 }
@@ -70,8 +70,8 @@ function notBuyFighter() {
 	if (roundObject.fightersToBuy > 0) {
 		roundObject.fightersToBuy--;
 		roundObject.fightersInStock--;
-		roundObject.playersCash += priceFighter;
-		$('#credits').text(roundObject.playersCash + " $");
+		cash += priceFighter;
+		$('#credits').text(cash + " $");
 		$('#fighter').text(roundObject.fightersToBuy);
 	}
 }
@@ -79,8 +79,8 @@ function notBuyBattlestar() {
 	if (roundObject.battlestarsToBuy > 0) {
 		roundObject.battlestarsToBuy--;
 		roundObject.battlestarsInStock--;
-		roundObject.playersCash += priceBattlestar;
-		$('#credits').text(roundObject.playersCash + " $");
+		cash += priceBattlestar;
+		$('#credits').text(cash + " $");
 		$('#battlestar').text(roundObject.battlestarsToBuy);
 	}
 }
