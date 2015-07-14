@@ -36,7 +36,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		this.server = (Server) Naming.lookup("rmi://" + serveraddress + ":1099/GameServer");
 		this.username = username;
 		this.ownerId = userCount;
-		this.cash = 10000;
+		this.cash = 5000;
 		this.setStock(new ArrayList<Spaceship>());
 		userCount++;
 	}

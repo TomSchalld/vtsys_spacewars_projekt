@@ -63,6 +63,11 @@ public class Gaming extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println("output::::::");
+		System.out.println(roundObject.toString());
+		System.out.println("output::::::\n\n\n\n\n");
+		
 		response.getWriter().write(roundObject.toString());
 		response.getWriter().close();
 
