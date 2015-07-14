@@ -65,11 +65,11 @@ public class Gaming extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		System.out.println("output::::::");
 		System.out.println(roundObject.toString());
 		System.out.println("output::::::\n\n\n\n\n");
-		
+
 		response.getWriter().write(roundObject.toString());
 		response.getWriter().close();
 
@@ -111,7 +111,7 @@ public class Gaming extends HttpServlet {
 
 	private void doRound(JSONObject roundObject, String sID)
 			throws RemoteException, JSONException, InterruptedException {
-		List<Spaceship>tmpShips = new LinkedList<Spaceship>();
+		List<Spaceship> tmpShips = new LinkedList<Spaceship>();
 		Client user = UserOnline.getUserById(sID);
 		Game actual = user.getGamePlaying();
 		int actualRound = actual.getRound();
@@ -163,13 +163,19 @@ public class Gaming extends HttpServlet {
 			Thread.sleep(1000);
 		}
 		roundObject.put("playersCash", user.getCash());
+		System.out.println(user.getUsername()+" has got: "+user.getCash()+" Credits");
 		for (String planetName : planets) {
 			Planet pl = universe.getPlanetByName(planetName);
 			if (pl != null) {
-				planet = roundObject.getJSONObject(planetName);
-				planet.put("newFighter", pl.getFighterInOrbit());
-				planet.put("newBattlestar", pl.getBattlestarsInOrbit());
-				planet.put("sum", pl.getFighterInOrbit() + pl.getBattlestarsInOrbit());
+				if (pl.getPlanetOwner() != null) {
+					if (pl.getPlanetOwner().equals(user)) {
+						planet = roundObject.getJSONObject(planetName);
+						planet.put("newFighter", pl.getFighterInOrbit());
+						planet.put("newBattlestar", pl.getBattlestarsInOrbit());
+						planet.put("sum", pl.getFighterInOrbit() + pl.getBattlestarsInOrbit());
+					}
+				}
+
 			}
 
 		}

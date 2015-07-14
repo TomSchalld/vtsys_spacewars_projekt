@@ -3,7 +3,11 @@ package logic;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 
 public class KI extends Human {
@@ -55,8 +59,10 @@ public class KI extends Human {
 	private void sendShips() throws RemoteException {
 		Planet randomPlanet;
 		Universe actual = this.getGamePlaying().getUniverse();
+		Spaceship randomShip;
 		int shipsOnPlanetOfInterest;
 		int shipsInStock = this.getStock().size();
+		List<Spaceship> shipsToBeSend = new LinkedList<Spaceship>();
 		if (shipsInStock > 0) {
 			if (shipsInStock >= 5) {
 				randomPlanet = actual.getRandomPlanet();
@@ -70,7 +76,9 @@ public class KI extends Human {
 				}
 
 				for (int i = 0; i < 5; i++) {
-					this.sendShip(getRandomShip(), randomPlanet);
+					randomShip = getRandomShip();
+					this.sendShip(randomShip, randomPlanet);
+					shipsToBeSend.add(randomShip);
 				}
 			}else{
 				for(int i=0;i<shipsInStock;i++){
@@ -78,24 +86,32 @@ public class KI extends Human {
 					if(randomPlanet.getPlanetOwner().equals(this)){
 						i--;
 					}else{
-						sendShip(getRandomShip(), randomPlanet);
+						randomShip = getRandomShip();
+						this.sendShip(randomShip, randomPlanet);
+						shipsToBeSend.add(randomShip);
 					}
 				}
 			}
 		}
+		this.getStock().removeAll(shipsToBeSend);
 
 	}
 
 	private void buyNewShips() throws RemoteException {
 		int battlestarsToBuy = calculateBattlestars();
+		int countOfBS=0;
+		int countOfFighter=0;
 		int fightersToBuy;
 		for (int i = 0; i < battlestarsToBuy; i++) {
 			this.buyBattlestar();
+			countOfBS++;
 		}
 		fightersToBuy = calculateFighters();
 		for (int i = 0; i < fightersToBuy; i++) {
 			this.buyFighter();
+			countOfFighter++;
 		}
+		System.out.println("skynet bought "+countOfBS+" Battlestars and "+countOfFighter+" Fighter");
 
 	}
 	private Spaceship getRandomShip(){

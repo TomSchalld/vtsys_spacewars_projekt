@@ -372,11 +372,30 @@ function refresh() {
 		}
 	});
 }
-function setValues() {
-
+function setValues(result) {
+	roundObject = result;
+	$('#atlantisFighter').text(roundObject.atlantis.newFighter);
+	$('#atlantisBattlestar').text(roundObject.atlantis.newBattlestar);
+	$('#capricaFighter').text(roundObject.caprica.newFighter);
+	$('#capricaBattlestar').text(roundObject.caprica.newBattlestar);
+	$('#coruscantFighter').text(roundObject.coruscant.newFighter);
+	$('#coruscantBattlestar').text(roundObject.coruscant.newBattlestar);
+	$('#endorFighter').text(roundObject.endor.newFighter);
+	$('#endorBattlestar').text(roundObject.endor.newBattlestar);
+	$('#erdeFighter').text(roundObject.erde.newFighter);
+	$('#erdeBattlestar').text(roundObject.erde.newBattlestar);
+	$('#geminiFighter').text(roundObject.gemini.newFighter);
+	$('#geminiBattlestar').text(roundObject.gemini.newBattlestar);
+	$('#tatooineFighter').text(roundObject.tatooine.newFighter);
+	$('#tatooineBattlestar').text(roundObject.tatooine.newBattlestar);
+	cash = roundObject.playersCash;
+	
+	$('#fighter').text(roundObject.fightersInStock);
+	$('#battlestar').text(roundObject.battlestarsInStock);
+	$('#credits').text(cash + " $");
 }
 function endRound() {
-
+	
 	$.ajax({
 		url : "/SpaceWars/gaming",
 		type : "POST",
@@ -384,10 +403,10 @@ function endRound() {
 		success : function(result) {
 			alert("Success");
 			console.log(result)
+			setValues(result);
 		}
 	});
 
-	console.log(roundObject);
 }
 $(document).ready(function() {
 	init();
