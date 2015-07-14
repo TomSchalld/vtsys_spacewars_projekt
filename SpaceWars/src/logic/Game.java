@@ -28,4 +28,6 @@ public interface Game extends Remote {
 
 	public RoundReport endRound() throws RemoteException;
 
+	int getRound() throws RemoteException;
+
 }

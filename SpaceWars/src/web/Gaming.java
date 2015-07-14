@@ -14,12 +14,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import clientServer.Client;
+import logic.Battlestar;
+import logic.Fighter;
+import logic.Game;
+import logic.Planet;
 import logic.Report;
+import logic.Spaceship;
+import logic.Universe;
 
 /**
  * Servlet implementation class Gaming
@@ -42,10 +49,21 @@ public class Gaming extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+        response.setContentType("application/json");
 		JSONObject roundObject = requestParamsToJSON(request);
 		System.out.println(roundObject.toString());
-		doRound(roundObject, request.getRequestedSessionId());
-
+		try {
+			doRound(roundObject, request.getRequestedSessionId());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.getWriter().write(roundObject.toString());
+		response.getWriter().close();
+		
 	}
 
 	/**
@@ -82,25 +100,65 @@ public class Gaming extends HttpServlet {
 
 	}
 
-	private void doRound(JSONObject roundObject, String sID) throws RemoteException, JSONException{
+	private void doRound(JSONObject roundObject, String sID) throws RemoteException, JSONException, InterruptedException {
 		Client user = UserOnline.getUserById(sID);
-		String planets[]={
-				"atlantis","caprica","coruscant","endor","erde","gemini","tatooine"
-			};
+		Game actual = user.getGamePlaying();
+		int actualRound = actual.getRound();
+		Universe universe = user.getGamePlaying().getUniverse();
+		int battlestarsInStockAfterRound=0;
+		int fighterInStockAfterRound=0;
+		String planets[] = { "atlantis", "caprica", "coruscant", "endor", "erde", "gemini", "tatooine" };
 		JSONObject planet;
-		user.setCash( roundObject.getInt("playersCash"));
-		for(int i = 0; i<roundObject.getInt("fightersToBuy");i++){
+		user.setCash(roundObject.getInt("playersCash"));
+		for (int i = 0; i < roundObject.getInt("fightersToBuy"); i++) {
 			user.buyFighter();
 		}
-		for(int i = 0; i<roundObject.getInt("battlestarsToBuy");i++){
+		for (int i = 0; i < roundObject.getInt("battlestarsToBuy"); i++) {
 			user.buyBattlestar();
 		}
-		for(String s:planets){
-			planet = roundObject.getJSONObject(s);
-			for(int i =0; i<planet.getInt("newFighter");i++){
-				
+		for (String planetName : planets) {
+			planet = roundObject.getJSONObject(planetName);
+			for (int i = 0; i < planet.getInt("newFighter"); i++) {
+				for (Spaceship ship : user.getStock()) {
+					if (ship instanceof Fighter) {
+						user.sendShip(ship, universe.getPlanetByName(planetName));
+					}
+				}
+			}
+			for (int i = 0; i < planet.getInt("newBattlestar"); i++) {
+				for (Spaceship ship : user.getStock()) {
+					if (ship instanceof Battlestar) {
+						user.sendShip(ship, universe.getPlanetByName(planetName));
+					}
+				}
 			}
 		}
+		for(Spaceship ships:user.getStock()){
+			if(ships instanceof Fighter){
+				fighterInStockAfterRound++;
+			}else{
+				battlestarsInStockAfterRound++;
+			}
+		}
+		roundObject.put("fightersInStock", fighterInStockAfterRound);
+		roundObject.put("battlestarsInStock", battlestarsInStockAfterRound);
+		roundObject.put("fightersToBuy", 0);
+		roundObject.put("battlestarsToBuy", 0);
+		user.setPlayerReady(true);
+		while(actualRound==actual.getRound()){
+			Thread.sleep(1000);
+		}
+		for (String planetName : planets) {
+			Planet pl =universe.getPlanetByName(planetName);
+			planet = roundObject.getJSONObject(planetName);
+			planet.put("newFighter", pl.getFighterInOrbit());
+			planet.put("newBattlestar", pl.getBattlestarsInOrbit());
+			planet.put("sum", pl.getFighterInOrbit()+pl.getBattlestarsInOrbit());
+		}
+		
+		
+		
+		
 	}
 
 	private void generateHighscore(Report endreport) {

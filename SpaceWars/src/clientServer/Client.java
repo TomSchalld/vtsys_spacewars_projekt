@@ -44,6 +44,8 @@ public interface Client extends Remote {
 	public void buyFighter() throws RemoteException;
 
 	public void sendShip(Spaceship ship, Planet destination) throws RemoteException;
+	
+	public void sendAllShipsToStock(Planet origin) throws RemoteException;
 
 	public List<Spaceship> getStock() throws RemoteException;
 

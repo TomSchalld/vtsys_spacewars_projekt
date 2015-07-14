@@ -380,7 +380,6 @@ function endRound() {
 	$.ajax({
 		url : "/SpaceWars/gaming",
 		type : "POST",
-		//mimeType:"text/plain",
 		data : roundObject,
 		success : function(result) {
 			alert("Success");

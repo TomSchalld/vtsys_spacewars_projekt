@@ -83,6 +83,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			this.setPlayersUnready();
 			for(Client c:this.players){
 				c.setRoundReport(report.exportRoundToJSON());
+				for(Planet p: this.getUniverse().getPlanets().values()){
+					c.sendAllShipsToStock(p);
+				}
 			}
 			this.round++;
 			if(this.players[0].getAmountOfPlanets()==this.getUniverse().getPlanets().size()){
@@ -127,5 +130,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	public boolean killAllReferences() throws RemoteException {
 		return false;
 	}
-
+	@Override
+	public int getRound() throws RemoteException {
+		return round;
+	}
+	
 }

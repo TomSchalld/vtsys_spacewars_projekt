@@ -12,6 +12,8 @@ public class Planet implements Serializable{
 	private String name;
 	private List<Spaceship> shipsInOrbit;
 	private List<Spaceship> shipsTryToOrbit;
+	private int fighterInOrbit=0;
+	private int battlestarsInOrbit=0;
 	private int generatedCreditsPerShip;
 	private int generatedCredits;
 	private int planetId;
@@ -126,9 +128,10 @@ public class Planet implements Serializable{
 		Client defender = this.planetOwner;
 		BattleReport report = new BattleReport(this);
 		List<Spaceship> shipsDefeated = new ArrayList<Spaceship>();
+		this.fighterInOrbit =0;
+		this.battlestarsInOrbit =0;
 		for (Spaceship s : this.getShipsTryToOrbit()) {
 			if (!shipsDefeated.contains(s)) {
-
 				for (Spaceship d : this.getShipsInOrbit()) {
 					if (s.attack() < d.attack()) {
 						shipsDefeated.add(s);
@@ -156,11 +159,21 @@ public class Planet implements Serializable{
 		for (Spaceship s : this.getShipsInOrbit()) {
 			if(s instanceof Fighter){
 				report.addFighterAfterBattle();
+				this.fighterInOrbit++;
 			}else{
 				report.addBattlestarsAfterBattle();
+				this.battlestarsInOrbit++;
 			}
 		}
 		return report;
+	}
+
+	public int getFighterInOrbit() {
+		return fighterInOrbit;
+	}
+
+	public int getBattlestarsInOrbit() {
+		return battlestarsInOrbit;
 	}
 
 }
