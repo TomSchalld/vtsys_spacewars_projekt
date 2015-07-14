@@ -161,7 +161,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		if (ship.orbiting == null) {
 			destination.addShipToOrbit(ship);
 			ship.setOrbiting(destination);
-			this.getStock().remove(ship);
+			//this.getStock().remove(ship);
 		} else {
 			ship.orbiting.removeShipFromOrbit(ship);
 			if (destination != null) {

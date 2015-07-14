@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -109,6 +111,7 @@ public class Gaming extends HttpServlet {
 
 	private void doRound(JSONObject roundObject, String sID)
 			throws RemoteException, JSONException, InterruptedException {
+		List<Spaceship>tmpShips = new LinkedList<Spaceship>();
 		Client user = UserOnline.getUserById(sID);
 		Game actual = user.getGamePlaying();
 		int actualRound = actual.getRound();
@@ -129,6 +132,7 @@ public class Gaming extends HttpServlet {
 			for (int i = 0; i < planet.getInt("newFighter"); i++) {
 				for (Spaceship ship : user.getStock()) {
 					if (ship instanceof Fighter) {
+						tmpShips.add(ship);
 						user.sendShip(ship, universe.getPlanetByName(planetName));
 					}
 				}
@@ -136,11 +140,13 @@ public class Gaming extends HttpServlet {
 			for (int i = 0; i < planet.getInt("newBattlestar"); i++) {
 				for (Spaceship ship : user.getStock()) {
 					if (ship instanceof Battlestar) {
+						tmpShips.add(ship);
 						user.sendShip(ship, universe.getPlanetByName(planetName));
 					}
 				}
 			}
 		}
+		user.getStock().removeAll(tmpShips);
 		for (Spaceship ships : user.getStock()) {
 			if (ships instanceof Fighter) {
 				fighterInStockAfterRound++;
