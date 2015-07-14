@@ -45,6 +45,10 @@
 					<button type="button" class="btn btn-default  disabled">
 						Guthaben <span id="credits" class="badge">4000 $</span>
 					</button>
+					<button type="button" class="btn btn-danger" onclick="openShop()">
+						Report <span class="glyphicon glyphicon-list-alt"
+							aria-hidden="true"></span>
+					</button>
 					<button type="button" class="btn btn-warning" onclick="openShop()">
 						Schiffe kaufen <span class="glyphicon glyphicon-shopping-cart"
 							aria-hidden="true"></span>
@@ -53,7 +57,6 @@
 						Runde Beenden<span class="glyphicon glyphicon-chevron-right"
 							aria-hidden="true"></span>
 					</button>
-
 				</div>
 			</div>
 			<!--/.navbar-collapse -->
@@ -91,11 +94,13 @@
 					metus auctor fringilla.</p>
 			</div>
 			<div class="btn-group center-button">
-				<button type="button" class="btn btn-default" onclick="buyBattlestar()" >
+				<button type="button" class="btn btn-default"
+					onclick="buyBattlestar()">
 					<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
 				</button>
-				<button type="button" class="btn btn-default" onclick="notBuyBattlestar()">
-					<span  class="glyphicon glyphicon-minus-sign" aria-hidden="true">
+				<button type="button" class="btn btn-default"
+					onclick="notBuyBattlestar()">
+					<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">
 				</button>
 			</div>
 
@@ -120,10 +125,11 @@
 
 			<div class="btn-group center-button">
 				<button type="button" class="btn btn-default" onclick="buyFighter()">
-					<span  class="glyphicon glyphicon-plus-sign" aria-hidden="true">
+					<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
 				</button>
-				<button type="button" class="btn btn-default" onclick="notBuyFighter()">
-					<span  class="glyphicon glyphicon-minus-sign" aria-hidden="true">
+				<button type="button" class="btn btn-default"
+					onclick="notBuyFighter()">
+					<span class="glyphicon glyphicon-minus-sign" aria-hidden="true">
 				</button>
 			</div>
 
@@ -203,13 +209,17 @@
 					</div>
 				</div>
 			</div>
-						<div class="col-md-4">
+			<div class="col-md-4">
 				<div>
 					<img src="../resources/images/planets/atlantis1.png" alt="...">
 					<div class="caption">
 						<h3>Endor</h3>
+						<div id="endorWinner" class="winner">
+							<h2>Fabian</h2>
+						</div>
+						<p>Flotte auf dem Planeten</p>
 						<div id="endorWinner" class="winner"></div>
-						
+
 						<p>...</p>
 					</div>
 				</div>
@@ -249,13 +259,13 @@
 				</div>
 				<br>
 				<div class="btn-group">
-					<button type="button" class="btn btn-default" onclick="fighterPlus('erde')">
-						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterPlus('erde')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 					</button>
-					<button type="button" class="btn btn-default" onclick="fighterMinus('erde')"> 
-						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterMinus('erde')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
 					</button>
 					<button type="button" class="btn btn-default disabled samewidth">
 						<span id="erdeFighter" class="badge textright">4</span> Jäger
@@ -288,13 +298,13 @@
 				</div>
 				<br>
 				<div class="btn-group">
-					<button type="button" class="btn btn-default" onclick="fighterPlus('tatooine')">
-						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterPlus('tatooine')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 					</button>
-					<button type="button" class="btn btn-default" onclick="fighterMinus('tatooine')">
-						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterMinus('tatooine')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
 					</button>
 					<button type="button" class="btn btn-default disabled samewidth">
 						<span id="tatooineFighter" class="badge textright">4</span> Jäger
@@ -327,13 +337,13 @@
 				</div>
 				<br>
 				<div class="btn-group">
-					<button type="button" class="btn btn-default" onclick="fighterPlus('coruscant')">
-						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterPlus('coruscant')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 					</button>
-					<button type="button" class="btn btn-default" onclick="fighterMinus('coruscant')">
-						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterMinus('coruscant')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
 					</button>
 					<button type="button" class="btn btn-default disabled samewidth">
 						<span id="coruscantFighter" class="badge textright">4</span> Jäger
@@ -368,13 +378,13 @@
 				</div>
 				<br>
 				<div class="btn-group">
-					<button type="button" class="btn btn-default" onclick="fighterPlus('gemini')">
-						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterPlus('gemini')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 					</button>
-					<button type="button" class="btn btn-default" onclick="fighterMinus('gemini')">
-						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterMinus('gemini')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
 					</button>
 					<button type="button" class="btn btn-default disabled samewidth">
 						<span id="geminiFighter" class="badge textright">4</span> Jäger
@@ -406,13 +416,13 @@
 				</div>
 				<br>
 				<div class="btn-group">
-					<button type="button" class="btn btn-default" onclick="fighterPlus('caprica')">
-						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterPlus('caprica')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 					</button>
-					<button type="button" class="btn btn-default" onclick="fighterMinus('caprica')">
-						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterMinus('caprica')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
 					</button>
 					<button type="button" class="btn btn-default disabled samewidth">
 						<span id="capricaFighter" class="badge textright">4</span> Jäger
@@ -444,21 +454,21 @@
 				</div>
 				<br>
 				<div class="btn-group">
-					<button type="button" class="btn btn-default" onclick="fighterPlus('endor')">
-						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterPlus('endor')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 					</button>
-					<button type="button" class="btn btn-default" onclick="fighterMinus('endor')">
-						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterMinus('endor')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
 					</button>
 					<button type="button" class="btn btn-default disabled samewidth">
 						<span id="endorFighter" class="badge textright">4</span> Jäger
 					</button>
 				</div>
 			</div>
-			
-			
+
+
 			<div class="col-md-3 text-center">
 				<br> <br> <br> <img
 					src="../resources/images/planets/atlantis.png" alt="...">
@@ -483,13 +493,13 @@
 				</div>
 				<br>
 				<div class="btn-group">
-					<button type="button" class="btn btn-default" onclick="fighterPlus('atlantis')">
-						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterPlus('atlantis')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 					</button>
-					<button type="button" class="btn btn-default" onclick="fighterMinus('atlantis')">
-						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"
-							></span>
+					<button type="button" class="btn btn-default"
+						onclick="fighterMinus('atlantis')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
 					</button>
 					<button type="button" class="btn btn-default disabled samewidth">
 						<span id="atlantisFighter" class="badge textright">4</span> Jäger
@@ -499,7 +509,7 @@
 
 		</div>
 	</div>
-	
+
 	<!-- /container -->
 
 

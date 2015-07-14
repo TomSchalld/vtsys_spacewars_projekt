@@ -10,7 +10,7 @@ public class EndReport implements Report {
 	 * 
 	 */
 	private static final long serialVersionUID = 4004984865885813172L;
-	List<Report> roundReports; 
+	public List<Report> roundReports; 
 	public Client winner[];
 	public Client looser[];
 	public EndReport(){
