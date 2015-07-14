@@ -121,31 +121,47 @@ public class Gaming extends HttpServlet {
 		String planets[] = { "atlantis", "caprica", "coruscant", "endor", "erde", "gemini", "tatooine" };
 		JSONObject planet;
 		user.setCash(roundObject.getInt("playersCash"));
+		System.out.println("user: "+user.getUsername()+" kauft fighter: "+roundObject.getInt("fightersToBuy"));
 		for (int i = 0; i < roundObject.getInt("fightersToBuy"); i++) {
 			user.buyFighter();
 		}
+		System.out.println("user: "+user.getUsername()+" kauft battlestar: "+roundObject.getInt("battlestarsToBuy"));
+
 		for (int i = 0; i < roundObject.getInt("battlestarsToBuy"); i++) {
 			user.buyBattlestar();
 		}
+		System.out.println("-------------------------------------------------------------------------doRound");
 		for (String planetName : planets) {
 			planet = roundObject.getJSONObject(planetName);
+			System.out.println(planetName);
+			System.out.println("anzahl fighter soll "+planet.getInt("newFighter"));
 			for (int i = 0; i < planet.getInt("newFighter"); i++) {
 				for (Spaceship ship : user.getStock()) {
 					if (ship instanceof Fighter) {
-						tmpShips.add(ship);
-						user.sendShip(ship, universe.getPlanetByName(planetName));
+						if(!tmpShips.contains(ship)){
+							tmpShips.add(ship);
+							user.sendShip(ship, universe.getPlanetByName(planetName));
+							break;
+						}
+						
 					}
 				}
 			}
+			System.out.println("anzahl battlestar soll "+planet.getInt("newBattlestar"));
+
 			for (int i = 0; i < planet.getInt("newBattlestar"); i++) {
 				for (Spaceship ship : user.getStock()) {
 					if (ship instanceof Battlestar) {
-						tmpShips.add(ship);
-						user.sendShip(ship, universe.getPlanetByName(planetName));
+						if(!tmpShips.contains(ship)){
+							tmpShips.add(ship);
+							user.sendShip(ship, universe.getPlanetByName(planetName));
+							break;
+						}
 					}
 				}
 			}
 		}
+		System.out.println("----------------------------------------------------------------------------doRoundEnd");
 		user.getStock().removeAll(tmpShips);
 		for (Spaceship ships : user.getStock()) {
 			if (ships instanceof Fighter) {

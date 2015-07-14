@@ -53,12 +53,15 @@ public class Universe implements Serializable {
 		this.planets.put("tatooine", new Planet("tatooine", planetId++));
 		this.planets.put("endor", new Planet("endor", planetId++));
 		this.planets.put("coruscant", new Planet("coruscant", planetId++));
+		System.out.println("Tatooine endor coruscant erstellt");
+
 	}
 
 	private void createFivePlanets() {
 		this.createThreePlanets();
 		this.planets.put("erde", new Planet("erde", planetId++));
 		this.planets.put("caprica", new Planet("caprica", planetId++));
+		System.out.println("erde und caprica erstellt");
 
 	}
 
@@ -66,6 +69,8 @@ public class Universe implements Serializable {
 		this.createFivePlanets();
 		this.planets.put("gemini", new Planet("gemini", planetId++));
 		this.planets.put("atlantis", new Planet("atlantis", planetId++));
+		System.out.println("gemini und atlantis erstellt");
+
 	}
 	public Planet getRandomPlanet(){
 		return getPlanetByName(getRandomPlanetName());

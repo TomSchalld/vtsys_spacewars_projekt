@@ -3,17 +3,18 @@ package logic;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import clientServer.Client;
 
-public class Planet implements Serializable{
+public class Planet implements Serializable {
 	private Client planetOwner;
 	private String name;
 	private List<Spaceship> shipsInOrbit;
 	private List<Spaceship> shipsTryToOrbit;
-	private int fighterInOrbit=0;
-	private int battlestarsInOrbit=0;
+	private int fighterInOrbit = 0;
+	private int battlestarsInOrbit = 0;
 	private int generatedCreditsPerShip;
 	private int generatedCredits;
 	private int planetId;
@@ -23,8 +24,8 @@ public class Planet implements Serializable{
 		this.name = planetName;
 		this.planetId = planetId;
 		this.generatedCreditsPerShip = (int) Math.random() * 200 + 50;
-		this.shipsInOrbit = new ArrayList<Spaceship>();
-		this.shipsTryToOrbit = new ArrayList<Spaceship>();
+		this.shipsInOrbit = new LinkedList<Spaceship>();
+		this.shipsTryToOrbit = new LinkedList<Spaceship>();
 	}
 
 	@Override
@@ -91,19 +92,27 @@ public class Planet implements Serializable{
 		this.planetOwner = planetOwner;
 	}
 
-	public void addShipToOrbit(Spaceship newShip) {
+	public void addShipToOrbit(Spaceship newShip) throws RemoteException {
 		if (this.shipsInOrbit.isEmpty()) {
 			this.shipsInOrbit.add(newShip);
 			this.setPlanetOwner(newShip.getOwner());
 			this.generatedCredits = this.getGeneratedCreditsPerShip();
+			System.out.println(
+					this.getName() + " schiff von " + newShip.getOwner().getUsername() + " zu Orbit hinzugefügt");
 		} else {
-			if (this.shipsInOrbit.size() < 5) {
-				if (this.shipsInOrbit.get(0).getOwnerId() == newShip.getOwnerId()) {
+			if (this.shipsInOrbit.size() <= 5) {
+				if (this.shipsInOrbit.get(0).getOwner().equals(newShip.getOwner())) {
 					this.shipsInOrbit.add(newShip);
 					this.generatedCredits = this.generatedCreditsPerShip * this.getShipsInOrbit().size();
+					System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
+							+ " zu Orbit hinzugefügt");
+
 				} else {
 					this.shipsTryToOrbit.add(newShip);
 					this.setFightAfterRoundEnded(true);
+					System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
+							+ " zu tryTo Orbit hinzugefügt");
+
 				}
 			}
 		}
@@ -111,25 +120,35 @@ public class Planet implements Serializable{
 
 	public boolean removeShipFromOrbit(Spaceship shipToRemove) {
 		return this.shipsInOrbit.remove(shipToRemove);
-		
+
 	}
-	
+
 	public BattleReport fight() throws RemoteException {
 		Client attacker = this.getShipsTryToOrbit().get(0).getOwner();
 		Client defender = this.planetOwner;
 		BattleReport report = new BattleReport(this);
-		List<Spaceship> shipsDefeated = new ArrayList<Spaceship>();
-		this.fighterInOrbit =0;
-		this.battlestarsInOrbit =0;
+		List<Spaceship> shipsDefeated = new LinkedList<Spaceship>();
+		this.fighterInOrbit = 0;
+		this.battlestarsInOrbit = 0;
+		System.out.println(this.getName() + " kampf startet");
+		int sAttack;
+		int dAttack;
 		for (Spaceship s : this.getShipsTryToOrbit()) {
 			if (!shipsDefeated.contains(s)) {
 				for (Spaceship d : this.getShipsInOrbit()) {
-					if (s.attack() < d.attack()) {
-						shipsDefeated.add(s);
-						break;
-					} else {
-						shipsDefeated.add(d);
+					if (!shipsDefeated.contains(d)) {
+						sAttack = s.attack();
+						dAttack = d.attack();
+						if (sAttack<= dAttack) {
+							System.out.println(d.getOwner().getUsername() + " hat gewonnen als defender mit: "+dAttack+" zu : "+sAttack);
+							shipsDefeated.add(s);
+							break;
+						} else {
+							System.out.println(s.getOwner().getUsername() + " hat gewonnen als attacker");
+							shipsDefeated.add(d);
+						}
 					}
+
 				}
 			}
 		}
@@ -148,12 +167,15 @@ public class Planet implements Serializable{
 		}
 		this.setFightAfterRoundEnded(false);
 		for (Spaceship s : this.getShipsInOrbit()) {
-			if(s instanceof Fighter){
+			if (s instanceof Fighter) {
 				report.addFighterAfterBattle();
 				this.fighterInOrbit++;
-			}else{
+				System.out.println("fighter von " + s.getOwner().getUsername());
+			} else {
 				report.addBattlestarsAfterBattle();
 				this.battlestarsInOrbit++;
+				System.out.println("battlestar von " + s.getOwner().getUsername());
+
 			}
 		}
 		return report;
