@@ -156,6 +156,7 @@ public class Gaming extends HttpServlet {
 		while (actualRound == actual.getRound()) {
 			Thread.sleep(1000);
 		}
+		roundObject.put("playersCash", user.getCash());
 		for (String planetName : planets) {
 			Planet pl = universe.getPlanetByName(planetName);
 			if (pl != null) {
