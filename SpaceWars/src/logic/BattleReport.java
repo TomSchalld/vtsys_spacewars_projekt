@@ -53,6 +53,10 @@ public class BattleReport implements Report,Serializable{
 	public String getWinnersUsername() {
 		return winnersUsername;
 	}
+	
+	public List<Spaceship> getDefeatedShips() {
+		return defeatedShips;
+	}
 	public void setWinnersUsername(String winnersUsername) {
 		this.winnersUsername = winnersUsername;
 	}

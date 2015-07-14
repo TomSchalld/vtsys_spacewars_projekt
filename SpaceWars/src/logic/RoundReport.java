@@ -11,6 +11,9 @@ public class RoundReport implements Report {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Map<String,BattleReport> reports;
+	public Map<String, BattleReport> getReports() {
+		return reports;
+	}
 	public RoundReport(){
 		this.reports=new HashMap<String,BattleReport>();
 	}
@@ -24,6 +27,7 @@ public class RoundReport implements Report {
 	public void addReport(Report report) {
 		this.addBattleReport((BattleReport)report);
 	}
+	
 	public JSONObject exportRoundToJSON(){
 		JSONObject jo = new JSONObject();
 		JSONObject val;
