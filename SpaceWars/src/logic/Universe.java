@@ -50,22 +50,22 @@ public class Universe implements Serializable {
 	}
 
 	private void createThreePlanets() {
-		this.planets.put("tatooine", new Planet("Tatooine", planetId++));
-		this.planets.put("endor", new Planet("Endor", planetId++));
-		this.planets.put("coruscant", new Planet("Coruscant", planetId++));
+		this.planets.put("tatooine", new Planet("tatooine", planetId++));
+		this.planets.put("endor", new Planet("endor", planetId++));
+		this.planets.put("coruscant", new Planet("coruscant", planetId++));
 	}
 
 	private void createFivePlanets() {
 		this.createThreePlanets();
-		this.planets.put("erde", new Planet("Erde", planetId++));
-		this.planets.put("caprica", new Planet("Caprica", planetId++));
+		this.planets.put("erde", new Planet("erde", planetId++));
+		this.planets.put("caprica", new Planet("caprica", planetId++));
 
 	}
 
 	private void createSevenPlanets() {
 		this.createFivePlanets();
-		this.planets.put("gemini", new Planet("Gemini", planetId++));
-		this.planets.put("atlantis", new Planet("Atlantis", planetId++));
+		this.planets.put("gemini", new Planet("gemini", planetId++));
+		this.planets.put("atlantis", new Planet("atlantis", planetId++));
 	}
 	public Planet getRandomPlanet(){
 		return getPlanetByName(getRandomPlanetName());
