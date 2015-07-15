@@ -136,4 +136,10 @@ public class KI extends Human {
 		}
 
 	}
+
+	@Override
+	public void sendAllShipsToStock(Planet origin) throws RemoteException {
+		System.out.println("Skynet is not sending ships to stock");
+	}
+	
 }

@@ -110,35 +110,6 @@ public class Planet implements Serializable {
 						+ " zu tryTo Orbit hinzugefügt");
 			}
 
-			// if (this.shipsInOrbit.isEmpty()) {
-			// this.shipsInOrbit.add(newShip);
-			// this.setPlanetOwner(newShip.getOwner());
-			// this.generatedCredits = this.getGeneratedCreditsPerShip();
-			// System.out.println(
-			// this.getName() + " schiff von " +
-			// newShip.getOwner().getUsername() + " zu Orbit hinzugefügt");
-			// } else {
-			// if (this.shipsInOrbit.size() <= 5) {
-			// if
-			// (this.shipsInOrbit.get(0).getOwner().equals(newShip.getOwner()))
-			// {
-			// this.shipsInOrbit.add(newShip);
-			// this.generatedCredits = this.generatedCreditsPerShip *
-			// this.getShipsInOrbit().size();
-			// System.out.println(this.getName() + " schiff von " +
-			// newShip.getOwner().getUsername()
-			// + " zu Orbit hinzugefügt");
-			//
-			// } else {
-			// this.shipsTryToOrbit.add(newShip);
-			// this.setFightAfterRoundEnded(true);
-			// System.out.println(this.getName() + " schiff von " +
-			// newShip.getOwner().getUsername()
-			// + " zu tryTo Orbit hinzugefügt");
-			//
-			// }
-			// }
-			// }
 		}
 
 	}
