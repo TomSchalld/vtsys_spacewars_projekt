@@ -99,15 +99,13 @@ public class Planet implements Serializable {
 					this.shipsInOrbit.add(newShip);
 					this.setPlanetOwner(newShip.getOwner());
 					this.generatedCredits = this.generatedCreditsPerShip * this.getShipsInOrbit().size();
-					System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
-							+ " zu Orbit hinzugefügt");
+					System.out.println(newShip + " zu Orbit hinzugefügt planet: " + this.getName());
 				}
 
 			} else {
 				this.shipsTryToOrbit.add(newShip);
 				this.setFightAfterRoundEnded(true);
-				System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
-						+ " zu tryTo Orbit hinzugefügt");
+				System.out.println(newShip + " zu tryTo Orbit hinzugefügt planet: " + this.getName());
 			}
 
 		}
@@ -148,9 +146,9 @@ public class Planet implements Serializable {
 		int angreiferAttack;
 		int defendingShipAttack;
 		for (Spaceship angreifer : this.getShipsTryToOrbit()) {
-			System.out.println("[for1]"+angreifer);
+			System.out.println("[for1]" + angreifer);
 			for (Spaceship defendingShip : this.getShipsInOrbit()) {
-				System.out.println("[for2]"+defendingShip);
+				System.out.println("[for2]" + defendingShip);
 				if (!shipsDefeated.contains(angreifer)) {
 					if (!shipsDefeated.contains(defendingShip)) {
 						System.out.println(angreifer + "ist angreifendes Schiff\n");
@@ -185,13 +183,13 @@ public class Planet implements Serializable {
 			report.setLoosersUsername(defender.getUsername());
 			this.setPlanetOwner(attacker);
 		} else {
-			
+
 			report.setWinnersUsername(defender.getUsername());
 			report.setLoosersUsername(attacker.getUsername());
 		}
 		this.setFightAfterRoundEnded(false);
 		for (Spaceship s : this.getShipsInOrbit()) {
-			if(s==null){
+			if (s == null) {
 				System.out.println("NULLL sHIP DERTECTED");
 			}
 			if (s instanceof Fighter) {
