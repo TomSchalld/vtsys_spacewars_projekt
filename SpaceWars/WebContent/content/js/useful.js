@@ -46,7 +46,7 @@ function startPVPC() {
 	data.createGame = true;
 	data.gameMode = 1;
 	data.gameName = data.username + date.getTime();
-	data.universeSize = 1
+	data.universeSize = 3;
 	$.ajax({
 		url : "/SpaceWars/login",
 		type : "GET",
