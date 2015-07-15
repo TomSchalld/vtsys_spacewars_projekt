@@ -103,7 +103,7 @@ public class KI extends Human {
 				}
 			}
 			counter++;
-			if(counter>10){
+			if(counter>5){
 				break;
 			}
 		}
