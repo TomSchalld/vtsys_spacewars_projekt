@@ -152,83 +152,311 @@
 				</h2>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<div>
-					<img src="../resources/images/planets/erde1.png" alt="...">
-					<div class="caption">
-						<h3>Erde</h3>
-						<p>...</p>
-					</div>
-				</div>
-			</div>
+		<div>
 
-			<div class="col-md-3">
-				<div>
-					<img src="../resources/images/planets/tatooine1.png" alt="...">
-					<div class="caption">
-						<h3>Tatooin</h3>
-						<p>...</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div>
-					<img src="../resources/images/planets/coruscant1.png" alt="...">
-					<div class="caption">
-						<h3>Coruscant</h3>
-						<p>...</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div>
-					<img src="../resources/images/planets/germenon1.png" alt="...">
-					<div class="caption">
-						<h3>Coruscant</h3>
-						<p>...</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<div>
-					<img src="../resources/images/planets/caprica1.png" alt="...">
-					<div class="caption">
-						<h3>Caprica</h3>
-						<p>...</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div>
-					<img src="../resources/images/planets/endor1.png" alt="...">
-					<div class="caption">
-						<h3>Endor</h3>
-						<p>...</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div>
-					<img src="../resources/images/planets/atlantis1.png" alt="...">
-					<div class="caption">
-						<h3>Endor</h3>
-						<div id="endorWinner" class="winner">
-							<h2>Fabian</h2>
+			<!-- Tabs-Navs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#erdeReport"
+					role="tab" data-toggle="tab">Erde</a></li>
+				<li role="presentation"><a href="#tatooineReport" role="tab"
+					data-toggle="tab">Tatooine</a></li>
+				<li role="presentation"><a href="#coruscantReport" role="tab"
+					data-toggle="tab">Coruscant</a></li>
+				<li role="presentation"><a href="#germenonReport" role="tab"
+					data-toggle="tab">Germenon</a></li>
+				<li role="presentation"><a href="#capricaReport" role="tab"
+					data-toggle="tab">Caprica</a></li>
+				<li role="presentation"><a href="#endorReport" role="tab"
+					data-toggle="tab">Endor</a></li>
+				<li role="presentation"><a href="#atlantisReport" role="tab"
+					data-toggle="tab">Atlantis</a></li>
+
+
+			</ul>
+
+			<!-- Tab-Inhalte -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="erdeReport">
+					
+					<div class="row">
+
+						<div class="col-md-2 belongs">
+							<br /> <img src="../resources/images/planets/erde1.png"
+								alt="..." class="img-thumbnail">
 						</div>
-						<p>Flotte auf dem Planeten</p>
-						<div id="endorWinner" class="winner"></div>
+						<div class="col-md-4">
+							<h3>
+								<span class="label label-default">Sieger: <span
+									id="winnerErde">Fabian</span></span>
+							</h3>
 
-						<p>...</p>
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="battlestarReportErde" class="badge textright">4</span>Verbleibende
+								Schlachtschiffe:
+							</button>
+							<br />
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="fighterReportErde" class="badge textright">4</span>Verbleibende
+								Jäger
+							</button>
+						</div>
+						<div class="col-md-6">
+							<h3>Zerstörte Schiffe</h3>
+							<ul id="defeatedListErde">
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Battlestar von: Fabian mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div role="tabpanel" class="tab-pane" id="tatooineReport">
+					<div class="row">
+
+						<div class="col-md-2 belongs">
+							<br /> <img src="../resources/images/planets/tatooine1.png"
+								alt="..." class="img-thumbnail">
+						</div>
+						<div class="col-md-4">
+							<h3>
+								<span class="label label-default">Sieger: <span
+									id="winnerTatooine">Fabian</span></span>
+							</h3>
+
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="battlestarReportTatooine" class="badge textright">4</span>Verbleibende
+								Schlachtschiffe:
+							</button>
+							<br />
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="fighterReportTatooine" class="badge textright">4</span>Verbleibende
+								Jäger
+							</button>
+						</div>
+						<div class="col-md-6">
+							<h3>Zerstörte Schiffe</h3>
+							<ul id="defeatedListTatooine">
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Battlestar von: Fabian mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="coruscantReport">
+					<div class="row">
+
+						<div class="col-md-2 belongs">
+							<br /> <img src="../resources/images/planets/coruscant1.png"
+								alt="..." class="img-thumbnail">
+						</div>
+						<div class="col-md-4">
+							<h3>
+								<span class="label label-default">Sieger: <span
+									id="winnerCoruscant">Fabian</span></span>
+							</h3>
+
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="battlestarReportCoruscant" class="badge textright">4</span>Verbleibende
+								Schlachtschiffe:
+							</button>
+							<br />
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="fighterReportCoruscant" class="badge textright">4</span>Verbleibende
+								Jäger
+							</button>
+						</div>
+						<div class="col-md-6">
+							<h3>Zerstörte Schiffe</h3>
+							<ul id="defeatedListCoruscant">
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Battlestar von: Fabian mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="germenonReport">
+					<div class="row">
+
+						<div class="col-md-2 belongs">
+							<br /> <img src="../resources/images/planets/germenon1.png"
+								alt="..." class="img-thumbnail">
+						</div>
+						<div class="col-md-4">
+							<h3>
+								<span class="label label-default">Sieger: <span
+									id="winnerGermenon">Fabian</span></span>
+							</h3>
+
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="battlestarReportGermenon" class="badge textright">4</span>Verbleibende
+								Schlachtschiffe:
+							</button>
+							<br />
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="fighterReportGermenon" class="badge textright">4</span>Verbleibende
+								Jäger
+							</button>
+						</div>
+						<div class="col-md-6">
+							<h3>Zerstörte Schiffe</h3>
+							<ul id="defeatedListGermenon">
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Battlestar von: Fabian mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="capricaReport">
+					<div class="row">
+
+						<div class="col-md-2 belongs">
+							<br /> <img src="../resources/images/planets/caprica1.png"
+								alt="..." class="img-thumbnail">
+						</div>
+						<div class="col-md-4">
+							<h3>
+								<span class="label label-default">Sieger: <span
+									id="winnerCaprica">Fabian</span></span>
+							</h3>
+
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="battlestarReportCaprica" class="badge textright">4</span>Verbleibende
+								Schlachtschiffe:
+							</button>
+							<br />
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="fighterReportCaprica" class="badge textright">4</span>Verbleibende
+								Jäger
+							</button>
+						</div>
+						<div class="col-md-6">
+							<h3>Zerstörte Schiffe</h3>
+							<ul id="defeatedListCaprica">
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Battlestar von: Fabian mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="endorReport">
+					<div class="row">
+
+						<div class="col-md-2 belongs">
+							<br /> <img src="../resources/images/planets/endor1.png"
+								alt="..." class="img-thumbnail">
+						</div>
+						<div class="col-md-4">
+							<h3>
+								<span class="label label-default">Sieger: <span
+									id="winnerEndor">Fabian</span></span>
+							</h3>
+
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="battlestarReportEndor" class="badge textright">4</span>Verbleibende
+								Schlachtschiffe:
+							</button>
+							<br />
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="fighterReportEndor" class="badge textright">4</span>Verbleibende
+								Jäger
+							</button>
+						</div>
+						<div class="col-md-6">
+							<h3>Zerstörte Schiffe</h3>
+							<ul id="defeatedListEndor">
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Battlestar von: Fabian mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="atlantisReport">
+					<div class="row">
+
+						<div class="col-md-2 belongs">
+							<br /> <img src="../resources/images/planets/atlantis1.png"
+								alt="..." class="img-thumbnail">
+						</div>
+						<div class="col-md-4">
+							<h3>
+								<span class="label label-default">Sieger: <span
+									id="winnerAtlantis">Fabian</span></span>
+							</h3>
+
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="battlestarReportAtlantis" class="badge textright">4</span>Verbleibende
+								Schlachtschiffe:
+							</button>
+							<br />
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="fighterReportAtlantis" class="badge textright">4</span>Verbleibende
+								Jäger
+							</button>
+						</div>
+						<div class="col-md-6">
+							<h3>Zerstörte Schiffe</h3>
+							<ul id="defeatedListAtlantis">
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Battlestar von: Fabian mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+								<li>Jäger von: Computer mit Rang Lieutenant</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
+
+
+
 		</div>
-
-
-
 	</div>
 
 
