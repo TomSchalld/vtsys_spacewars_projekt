@@ -6,8 +6,6 @@ import clientServer.Client;
 
 public class Battlestar extends Spaceship {
 	static final int price = 2000;
-	static int battlestarId=0;
-	private int id;
 	private enum Rank{
 		Capitan(10),
 		ViceAdmiral(20),
@@ -25,8 +23,7 @@ public class Battlestar extends Spaceship {
 	private Rank rank=Rank.Capitan;
 	public Battlestar(Client owner) throws RemoteException {
 		super(owner);
-		this.id = battlestarId;
-		this.battlestarId++;
+		
 		
 	}
 	public static int getPrice() {
@@ -59,11 +56,5 @@ public class Battlestar extends Spaceship {
 		s+=rank;
 		return s;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		/*if(this.id==((Battlestar)obj).id){
-			return true;
-		}*/
-		return false;
-	}
+	
 }
