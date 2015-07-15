@@ -152,11 +152,12 @@ function getListOfOpenGames() {
 	});
 }
 function setListOfOpenGames(result) {
-	$(result).each(function(result){
-		console.log(result);
-		console.log(result.game);
-		console.log(result.game.host);
-		console.log(result.game.universeSize);
+	
+	$.each(result,function(key, val){
+		console.log(key);
+		console.log(val.game);
+		console.log(val.game.host);
+		console.log(val.game.universeSize);
 		
 		/*
 		$('#tableOfOpenGames')
