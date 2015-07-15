@@ -194,6 +194,12 @@ public class Planet implements Serializable {
 
 			}
 		}
+		System.out.println("-----------------------------------ships in Orbit of planet: "+this.getName()+"--------------------------------------");
+		for(Spaceship s:this.getShipsInOrbit()){
+			System.out.println(s);
+		}
+		System.out.println("-----------------------------------ende--------------------------------------");
+
 		return report;
 	}
 
