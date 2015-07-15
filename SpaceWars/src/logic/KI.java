@@ -14,7 +14,7 @@ public class KI extends Human {
 
 	public KI(String username, String serveraddress) throws MalformedURLException, RemoteException, NotBoundException {
 		super(username, serveraddress);
-
+		this.cash = 7500;
 	}
 
 	public void ruleTheWorld() throws RemoteException {
@@ -24,7 +24,7 @@ public class KI extends Human {
 			this.sendShips();
 		}
 		this.setPlayerReady(true);
-		this.setCash(cash*3);
+		this.setCash((int)(cash*2.5));
 		System.out.println("Skynet is gonna rule");
 
 	}
