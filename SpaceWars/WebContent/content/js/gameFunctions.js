@@ -399,11 +399,11 @@ function setValues(result) {
 		$('#battlestarsLeftAtlantis').text(
 				roundObject.roundReport.atlantis.battlestarsLeft);
 		for (index = 0; index < roundObject.roundReport.atlantis.defeatedShips.length; index++) {
-			defeatedShipsList +=("<li>"
-					+ roundObject.roundReport.atlantis.defeatedShips[index]
-					+ "</li>");
+			defeatedShipsList +='<li>';
+			defeatedShipsList += roundObject.roundReport.atlantis.defeatedShips[index];
+			defeatedShipsList += '</li>';
 		}
-		$('#defeatedListAtlantis').text(defeatedShipsList);
+		$('#defeatedListAtlantis').append(defeatedShipsList);
 		$('#atlantisReportButton').show();
 	} else {
 		closeWait()

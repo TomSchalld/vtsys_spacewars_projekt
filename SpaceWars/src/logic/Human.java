@@ -79,10 +79,12 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 			// newGame.addPlayer(this);
 		}
 	}
+
 	@Override
-	public void setAmountOfPlanets(int planets) throws RemoteException{
-		this.amountOfPlanets=planets;
+	public void setAmountOfPlanets(int planets) throws RemoteException {
+		this.amountOfPlanets = planets;
 	}
+
 	@Override
 	public void joinGame(String gameName) throws RemoteException {
 		// TODO just in case get game, manipulate, copy back and overwrite
@@ -130,10 +132,10 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	public void setPlayerReady(boolean playerReady) throws RemoteException {
 		this.playerReady = playerReady;
-		System.out.println("Ich: "+this.getUsername()+" bin fertig!");
-		//if (this.getGamePlaying().playersReady()) {
-			this.getGamePlaying().endRound();
-		//}
+		System.out.println("Ich: " + this.getUsername() + " bin fertig!");
+		// if (this.getGamePlaying().playersReady()) {
+		this.getGamePlaying().endRound();
+		// }
 
 	}
 
@@ -143,12 +145,12 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	public void buyBattlestar() throws RemoteException {
 		if (this.cash - Battlestar.getPrice() >= 0) {
-			System.out.println("cash before buy battlestar "+this.cash);
+			System.out.println("cash before buy battlestar " + this.cash);
 			this.cash -= Battlestar.getPrice();
-			System.out.println("cash after" +this.cash);
+			System.out.println("cash after" + this.cash);
 			this.getStock().add(new Battlestar(this));
 		} else {
-			System.out.println("Not enough Credits to buy Battlestar "+this.cash);
+			System.out.println("Not enough Credits to buy Battlestar " + this.cash);
 		}
 	}
 
@@ -163,9 +165,10 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	public void sendShip(Spaceship ship, PlanetIf destination) throws RemoteException {
 		if (ship.orbiting == null) {
-			destination.addShipToOrbit(ship);
+			if (destination != null) {
+				destination.addShipToOrbit(ship);
+			}
 			ship.setOrbiting(destination);
-			//this.getStock().remove(ship);
 		} else {
 			ship.orbiting.removeShipFromOrbit(ship);
 			if (destination != null) {
@@ -190,7 +193,6 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		for (Spaceship s : tmp) {
 			sendShip(s, null);
 		}
-		
 
 	}
 
