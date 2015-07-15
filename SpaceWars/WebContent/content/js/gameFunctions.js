@@ -67,7 +67,7 @@ function buyBattlestar() {
 	}
 }
 function notBuyFighter() {
-	if (roundObject.fightersToBuy > 0) {
+	if (roundObject.fightersToBuy > 0 && roundObject.fightersInStock>0) {
 		roundObject.fightersToBuy--;
 		roundObject.fightersInStock--;
 		cash += priceFighter;
@@ -76,7 +76,7 @@ function notBuyFighter() {
 	}
 }
 function notBuyBattlestar() {
-	if (roundObject.battlestarsToBuy > 0) {
+	if (roundObject.battlestarsToBuy > 0 && roundObject.battlestarsInStock>0) {
 		roundObject.battlestarsToBuy--;
 		roundObject.battlestarsInStock--;
 		cash += priceBattlestar;
