@@ -3,8 +3,8 @@ var data = {
 	"logout" : false,
 	"createGame" : false,
 	"joinGame" : false,
-	"getGames":false,
-	"gameData":null,
+	"getGames" : false,
+	"gameData" : null,
 	"gameName" : "",
 	"gamePw" : "",
 	"race" : "",
@@ -71,11 +71,11 @@ function startPVP() {
 		data : data,
 		success : function(result) {
 			alert(result);
-			window.location.href = "./"+result;
+			window.location.href = "./" + result;
 			clearData();
 		}
 	});
-	
+
 }
 
 function getUrlParameter(sParam) {
@@ -110,9 +110,9 @@ function openCreateGame() {
 
 }
 function joinGame() {
-	
+
 	window.location.href = "./menuMultiplayerJoin.html" + "?username="
-		+ data.username;
+			+ data.username;
 }
 function submitUser() {
 	data.username = $('#username').val();
@@ -138,7 +138,7 @@ function logout() {
 		}
 	});
 }
-function getListOfOpenGames(){
+function getListOfOpenGames() {
 	data.getGames = true;
 	$.ajax({
 		url : "/SpaceWars/login",
@@ -146,10 +146,17 @@ function getListOfOpenGames(){
 		data : data,
 		success : function(result) {
 			data.gameData = result;
-			console.log(result);
 			console.log(data.gameData);
+
 		}
 	});
+}
+function setListOfOpenGames(result) {
+	$('#tableOfOpenGames')
+			.append(
+					"<tr><td>Testspiel</td><td>Fabian</td><td>Mensch gegen Computer</td><td>Großes Universum</td>" +
+					"<td><button class='btn btn-default btn-sm' type='button'>Beitreten</button></td></tr>");
+
 }
 function clearData() {
 	data.logout = false;
