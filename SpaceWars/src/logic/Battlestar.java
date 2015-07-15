@@ -29,6 +29,7 @@ public class Battlestar extends Spaceship {
 	public static int getPrice() {
 		return price;
 	}
+	@Override
 	public void increaseRank(){
 		boolean rankIncreased = false;
 		for(Rank r:Rank.values()){

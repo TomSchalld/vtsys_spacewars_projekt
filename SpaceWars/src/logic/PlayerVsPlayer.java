@@ -71,6 +71,8 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 
 	@Override
 	public RoundReport endRound() throws RemoteException {
+		int planetsPOne=0;
+		int planetsPTwo=0;
 		if (this.playersReady()) {
 			RoundReport report = new RoundReport();
 			Map<String, Planet> planets = this.getUniverse().getPlanets();
@@ -92,6 +94,11 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 				c.setRoundReport(report.exportRoundToJSON());
 				for (Planet p : this.getUniverse().getPlanets().values()) {
 					if (p.getPlanetOwner() != null) {
+						if(p.getPlanetOwner().equals(this.players[0])){
+							this.players[0].setAmountOfPlanets(++planetsPOne);
+						}else{
+							this.players[1].setAmountOfPlanets(++planetsPTwo);
+						}
 						if (p.getPlanetOwner().equals(c)) {
 							c.sendAllShipsToStock(p);
 						}

@@ -93,4 +93,6 @@ public abstract class Spaceship implements Serializable {
 		return false;
 	}
 
+	public abstract void increaseRank();
+
 }

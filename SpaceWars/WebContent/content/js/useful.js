@@ -10,44 +10,33 @@ var data = {
 	"gameMode" : 2
 };
 
-function openShop(){
+function openShop() {
 	$('#shop').show();
 
 }
-function closeShop(){
+function closeShop() {
 	$('#shop').hide();
 }
-function openReport(){
+function openReport() {
 	$('#report').show();
 
 }
-function closeReport(){
+function closeReport() {
 	$('#report').hide();
 }
 
 function chooseUniverse(size) {
 	data.universeSize = size;
+	data.createGame = true;
+	data.gameName = getUrlParameter("gameName");
+	data.gameMode = 4;
 	$.ajax({
 		url : "/SpaceWars/login",
 		type : "GET",
 		data : data,
 		success : function(result) {
-			if (data.isSinglePlayer === true) {
-				if (data.gameMode === 0) {
-					window.location.href = "./gameThree.html" + result;
-				}
-				if (data.gameMode === 1) {
-					window.location.href = "./gameFive.html" + result;
-				}
-				if (data.gameMode === 2) {
-					window.location.href = "./gameSeven.html" + result;
-				}
-
-			} else {
-				window.location.href = "./menuTeam.html" + result;
-				clearData();
-			}
-
+			window.location.href = "./menuTeam.html" + result;
+			clearData();
 		}
 	});
 }
@@ -62,12 +51,31 @@ function startPVPC() {
 		type : "GET",
 		data : data,
 		success : function(result) {
+			
 			window.location.href = "./gameSeven.html" + result;
 			clearData();
 		}
 	});
 
 }
+function startPVP() {
+	data.createGame = true;
+	data.gameName = getUrlParameter("gameName");
+	data.universeSize = getUrlParameter("universeSize");
+	data.gameMode = 0;
+	$.ajax({
+		url : "/SpaceWars/login",
+		type : "GET",
+		data : data,
+		success : function(result) {
+			alert(result);
+			window.location.href = "./"+result;
+			clearData();
+		}
+	});
+	
+}
+
 function getUrlParameter(sParam) {
 	var sPageURL = window.location.search.substring(1);
 	var sURLVariables = sPageURL.split('&');
@@ -81,14 +89,13 @@ function getUrlParameter(sParam) {
 function createGame() {
 	data.createGame = true;
 	data.gameName = $('#gameName').val();
-	data.Pw = $('#inputPassword').val();
-
+	data.gameMode = 4
 	$.ajax({
 		url : "/SpaceWars/login",
 		type : "GET",
 		data : data,
 		success : function(result) {
-			window.location.href = "./menuRasse.html" + result;
+			window.location.href = "./menuKarte.html" + result;
 			clearData();
 		}
 	});

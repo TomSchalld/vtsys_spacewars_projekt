@@ -185,6 +185,7 @@ public class Gaming extends HttpServlet {
 			Thread.sleep(1000);
 		}
 		roundObject.put("playersCash", user.getCash());
+		roundObject.put("roundReport", user.getRoundReport());
 		System.out.println(user.getUsername() + " has got: " + user.getCash() + " Credits");
 		System.out.println("------------------------------------put JSON-----------------------");
 		for (String planetName : planets) {

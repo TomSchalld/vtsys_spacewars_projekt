@@ -52,4 +52,6 @@ public interface Client extends Remote {
 	public void setStock(List<Spaceship> stock) throws RemoteException;
 
 	public void setCash(int cash) throws RemoteException;
+
+	public void setAmountOfPlanets(int planets) throws RemoteException;
 }

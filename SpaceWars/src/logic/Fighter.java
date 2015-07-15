@@ -20,6 +20,7 @@ public class Fighter extends Spaceship {
 		}
 	}
 	private Rank rank=Rank.Lieutenant;
+	@Override
 	public void increaseRank(){
 		boolean rankIncreased = false;
 		for(Rank r:Rank.values()){

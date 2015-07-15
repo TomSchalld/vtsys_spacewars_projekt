@@ -14,14 +14,17 @@ public class KI extends Human {
 
 	public KI(String username, String serveraddress) throws MalformedURLException, RemoteException, NotBoundException {
 		super(username, serveraddress);
-
+		this.cash = 7500;
 	}
 
 	public void ruleTheWorld() throws RemoteException {
 
 		this.buyNewShips();
-		this.sendShips();
+		for (int i = 0; i < 5; i++) {
+			this.sendShips();
+		}
 		this.setPlayerReady(true);
+		this.setCash(cash * 4);
 		System.out.println("Skynet is gonna rule");
 
 	}
@@ -63,8 +66,7 @@ public class KI extends Human {
 		int shipsOnPlanetOfInterest;
 		int shipsInStock = this.getStock().size();
 		List<Spaceship> shipsToBeSend = new LinkedList<Spaceship>();
-		int counter=0;
-		while (shipsInStock > 0) {
+		if (shipsInStock > 0) {
 			if (shipsInStock >= 5) {
 				randomPlanet = actual.getRandomPlanet();
 				if (randomPlanet.getPlanetOwner() != null) {
@@ -81,7 +83,7 @@ public class KI extends Human {
 					if (!shipsToBeSend.contains(randomShip)) {
 						this.sendShip(randomShip, randomPlanet);
 						shipsToBeSend.add(randomShip);
-					}else{
+					} else {
 						i--;
 					}
 
@@ -89,24 +91,23 @@ public class KI extends Human {
 			} else {
 				for (int i = 0; i < shipsInStock; i++) {
 					randomPlanet = actual.getRandomPlanet();
-					if (randomPlanet.getPlanetOwner().equals(this)) {
-						i--;
-					} else {
-						randomShip = getRandomShip();
-						if (!shipsToBeSend.contains(randomShip)) {
-							this.sendShip(randomShip, randomPlanet);
-							shipsToBeSend.add(randomShip);
-						}else{
+					if (randomPlanet.getPlanetOwner() != null) {
+						if (randomPlanet.getPlanetOwner().equals(this)) {
 							i--;
+						} else {
+							randomShip = getRandomShip();
+							if (!shipsToBeSend.contains(randomShip)) {
+								this.sendShip(randomShip, randomPlanet);
+								shipsToBeSend.add(randomShip);
+							} else {
+								i--;
+							}
 						}
 					}
+
 				}
 			}
-			counter++;
-			if(counter>5){
-				break;
-			}
-			shipsInStock=this.getStock().size();
+
 		}
 		this.getStock().removeAll(shipsToBeSend);
 
@@ -121,11 +122,14 @@ public class KI extends Human {
 			this.buyBattlestar();
 			countOfBS++;
 		}
-		fightersToBuy = calculateFighters();
-		for (int i = 0; i < fightersToBuy; i++) {
-			this.buyFighter();
-			countOfFighter++;
+		if (this.getAmountOfPlanets() < 2) {
+			fightersToBuy = calculateFighters();
+			for (int i = 0; i < fightersToBuy; i++) {
+				this.buyFighter();
+				countOfFighter++;
+			}
 		}
+
 		System.out.println("skynet bought " + countOfBS + " Battlestars and " + countOfFighter + " Fighter");
 
 	}
@@ -146,11 +150,11 @@ public class KI extends Human {
 		int maxBattlestars = actualCash / Battlestar.getPrice();
 		int universeSize = this.getGamePlaying().getUniverse().getPlanets().size();
 		int maxPower = universeSize * 5;
-		if (maxBattlestars == maxPower) {
-			return maxBattlestars;
-		} else {
-			return maxBattlestars - 1;
-		}
+		return maxBattlestars;
+		/*
+		 * if (maxBattlestars == maxPower) { return maxBattlestars; } else {
+		 * return maxBattlestars - 1; }
+		 */
 
 	}
 

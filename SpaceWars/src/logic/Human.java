@@ -79,7 +79,10 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 			// newGame.addPlayer(this);
 		}
 	}
-
+	@Override
+	public void setAmountOfPlanets(int planets) throws RemoteException{
+		this.amountOfPlanets=planets;
+	}
 	@Override
 	public void joinGame(String gameName) throws RemoteException {
 		// TODO just in case get game, manipulate, copy back and overwrite
