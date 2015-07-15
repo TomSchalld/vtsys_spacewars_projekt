@@ -121,11 +121,12 @@ public class Gaming extends HttpServlet {
 		String planets[] = { "atlantis", "caprica", "coruscant", "endor", "erde", "gemini", "tatooine" };
 		JSONObject planet;
 		user.setCash(roundObject.getInt("playersCash"));
-		System.out.println("user: "+user.getUsername()+" kauft fighter: "+roundObject.getInt("fightersToBuy"));
+		System.out.println("user: " + user.getUsername() + " kauft fighter: " + roundObject.getInt("fightersToBuy"));
 		for (int i = 0; i < roundObject.getInt("fightersToBuy"); i++) {
 			user.buyFighter();
 		}
-		System.out.println("user: "+user.getUsername()+" kauft battlestar: "+roundObject.getInt("battlestarsToBuy"));
+		System.out.println(
+				"user: " + user.getUsername() + " kauft battlestar: " + roundObject.getInt("battlestarsToBuy"));
 
 		for (int i = 0; i < roundObject.getInt("battlestarsToBuy"); i++) {
 			user.buyBattlestar();
@@ -134,25 +135,25 @@ public class Gaming extends HttpServlet {
 		for (String planetName : planets) {
 			planet = roundObject.getJSONObject(planetName);
 			System.out.println(planetName);
-			System.out.println("anzahl fighter soll "+planet.getInt("newFighter"));
+			System.out.println("anzahl fighter soll " + planet.getInt("newFighter"));
 			for (int i = 0; i < planet.getInt("newFighter"); i++) {
 				for (Spaceship ship : user.getStock()) {
 					if (ship instanceof Fighter) {
-						if(!tmpShips.contains(ship)){
+						if (!tmpShips.contains(ship)) {
 							tmpShips.add(ship);
 							user.sendShip(ship, universe.getPlanetByName(planetName));
 							break;
 						}
-						
+
 					}
 				}
 			}
-			System.out.println("anzahl battlestar soll "+planet.getInt("newBattlestar"));
+			System.out.println("anzahl battlestar soll " + planet.getInt("newBattlestar"));
 
 			for (int i = 0; i < planet.getInt("newBattlestar"); i++) {
 				for (Spaceship ship : user.getStock()) {
 					if (ship instanceof Battlestar) {
-						if(!tmpShips.contains(ship)){
+						if (!tmpShips.contains(ship)) {
 							tmpShips.add(ship);
 							user.sendShip(ship, universe.getPlanetByName(planetName));
 							break;
@@ -163,13 +164,18 @@ public class Gaming extends HttpServlet {
 		}
 		System.out.println("----------------------------------------------------------------------------doRoundEnd");
 		user.getStock().removeAll(tmpShips);
-		for (Spaceship ships : user.getStock()) {
-			if (ships instanceof Fighter) {
-				fighterInStockAfterRound++;
-			} else {
-				battlestarsInStockAfterRound++;
+		// ships sendet
+		if (!user.getStock().isEmpty()) {
+			for (Spaceship ships : user.getStock()) {
+				if (ships instanceof Fighter) {
+					fighterInStockAfterRound++;
+				} else {
+					battlestarsInStockAfterRound++;
+				}
 			}
 		}
+		System.out.println("fighters in stock after round: -->"+fighterInStockAfterRound);
+		System.out.println("battlestars in stock after round: -->"+battlestarsInStockAfterRound);
 		roundObject.put("fightersInStock", fighterInStockAfterRound);
 		roundObject.put("battlestarsInStock", battlestarsInStockAfterRound);
 		roundObject.put("fightersToBuy", 0);
@@ -179,7 +185,7 @@ public class Gaming extends HttpServlet {
 			Thread.sleep(1000);
 		}
 		roundObject.put("playersCash", user.getCash());
-		System.out.println(user.getUsername()+" has got: "+user.getCash()+" Credits");
+		System.out.println(user.getUsername() + " has got: " + user.getCash() + " Credits");
 		System.out.println("------------------------------------put JSON-----------------------");
 		for (String planetName : planets) {
 			Planet pl = universe.getPlanetByName(planetName);
@@ -190,7 +196,9 @@ public class Gaming extends HttpServlet {
 						planet.put("newFighter", pl.getFighterInOrbit());
 						planet.put("newBattlestar", pl.getBattlestarsInOrbit());
 						planet.put("sum", pl.getFighterInOrbit() + pl.getBattlestarsInOrbit());
-						System.out.println(pl.getName()+" zu JSON nach Kampf user:"+user.getUsername()+" anzahlFighter: "+pl.getFighterInOrbit()+" anzahl batlestar: "+pl.getBattlestarsInOrbit());
+						System.out.println(
+								pl.getName() + " zu JSON nach Kampf user:" + user.getUsername() + " anzahlFighter: "
+										+ pl.getFighterInOrbit() + " anzahl batlestar: " + pl.getBattlestarsInOrbit());
 					}
 				}
 
@@ -198,7 +206,6 @@ public class Gaming extends HttpServlet {
 
 		}
 		System.out.println("------------------------------------put JSON Ende-----------------------");
-
 
 	}
 
