@@ -148,19 +148,23 @@ function getListOfOpenGames() {
 			data.gameData = result;
 			console.log(data.gameData);
 			setListOfOpenGames(result);
+			clearData();
+
 		}
 	});
 }
 function setListOfOpenGames(result) {
-	$(result).each(function(result){
+	
+	$.each(result,function(key, val){
 		$('#tableOfOpenGames')
 		.append(
-				"<tr><td>"+result.gameName+"</td><td>"+result.game.host+"</td><td>"+result.game.gameMode+"</td><td>"+result.game.universeSize+"</td>" +
-				"<td><button class='btn btn-default btn-sm' type='button' onclick=\"joinIt('"+result.gameName+"')\">Beitreten</button></td></tr>");
+				"<tr><td>"+val.gameName+"</td><td>"+val.host+"</td><td>"+val.gameMode+"</td><td>"+val.universeSize+"</td>" +
+				"<td><button class='btn btn-default btn-sm' type='button' onclick=\"joinIt('"+val.gameName+"')\">Beitreten</button></td></tr>");
 	});
 	
 }
 function joinIt(gameName){
+	alert("Join Game");
 	data.joinGame = true;
 	data.gameName = gameName;
 	$.ajax({
@@ -177,6 +181,7 @@ function clearData() {
 	data.logout = false;
 	data.createGame = false;
 	data.joinGame = false;
+	data.getGames = false;
 }
 function chooseRace(race) {
 	data.race = race;
