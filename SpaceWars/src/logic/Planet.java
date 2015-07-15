@@ -23,7 +23,7 @@ public class Planet implements Serializable {
 	public Planet(String planetName, int planetId) {
 		this.name = planetName;
 		this.planetId = planetId;
-		this.generatedCreditsPerShip = (int) Math.random() * 200 + 50;
+		this.generatedCreditsPerShip = (int) Math.random() * 450 + 150;
 		this.shipsInOrbit = new LinkedList<Spaceship>();
 		this.shipsTryToOrbit = new LinkedList<Spaceship>();
 	}

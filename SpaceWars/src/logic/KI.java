@@ -14,24 +14,24 @@ public class KI extends Human {
 
 	public KI(String username, String serveraddress) throws MalformedURLException, RemoteException, NotBoundException {
 		super(username, serveraddress);
-		
+
 	}
 
 	public void ruleTheWorld() throws RemoteException {
-		
+
 		this.buyNewShips();
 		this.sendShips();
 		this.setPlayerReady(true);
 		System.out.println("Skynet is gonna rule");
 
 	}
-	
+
 	@Override
 	public void setGamePlaying(Game gamePlaying) {
 		super.setGamePlaying(gamePlaying);
 		try {
 			this.ruleTheWorld();
-			
+
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,7 +41,7 @@ public class KI extends Human {
 	@Override
 	public void setPlayerReady(boolean playerReady) throws RemoteException {
 		super.setPlayerReady(playerReady);
-		if(!playerReady){
+		if (!playerReady) {
 			try {
 				this.ruleTheWorld();
 			} catch (RemoteException e) {
@@ -63,13 +63,14 @@ public class KI extends Human {
 		int shipsOnPlanetOfInterest;
 		int shipsInStock = this.getStock().size();
 		List<Spaceship> shipsToBeSend = new LinkedList<Spaceship>();
-		if (shipsInStock > 0) {
+		int counter=0;
+		while (shipsInStock > 0) {
 			if (shipsInStock >= 5) {
 				randomPlanet = actual.getRandomPlanet();
 				if (randomPlanet.getPlanetOwner() != null) {
 					while (randomPlanet.getPlanetOwner().equals(this)) {
 						randomPlanet = actual.getRandomPlanet();
-						if(randomPlanet.getPlanetOwner()==null){
+						if (randomPlanet.getPlanetOwner() == null) {
 							break;
 						}
 					}
@@ -77,20 +78,33 @@ public class KI extends Human {
 
 				for (int i = 0; i < 5; i++) {
 					randomShip = getRandomShip();
-					this.sendShip(randomShip, randomPlanet);
-					shipsToBeSend.add(randomShip);
-				}
-			}else{
-				for(int i=0;i<shipsInStock;i++){
-					randomPlanet=actual.getRandomPlanet();
-					if(randomPlanet.getPlanetOwner().equals(this)){
-						i--;
-					}else{
-						randomShip = getRandomShip();
+					if (!shipsToBeSend.contains(randomShip)) {
 						this.sendShip(randomShip, randomPlanet);
 						shipsToBeSend.add(randomShip);
+					}else{
+						i--;
+					}
+
+				}
+			} else {
+				for (int i = 0; i < shipsInStock; i++) {
+					randomPlanet = actual.getRandomPlanet();
+					if (randomPlanet.getPlanetOwner().equals(this)) {
+						i--;
+					} else {
+						randomShip = getRandomShip();
+						if (!shipsToBeSend.contains(randomShip)) {
+							this.sendShip(randomShip, randomPlanet);
+							shipsToBeSend.add(randomShip);
+						}else{
+							i--;
+						}
 					}
 				}
+			}
+			counter++;
+			if(counter>5){
+				break;
 			}
 		}
 		this.getStock().removeAll(shipsToBeSend);
@@ -99,8 +113,8 @@ public class KI extends Human {
 
 	private void buyNewShips() throws RemoteException {
 		int battlestarsToBuy = calculateBattlestars();
-		int countOfBS=0;
-		int countOfFighter=0;
+		int countOfBS = 0;
+		int countOfFighter = 0;
 		int fightersToBuy;
 		for (int i = 0; i < battlestarsToBuy; i++) {
 			this.buyBattlestar();
@@ -111,14 +125,16 @@ public class KI extends Human {
 			this.buyFighter();
 			countOfFighter++;
 		}
-		System.out.println("skynet bought "+countOfBS+" Battlestars and "+countOfFighter+" Fighter");
+		System.out.println("skynet bought " + countOfBS + " Battlestars and " + countOfFighter + " Fighter");
 
 	}
-	private Spaceship getRandomShip(){
+
+	private Spaceship getRandomShip() {
 		Random random = new Random();
 		List<Spaceship> ships = this.getStock();
 		return ships.get(random.nextInt(ships.size()));
 	}
+
 	private int calculateFighters() throws RemoteException {
 		int actualCash = this.getCash();
 		return actualCash / Fighter.getPrice();
@@ -141,5 +157,5 @@ public class KI extends Human {
 	public void sendAllShipsToStock(Planet origin) throws RemoteException {
 		System.out.println("Skynet is not sending ships to stock");
 	}
-	
+
 }
