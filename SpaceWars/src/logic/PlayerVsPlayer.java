@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 import clientServer.Client;
 
 public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
@@ -73,10 +75,13 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	public RoundReport endRound() throws RemoteException {
 		int planetsPOne=0;
 		int planetsPTwo=0;
+		System.out.println("Round End ###########################################################################\n\n\n");
 		if (this.playersReady()) {
+			System.out.println("nach if");
 			RoundReport report = new RoundReport();
 			Map<String, Planet> planets = this.getUniverse().getPlanets();
 			for (Planet p : planets.values()) {
+				System.out.println(p.getName()+"wird auf kampf uberpruft");
 				if (p.isFightAfterRoundEnded()) {
 					report.addReport(p.fight());
 				}else{
