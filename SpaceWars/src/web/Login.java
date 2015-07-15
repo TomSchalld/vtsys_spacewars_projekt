@@ -76,6 +76,9 @@ public class Login extends HttpServlet {
 			UserOnline.logout(session.getId());
 			System.out.println(uname + " successfully logged out");
 		}
+		if(request.getParameter("joinGame").equals("true")){
+			out.write("?");
+		}
 		System.out.println(session.getId());
 
 		out.write("username=" + uname);
