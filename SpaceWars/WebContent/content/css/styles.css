@@ -46,6 +46,10 @@ body {
 	text-align: left;
 	width: 200px;
 }
+.samewidthplus {
+	text-align: left;
+	width: 300px;
+}
 
 .textright {
 	float: right;
