@@ -389,22 +389,24 @@ function setValues(result) {
 	$('#tatooineFighter').text(roundObject.tatooine.newFighter);
 	$('#tatooineBattlestar').text(roundObject.tatooine.newBattlestar);
 	var index = 0;
-	var defeatedShipsList;
+	var defeatedShipsList="";
 
 	if (roundObject.roundReport.atlantis != null) {
+		closeWait()
 		$('#winnerAtlantis').text(roundObject.roundReport.atlantis.winner);
 		$('#fightersLeftAtlantis').text(
 				roundObject.roundReport.atlantis.fighterLeft);
 		$('#battlestarsLeftAtlantis').text(
 				roundObject.roundReport.atlantis.battlestarsLeft);
 		for (index = 0; index < roundObject.roundReport.atlantis.defeatedShips.length; index++) {
-			defeatedShipsList.append("<li>"
+			defeatedShipsList +=("<li>"
 					+ roundObject.roundReport.atlantis.defeatedShips[index]
 					+ "</li>");
 		}
 		$('#defeatedListAtlantis').text(defeatedShipsList);
 		$('#atlantisReportButton').show();
 	} else {
+		closeWait()
 		$('#atlantisReportButton').hide();
 	}
 
@@ -415,8 +417,9 @@ function setValues(result) {
 	$('#credits').text(cash + " $");
 
 }
-function endRound() {
 
+function endRound() {
+	openWait();
 	$.ajax({
 		url : "/SpaceWars/gaming",
 		type : "POST",

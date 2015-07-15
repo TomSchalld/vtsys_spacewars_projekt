@@ -26,7 +26,12 @@ function openReport() {
 function closeReport() {
 	$('#report').hide();
 }
-
+function openWait(){
+	$('#wait').show();
+}
+function closeWait(){
+	$('#wait').hide();
+}
 function chooseUniverse(size) {
 	data.universeSize = size;
 	data.createGame = true;
