@@ -162,6 +162,7 @@ function setListOfOpenGames(result) {
 	
 }
 function joinIt(gameName){
+	alert("Join Game");
 	data.joinGame = true;
 	data.gameName = gameName;
 	$.ajax({
