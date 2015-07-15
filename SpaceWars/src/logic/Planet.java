@@ -210,11 +210,15 @@ public class Planet implements Serializable {
 			report.setLoosersUsername(defender.getUsername());
 			this.setPlanetOwner(attacker);
 		} else {
+			
 			report.setWinnersUsername(defender.getUsername());
 			report.setLoosersUsername(attacker.getUsername());
 		}
 		this.setFightAfterRoundEnded(false);
 		for (Spaceship s : this.getShipsInOrbit()) {
+			if(s==null){
+				System.out.println("NULLL sHIP DERTECTED");
+			}
 			if (s instanceof Fighter) {
 				report.addFighterAfterBattle();
 				this.fighterInOrbit++;
