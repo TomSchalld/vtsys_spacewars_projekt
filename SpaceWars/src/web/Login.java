@@ -3,6 +3,7 @@ package web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,41 +41,10 @@ public class Login extends HttpServlet {
 		String uname = request.getParameter("username");
 		PrintWriter out = response.getWriter();
 		if (request.getParameter("createGame").equals("true")) {
-			// TODO ....
-			String gameName = request.getParameter("gameName");
-			int variation = Integer.parseInt(request.getParameter("gameMode").trim()); // 0=pvp
-																						// 1=pvpc
-																						// 2=ppvpc
-			int universeSize = Integer.parseInt(request.getParameter("universeSize").trim()); // 0=3planets
-			// 1=5planets
-			// 2=7planets
-			if (variation == 0) {
-				
-				if(universeSize==1){
-					out.write("gameThree.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
-
-				}else if(universeSize ==2){
-					out.write("gameFive.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
-				}else{
-					out.write("gameSeven.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
-				}
-				UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
-				System.out
-				.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
-			} else if (variation == 1) {
-				UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
-				System.out
-						.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
-			} else if (variation == 2) {
-				out.write("?variation=2");
-			} else {
-				out.write("?gameName=" + gameName + "&universeSize=" + universeSize + "&");
-			}
-
+			createGame(request, uID, out);
 		}
 		if (request.getParameter("logout").equals("true")) {
-			UserOnline.logout(session.getId());
-			System.out.println(uname + " successfully logged out");
+			logout(session, uname);
 		}
 		if(request.getParameter("joinGame").equals("true")){
 			out.write("?");
@@ -82,6 +52,55 @@ public class Login extends HttpServlet {
 		System.out.println(session.getId());
 
 		out.write("username=" + uname);
+	}
+
+	/**
+	 * @param session
+	 * @param uname
+	 */
+	private void logout(HttpSession session, String uname) {
+		UserOnline.logout(session.getId());
+		System.out.println(uname + " successfully logged out");
+	}
+
+	/**
+	 * @param request
+	 * @param uID
+	 * @param out
+	 * @throws NumberFormatException
+	 * @throws RemoteException
+	 */
+	private void createGame(HttpServletRequest request, String uID, PrintWriter out)
+			throws NumberFormatException, RemoteException {
+		String gameName = request.getParameter("gameName");
+		int variation = Integer.parseInt(request.getParameter("gameMode").trim()); // 0=pvp
+																					// 1=pvpc
+																					// 2=ppvpc
+		int universeSize = Integer.parseInt(request.getParameter("universeSize").trim()); // 0=3planets
+		// 1=5planets
+		// 2=7planets
+		if (variation == 0) {
+			
+			if(universeSize==1){
+				out.write("gameThree.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
+
+			}else if(universeSize ==2){
+				out.write("gameFive.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
+			}else{
+				out.write("gameSeven.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
+			}
+			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
+			System.out
+			.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
+		} else if (variation == 1) {
+			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
+			System.out
+					.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
+		} else if (variation == 2) {
+			out.write("?variation=2");
+		} else {
+			out.write("?gameName=" + gameName + "&universeSize=" + universeSize + "&");
+		}
 	}
 
 	/**
