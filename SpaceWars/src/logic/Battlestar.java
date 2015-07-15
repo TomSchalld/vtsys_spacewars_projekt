@@ -46,13 +46,8 @@ public class Battlestar extends Spaceship {
 		return random;
 	}
 	public String toString(){
-		String s ="Battlestar von ";
-		try {
-			s+=this.owner.getUsername()+" mit Rang ";
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+		String s = super.toString()+" mit Rang ";
 		s+=rank;
 		return s;
 	}
