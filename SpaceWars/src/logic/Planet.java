@@ -93,29 +93,32 @@ public class Planet implements Serializable {
 	}
 
 	public void addShipToOrbit(Spaceship newShip) throws RemoteException {
-		if (this.shipsInOrbit.isEmpty()) {
-			this.shipsInOrbit.add(newShip);
-			this.setPlanetOwner(newShip.getOwner());
-			this.generatedCredits = this.getGeneratedCreditsPerShip();
-			System.out.println(
-					this.getName() + " schiff von " + newShip.getOwner().getUsername() + " zu Orbit hinzugefügt");
-		} else {
-			if (this.shipsInOrbit.size() <= 5) {
-				if (this.shipsInOrbit.get(0).getOwner().equals(newShip.getOwner())) {
-					this.shipsInOrbit.add(newShip);
-					this.generatedCredits = this.generatedCreditsPerShip * this.getShipsInOrbit().size();
-					System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
-							+ " zu Orbit hinzugefügt");
+		if (newShip != null) {
+			if (this.shipsInOrbit.isEmpty()) {
+				this.shipsInOrbit.add(newShip);
+				this.setPlanetOwner(newShip.getOwner());
+				this.generatedCredits = this.getGeneratedCreditsPerShip();
+				System.out.println(
+						this.getName() + " schiff von " + newShip.getOwner().getUsername() + " zu Orbit hinzugefügt");
+			} else {
+				if (this.shipsInOrbit.size() <= 5) {
+					if (this.shipsInOrbit.get(0).getOwner().equals(newShip.getOwner())) {
+						this.shipsInOrbit.add(newShip);
+						this.generatedCredits = this.generatedCreditsPerShip * this.getShipsInOrbit().size();
+						System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
+								+ " zu Orbit hinzugefügt");
 
-				} else {
-					this.shipsTryToOrbit.add(newShip);
-					this.setFightAfterRoundEnded(true);
-					System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
-							+ " zu tryTo Orbit hinzugefügt");
+					} else {
+						this.shipsTryToOrbit.add(newShip);
+						this.setFightAfterRoundEnded(true);
+						System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
+								+ " zu tryTo Orbit hinzugefügt");
 
+					}
 				}
 			}
 		}
+
 	}
 
 	public boolean removeShipFromOrbit(Spaceship shipToRemove) {
@@ -124,8 +127,8 @@ public class Planet implements Serializable {
 	}
 
 	public void roundEnd() throws RemoteException {
-		this.fighterInOrbit =0;
-		this.battlestarsInOrbit =0;
+		this.fighterInOrbit = 0;
+		this.battlestarsInOrbit = 0;
 		for (Spaceship s : this.getShipsInOrbit()) {
 			if (s instanceof Fighter) {
 				this.fighterInOrbit++;
@@ -133,8 +136,9 @@ public class Planet implements Serializable {
 				this.battlestarsInOrbit++;
 			}
 		}
-		System.out.println("-----------------------------------ships in Orbit of planet: "+this.getName()+"--------------------------------------");
-		for(Spaceship s:this.getShipsInOrbit()){
+		System.out.println("-----------------------------------ships in Orbit of planet: " + this.getName()
+				+ "--------------------------------------");
+		for (Spaceship s : this.getShipsInOrbit()) {
 			System.out.println(s);
 		}
 		System.out.println("-----------------------------------ende--------------------------------------");
@@ -157,10 +161,12 @@ public class Planet implements Serializable {
 					if (!shipsDefeated.contains(defendingShip)) {
 						angreiferAttack = angreifer.attack();
 						defendingShipAttack = defendingShip.attack();
-						System.out.println("angreiferAttack: " + angreiferAttack + " defendingShipAttack:" + defendingShipAttack);
+						System.out.println(
+								"angreiferAttack: " + angreiferAttack + " defendingShipAttack:" + defendingShipAttack);
 						if (angreiferAttack <= defendingShipAttack) {
-							System.out.println(defendingShip.getOwner().getUsername() + " hat gewonnen als defender mit: " + defendingShipAttack
-									+ " zu : " + angreiferAttack);
+							System.out
+									.println(defendingShip.getOwner().getUsername() + " hat gewonnen als defender mit: "
+											+ defendingShipAttack + " zu : " + angreiferAttack);
 							shipsDefeated.add(angreifer);
 						} else {
 							System.out.println(angreifer.getOwner().getUsername() + "hat gewonnen als atacker mit: "
@@ -198,8 +204,9 @@ public class Planet implements Serializable {
 
 			}
 		}
-		System.out.println("-----------------------------------ships in Orbit of planet: "+this.getName()+"--------------------------------------");
-		for(Spaceship s:this.getShipsInOrbit()){
+		System.out.println("-----------------------------------ships in Orbit of planet: " + this.getName()
+				+ "--------------------------------------");
+		for (Spaceship s : this.getShipsInOrbit()) {
 			System.out.println(s);
 		}
 		System.out.println("-----------------------------------ende--------------------------------------");
