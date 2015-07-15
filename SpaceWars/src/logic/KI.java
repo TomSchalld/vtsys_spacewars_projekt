@@ -20,7 +20,9 @@ public class KI extends Human {
 	public void ruleTheWorld() throws RemoteException {
 
 		this.buyNewShips();
-		this.sendShips();
+		for(int i =0; i<5;i++){
+			this.sendShips();
+		}
 		this.setPlayerReady(true);
 		System.out.println("Skynet is gonna rule");
 
@@ -64,7 +66,7 @@ public class KI extends Human {
 		int shipsInStock = this.getStock().size();
 		List<Spaceship> shipsToBeSend = new LinkedList<Spaceship>();
 		int counter=0;
-		while (shipsInStock > 0) {
+		if (shipsInStock > 0) {
 			if (shipsInStock >= 5) {
 				randomPlanet = actual.getRandomPlanet();
 				if (randomPlanet.getPlanetOwner() != null) {
@@ -102,11 +104,7 @@ public class KI extends Human {
 					}
 				}
 			}
-			counter++;
-			if(counter>5){
-				break;
-			}
-			shipsInStock=this.getStock().size();
+			
 		}
 		this.getStock().removeAll(shipsToBeSend);
 
