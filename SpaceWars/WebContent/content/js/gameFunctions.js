@@ -403,6 +403,7 @@ function setValues(result) {
 					+ '</li>';
 		}
 		$('#defeatedListAtlantis').text(defeatedShipsList);
+		$('#atlantisReportButton').show();
 	} else {
 		$('#atlantisReportButton').hide();
 	}
