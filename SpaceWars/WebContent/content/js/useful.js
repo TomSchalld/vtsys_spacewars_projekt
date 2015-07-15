@@ -147,7 +147,7 @@ function getListOfOpenGames() {
 		success : function(result) {
 			data.gameData = result;
 			console.log(data.gameData);
-
+			setListOfOpenGames(result);
 		}
 	});
 }
