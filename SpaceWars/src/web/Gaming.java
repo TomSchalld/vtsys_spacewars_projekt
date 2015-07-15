@@ -195,7 +195,7 @@ public class Gaming extends HttpServlet {
 						planet = roundObject.getJSONObject(planetName);
 						planet.put("newFighter", pl.getFighterInOrbit());
 						planet.put("newBattlestar", pl.getBattlestarsInOrbit());
-						planet.put("sum", pl.getFighterInOrbit() + pl.getBattlestarsInOrbit());
+						planet.put("sum", (pl.getFighterInOrbit() + pl.getBattlestarsInOrbit()));
 						System.out.println(
 								pl.getName() + " zu JSON nach Runde user:" + user.getUsername() + " anzahlFighter: "
 										+ pl.getFighterInOrbit() + " anzahl batlestar: " + pl.getBattlestarsInOrbit());
