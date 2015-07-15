@@ -17,6 +17,13 @@ function openShop(){
 function closeShop(){
 	$('#shop').hide();
 }
+function openReport(){
+	$('#report').show();
+
+}
+function closeReport(){
+	$('#report').hide();
+}
 
 function chooseUniverse(size) {
 	data.universeSize = size;
