@@ -77,6 +77,8 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			for (Planet p : planets.values()) {
 				if (p.isFightAfterRoundEnded()) {
 					report.addReport(p.fight());
+				}else{
+					p.roundEnd();
 				}
 			}
 			for (Planet p : planets.values()) {

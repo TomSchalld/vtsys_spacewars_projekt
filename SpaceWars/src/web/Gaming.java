@@ -180,6 +180,7 @@ public class Gaming extends HttpServlet {
 		}
 		roundObject.put("playersCash", user.getCash());
 		System.out.println(user.getUsername()+" has got: "+user.getCash()+" Credits");
+		System.out.println("------------------------------------put JSON-----------------------");
 		for (String planetName : planets) {
 			Planet pl = universe.getPlanetByName(planetName);
 			if (pl != null) {
@@ -189,12 +190,15 @@ public class Gaming extends HttpServlet {
 						planet.put("newFighter", pl.getFighterInOrbit());
 						planet.put("newBattlestar", pl.getBattlestarsInOrbit());
 						planet.put("sum", pl.getFighterInOrbit() + pl.getBattlestarsInOrbit());
+						System.out.println(pl.getName()+" zu JSON nach Kampf user:"+user.getUsername()+" anzahlFighter: "+pl.getFighterInOrbit()+" anzahl batlestar: "+pl.getBattlestarsInOrbit());
 					}
 				}
 
 			}
 
 		}
+		System.out.println("------------------------------------put JSON Ende-----------------------");
+
 
 	}
 

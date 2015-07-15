@@ -122,7 +122,18 @@ public class Planet implements Serializable {
 		return this.shipsInOrbit.remove(shipToRemove);
 
 	}
+	public void roundEnd() throws RemoteException{
+		for (Spaceship s : this.getShipsInOrbit()) {
+			if (s instanceof Fighter) {
+				this.fighterInOrbit++;
+				System.out.println("fighter von " + s.getOwner().getUsername());
+			} else {
+				this.battlestarsInOrbit++;
+				System.out.println("battlestar von " + s.getOwner().getUsername());
 
+			}
+		}
+	}
 	public BattleReport fight() throws RemoteException {
 		Client attacker = this.getShipsTryToOrbit().get(0).getOwner();
 		Client defender = this.planetOwner;
@@ -133,18 +144,19 @@ public class Planet implements Serializable {
 		System.out.println(this.getName() + " kampf startet");
 		int sAttack;
 		int dAttack;
-		for (Spaceship s : this.getShipsTryToOrbit()) {
-			if (!shipsDefeated.contains(s)) {
+		for (Spaceship angreifer : this.getShipsTryToOrbit()) {
+			if (!shipsDefeated.contains(angreifer)) {
 				for (Spaceship d : this.getShipsInOrbit()) {
 					if (!shipsDefeated.contains(d)) {
-						sAttack = s.attack();
+						sAttack = angreifer.attack();
 						dAttack = d.attack();
+						System.out.println("sAttack: "+sAttack+" dAttack:" +dAttack);
 						if (sAttack<= dAttack) {
 							System.out.println(d.getOwner().getUsername() + " hat gewonnen als defender mit: "+dAttack+" zu : "+sAttack);
-							shipsDefeated.add(s);
+							shipsDefeated.add(angreifer);
 							break;
 						} else {
-							System.out.println(s.getOwner().getUsername() + " hat gewonnen als attacker");
+							System.out.println(angreifer.getOwner().getUsername() + "hat gewonnen als atacker mit: "+dAttack+" zu : "+sAttack);
 							shipsDefeated.add(d);
 						}
 					}

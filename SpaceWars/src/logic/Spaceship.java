@@ -27,4 +27,7 @@ public abstract class Spaceship implements Serializable{
 	}
 	public abstract int attack();
 	
+	public abstract boolean equals(Object obj);
+	
+	
 }

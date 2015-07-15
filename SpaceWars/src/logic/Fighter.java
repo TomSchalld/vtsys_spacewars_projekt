@@ -6,6 +6,8 @@ import clientServer.Client;
 
 public class Fighter extends Spaceship {
 	static final int price = 200;
+	static int fighterID=0;
+	private int id;
 	private enum Rank{
 		Lieutenant(1),
 		LieutenantCommander(2),
@@ -33,6 +35,8 @@ public class Fighter extends Spaceship {
 	}
 	public Fighter(Client owner) throws RemoteException {
 		super(owner);
+		this.id = fighterID;
+		fighterID++;
 	}
 	public static int getPrice() {
 		return price;
@@ -53,5 +57,11 @@ public class Fighter extends Spaceship {
 		int random=(int)(Math.random()*10+this.rank.getAttackBoost());
 		return random;
 	}
-
+	@Override
+	public boolean equals(Object obj) {
+		/*if(this.id==((Fighter)obj).id){
+			return true;
+		}*/
+		return false;
+	}
 }
