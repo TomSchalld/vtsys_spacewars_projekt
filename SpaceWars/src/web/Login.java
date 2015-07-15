@@ -57,8 +57,9 @@ public class Login extends HttpServlet {
 			System.out.println("Get Games");
 			JSONObject gamesList = null;
 			try {
-				Server gameServer = (Server) Naming.lookup("rmi://" + "192.168.178.23" + ":1099/GameServer");
+				Server gameServer = (Server) Naming.lookup("rmi://192.168.178.23:1099/GameServer");
 				gamesList = new JSONObject(gameServer.gamesInLobby());
+				System.out.println(gamesList);
 			} catch (NotBoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
