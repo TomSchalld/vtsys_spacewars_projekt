@@ -25,7 +25,7 @@ import clientServer.Client;
 import logic.Battlestar;
 import logic.Fighter;
 import logic.Game;
-import logic.Planet;
+import logic.PlanetIf;
 import logic.Report;
 import logic.Spaceship;
 import logic.Universe;
@@ -191,7 +191,7 @@ public class Gaming extends HttpServlet {
 		System.out.println(user.getUsername() + " has got: " + user.getCash() + " Credits");
 		System.out.println("------------------------------------put JSON-----------------------");
 		for (String planetName : planets) {
-			Planet pl = universe.getPlanetByName(planetName);
+			PlanetIf pl = universe.getPlanetByName(planetName);
 			if (pl != null) {
 				if (pl.getPlanetOwner() != null) {
 					if (pl.getPlanetOwner().equals(user)) {

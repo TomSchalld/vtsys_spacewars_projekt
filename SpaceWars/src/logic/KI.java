@@ -60,7 +60,7 @@ public class KI extends Human {
 	private static final long serialVersionUID = 1L;
 
 	private void sendShips() throws RemoteException {
-		Planet randomPlanet;
+		PlanetIf randomPlanet;
 		Universe actual = this.getGamePlaying().getUniverse();
 		Spaceship randomShip;
 		int shipsOnPlanetOfInterest;
@@ -159,7 +159,7 @@ public class KI extends Human {
 	}
 
 	@Override
-	public void sendAllShipsToStock(Planet origin) throws RemoteException {
+	public void sendAllShipsToStock(PlanetIf origin) throws RemoteException {
 		System.out.println("Skynet is not sending ships to stock");
 	}
 

@@ -2,13 +2,18 @@ package logic;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import clientServer.Client;
 
-public class Planet implements Serializable {
+public class Planet extends UnicastRemoteObject implements PlanetIf {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Client planetOwner;
 	private String name;
 	private List<Spaceship> shipsInOrbit;
@@ -20,7 +25,7 @@ public class Planet implements Serializable {
 	private int planetId;
 	private boolean fightAfterRoundEnded = false;
 
-	public Planet(String planetName, int planetId) {
+	public Planet(String planetName, int planetId) throws RemoteException{
 		this.name = planetName;
 		this.planetId = planetId;
 		this.generatedCreditsPerShip = (int) Math.random() * 450 + 150;
@@ -29,7 +34,7 @@ public class Planet implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode(){
 		return this.planetId;
 	}
 
@@ -52,47 +57,47 @@ public class Planet implements Serializable {
 		return true;
 	}
 
-	public String getName() {
+	@Override public String getName() throws RemoteException{
 		return name;
 	}
 
-	public int getGeneratedCreditsPerShip() {
+	@Override public int getGeneratedCreditsPerShip() throws RemoteException{
 		return generatedCreditsPerShip;
 	}
 
-	public int getGeneratedCredits() {
+	@Override public int getGeneratedCredits() throws RemoteException{
 		return generatedCredits;
 	}
 
-	public int getPlanetId() {
+	@Override public int getPlanetId() throws RemoteException{
 		return planetId;
 	}
 
-	public boolean isFightAfterRoundEnded() {
+	@Override public boolean isFightAfterRoundEnded() throws RemoteException{
 		return fightAfterRoundEnded;
 	}
 
-	public void setFightAfterRoundEnded(boolean fightAfterRoundEnded) {
+	@Override public void setFightAfterRoundEnded(boolean fightAfterRoundEnded) throws RemoteException{
 		this.fightAfterRoundEnded = fightAfterRoundEnded;
 	}
 
-	public List<Spaceship> getShipsInOrbit() {
+	@Override public List<Spaceship> getShipsInOrbit() throws RemoteException{
 		return shipsInOrbit;
 	}
 
-	public List<Spaceship> getShipsTryToOrbit() {
+	@Override public List<Spaceship> getShipsTryToOrbit() throws RemoteException{
 		return shipsTryToOrbit;
 	}
 
-	public Client getPlanetOwner() {
+	@Override public Client getPlanetOwner() throws RemoteException{
 		return planetOwner;
 	}
 
-	public void setPlanetOwner(Client planetOwner) {
+	@Override public void setPlanetOwner(Client planetOwner) throws RemoteException{
 		this.planetOwner = planetOwner;
 	}
 
-	public void addShipToOrbit(Spaceship newShip) throws RemoteException {
+	@Override public void addShipToOrbit(Spaceship newShip) throws RemoteException {
 		if (newShip != null) {
 			if (this.getPlanetOwner() == null || this.getPlanetOwner().equals(newShip.getOwner())) {
 				if (this.getShipsInOrbit().size() < 5) {
@@ -112,12 +117,12 @@ public class Planet implements Serializable {
 
 	}
 
-	public boolean removeShipFromOrbit(Spaceship shipToRemove) {
+	@Override public boolean removeShipFromOrbit(Spaceship shipToRemove) throws RemoteException{
 		return this.shipsInOrbit.remove(shipToRemove);
 
 	}
 
-	public void roundEnd() throws RemoteException {
+	@Override public void roundEnd() throws RemoteException {
 		this.fighterInOrbit = 0;
 		this.battlestarsInOrbit = 0;
 		for (Spaceship s : this.getShipsInOrbit()) {
@@ -135,7 +140,7 @@ public class Planet implements Serializable {
 		System.out.println("-----------------------------------ende--------------------------------------");
 	}
 
-	public BattleReport fight() throws RemoteException {
+	@Override public BattleReport fight() throws RemoteException {
 		Client attacker = this.getShipsTryToOrbit().get(0).getOwner();
 		Client defender = this.planetOwner;
 		BattleReport report = new BattleReport(this);
@@ -211,11 +216,11 @@ public class Planet implements Serializable {
 		return report;
 	}
 
-	public int getFighterInOrbit() {
+	@Override public int getFighterInOrbit() throws RemoteException{
 		return fighterInOrbit;
 	}
 
-	public int getBattlestarsInOrbit() {
+	@Override public int getBattlestarsInOrbit() throws RemoteException{
 		return battlestarsInOrbit;
 	}
 

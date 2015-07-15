@@ -13,7 +13,7 @@ public abstract class Spaceship implements Serializable {
 	private static final long serialVersionUID = 1L;
 	protected final int ownerId;
 	protected final Client owner;
-	protected Planet orbiting;
+	protected PlanetIf orbiting;
 	static int shipID = 0;
 	private int shipNumber;
 
@@ -31,11 +31,11 @@ public abstract class Spaceship implements Serializable {
 		return ownerId;
 	}
 
-	public Planet getOrbiting() {
+	public PlanetIf getOrbiting() {
 		return orbiting;
 	}
 
-	public void setOrbiting(Planet orbiting) {
+	public void setOrbiting(PlanetIf orbiting) {
 		this.orbiting = orbiting;
 	}
 
@@ -60,7 +60,12 @@ public abstract class Spaceship implements Serializable {
 			e.printStackTrace();
 		}
 		if (this.getOrbiting() != null) {
-			s += this.getOrbiting().getName();
+			try {
+				s += this.getOrbiting().getName();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			s += "Ship ist in Stock";
 		}

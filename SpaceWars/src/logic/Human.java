@@ -161,7 +161,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		}
 	}
 
-	public void sendShip(Spaceship ship, Planet destination) throws RemoteException {
+	public void sendShip(Spaceship ship, PlanetIf destination) throws RemoteException {
 		if (ship.orbiting == null) {
 			destination.addShipToOrbit(ship);
 			ship.setOrbiting(destination);
@@ -180,7 +180,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	}
 
 	@Override
-	public void sendAllShipsToStock(Planet origin) throws RemoteException {
+	public void sendAllShipsToStock(PlanetIf origin) throws RemoteException {
 		List<Spaceship> tmp = new LinkedList<Spaceship>();
 		for (Spaceship s : origin.getShipsInOrbit()) {
 			if (s.getOwner().equals(this)) {

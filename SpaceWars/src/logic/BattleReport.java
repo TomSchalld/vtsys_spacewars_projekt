@@ -1,10 +1,11 @@
 package logic;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.List;
 
 public class BattleReport implements Report,Serializable{
-	private Planet battleGround;
+	private PlanetIf battleGround;
 	private String winnersUsername;
 	private String loosersUsername;
 	private String nameOfbattleGround;
@@ -16,11 +17,11 @@ public class BattleReport implements Report,Serializable{
 	private int battlestarsAfterBattle =0;
 	private List<Spaceship> defeatedShips;
 	private String listOfDefeats[];
-	public BattleReport(Planet battleGround){
+	public BattleReport(PlanetIf battleGround) throws RemoteException{
 		this.battleGround =battleGround;
 		this.init();
 	}
-	private void init(){
+	private void init() throws RemoteException{
 		this.nameOfbattleGround=this.battleGround.getName();
 		for(Spaceship s:this.battleGround.getShipsInOrbit()){
 			if(s instanceof Battlestar){

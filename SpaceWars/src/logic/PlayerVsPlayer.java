@@ -79,8 +79,8 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		if (this.playersReady()) {
 			System.out.println("nach if");
 			RoundReport report = new RoundReport();
-			Map<String, Planet> planets = this.getUniverse().getPlanets();
-			for (Planet p : planets.values()) {
+			Map<String, PlanetIf> planets = this.getUniverse().getPlanets();
+			for (PlanetIf p : planets.values()) {
 				System.out.println(p.getName()+"wird auf kampf uberpruft");
 				if (p.isFightAfterRoundEnded()) {
 					report.addReport(p.fight());
@@ -88,7 +88,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 					p.roundEnd();
 				}
 			}
-			for (Planet p : planets.values()) {
+			for (PlanetIf p : planets.values()) {
 				if (!p.getShipsInOrbit().isEmpty()) {
 					p.getShipsInOrbit().get(0).getOwner().addCash(p.getGeneratedCredits());
 				}
@@ -97,7 +97,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			this.setPlayersUnready();
 			for (Client c : this.players) {
 				c.setRoundReport(report.exportRoundToJSON());
-				for (Planet p : this.getUniverse().getPlanets().values()) {
+				for (PlanetIf p : this.getUniverse().getPlanets().values()) {
 					if (p.getPlanetOwner() != null) {
 						if(p.getPlanetOwner().equals(this.players[0])){
 							this.players[0].setAmountOfPlanets(++planetsPOne);

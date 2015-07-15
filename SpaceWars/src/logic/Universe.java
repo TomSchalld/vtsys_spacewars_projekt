@@ -1,6 +1,7 @@
 package logic;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,22 +14,22 @@ public class Universe implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Map<String, Planet> planets;
+	private Map<String, PlanetIf> planets;
 	private int universeSize;
 	private int planetId;
 
-	public Universe(int universeSize) {
-		this.planets = new HashMap<String, Planet>();
+	public Universe(int universeSize) throws RemoteException {
+		this.planets = new HashMap<String, PlanetIf>();
 		this.universeSize = universeSize;
 		this.planetId = 0;
 		this.createWorld();
 	}
 
-	public Map<String, Planet> getPlanets() {
+	public Map<String, PlanetIf> getPlanets() {
 		return planets;
 	}
 
-	private void createWorld() {
+	private void createWorld() throws RemoteException {
 		switch (this.universeSize) {
 		case 1: {
 			this.createThreePlanets();
@@ -50,7 +51,7 @@ public class Universe implements Serializable {
 
 	}
 
-	private void createThreePlanets() {
+	private void createThreePlanets() throws RemoteException {
 		this.planets.put("tatooine", new Planet("tatooine", planetId++));
 		this.planets.put("endor", new Planet("endor", planetId++));
 		this.planets.put("coruscant", new Planet("coruscant", planetId++));
@@ -58,7 +59,7 @@ public class Universe implements Serializable {
 
 	}
 
-	private void createFivePlanets() {
+	private void createFivePlanets() throws RemoteException {
 		this.createThreePlanets();
 		this.planets.put("erde", new Planet("erde", planetId++));
 		this.planets.put("caprica", new Planet("caprica", planetId++));
@@ -66,22 +67,25 @@ public class Universe implements Serializable {
 
 	}
 
-	private void createSevenPlanets() {
+	private void createSevenPlanets() throws RemoteException {
 		this.createFivePlanets();
 		this.planets.put("gemini", new Planet("gemini", planetId++));
 		this.planets.put("atlantis", new Planet("atlantis", planetId++));
 		System.out.println("gemini und atlantis erstellt");
 
 	}
-	public Planet getRandomPlanet(){
+
+	public PlanetIf getRandomPlanet() {
 		return getPlanetByName(getRandomPlanetName());
 	}
-	public Planet getPlanetByName(String name){
+
+	public PlanetIf getPlanetByName(String name) {
 		return this.getPlanets().get(name);
 	}
+
 	public String getRandomPlanetName() {
 
-		Map<String, Planet> planets = this.getPlanets();
+		Map<String, PlanetIf> planets = this.getPlanets();
 
 		Random random = new Random();
 		List<String> keys = new ArrayList<String>(planets.keySet());
@@ -91,7 +95,7 @@ public class Universe implements Serializable {
 	}
 
 	public int getSize() {
-		
+
 		return this.universeSize;
 	}
 }
