@@ -53,7 +53,7 @@ function buyFighter() {
 		roundObject.fightersToBuy++;
 		roundObject.fightersInStock++;
 		$('#credits').text(cash + " $");
-		$('#fighter').text(roundObject.fightersToBuy);
+		$('#fighter').text(roundObject.fightersInStock);
 	}
 }
 function buyBattlestar() {
@@ -63,7 +63,7 @@ function buyBattlestar() {
 		roundObject.battlestarsToBuy++;
 		roundObject.battlestarsInStock++;
 		$('#credits').text(cash + " $");
-		$('#battlestar').text(roundObject.battlestarsToBuy);
+		$('#battlestar').text(roundObject.battlestarsInStock);
 	}
 }
 function notBuyFighter() {
@@ -72,7 +72,7 @@ function notBuyFighter() {
 		roundObject.fightersInStock--;
 		cash += priceFighter;
 		$('#credits').text(cash + " $");
-		$('#fighter').text(roundObject.fightersToBuy);
+		$('#fighter').text(roundObject.fightersInStock);
 	}
 }
 function notBuyBattlestar() {
@@ -81,7 +81,7 @@ function notBuyBattlestar() {
 		roundObject.battlestarsInStock--;
 		cash += priceBattlestar;
 		$('#credits').text(cash + " $");
-		$('#battlestar').text(roundObject.battlestarsToBuy);
+		$('#battlestar').text(roundObject.fightersInStock);
 	}
 }
 function fighterPlus(planet) {
