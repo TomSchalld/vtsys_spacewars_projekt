@@ -2,6 +2,7 @@ package web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -58,40 +59,53 @@ public class Login extends HttpServlet {
 			out.write("?");
 		}
 		if (request.getParameter("getGames").equals("true")) {
-			System.out.println("Get Games");
-			JSONObject gamesList = null;
-			try {
-				Server gameServer = (Server) Naming.lookup("rmi://192.168.178.23:1099/GameServer");
-				JSONObject val;
-				gamesList = new JSONObject();
-				
-				Map<String,Game> games = gameServer.gamesInLobby();
-				for(String s:games.keySet()){
-					val = new JSONObject();
-					if(games.get(s) instanceof PlayerVsPlayer){
-						val.put("gameMode", "PvP");
-					}else{
-						val.put("gameMode", "PPvC");
-					}
-					val.put("host", games.get(s).getHostName());
-					gamesList.put(s, val);
-					
-				}
-				response.setContentType("application/json");
-				out.write(gamesList.toString());
-				System.out.println(gamesList);
-				out.close();
-			} catch (NotBoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			getGamesFromLobby(response, out);
 			
 		} else {
 			out.write("username=" + uname);
-			out.close();
+			
 		}
 		System.out.println(session.getId());
+		out.flush();
+		//out.close();
+	}
 
+	/**
+	 * @param response
+	 * @param out
+	 * @throws MalformedURLException
+	 * @throws RemoteException
+	 * @throws JSONException
+	 */
+	private void getGamesFromLobby(HttpServletResponse response, PrintWriter out)
+			throws MalformedURLException, RemoteException, JSONException {
+		System.out.println("Get Games");
+		JSONObject gamesList = null;
+		try {
+			Server gameServer = (Server) Naming.lookup("rmi://192.168.178.23:1099/GameServer");
+			JSONObject val;
+			gamesList = new JSONObject();
+			
+			Map<String,Game> games = gameServer.gamesInLobby();
+			for(String s:games.keySet()){
+				val = new JSONObject();
+				if(games.get(s) instanceof PlayerVsPlayer){
+					val.put("gameMode", "PvP");
+				}else{
+					val.put("gameMode", "PPvC");
+				}
+				val.put("host", games.get(s).getHostName());
+				gamesList.put(s, val);
+				
+			}
+			response.setContentType("application/json");
+			out.write(gamesList.toString());
+			System.out.println(gamesList);
+			
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
