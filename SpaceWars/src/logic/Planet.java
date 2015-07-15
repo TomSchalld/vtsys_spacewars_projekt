@@ -127,11 +127,8 @@ public class Planet implements Serializable {
 		for (Spaceship s : this.getShipsInOrbit()) {
 			if (s instanceof Fighter) {
 				this.fighterInOrbit++;
-				System.out.println(s);
 			} else {
 				this.battlestarsInOrbit++;
-				System.out.println(s);
-
 			}
 		}
 		System.out.println("-----------------------------------ships in Orbit of planet: "+this.getName()+"--------------------------------------");
@@ -149,24 +146,24 @@ public class Planet implements Serializable {
 		this.fighterInOrbit = 0;
 		this.battlestarsInOrbit = 0;
 		System.out.println(this.getName() + " kampf startet");
-		int sAttack;
-		int dAttack;
+		int angreiferAttack;
+		int defendingShipAttack;
 		for (Spaceship angreifer : this.getShipsTryToOrbit()) {
 
-			for (Spaceship d : this.getShipsInOrbit()) {
+			for (Spaceship defendingShip : this.getShipsInOrbit()) {
 				if (!shipsDefeated.contains(angreifer)) {
-					if (!shipsDefeated.contains(d)) {
-						sAttack = angreifer.attack();
-						dAttack = d.attack();
-						System.out.println("sAttack: " + sAttack + " dAttack:" + dAttack);
-						if (sAttack <= dAttack) {
-							System.out.println(d.getOwner().getUsername() + " hat gewonnen als defender mit: " + dAttack
-									+ " zu : " + sAttack);
+					if (!shipsDefeated.contains(defendingShip)) {
+						angreiferAttack = angreifer.attack();
+						defendingShipAttack = defendingShip.attack();
+						System.out.println("angreiferAttack: " + angreiferAttack + " defendingShipAttack:" + defendingShipAttack);
+						if (angreiferAttack <= defendingShipAttack) {
+							System.out.println(defendingShip.getOwner().getUsername() + " hat gewonnen als defender mit: " + defendingShipAttack
+									+ " zu : " + angreiferAttack);
 							shipsDefeated.add(angreifer);
 						} else {
 							System.out.println(angreifer.getOwner().getUsername() + "hat gewonnen als atacker mit: "
-									+ dAttack + " zu : " + sAttack);
-							shipsDefeated.add(d);
+									+ angreiferAttack + " zu : " + defendingShipAttack);
+							shipsDefeated.add(defendingShip);
 						}
 					}
 				}
