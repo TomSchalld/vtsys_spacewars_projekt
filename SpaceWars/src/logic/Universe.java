@@ -2,6 +2,7 @@ package logic;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,5 +88,10 @@ public class Universe implements Serializable {
 		String randomKey = keys.get(random.nextInt(keys.size()));
 		return randomKey;
 
+	}
+
+	public int getSize() {
+		
+		return this.universeSize;
 	}
 }
