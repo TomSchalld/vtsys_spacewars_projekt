@@ -2,6 +2,7 @@ package logic;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Collection;
 
 import clientServer.Client;
 
@@ -29,5 +30,7 @@ public interface Game extends Remote {
 	public RoundReport endRound() throws RemoteException;
 
 	public int getRound() throws RemoteException;
+
+	public String getHostName() throws RemoteException;
 
 }

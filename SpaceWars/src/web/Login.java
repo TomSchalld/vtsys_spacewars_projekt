@@ -19,6 +19,8 @@ import clientServer.GameServer;
 import clientServer.Server;
 import logic.Game;
 import logic.Human;
+import logic.PlayerVsPC;
+import logic.PlayerVsPlayer;
 
 /**
  * Servlet implementation class hello
@@ -60,10 +62,19 @@ public class Login extends HttpServlet {
 			JSONObject gamesList = null;
 			try {
 				Server gameServer = (Server) Naming.lookup("rmi://192.168.178.23:1099/GameServer");
+				JSONObject val;
 				gamesList = new JSONObject();
+				
 				Map<String,Game> games = gameServer.gamesInLobby();
 				for(String s:games.keySet()){
-					System.out.println("Lobby key: "+s);
+					val = new JSONObject();
+					if(games.get(s) instanceof PlayerVsPlayer){
+						val.put("gameMode", "PvP");
+					}else{
+						val.put("gameMode", "PPvC");
+					}
+					val.put("host", games.get(s).getHostName());
+					gamesList.put(s, val);
 				}
 				System.out.println(gamesList);
 			} catch (NotBoundException e) {
