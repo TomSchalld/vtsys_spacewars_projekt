@@ -398,9 +398,9 @@ function setValues(result) {
 		$('#battlestarsLeftAtlantis').text(
 				roundObject.roundReport.atlantis.battlestarsLeft);
 		for (index = 0; index < roundObject.roundReport.atlantis.defeatedShips.length; index++) {
-			defeatedShipsList = "<li>"
+			defeatedShipsList = '<li>'
 					+ roundObject.roundReport.atlantis.defeatedShips[index]
-					+ "</li>";
+					+ '</li>';
 		}
 		$('#defeatedListAtlantis').text(defeatedShipsList);
 	} else {
