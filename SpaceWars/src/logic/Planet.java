@@ -177,7 +177,9 @@ public class Planet implements Serializable {
 		int angreiferAttack;
 		int defendingShipAttack;
 		for (Spaceship angreifer : this.getShipsTryToOrbit()) {
+			System.out.println("[for1]"+angreifer);
 			for (Spaceship defendingShip : this.getShipsInOrbit()) {
+				System.out.println("[for2]"+defendingShip);
 				if (!shipsDefeated.contains(angreifer)) {
 					if (!shipsDefeated.contains(defendingShip)) {
 						System.out.println(angreifer + "ist angreifendes Schiff\n");
