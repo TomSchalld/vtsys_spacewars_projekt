@@ -148,6 +148,8 @@ function getListOfOpenGames() {
 			data.gameData = result;
 			console.log(data.gameData);
 			setListOfOpenGames(result);
+			clearData();
+
 		}
 	});
 }
@@ -159,7 +161,6 @@ function setListOfOpenGames(result) {
 				"<tr><td>"+val.gameName+"</td><td>"+val.host+"</td><td>"+val.gameMode+"</td><td>"+val.universeSize+"</td>" +
 				"<td><button class='btn btn-default btn-sm' type='button' onclick=\"joinIt('"+val.gameName+"')\">Beitreten</button></td></tr>");
 	});
-	clearData();
 	
 }
 function joinIt(gameName){
