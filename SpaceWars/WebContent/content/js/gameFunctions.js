@@ -389,12 +389,33 @@ function setValues(result) {
 	$('#tatooineFighter').text(roundObject.tatooine.newFighter);
 	$('#tatooineBattlestar').text(roundObject.tatooine.newBattlestar);
 	
-	$('#winnerErde').text(roundObject.roundReport.winner);
-	$('#winnerErde').text(roundObject.roundReport.winner);
-	$('#winnerErde').text(roundObject.roundReport.winner);
-	$('#winnerErde').text(roundObject.roundReport.winner);
-	$('#winnerErde').text(roundObject.roundReport.winner);
-	$('#winnerErde').text(roundObject.roundReport.winner);
+	$('#winnerAtlantis').text(roundObject.roundReport.atlantis.winner);
+	$('#winnerCaprica').text(roundObject.roundReport.caprica.winner);
+	$('#winnerCoruscant').text(roundObject.roundReport.coruscant.winner);
+	$('#winnerEndor').text(roundObject.roundReport.endor.winner);
+	$('#winnerErde').text(roundObject.roundReport.erde.winner);
+	$('#winnerGermenon').text(roundObject.roundReport.gemini.winner);
+	$('#winnerTatooine').text(roundObject.roundReport.tatooine.winner);
+	
+	$('#fightersLeftAtlantis').text(roundObject.roundReport.atlantis.fightersLeft);
+	$('#fightersLeftCaprica').text(roundObject.roundReport.caprica.fightersLeft);
+	$('#fightersLeftCoruscant').text(roundObject.roundReport.coruscant.fightersLeft);
+	$('#fightersLeftEndor').text(roundObject.roundReport.endor.fightersLeft);
+	$('#fightersLeftErde').text(roundObject.roundReport.erde.fightersLeft);
+	$('#fightersLeftGermenon').text(roundObject.roundReport.gemini.fightersLeft);
+	$('#fightersLeftTatooine').text(roundObject.roundReport.tatooine.fightersLeft);
+	
+	$('#battlestarsLeftAtlantis').text(roundObject.roundReport.atlantis.battlestarsLeft);
+	$('#battlestarsLeftCaprica').text(roundObject.roundReport.caprica.battlestarsLeft);
+	$('#battlestarsLeftCoruscant').text(roundObject.roundReport.coruscant.battlestarsLeft);
+	$('#battlestarsLeftEndor').text(roundObject.roundReport.endor.battlestarsLeft);
+	$('#battlestarsLeftErde').text(roundObject.roundReport.erde.battlestarsLeft);
+	$('#battlestarsLeftGermenon').text(roundObject.roundReport.gemini.battlestarsLeft);
+	$('#battlestarsLeftTatooine').text(roundObject.roundReport.tatooine.battlestarsLeft);
+
+	
+	
+	
 	cash = roundObject.playersCash;
 	
 	$('#fighter').text(roundObject.fightersInStock);
