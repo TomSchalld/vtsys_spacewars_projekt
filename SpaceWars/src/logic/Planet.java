@@ -189,9 +189,7 @@ public class Planet implements Serializable {
 		}
 		this.setFightAfterRoundEnded(false);
 		for (Spaceship s : this.getShipsInOrbit()) {
-			if (s == null) {
-				System.out.println("NULLL sHIP DERTECTED");
-			}
+			s.increaseRank();
 			if (s instanceof Fighter) {
 				report.addFighterAfterBattle();
 				this.fighterInOrbit++;
