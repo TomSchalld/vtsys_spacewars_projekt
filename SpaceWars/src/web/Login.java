@@ -65,6 +65,7 @@ public class Login extends HttpServlet {
 			}
 			response.setContentType("application/json");
 			out.write(gamesList.toString());
+			System.out.println(gamesList);
 			out.close();
 		} else {
 			out.write("username=" + uname);
