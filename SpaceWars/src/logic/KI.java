@@ -106,6 +106,7 @@ public class KI extends Human {
 			if(counter>5){
 				break;
 			}
+			shipsInStock=this.getStock().size();
 		}
 		this.getStock().removeAll(shipsToBeSend);
 
