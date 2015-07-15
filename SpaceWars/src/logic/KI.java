@@ -147,11 +147,12 @@ public class KI extends Human {
 		int maxBattlestars = actualCash / Battlestar.getPrice();
 		int universeSize = this.getGamePlaying().getUniverse().getPlanets().size();
 		int maxPower = universeSize * 5;
-		if (maxBattlestars == maxPower) {
+		return maxBattlestars;
+		/*if (maxBattlestars == maxPower) {
 			return maxBattlestars;
 		} else {
 			return maxBattlestars - 1;
-		}
+		}*/
 
 	}
 
