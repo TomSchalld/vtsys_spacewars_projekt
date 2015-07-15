@@ -155,4 +155,10 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return round;
 	}
 
+	@Override
+	public String getHostName() throws RemoteException {
+		// TODO Auto-generated method stub
+		return this.players[0].getUsername();
+	}
+
 }

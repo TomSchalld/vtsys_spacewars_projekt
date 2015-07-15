@@ -4,6 +4,7 @@ var data = {
 	"createGame" : false,
 	"joinGame" : false,
 	"getGames":false,
+	"gameData":null,
 	"gameName" : "",
 	"gamePw" : "",
 	"race" : "",
@@ -145,10 +146,9 @@ function getListOfOpenGames(){
 		type : "GET",
 		data : data,
 		success : function(result) {
-			alert("success");
-			alert(result);
+			data.gameData = result;
 			console.log(result);
-			clearData();
+			console.log(data.gameData);
 		}
 	});
 }
