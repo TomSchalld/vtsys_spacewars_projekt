@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import org.json.*;
 
 import clientServer.GameServer;
 import clientServer.Server;
+import logic.Game;
 import logic.Human;
 
 /**
@@ -58,7 +60,11 @@ public class Login extends HttpServlet {
 			JSONObject gamesList = null;
 			try {
 				Server gameServer = (Server) Naming.lookup("rmi://192.168.178.23:1099/GameServer");
-				gamesList = new JSONObject(gameServer.gamesInLobby());
+				gamesList = new JSONObject();
+				Map<String,Game> games = gameServer.gamesInLobby();
+				for(String s:games.keySet()){
+					System.out.println("Lobby key: "+s);
+				}
 				System.out.println(gamesList);
 			} catch (NotBoundException e) {
 				// TODO Auto-generated catch block
