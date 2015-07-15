@@ -3,11 +3,14 @@ package logic;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
-import javax.print.attribute.standard.MediaSize.Other;
 
 import clientServer.Client;
 
 public abstract class Spaceship implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected final int ownerId;
 	protected final Client owner;
 	protected Planet orbiting;

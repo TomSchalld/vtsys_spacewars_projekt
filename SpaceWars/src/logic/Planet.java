@@ -126,10 +126,10 @@ public class Planet implements Serializable {
 		for (Spaceship s : this.getShipsInOrbit()) {
 			if (s instanceof Fighter) {
 				this.fighterInOrbit++;
-				System.out.println("fighter von " + s.getOwner().getUsername());
+				System.out.println(s);
 			} else {
 				this.battlestarsInOrbit++;
-				System.out.println("battlestar von " + s.getOwner().getUsername());
+				System.out.println(s);
 
 			}
 		}
@@ -182,11 +182,11 @@ public class Planet implements Serializable {
 			if (s instanceof Fighter) {
 				report.addFighterAfterBattle();
 				this.fighterInOrbit++;
-				System.out.println("fighter von " + s.getOwner().getUsername());
+				System.out.println(s);
 			} else {
 				report.addBattlestarsAfterBattle();
 				this.battlestarsInOrbit++;
-				System.out.println("battlestar von " + s.getOwner().getUsername());
+				System.out.println(s);
 
 			}
 		}
