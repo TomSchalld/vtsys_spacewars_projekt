@@ -80,6 +80,8 @@ public class KI extends Human {
 					if (!shipsToBeSend.contains(randomShip)) {
 						this.sendShip(randomShip, randomPlanet);
 						shipsToBeSend.add(randomShip);
+					}else{
+						i--;
 					}
 
 				}
@@ -93,6 +95,8 @@ public class KI extends Human {
 						if (!shipsToBeSend.contains(randomShip)) {
 							this.sendShip(randomShip, randomPlanet);
 							shipsToBeSend.add(randomShip);
+						}else{
+							i--;
 						}
 					}
 				}
