@@ -75,16 +75,17 @@ public class Login extends HttpServlet {
 					}
 					val.put("host", games.get(s).getHostName());
 					gamesList.put(s, val);
+					
 				}
+				response.setContentType("application/json");
+				out.write(gamesList.toString());
 				System.out.println(gamesList);
+				out.close();
 			} catch (NotBoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			response.setContentType("application/json");
-			out.write(gamesList.toString());
-			System.out.println(gamesList);
-			out.close();
+			
 		} else {
 			out.write("username=" + uname);
 			out.close();
