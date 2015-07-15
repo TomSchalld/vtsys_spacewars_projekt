@@ -93,6 +93,7 @@ public class Login extends HttpServlet {
 			System.out
 			.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
 		} else if (variation == 1) {
+			out.write("?");
 			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
 			System.out
 					.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);

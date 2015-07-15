@@ -111,17 +111,8 @@ function openCreateGame() {
 function joinGame() {
 	//data.joinGame = true;
 	window.location.href = "./menuMultiplayerJoin.html" + "?username="
-		+ data.username;/*
-	$.ajax({
-		url : "/SpaceWars/login",
-		type : "GET",
-		data : data,
-		success : function(result) {
-			window.location.href = "./menuMultiplayerJoin.html" + result;
-			getListOfOpenGames();
-			clearData();
-		}
-	});*/
+		+ data.username;
+	getListOfOpenGames();
 }
 function submitUser() {
 	data.username = $('#username').val();
