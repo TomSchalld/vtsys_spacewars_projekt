@@ -3,6 +3,7 @@ var data = {
 	"logout" : false,
 	"createGame" : false,
 	"joinGame" : false,
+	"getGames":false,
 	"gameName" : "",
 	"gamePw" : "",
 	"race" : "",
@@ -108,17 +109,19 @@ function openCreateGame() {
 
 }
 function joinGame() {
-	data.joinGame = true;
-
+	//data.joinGame = true;
+	window.location.href = "./menuMultiplayerJoin.html" + "?username="
+		+ data.username;/*
 	$.ajax({
 		url : "/SpaceWars/login",
 		type : "GET",
 		data : data,
 		success : function(result) {
 			window.location.href = "./menuMultiplayerJoin.html" + result;
+			getListOfOpenGames();
 			clearData();
 		}
-	});
+	});*/
 }
 function submitUser() {
 	data.username = $('#username').val();
@@ -140,6 +143,19 @@ function logout() {
 		data : data,
 		success : function(result) {
 			window.location.href = "../index.html";
+			clearData();
+		}
+	});
+}
+function getListOfOpenGames(){
+	data.getGames = true;
+	$.ajax({
+		url : "/SpaceWars/login",
+		type : "GET",
+		data : data,
+		success : function(result) {
+			window.location.href = "./menuMultiplayerJoin.html" + result;
+			getListOfOpenGames();
 			clearData();
 		}
 	});
