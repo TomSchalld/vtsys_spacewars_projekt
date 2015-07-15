@@ -388,11 +388,19 @@ function setValues(result) {
 	$('#geminiBattlestar').text(roundObject.gemini.newBattlestar);
 	$('#tatooineFighter').text(roundObject.tatooine.newFighter);
 	$('#tatooineBattlestar').text(roundObject.tatooine.newBattlestar);
+	
+	$('#winnerErde').text(roundObject.roundReport.winner);
+	$('#winnerErde').text(roundObject.roundReport.winner);
+	$('#winnerErde').text(roundObject.roundReport.winner);
+	$('#winnerErde').text(roundObject.roundReport.winner);
+	$('#winnerErde').text(roundObject.roundReport.winner);
+	$('#winnerErde').text(roundObject.roundReport.winner);
 	cash = roundObject.playersCash;
 	
 	$('#fighter').text(roundObject.fightersInStock);
 	$('#battlestar').text(roundObject.battlestarsInStock);
 	$('#credits').text(cash + " $");
+	
 }
 function endRound() {
 	
