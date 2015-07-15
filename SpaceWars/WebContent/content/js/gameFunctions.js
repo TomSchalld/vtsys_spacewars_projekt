@@ -394,7 +394,7 @@ function setValues(result) {
 	if (roundObject.roundReport.atlantis != null) {
 		$('#winnerAtlantis').text(roundObject.roundReport.atlantis.winner);
 		$('#fightersLeftAtlantis').text(
-				roundObject.roundReport.atlantis.fightersLeft);
+				roundObject.roundReport.atlantis.fighterLeft);
 		$('#battlestarsLeftAtlantis').text(
 				roundObject.roundReport.atlantis.battlestarsLeft);
 		for (index = 0; index < roundObject.roundReport.atlantis.defeatedShips.length; index++) {
@@ -402,7 +402,7 @@ function setValues(result) {
 					+ roundObject.roundReport.atlantis.defeatedShips[index]
 					+ "</li>";
 		}
-		$('#defeatedListErdeAtlantis').text(defeatedShipsList);
+		$('#defeatedListAtlantis').text(defeatedShipsList);
 	} else {
 		$('#atlantisReportButton').hide();
 	}
