@@ -54,6 +54,7 @@ public class Login extends HttpServlet {
 			out.write("?");
 		}
 		if (request.getParameter("getGames").equals("true")) {
+			System.out.println("Get Games");
 			JSONObject gamesList = null;
 			try {
 				Server gameServer = (Server) Naming.lookup("rmi://" + "192.168.178.23" + ":1099/GameServer");

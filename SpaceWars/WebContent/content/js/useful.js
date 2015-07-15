@@ -145,7 +145,7 @@ function getListOfOpenGames(){
 		type : "GET",
 		data : data,
 		success : function(result) {
-			
+			console.log(result);
 			clearData();
 		}
 	});
