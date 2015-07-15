@@ -97,7 +97,7 @@ public class Login extends HttpServlet {
 				}
 				val.put("host", games.get(s).getHostName());
 				val.put("universeSize", games.get(s).getUniverse().getSize());
-				gamesList.put("gameName", s);
+				val.put("gameName", s);
 				gamesList.put("game", val);
 				
 			}

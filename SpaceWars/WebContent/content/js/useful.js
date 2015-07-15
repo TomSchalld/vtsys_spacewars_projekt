@@ -154,16 +154,10 @@ function getListOfOpenGames() {
 function setListOfOpenGames(result) {
 	
 	$.each(result,function(key, val){
-		console.log(key);
-		console.log(val);
-		/*console.log(val);
-		console.log(val);*/
-		
-		/*
 		$('#tableOfOpenGames')
 		.append(
-				"<tr><td>"+result.gameName+"</td><td>"+result.game.host+"</td><td>"+result.game.gameMode+"</td><td>"+result.game.universeSize+"</td>" +
-				"<td><button class='btn btn-default btn-sm' type='button' onclick=\"joinIt('"+result.gameName+"')\">Beitreten</button></td></tr>");*/
+				"<tr><td>"+val.gameName+"</td><td>"+val.host+"</td><td>"+val.gameMode+"</td><td>"+val.universeSize+"</td>" +
+				"<td><button class='btn btn-default btn-sm' type='button' onclick=\"joinIt('"+val.gameName+"')\">Beitreten</button></td></tr>");
 	});
 	
 }
