@@ -113,7 +113,6 @@ function joinGame() {
 	
 	window.location.href = "./menuMultiplayerJoin.html" + "?username="
 		+ data.username;
-	getListOfOpenGames();
 }
 function submitUser() {
 	data.username = $('#username').val();
