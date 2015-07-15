@@ -56,7 +56,8 @@ public class Login extends HttpServlet {
 			logout(session, uname);
 		}
 		if (request.getParameter("joinGame").equals("true")) {
-			out.write("?");
+			out.write("?username="+uname);
+			UserOnline.getUserById(uID).joinGame(request.getParameter("gameName"));
 		}
 		if (request.getParameter("getGames").equals("true")) {
 			getGamesFromLobby(response, out);
@@ -95,7 +96,9 @@ public class Login extends HttpServlet {
 					val.put("gameMode", "PPvC");
 				}
 				val.put("host", games.get(s).getHostName());
-				gamesList.put(s, val);
+				val.put("universeSize", games.get(s).getUniverse().getSize());
+				gamesList.put("gameName", s);
+				gamesList.put("game", val);
 				
 			}
 			response.setContentType("application/json");

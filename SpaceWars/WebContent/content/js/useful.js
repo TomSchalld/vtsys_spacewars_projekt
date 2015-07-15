@@ -147,16 +147,31 @@ function getListOfOpenGames() {
 		success : function(result) {
 			data.gameData = result;
 			console.log(data.gameData);
-
+			setListOfOpenGames(result);
 		}
 	});
 }
 function setListOfOpenGames(result) {
-	$('#tableOfOpenGames')
-			.append(
-					"<tr><td>Testspiel</td><td>Fabian</td><td>Mensch gegen Computer</td><td>Großes Universum</td>" +
-					"<td><button class='btn btn-default btn-sm' type='button'>Beitreten</button></td></tr>");
-
+	$(result).each(function(result){
+		$('#tableOfOpenGames')
+		.append(
+				"<tr><td>"+result.gameName+"</td><td>"+result.game.host+"</td><td>"+result.game.gameMode+"</td><td>"+result.game.universeSize+"</td>" +
+				"<td><button class='btn btn-default btn-sm' type='button' onclick=\"joinIt('"+result.gameName+"')\">Beitreten</button></td></tr>");
+	});
+	
+}
+function joinIt(gameName){
+	data.joinGame = true;
+	data.gameName = gameName;
+	$.ajax({
+		url : "/SpaceWars/login",
+		type : "GET",
+		data : data,
+		success : function(result) {
+			window.location.href = "./gameSeven.html" + result;
+			clearData();
+		}
+	});
 }
 function clearData() {
 	data.logout = false;
