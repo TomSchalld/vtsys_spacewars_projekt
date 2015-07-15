@@ -63,7 +63,8 @@ public class KI extends Human {
 		int shipsOnPlanetOfInterest;
 		int shipsInStock = this.getStock().size();
 		List<Spaceship> shipsToBeSend = new LinkedList<Spaceship>();
-		if (shipsInStock > 0) {
+		int counter=0;
+		while (shipsInStock > 0) {
 			if (shipsInStock >= 5) {
 				randomPlanet = actual.getRandomPlanet();
 				if (randomPlanet.getPlanetOwner() != null) {
@@ -100,6 +101,10 @@ public class KI extends Human {
 						}
 					}
 				}
+			}
+			counter++;
+			if(counter>10){
+				break;
 			}
 		}
 		this.getStock().removeAll(shipsToBeSend);
