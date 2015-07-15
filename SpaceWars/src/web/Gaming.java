@@ -181,7 +181,9 @@ public class Gaming extends HttpServlet {
 		roundObject.put("fightersToBuy", 0);
 		roundObject.put("battlestarsToBuy", 0);
 		user.setPlayerReady(true);
+		int count=0;
 		while (actualRound == actual.getRound()) {
+			System.out.println("Schleifendurchläufe: "+count+++"username: "+user.getUsername());
 			Thread.sleep(1000);
 		}
 		roundObject.put("playersCash", user.getCash());
