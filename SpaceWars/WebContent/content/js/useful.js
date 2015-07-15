@@ -55,7 +55,7 @@ function startPVPC() {
 		type : "GET",
 		data : data,
 		success : function(result) {
-			window.location.href = "./gameFive.html" + result;
+			window.location.href = "./gameSeven.html" + result;
 			clearData();
 		}
 	});
