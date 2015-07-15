@@ -197,7 +197,7 @@ public class Gaming extends HttpServlet {
 						planet.put("newBattlestar", pl.getBattlestarsInOrbit());
 						planet.put("sum", pl.getFighterInOrbit() + pl.getBattlestarsInOrbit());
 						System.out.println(
-								pl.getName() + " zu JSON nach Kampf user:" + user.getUsername() + " anzahlFighter: "
+								pl.getName() + " zu JSON nach Runde user:" + user.getUsername() + " anzahlFighter: "
 										+ pl.getFighterInOrbit() + " anzahl batlestar: " + pl.getBattlestarsInOrbit());
 					}
 				}

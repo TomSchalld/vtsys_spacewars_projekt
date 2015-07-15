@@ -124,6 +124,8 @@ public class Planet implements Serializable {
 	}
 
 	public void roundEnd() throws RemoteException {
+		this.fighterInOrbit =0;
+		this.battlestarsInOrbit =0;
 		for (Spaceship s : this.getShipsInOrbit()) {
 			if (s instanceof Fighter) {
 				this.fighterInOrbit++;
