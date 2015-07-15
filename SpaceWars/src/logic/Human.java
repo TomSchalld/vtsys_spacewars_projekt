@@ -130,9 +130,10 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	public void setPlayerReady(boolean playerReady) throws RemoteException {
 		this.playerReady = playerReady;
-		if (this.getGamePlaying().playersReady()) {
+		System.out.println("Ich: "+this.getUsername()+" bin fertig!");
+		//if (this.getGamePlaying().playersReady()) {
 			this.getGamePlaying().endRound();
-		}
+		//}
 
 	}
 
