@@ -24,7 +24,7 @@ public class KI extends Human {
 			this.sendShips();
 		}
 		this.setPlayerReady(true);
-		this.setCash(cash*4);
+		this.setCash(cash * 4);
 		System.out.println("Skynet is gonna rule");
 
 	}
@@ -122,11 +122,14 @@ public class KI extends Human {
 			this.buyBattlestar();
 			countOfBS++;
 		}
-		fightersToBuy = calculateFighters();
-		for (int i = 0; i < fightersToBuy; i++) {
-			this.buyFighter();
-			countOfFighter++;
+		if (this.getAmountOfPlanets() < 2) {
+			fightersToBuy = calculateFighters();
+			for (int i = 0; i < fightersToBuy; i++) {
+				this.buyFighter();
+				countOfFighter++;
+			}
 		}
+
 		System.out.println("skynet bought " + countOfBS + " Battlestars and " + countOfFighter + " Fighter");
 
 	}
@@ -148,11 +151,10 @@ public class KI extends Human {
 		int universeSize = this.getGamePlaying().getUniverse().getPlanets().size();
 		int maxPower = universeSize * 5;
 		return maxBattlestars;
-		/*if (maxBattlestars == maxPower) {
-			return maxBattlestars;
-		} else {
-			return maxBattlestars - 1;
-		}*/
+		/*
+		 * if (maxBattlestars == maxPower) { return maxBattlestars; } else {
+		 * return maxBattlestars - 1; }
+		 */
 
 	}
 
