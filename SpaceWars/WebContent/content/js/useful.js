@@ -155,9 +155,9 @@ function setListOfOpenGames(result) {
 	
 	$.each(result,function(key, val){
 		console.log(key);
-		console.log(val.game);
-		console.log(val.game.host);
-		console.log(val.game.universeSize);
+		console.log(val);
+		/*console.log(val);
+		console.log(val);*/
 		
 		/*
 		$('#tableOfOpenGames')
