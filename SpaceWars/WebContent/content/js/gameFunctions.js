@@ -388,31 +388,20 @@ function setValues(result) {
 	$('#geminiBattlestar').text(roundObject.gemini.newBattlestar);
 	$('#tatooineFighter').text(roundObject.tatooine.newFighter);
 	$('#tatooineBattlestar').text(roundObject.tatooine.newBattlestar);
+	var index=0;
+	var defeatedShipsList;
 	
-	$('#winnerAtlantis').text(roundObject.roundReport.atlantis.winner);
-	$('#winnerCaprica').text(roundObject.roundReport.caprica.winner);
-	$('#winnerCoruscant').text(roundObject.roundReport.coruscant.winner);
-	$('#winnerEndor').text(roundObject.roundReport.endor.winner);
-	$('#winnerErde').text(roundObject.roundReport.erde.winner);
-	$('#winnerGermenon').text(roundObject.roundReport.gemini.winner);
-	$('#winnerTatooine').text(roundObject.roundReport.tatooine.winner);
-	
-	$('#fightersLeftAtlantis').text(roundObject.roundReport.atlantis.fightersLeft);
-	$('#fightersLeftCaprica').text(roundObject.roundReport.caprica.fightersLeft);
-	$('#fightersLeftCoruscant').text(roundObject.roundReport.coruscant.fightersLeft);
-	$('#fightersLeftEndor').text(roundObject.roundReport.endor.fightersLeft);
-	$('#fightersLeftErde').text(roundObject.roundReport.erde.fightersLeft);
-	$('#fightersLeftGermenon').text(roundObject.roundReport.gemini.fightersLeft);
-	$('#fightersLeftTatooine').text(roundObject.roundReport.tatooine.fightersLeft);
-	
-	$('#battlestarsLeftAtlantis').text(roundObject.roundReport.atlantis.battlestarsLeft);
-	$('#battlestarsLeftCaprica').text(roundObject.roundReport.caprica.battlestarsLeft);
-	$('#battlestarsLeftCoruscant').text(roundObject.roundReport.coruscant.battlestarsLeft);
-	$('#battlestarsLeftEndor').text(roundObject.roundReport.endor.battlestarsLeft);
-	$('#battlestarsLeftErde').text(roundObject.roundReport.erde.battlestarsLeft);
-	$('#battlestarsLeftGermenon').text(roundObject.roundReport.gemini.battlestarsLeft);
-	$('#battlestarsLeftTatooine').text(roundObject.roundReport.tatooine.battlestarsLeft);
-
+	if(roundObject.roundReport.atlantis.winner==null){
+		$('#atlantisReportButton').hide();		
+	}else{
+		$('#winnerAtlantis').text(roundObject.roundReport.atlantis.winner);
+		$('#fightersLeftAtlantis').text(roundObject.roundReport.atlantis.fightersLeft);
+		$('#battlestarsLeftAtlantis').text(roundObject.roundReport.atlantis.battlestarsLeft);
+		for (index = 0; index < roundObject.roundReport.atlantis.defeatedShips.length; ++index) {
+		    defeatedShipsList="<li>" + roundObject.roundReport.atlantis.defeatedShips[index] + "</li>";
+		}
+		$('#defeatedListErdeAtlantis').text(defeatedShipsList);
+	}
 	
 	
 	
@@ -430,7 +419,7 @@ function endRound() {
 		type : "POST",
 		data : roundObject,
 		success : function(result) {
-			alert("Success");
+			openReport();
 			console.log(result)
 			setValues(result);
 		}
