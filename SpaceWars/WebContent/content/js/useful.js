@@ -153,10 +153,16 @@ function getListOfOpenGames() {
 }
 function setListOfOpenGames(result) {
 	$(result).each(function(result){
+		console.log(result);
+		console.log(result.game);
+		console.log(result.game.host);
+		console.log(result.game.universeSize);
+		
+		/*
 		$('#tableOfOpenGames')
 		.append(
 				"<tr><td>"+result.gameName+"</td><td>"+result.game.host+"</td><td>"+result.game.gameMode+"</td><td>"+result.game.universeSize+"</td>" +
-				"<td><button class='btn btn-default btn-sm' type='button' onclick=\"joinIt('"+result.gameName+"')\">Beitreten</button></td></tr>");
+				"<td><button class='btn btn-default btn-sm' type='button' onclick=\"joinIt('"+result.gameName+"')\">Beitreten</button></td></tr>");*/
 	});
 	
 }
