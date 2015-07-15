@@ -177,10 +177,11 @@ public class Planet implements Serializable {
 		int angreiferAttack;
 		int defendingShipAttack;
 		for (Spaceship angreifer : this.getShipsTryToOrbit()) {
-
 			for (Spaceship defendingShip : this.getShipsInOrbit()) {
 				if (!shipsDefeated.contains(angreifer)) {
 					if (!shipsDefeated.contains(defendingShip)) {
+						System.out.println(angreifer + "ist angreifendes Schiff\n");
+						System.out.println(defendingShip + "ist verteidigendes Schiff\n");
 						angreiferAttack = angreifer.attack();
 						defendingShipAttack = defendingShip.attack();
 						System.out.println(
@@ -200,6 +201,7 @@ public class Planet implements Serializable {
 
 			}
 		}
+		System.out.println();
 		this.getShipsInOrbit().removeAll(shipsDefeated);
 		this.getShipsTryToOrbit().removeAll(shipsDefeated);
 		report.setDefeatedShips(shipsDefeated);
