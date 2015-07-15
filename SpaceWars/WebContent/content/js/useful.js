@@ -46,13 +46,13 @@ function startPVPC() {
 	data.createGame = true;
 	data.gameMode = 1;
 	data.gameName = data.username + date.getTime();
-	data.universeSize = 1
+	data.universeSize = 3;
 	$.ajax({
 		url : "/SpaceWars/login",
 		type : "GET",
 		data : data,
 		success : function(result) {
-			
+
 			window.location.href = "./gameSeven.html" + result;
 			clearData();
 		}
@@ -109,19 +109,10 @@ function openCreateGame() {
 
 }
 function joinGame() {
-	//data.joinGame = true;
+	
 	window.location.href = "./menuMultiplayerJoin.html" + "?username="
-		+ data.username;/*
-	$.ajax({
-		url : "/SpaceWars/login",
-		type : "GET",
-		data : data,
-		success : function(result) {
-			window.location.href = "./menuMultiplayerJoin.html" + result;
-			getListOfOpenGames();
-			clearData();
-		}
-	});*/
+		+ data.username;
+	getListOfOpenGames();
 }
 function submitUser() {
 	data.username = $('#username').val();
@@ -154,8 +145,9 @@ function getListOfOpenGames(){
 		type : "GET",
 		data : data,
 		success : function(result) {
-			window.location.href = "./menuMultiplayerJoin.html" + result;
-			getListOfOpenGames();
+			alert("success");
+			alert(result);
+			console.log(result);
 			clearData();
 		}
 	});

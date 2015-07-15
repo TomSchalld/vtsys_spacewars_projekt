@@ -25,7 +25,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		this.runningGames = new HashMap<String, Game>();
 		this.lobby = new HashMap<String, Game>();
 	}
-
+	
 	@Override
 	public void openGame(Game newGame) throws Exception,RemoteException {
 		System.out.println("try to open new game");
@@ -85,7 +85,10 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		}
 		return null;
 	}
-
+	@Override
+	public Map<String,Game> gamesInLobby() throws RemoteException{
+		return this.lobby;
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Registry registry = null;

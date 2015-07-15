@@ -2,6 +2,7 @@ package web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.json.*;
+
+import clientServer.GameServer;
+import clientServer.Server;
 import logic.Human;
 
 /**
@@ -46,12 +50,28 @@ public class Login extends HttpServlet {
 		if (request.getParameter("logout").equals("true")) {
 			logout(session, uname);
 		}
-		if(request.getParameter("joinGame").equals("true")){
+		if (request.getParameter("joinGame").equals("true")) {
 			out.write("?");
+		}
+		if (request.getParameter("getGames").equals("true")) {
+			System.out.println("Get Games");
+			JSONObject gamesList = null;
+			try {
+				Server gameServer = (Server) Naming.lookup("rmi://" + "192.168.178.23" + ":1099/GameServer");
+				gamesList = new JSONObject(gameServer.gamesInLobby());
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			response.setContentType("application/json");
+			out.write(gamesList.toString());
+			out.close();
+		} else {
+			out.write("username=" + uname);
+			out.close();
 		}
 		System.out.println(session.getId());
 
-		out.write("username=" + uname);
 	}
 
 	/**
@@ -80,22 +100,21 @@ public class Login extends HttpServlet {
 		// 1=5planets
 		// 2=7planets
 		if (variation == 0) {
-			
-			if(universeSize==1){
+
+			if (universeSize == 1) {
 				out.write("gameThree.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
 
-			}else if(universeSize ==2){
+			} else if (universeSize == 2) {
 				out.write("gameFive.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
-			}else{
+			} else {
 				out.write("gameSeven.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
 			}
 			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
-			System.out
-			.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
+			System.out.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
 		} else if (variation == 1) {
+			out.write("?");
 			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
-			System.out
-					.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
+			System.out.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
 		} else if (variation == 2) {
 			out.write("?variation=2");
 		} else {
