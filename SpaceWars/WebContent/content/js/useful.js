@@ -52,7 +52,7 @@ function startPVPC() {
 		type : "GET",
 		data : data,
 		success : function(result) {
-			
+
 			window.location.href = "./gameSeven.html" + result;
 			clearData();
 		}
@@ -109,7 +109,7 @@ function openCreateGame() {
 
 }
 function joinGame() {
-	//data.joinGame = true;
+	
 	window.location.href = "./menuMultiplayerJoin.html" + "?username="
 		+ data.username;
 	getListOfOpenGames();
@@ -145,8 +145,7 @@ function getListOfOpenGames(){
 		type : "GET",
 		data : data,
 		success : function(result) {
-			window.location.href = "./menuMultiplayerJoin.html" + result;
-			getListOfOpenGames();
+			
 			clearData();
 		}
 	});
