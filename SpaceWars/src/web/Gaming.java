@@ -199,6 +199,8 @@ public class Gaming extends HttpServlet {
 						System.out.println(
 								pl.getName() + " zu JSON nach Runde user:" + user.getUsername() + " anzahlFighter: "
 										+ pl.getFighterInOrbit() + " anzahl batlestar: " + pl.getBattlestarsInOrbit());
+						pl.setPlanetOwner(null);
+
 					}
 				}
 

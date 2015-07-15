@@ -94,29 +94,51 @@ public class Planet implements Serializable {
 
 	public void addShipToOrbit(Spaceship newShip) throws RemoteException {
 		if (newShip != null) {
-			if (this.shipsInOrbit.isEmpty()) {
-				this.shipsInOrbit.add(newShip);
-				this.setPlanetOwner(newShip.getOwner());
-				this.generatedCredits = this.getGeneratedCreditsPerShip();
-				System.out.println(
-						this.getName() + " schiff von " + newShip.getOwner().getUsername() + " zu Orbit hinzugefügt");
-			} else {
-				if (this.shipsInOrbit.size() <= 5) {
-					if (this.shipsInOrbit.get(0).getOwner().equals(newShip.getOwner())) {
-						this.shipsInOrbit.add(newShip);
-						this.generatedCredits = this.generatedCreditsPerShip * this.getShipsInOrbit().size();
-						System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
-								+ " zu Orbit hinzugefügt");
-
-					} else {
-						this.shipsTryToOrbit.add(newShip);
-						this.setFightAfterRoundEnded(true);
-						System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
-								+ " zu tryTo Orbit hinzugefügt");
-
-					}
+			if (this.getPlanetOwner() == null || this.getPlanetOwner().equals(newShip.getOwner())) {
+				if (this.getShipsInOrbit().size() < 5) {
+					this.shipsInOrbit.add(newShip);
+					this.setPlanetOwner(newShip.getOwner());
+					this.generatedCredits = this.generatedCreditsPerShip * this.getShipsInOrbit().size();
+					System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
+							+ " zu Orbit hinzugefügt");
 				}
+
+			} else {
+				this.shipsTryToOrbit.add(newShip);
+				this.setFightAfterRoundEnded(true);
+				System.out.println(this.getName() + " schiff von " + newShip.getOwner().getUsername()
+						+ " zu tryTo Orbit hinzugefügt");
 			}
+
+			// if (this.shipsInOrbit.isEmpty()) {
+			// this.shipsInOrbit.add(newShip);
+			// this.setPlanetOwner(newShip.getOwner());
+			// this.generatedCredits = this.getGeneratedCreditsPerShip();
+			// System.out.println(
+			// this.getName() + " schiff von " +
+			// newShip.getOwner().getUsername() + " zu Orbit hinzugefügt");
+			// } else {
+			// if (this.shipsInOrbit.size() <= 5) {
+			// if
+			// (this.shipsInOrbit.get(0).getOwner().equals(newShip.getOwner()))
+			// {
+			// this.shipsInOrbit.add(newShip);
+			// this.generatedCredits = this.generatedCreditsPerShip *
+			// this.getShipsInOrbit().size();
+			// System.out.println(this.getName() + " schiff von " +
+			// newShip.getOwner().getUsername()
+			// + " zu Orbit hinzugefügt");
+			//
+			// } else {
+			// this.shipsTryToOrbit.add(newShip);
+			// this.setFightAfterRoundEnded(true);
+			// System.out.println(this.getName() + " schiff von " +
+			// newShip.getOwner().getUsername()
+			// + " zu tryTo Orbit hinzugefügt");
+			//
+			// }
+			// }
+			// }
 		}
 
 	}
