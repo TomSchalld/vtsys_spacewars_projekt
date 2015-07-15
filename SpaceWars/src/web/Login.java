@@ -51,24 +51,21 @@ public class Login extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (request.getParameter("createGame").equals("true")) {
 			createGame(request, uID, out);
-		}
-		if (request.getParameter("logout").equals("true")) {
+		} else if (request.getParameter("logout").equals("true")) {
 			logout(session, uname);
-		}
-		if (request.getParameter("joinGame").equals("true")) {
-			out.write("?username="+uname);
+		} else if (request.getParameter("joinGame").equals("true")) {
+			out.write("?username=" + uname);
 			UserOnline.getUserById(uID).joinGame(request.getParameter("gameName"));
-		}
-		if (request.getParameter("getGames").equals("true")) {
+		} else if (request.getParameter("getGames").equals("true")) {
 			getGamesFromLobby(response, out);
-			
+
 		} else {
 			out.write("username=" + uname);
-			
+
 		}
 		System.out.println(session.getId());
 		out.flush();
-		//out.close();
+		// out.close();
 	}
 
 	/**
@@ -86,25 +83,25 @@ public class Login extends HttpServlet {
 			Server gameServer = (Server) Naming.lookup("rmi://192.168.178.23:1099/GameServer");
 			JSONObject val;
 			gamesList = new JSONObject();
-			
-			Map<String,Game> games = gameServer.gamesInLobby();
-			for(String s:games.keySet()){
+
+			Map<String, Game> games = gameServer.gamesInLobby();
+			for (String s : games.keySet()) {
 				val = new JSONObject();
-				if(games.get(s) instanceof PlayerVsPlayer){
+				if (games.get(s) instanceof PlayerVsPlayer) {
 					val.put("gameMode", "PvP");
-				}else{
+				} else {
 					val.put("gameMode", "PPvC");
 				}
 				val.put("host", games.get(s).getHostName());
 				val.put("universeSize", games.get(s).getUniverse().getSize());
 				val.put("gameName", s);
 				gamesList.put("game", val);
-				
+
 			}
 			response.setContentType("application/json");
 			out.write(gamesList.toString());
 			System.out.println(gamesList);
-			
+
 		} catch (NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
