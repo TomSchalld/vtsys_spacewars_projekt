@@ -154,7 +154,7 @@ public class Planet implements Serializable {
 						if (sAttack<= dAttack) {
 							System.out.println(d.getOwner().getUsername() + " hat gewonnen als defender mit: "+dAttack+" zu : "+sAttack);
 							shipsDefeated.add(angreifer);
-							break;
+							//break;
 						} else {
 							System.out.println(angreifer.getOwner().getUsername() + "hat gewonnen als atacker mit: "+dAttack+" zu : "+sAttack);
 							shipsDefeated.add(d);
