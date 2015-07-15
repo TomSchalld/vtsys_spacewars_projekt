@@ -24,6 +24,7 @@ public class KI extends Human {
 			this.sendShips();
 		}
 		this.setPlayerReady(true);
+		this.setCash(cash*2);
 		System.out.println("Skynet is gonna rule");
 
 	}
