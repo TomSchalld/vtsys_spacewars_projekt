@@ -39,7 +39,7 @@ var roundObject = {
 	"fightersToBuy" : 0,
 	"battlestarsToBuy" : 0,
 	"playersCash" : 0,
-	"roundReport":null
+	"roundReport" : null
 };
 var bs = "Battlestar";
 var fight = "Fighter";
@@ -67,7 +67,7 @@ function buyBattlestar() {
 	}
 }
 function notBuyFighter() {
-	if (roundObject.fightersToBuy > 0 && roundObject.fightersInStock>0) {
+	if (roundObject.fightersToBuy > 0 && roundObject.fightersInStock > 0) {
 		roundObject.fightersToBuy--;
 		roundObject.fightersInStock--;
 		cash += priceFighter;
@@ -76,7 +76,7 @@ function notBuyFighter() {
 	}
 }
 function notBuyBattlestar() {
-	if (roundObject.battlestarsToBuy > 0 && roundObject.battlestarsInStock>0) {
+	if (roundObject.battlestarsToBuy > 0 && roundObject.battlestarsInStock > 0) {
 		roundObject.battlestarsToBuy--;
 		roundObject.battlestarsInStock--;
 		cash += priceBattlestar;
@@ -388,32 +388,34 @@ function setValues(result) {
 	$('#geminiBattlestar').text(roundObject.gemini.newBattlestar);
 	$('#tatooineFighter').text(roundObject.tatooine.newFighter);
 	$('#tatooineBattlestar').text(roundObject.tatooine.newBattlestar);
-	var index=0;
+	var index = 0;
 	var defeatedShipsList;
-	
-	if(roundObject.roundReport.atlantis.winner==null){
-		$('#atlantisReportButton').hide();		
-	}else{
+
+	if (roundObject.roundReport.atlantis != null) {
 		$('#winnerAtlantis').text(roundObject.roundReport.atlantis.winner);
-		$('#fightersLeftAtlantis').text(roundObject.roundReport.atlantis.fightersLeft);
-		$('#battlestarsLeftAtlantis').text(roundObject.roundReport.atlantis.battlestarsLeft);
-		for (index = 0; index < roundObject.roundReport.atlantis.defeatedShips.length; ++index) {
-		    defeatedShipsList="<li>" + roundObject.roundReport.atlantis.defeatedShips[index] + "</li>";
+		$('#fightersLeftAtlantis').text(
+				roundObject.roundReport.atlantis.fighterLeft);
+		$('#battlestarsLeftAtlantis').text(
+				roundObject.roundReport.atlantis.battlestarsLeft);
+		for (index = 0; index < roundObject.roundReport.atlantis.defeatedShips.length; index++) {
+			defeatedShipsList = "<li>"
+					+ roundObject.roundReport.atlantis.defeatedShips[index]
+					+ "</li>";
 		}
-		$('#defeatedListErdeAtlantis').text(defeatedShipsList);
+		$('#defeatedListAtlantis').text(defeatedShipsList);
+	} else {
+		$('#atlantisReportButton').hide();
 	}
-	
-	
-	
+
 	cash = roundObject.playersCash;
-	
+
 	$('#fighter').text(roundObject.fightersInStock);
 	$('#battlestar').text(roundObject.battlestarsInStock);
 	$('#credits').text(cash + " $");
-	
+
 }
 function endRound() {
-	
+
 	$.ajax({
 		url : "/SpaceWars/gaming",
 		type : "POST",
