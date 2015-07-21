@@ -2,6 +2,7 @@ package logic;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class Universe implements Serializable {
+public class Universe extends UnicastRemoteObject implements UniverseIf, Serializable {
 	/**
 	 * 
 	 */
@@ -25,7 +26,8 @@ public class Universe implements Serializable {
 		this.createWorld();
 	}
 
-	public Map<String, PlanetIf> getPlanets() {
+	@Override
+	public Map<String, PlanetIf> getPlanets() throws RemoteException {
 		return planets;
 	}
 
@@ -75,15 +77,18 @@ public class Universe implements Serializable {
 
 	}
 
-	public PlanetIf getRandomPlanet() {
+	@Override
+	public PlanetIf getRandomPlanet() throws RemoteException {
 		return getPlanetByName(getRandomPlanetName());
 	}
 
-	public PlanetIf getPlanetByName(String name) {
+	@Override
+	public PlanetIf getPlanetByName(String name) throws RemoteException {
 		return this.getPlanets().get(name);
 	}
 
-	public String getRandomPlanetName() {
+	@Override
+	public String getRandomPlanetName() throws RemoteException {
 
 		Map<String, PlanetIf> planets = this.getPlanets();
 
@@ -94,7 +99,8 @@ public class Universe implements Serializable {
 
 	}
 
-	public int getSize() {
+	@Override
+	public int getSize() throws RemoteException {
 
 		return this.universeSize;
 	}

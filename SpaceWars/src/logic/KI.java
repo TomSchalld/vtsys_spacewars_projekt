@@ -61,7 +61,7 @@ public class KI extends Human {
 
 	private void sendShips() throws RemoteException {
 		PlanetIf randomPlanet;
-		Universe actual = this.getGamePlaying().getUniverse();
+		UniverseIf actual = this.getGamePlaying().getUniverse();
 		SpaceshipIf randomShip;
 		int shipsOnPlanetOfInterest;
 		int shipsInStock = this.getStock().size();

@@ -20,7 +20,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	protected boolean gameFinished = false;
 	protected Client winner;
 	protected Client[] players;
-	protected Universe universe;
+	protected UniverseIf universe;
 	protected int round;
 	private static int gameCount = 0;
 	protected Report endReport;
@@ -126,7 +126,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	}
 
 	@Override
-	public Universe getUniverse() throws RemoteException {
+	public UniverseIf getUniverse() throws RemoteException {
 		return this.universe;
 	}
 

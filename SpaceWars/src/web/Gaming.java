@@ -22,7 +22,7 @@ import logic.Game;
 import logic.PlanetIf;
 import logic.Report;
 import logic.SpaceshipIf;
-import logic.Universe;
+import logic.UniverseIf;
 
 /**
  * Servlet implementation class Gaming
@@ -109,7 +109,7 @@ public class Gaming extends HttpServlet {
 		Client user = UserOnline.getUserById(sID);
 		Game actual = user.getGamePlaying();
 		int actualRound = actual.getRound();
-		Universe universe = user.getGamePlaying().getUniverse();
+		UniverseIf universe = user.getGamePlaying().getUniverse();
 		int battlestarsInStockAfterRound = 0;
 		int fighterInStockAfterRound = 0;
 		String planets[] = { "atlantis", "caprica", "coruscant", "endor", "erde", "gemini", "tatooine" };

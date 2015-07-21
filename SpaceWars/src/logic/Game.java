@@ -11,7 +11,7 @@ public interface Game extends Remote {
 	 * 
 	 */
 
-	public Universe getUniverse() throws RemoteException;
+	public UniverseIf getUniverse() throws RemoteException;
 
 	public boolean hasEnoughPlayer() throws RemoteException;
 
