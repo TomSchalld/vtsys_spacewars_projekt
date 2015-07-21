@@ -389,9 +389,9 @@ function setValues(result) {
 	$('#tatooineFighter').text(roundObject.tatooine.newFighter);
 	$('#tatooineBattlestar').text(roundObject.tatooine.newBattlestar);
 	var index = 0;
-	var defeatedShipsList="";
+	var defeatedShipsList = "";
 
-	/**********Report Atlantis ***********/
+	/** ********Report Atlantis ********** */
 	if (roundObject.roundReport.atlantis != null) {
 		closeWait()
 		$('#winnerAtlantis').text(roundObject.roundReport.atlantis.winner);
@@ -400,38 +400,41 @@ function setValues(result) {
 		$('#battlestarsLeftAtlantis').text(
 				roundObject.roundReport.atlantis.battlestarsLeft);
 		for (index = 0; index < roundObject.roundReport.atlantis.defeatedShips.length; index++) {
-			defeatedShipsList +='<li>';
+			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.atlantis.defeatedShips[index];
 			defeatedShipsList += '</li>';
 		}
 		$('#defeatedListAtlantis').append(defeatedShipsList);
 		$('#atlantisReportButton').show();
+		defeatedShipsList = "";
+
 	} else {
 		closeWait()
 		$('#atlantisReportButton').hide();
 	}
-	
-	/**********Report Erde ***********/
+
+	/** ********Report Erde ********** */
 	if (roundObject.roundReport.erde != null) {
 		closeWait()
 		$('#winnerErde').text(roundObject.roundReport.erde.winner);
-		$('#fightersLeftErde').text(
-				roundObject.roundReport.erde.fighterLeft);
+		$('#fightersLeftErde').text(roundObject.roundReport.erde.fighterLeft);
 		$('#battlestarsLeftErde').text(
 				roundObject.roundReport.erde.battlestarsLeft);
 		for (index = 0; index < roundObject.roundReport.erde.defeatedShips.length; index++) {
-			defeatedShipsList +='<li>';
+			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.erde.defeatedShips[index];
 			defeatedShipsList += '</li>';
 		}
 		$('#defeatedListErde').append(defeatedShipsList);
 		$('#erdeReportButton').show();
+		defeatedShipsList = "";
+
 	} else {
 		closeWait()
 		$('#erdeReportButton').hide();
 	}
-	
-	/**********Report Tatooine ***********/
+
+	/** ********Report Tatooine ********** */
 	if (roundObject.roundReport.tatooine != null) {
 		closeWait()
 		$('#winnerTatooine').text(roundObject.roundReport.tatooine.winner);
@@ -440,18 +443,19 @@ function setValues(result) {
 		$('#battlestarsLeftTatooine').text(
 				roundObject.roundReport.tatooine.battlestarsLeft);
 		for (index = 0; index < roundObject.roundReport.tatooine.defeatedShips.length; index++) {
-			defeatedShipsList +='<li>';
+			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.tatooine.defeatedShips[index];
 			defeatedShipsList += '</li>';
 		}
 		$('#defeatedListTatooine').append(defeatedShipsList);
 		$('#tatooineReportButton').show();
+		defeatedShipsList = "";
 	} else {
 		closeWait()
 		$('#tatooineReportButton').hide();
 	}
-	
-	/**********Report Coruscant ***********/
+
+	/** ********Report Coruscant ********** */
 	if (roundObject.roundReport.coruscant != null) {
 		closeWait()
 		$('#winnerCoruscant').text(roundObject.roundReport.coruscant.winner);
@@ -460,18 +464,19 @@ function setValues(result) {
 		$('#battlestarsLeftCoruscant').text(
 				roundObject.roundReport.coruscant.battlestarsLeft);
 		for (index = 0; index < roundObject.roundReport.coruscant.defeatedShips.length; index++) {
-			defeatedShipsList +='<li>';
+			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.coruscant.defeatedShips[index];
 			defeatedShipsList += '</li>';
 		}
 		$('#defeatedListCoruscant').append(defeatedShipsList);
 		$('#coruscantReportButton').show();
+		defeatedShipsList = "";
 	} else {
 		closeWait()
 		$('#coruscantReportButton').hide();
 	}
-	
-	/**********Report Gemini ***********/
+
+	/** ********Report Gemini ********** */
 	if (roundObject.roundReport.gemini != null) {
 		closeWait()
 		$('#winnerGemini').text(roundObject.roundReport.gemini.winner);
@@ -480,18 +485,19 @@ function setValues(result) {
 		$('#battlestarsLeftGemini').text(
 				roundObject.roundReport.gemini.battlestarsLeft);
 		for (index = 0; index < roundObject.roundReport.gemini.defeatedShips.length; index++) {
-			defeatedShipsList +='<li>';
+			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.gemini.defeatedShips[index];
 			defeatedShipsList += '</li>';
 		}
 		$('#defeatedListGemini').append(defeatedShipsList);
 		$('#geminiReportButton').show();
+		defeatedShipsList = "";
 	} else {
 		closeWait()
 		$('#geminiReportButton').hide();
 	}
-	
-	/**********Report Caprica ***********/
+
+	/** ********Report Caprica ********** */
 	if (roundObject.roundReport.caprica != null) {
 		closeWait()
 		$('#winnerCaprica').text(roundObject.roundReport.caprica.winner);
@@ -500,37 +506,39 @@ function setValues(result) {
 		$('#battlestarsLeftCaprica').text(
 				roundObject.roundReport.caprica.battlestarsLeft);
 		for (index = 0; index < roundObject.roundReport.caprica.defeatedShips.length; index++) {
-			defeatedShipsList +='<li>';
+			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.caprica.defeatedShips[index];
 			defeatedShipsList += '</li>';
 		}
 		$('#defeatedListCaprica').append(defeatedShipsList);
 		$('#capricaReportButton').show();
+		defeatedShipsList = "";
+
 	} else {
 		closeWait()
 		$('#capricaReportButton').hide();
 	}
-	
-	/**********Report Endor ***********/
+
+	/** ********Report Endor ********** */
 	if (roundObject.roundReport.endor != null) {
 		closeWait()
 		$('#winnerEndor').text(roundObject.roundReport.endor.winner);
-		$('#fightersLeftEndor').text(
-				roundObject.roundReport.endor.fighterLeft);
+		$('#fightersLeftEndor').text(roundObject.roundReport.endor.fighterLeft);
 		$('#battlestarsLeftEndor').text(
 				roundObject.roundReport.endor.battlestarsLeft);
 		for (index = 0; index < roundObject.roundReport.endor.defeatedShips.length; index++) {
-			defeatedShipsList +='<li>';
+			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.endor.defeatedShips[index];
 			defeatedShipsList += '</li>';
 		}
 		$('#defeatedListEndor').append(defeatedShipsList);
 		$('#endorReportButton').show();
+		defeatedShipsList = "";
+
 	} else {
 		closeWait()
 		$('#endorReportButton').hide();
 	}
-	
 
 	cash = roundObject.playersCash;
 

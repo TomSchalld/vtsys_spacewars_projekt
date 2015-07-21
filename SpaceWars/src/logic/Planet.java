@@ -130,13 +130,17 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 	@Override public void roundEnd() throws RemoteException {
 		this.fighterInOrbit = 0;
 		this.battlestarsInOrbit = 0;
+		System.out.println("[ round end kein kampf\n");
 		for (SpaceshipIf s : this.getShipsInOrbit()) {
 			if (s instanceof Fighter) {
 				this.fighterInOrbit++;
+				System.out.println(s.shipInfo());
 			} else {
 				this.battlestarsInOrbit++;
+				System.out.println(s.shipInfo());
 			}
 		}
+		System.out.println("\t\t]");
 		System.out.println("-----------------------------------ships in Orbit of planet: " + this.getName()
 				+ "--------------------------------------");
 		for (SpaceshipIf s : this.getShipsInOrbit()) {
