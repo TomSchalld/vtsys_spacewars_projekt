@@ -594,6 +594,13 @@ function endRound() {
 	});
 
 }
+function openReport() {
+	centerPopup();
+	$('.tab-content').hide();
+	noFight();
+	$('#report').show();
+
+}
 $(document).ready(function() {
 	init();
 });

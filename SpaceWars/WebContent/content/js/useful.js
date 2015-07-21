@@ -20,13 +20,7 @@ function openShop() {
 function closeShop() {
 	$('#shop').hide();
 }
-function openReport() {
-	centerPopup();
-	$('.tab-content').hide();
-	noFight();
-	$('#report').show();
 
-}
 function closeReport() {
 	$('#report').hide();
 }
