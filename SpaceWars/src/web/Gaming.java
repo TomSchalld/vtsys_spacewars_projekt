@@ -129,6 +129,18 @@ public class Gaming extends HttpServlet {
 		for (String planetName : planets) {
 			planet = roundObject.getJSONObject(planetName);
 			System.out.println(planetName);
+			System.out.println("anzahl battlestar soll " + planet.getInt("newBattlestar"));
+			for (int i = 0; i < planet.getInt("newBattlestar"); i++) {
+				for (SpaceshipIf ship : user.getStock()) {
+					if (!ship.isFighter()) {
+						if (!tmpShips.contains(ship)) {
+							tmpShips.add(ship);
+							user.sendShip(ship, universe.getPlanetByName(planetName));
+							break;
+						}
+					}
+				}
+			}
 			System.out.println("anzahl fighter soll " + planet.getInt("newFighter"));
 			for (int i = 0; i < planet.getInt("newFighter"); i++) {
 				for (SpaceshipIf ship : user.getStock()) {
@@ -139,19 +151,6 @@ public class Gaming extends HttpServlet {
 							break;
 						}
 
-					}
-				}
-			}
-			System.out.println("anzahl battlestar soll " + planet.getInt("newBattlestar"));
-
-			for (int i = 0; i < planet.getInt("newBattlestar"); i++) {
-				for (SpaceshipIf ship : user.getStock()) {
-					if (!ship.isFighter()) {
-						if (!tmpShips.contains(ship)) {
-							tmpShips.add(ship);
-							user.sendShip(ship, universe.getPlanetByName(planetName));
-							break;
-						}
 					}
 				}
 			}
@@ -184,7 +183,9 @@ public class Gaming extends HttpServlet {
 		roundObject.put("roundReport", user.getRoundReport());
 		System.out.println(user.getUsername() + " has got: " + user.getCash() + " Credits");
 		System.out.println("------------------------------------put JSON-----------------------");
+		int plsum;
 		for (String planetName : planets) {
+			plsum=0;
 			PlanetIf pl = universe.getPlanetByName(planetName);
 			if (pl != null) {
 				if (pl.getPlanetOwner() != null) {
@@ -192,7 +193,8 @@ public class Gaming extends HttpServlet {
 						planet = roundObject.getJSONObject(planetName);
 						planet.put("newFighter", pl.getFighterInOrbit());
 						planet.put("newBattlestar", pl.getBattlestarsInOrbit());
-						planet.put("sum", (pl.getFighterInOrbit() + pl.getBattlestarsInOrbit()));
+						plsum =pl.getFighterInOrbit() + pl.getBattlestarsInOrbit();
+						planet.put("sum", plsum);
 						System.out.println(
 								pl.getName() + " zu JSON nach Runde user:" + user.getUsername() + " anzahlFighter: "
 										+ pl.getFighterInOrbit() + " anzahl batlestar: " + pl.getBattlestarsInOrbit());

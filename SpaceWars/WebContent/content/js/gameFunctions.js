@@ -399,6 +399,7 @@ function setValues(result) {
 				roundObject.roundReport.atlantis.fighterLeft);
 		$('#battlestarsLeftAtlantis').text(
 				roundObject.roundReport.atlantis.battlestarsLeft);
+		$('#defeatedListAtlantis').text("");
 		for (index = 0; index < roundObject.roundReport.atlantis.defeatedShips.length; index++) {
 			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.atlantis.defeatedShips[index];
@@ -420,6 +421,7 @@ function setValues(result) {
 		$('#fightersLeftErde').text(roundObject.roundReport.erde.fighterLeft);
 		$('#battlestarsLeftErde').text(
 				roundObject.roundReport.erde.battlestarsLeft);
+		$('#defeatedListErde').text("");
 		for (index = 0; index < roundObject.roundReport.erde.defeatedShips.length; index++) {
 			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.erde.defeatedShips[index];
@@ -442,6 +444,7 @@ function setValues(result) {
 				roundObject.roundReport.tatooine.fighterLeft);
 		$('#battlestarsLeftTatooine').text(
 				roundObject.roundReport.tatooine.battlestarsLeft);
+		$('#defeatedListTatooine').text("");
 		for (index = 0; index < roundObject.roundReport.tatooine.defeatedShips.length; index++) {
 			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.tatooine.defeatedShips[index];
@@ -463,6 +466,7 @@ function setValues(result) {
 				roundObject.roundReport.coruscant.fighterLeft);
 		$('#battlestarsLeftCoruscant').text(
 				roundObject.roundReport.coruscant.battlestarsLeft);
+		$('#defeatedListCoruscant').text("");
 		for (index = 0; index < roundObject.roundReport.coruscant.defeatedShips.length; index++) {
 			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.coruscant.defeatedShips[index];
@@ -484,6 +488,7 @@ function setValues(result) {
 				roundObject.roundReport.gemini.fighterLeft);
 		$('#battlestarsLeftGemini').text(
 				roundObject.roundReport.gemini.battlestarsLeft);
+		$('#defeatedListGemini').text("");
 		for (index = 0; index < roundObject.roundReport.gemini.defeatedShips.length; index++) {
 			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.gemini.defeatedShips[index];
@@ -505,6 +510,7 @@ function setValues(result) {
 				roundObject.roundReport.caprica.fighterLeft);
 		$('#battlestarsLeftCaprica').text(
 				roundObject.roundReport.caprica.battlestarsLeft);
+		$('#defeatedListACaprica').text("");
 		for (index = 0; index < roundObject.roundReport.caprica.defeatedShips.length; index++) {
 			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.caprica.defeatedShips[index];
@@ -526,6 +532,7 @@ function setValues(result) {
 		$('#fightersLeftEndor').text(roundObject.roundReport.endor.fighterLeft);
 		$('#battlestarsLeftEndor').text(
 				roundObject.roundReport.endor.battlestarsLeft);
+		$('#defeatedListEndor').text("");
 		for (index = 0; index < roundObject.roundReport.endor.defeatedShips.length; index++) {
 			defeatedShipsList += '<li>';
 			defeatedShipsList += roundObject.roundReport.endor.defeatedShips[index];
