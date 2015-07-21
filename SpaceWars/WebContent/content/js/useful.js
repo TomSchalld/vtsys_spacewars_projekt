@@ -32,6 +32,12 @@ function openWait(){
 function closeWait(){
 	$('#wait').hide();
 }
+function openHighscore(){
+	$('#highscore').show();
+}
+function closeHighscore(){
+	$('#highscore').hide();
+}
 function chooseUniverse(size) {
 	data.universeSize = size;
 	data.createGame = true;
