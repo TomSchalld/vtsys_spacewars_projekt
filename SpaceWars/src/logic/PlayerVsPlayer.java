@@ -126,9 +126,11 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			this.round++;
 			System.out.println(this.players[0].getUsername()+" anzahl planeten = "+this.players[0].getAmountOfPlanets());
 			System.out.println(this.players[1].getUsername()+" anzahl planeten = "+this.players[1].getAmountOfPlanets());
+			System.out.println("Universe size is: "+this.getUniverse().getPlanets().keySet().size());
 			if (this.players[0].getAmountOfPlanets() == this.getUniverse().getPlanets().keySet().size()) {
 				this.gameFinished = true;
 				this.winner = this.players[0];
+				System.out.println("game is over. Winner is: "+this.players[0].getUsername());
 			} else if (this.players[1].getAmountOfPlanets() == this.getUniverse().getPlanets().keySet().size()) {
 				this.gameFinished = true;
 				this.winner = this.players[1];
