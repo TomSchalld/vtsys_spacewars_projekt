@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import logic.Game;
+import logic.PlayerVsPC;
+import logic.PlayerVsPlayer;
 import logic.Report;
 
 public class GameServer extends UnicastRemoteObject implements Server, Serializable {
@@ -42,6 +44,49 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			lobby.put(gameName, newGame);
 			System.out.println("..done.");
 		}
+	}
+	@Override
+	public Game openGameOnServer(String gameName, int variation, int universeSize) throws Exception,RemoteException {
+		System.out.println("try to open new game");
+		Game newGame = null;
+		if (variation == 0) {
+			newGame = new PlayerVsPlayer(gameName, universeSize);
+			System.out.println("erstelle neuese pvp game");
+			try {
+				this.openGame(newGame);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if (variation == 1) {
+			newGame = new PlayerVsPC(gameName, universeSize);
+			System.out.println("erstelle neuese pvPC game");
+			try {
+				this.openGame(newGame);
+				System.out.println("send game to server");
+			} catch (Exception e) {
+				System.out.println("exception e");
+				e.printStackTrace();
+			}
+
+		} else if (variation == 2) {
+			// newGame = new PlayerPlayerVsPC(gameName, universeSize);
+			try {
+				// this.server.openGame(newGame);
+				// } catch (RemoteException e) {
+				// e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// newGame.addPlayer(this);
+		}
+		if(this.runningGames.containsKey(gameName)||this.lobby.containsKey(gameName)){
+			System.out.println("Game already existing!");
+			throw new Exception("Game Could not be Opened Exception");
+		}
+		return newGame;
 	}
 
 	@Override

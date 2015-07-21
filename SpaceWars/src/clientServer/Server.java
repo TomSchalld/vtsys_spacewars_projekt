@@ -15,6 +15,7 @@ public interface Server extends Remote {
 	public Game getGameByName(String gameName)throws RemoteException;
 	public boolean closeGame(String username) throws RemoteException;
 	public Map<String, Game> gamesInLobby() throws RemoteException;
+	public Game openGameOnServer(String gameName, int variation, int universeSize) throws Exception, RemoteException;
 
 
 }
