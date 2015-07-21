@@ -17,20 +17,7 @@ public class PlayerVsPC extends PlayerVsPlayer {
 		super(gameName, universeSize);
 	}
 
-	@Override
-	public void addPlayer(Client newPlayer) throws RemoteException {
-		newPlayer.setGamePlaying(this);
-		this.players[0]= newPlayer;
-		System.out.println("Player added");
-		try {
-			this.players[1]=new KI("Computer","192.168.178.23");
-			this.players[1].setGamePlaying(this);
-			this.hasEnoughPlayer = true;
-			
-		} catch (MalformedURLException | NotBoundException e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	
 	

@@ -47,6 +47,9 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		
 		try {
 			this.server.openGameOnServer(gameName, variation, universeSize,this);
+			if(this.getGamePlaying() instanceof PlayerVsPC){
+				this.getGamePlaying().addPlayer(new KI("Computer","192.168.178.23"));
+			}
 			//this.server.joinGame(this.getGamePlaying().getGameName());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
