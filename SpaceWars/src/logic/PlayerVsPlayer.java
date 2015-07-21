@@ -24,8 +24,11 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	protected int round;
 	private static int gameCount = 0;
 	protected Report endReport;
+	private int variation; //0 = Player vs. Player 
+							//1= Player vs. PC
+							//3= Player, Player vs PC
 
-	public PlayerVsPlayer(String gameName, int universeSize) throws RemoteException {
+	public PlayerVsPlayer(String gameName, int universeSize, int variation) throws RemoteException {
 		this.gameName = gameName;
 		this.gameId = gameCount;
 		this.universe = new Universe(universeSize);
@@ -33,7 +36,15 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		this.endReport = new EndReport();
 		gameCount++;
 		this.players = new Client[2];
-
+		this.variation = variation;
+	}
+	@Override
+	public int getVariation() throws RemoteException {
+		return variation;
+	}
+	@Override
+	public void setVariation(int variation) throws RemoteException {
+		this.variation = variation;
 	}
 
 	@Override

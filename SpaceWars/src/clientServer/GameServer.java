@@ -50,7 +50,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		System.out.println("try to open new game");
 		Game newGame = null;
 		if (variation == 0) {
-			newGame = new PlayerVsPlayer(gameName, universeSize);
+			newGame = new PlayerVsPlayer(gameName, universeSize,variation);
 			newGame.addPlayer(player);
 			System.out.println("erstelle neuese pvp game");
 			try {

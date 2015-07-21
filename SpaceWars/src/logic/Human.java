@@ -47,7 +47,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 		try {
 			this.server.openGameOnServer(gameName, variation, universeSize, this);
-			if (this.getGamePlaying() instanceof PlayerVsPC) {
+			if (this.getGamePlaying().getVariation()!=0) {
 				System.out.println("PvPC");
 				this.getGamePlaying().addPlayer(new KI("Computer", "192.168.178.23"));
 			}
@@ -191,10 +191,6 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		return stock;
 	}
 
-	public void setStock(ArrayList<SpaceshipIf> arrayList) {
-		this.stock = arrayList;
-	}
-
 	@Override
 	public boolean equals(Client other) throws RemoteException {
 		if (this.getOwnerId() == other.getOwnerId()) {
@@ -211,6 +207,12 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	@Override
 	public void setStock(List<SpaceshipIf> stock) throws RemoteException {
 		// TODO Auto-generated method stub
+		this.stock=stock;
+	}
 
+	@Override
+	public boolean isKI() throws RemoteException {
+	
+		return false;
 	}
 }
