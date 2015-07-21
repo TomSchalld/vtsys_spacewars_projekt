@@ -82,10 +82,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			}
 			// newGame.addPlayer(this);
 		}
-		if(this.runningGames.containsKey(gameName)||this.lobby.containsKey(gameName)){
-			System.out.println("Game already existing!");
-			throw new Exception("Game Could not be Opened Exception");
-		}
+		
 		return newGame;
 	}
 
