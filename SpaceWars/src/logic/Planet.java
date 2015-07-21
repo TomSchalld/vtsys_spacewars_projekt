@@ -134,10 +134,10 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		for (SpaceshipIf s : this.getShipsInOrbit()) {
 			if (s instanceof Fighter) {
 				this.fighterInOrbit++;
-				System.out.println(s.shipInfo());
+				System.out.println("Fighter "+s.shipInfo());
 			} else {
 				this.battlestarsInOrbit++;
-				System.out.println(s.shipInfo());
+				System.out.println("Battlestar "+s.shipInfo());
 			}
 		}
 		System.out.println("\t\t]");
