@@ -11,11 +11,16 @@ public class RoundReport implements Report {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Map<String,BattleReport> reports;
+	private final int round;
 	public Map<String, BattleReport> getReports() {
 		return reports;
 	}
-	public RoundReport(){
+	public RoundReport(int round){
 		this.reports=new HashMap<String,BattleReport>();
+		this.round = round;
+	}
+	public int getRoundNumber(){
+		return this.round;
 	}
 	private void addBattleReport(BattleReport report){
 		this.reports.put(report.getNameOfbattleGround(), report);
@@ -42,5 +47,6 @@ public class RoundReport implements Report {
 		}
 		return jo;
 	}
+	
 	
 }

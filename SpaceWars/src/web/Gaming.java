@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import clientServer.Client;
 import logic.Battlestar;
+import logic.EndReport;
 import logic.Fighter;
 import logic.Game;
 import logic.PlanetIf;
@@ -167,25 +168,32 @@ public class Gaming extends HttpServlet {
 				}
 			}
 		}
-		System.out.println("fighters in stock after round: -->"+fighterInStockAfterRound);
-		System.out.println("battlestars in stock after round: -->"+battlestarsInStockAfterRound);
+		System.out.println("fighters in stock after round: -->" + fighterInStockAfterRound);
+		System.out.println("battlestars in stock after round: -->" + battlestarsInStockAfterRound);
 		roundObject.put("fightersInStock", fighterInStockAfterRound);
 		roundObject.put("battlestarsInStock", battlestarsInStockAfterRound);
 		roundObject.put("fightersToBuy", 0);
 		roundObject.put("battlestarsToBuy", 0);
 		user.setPlayerReady(true);
-		int count=0;
-		while (actualRound == actual.getRound()) {
-			System.out.println("Schleifendurchläufe: "+count+++"username: "+user.getUsername());
-			Thread.sleep(1000);
+		if (!user.getGamePlaying().isGameFinished()) {
+			int count = 0;
+			while (actualRound == actual.getRound()) {
+				System.out.println("Schleifendurchläufe: " + count++ + "username: " + user.getUsername());
+				Thread.sleep(1000);
+			}
+			roundObject.put("endReport", ((EndReport)user.getGamePlaying().getEndreport()).endReportToJSON());
+			this.generateHighscore(user.getGamePlaying().getEndreport());
 		}
 		roundObject.put("playersCash", user.getCash());
 		roundObject.put("roundReport", user.getRoundReport());
 		System.out.println(user.getUsername() + " has got: " + user.getCash() + " Credits");
 		System.out.println("------------------------------------put JSON-----------------------");
+
 		int plsum;
-		for (String planetName : planets) {
-			plsum=0;
+		for (String planetName : planets)
+
+		{
+			plsum = 0;
 			PlanetIf pl = universe.getPlanetByName(planetName);
 			if (pl != null) {
 				if (pl.getPlanetOwner() != null) {
@@ -193,12 +201,12 @@ public class Gaming extends HttpServlet {
 						planet = roundObject.getJSONObject(planetName);
 						planet.put("newFighter", pl.getFighterInOrbit());
 						planet.put("newBattlestar", pl.getBattlestarsInOrbit());
-						plsum =pl.getFighterInOrbit() + pl.getBattlestarsInOrbit();
+						plsum = pl.getFighterInOrbit() + pl.getBattlestarsInOrbit();
 						planet.put("sum", plsum);
 						System.out.println(
 								pl.getName() + " zu JSON nach Runde user:" + user.getUsername() + " anzahlFighter: "
 										+ pl.getFighterInOrbit() + " anzahl batlestar: " + pl.getBattlestarsInOrbit());
-					}else {
+					} else {
 						planet = roundObject.getJSONObject(planetName);
 						planet.put("newFighter", 0);
 						planet.put("newBattlestar", 0);
@@ -214,7 +222,7 @@ public class Gaming extends HttpServlet {
 	}
 
 	private void generateHighscore(Report endreport) {
-
+		
 	}
 
 }
