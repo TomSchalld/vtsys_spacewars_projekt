@@ -589,9 +589,9 @@ function endRound() {
 		type : "POST",
 		data : roundObject,
 		success : function(result) {
-			openReport();
 			console.log(result)
 			setValues(result);
+			openReport();
 		}
 	});
 
