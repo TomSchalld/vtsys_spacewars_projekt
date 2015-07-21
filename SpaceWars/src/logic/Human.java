@@ -112,7 +112,13 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		this.playerReady = playerReady;
 		System.out.println("Ich: " + this.getUsername() + " bin fertig!");
 		// if (this.getGamePlaying().playersReady()) {
-		this.getGamePlaying().endRound();
+		if(!this.getGamePlaying().isGameFinished()){
+			this.getGamePlaying().endRound();
+		}
+		else{
+			System.out.println("game is finished and the winner is: "+this.getGamePlaying().getWinnerByName());
+		}
+		
 		// }
 
 	}
