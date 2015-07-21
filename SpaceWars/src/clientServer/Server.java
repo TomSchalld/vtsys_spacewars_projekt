@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import logic.Game;
+import logic.Human;
 
 
 
@@ -15,7 +16,7 @@ public interface Server extends Remote {
 	public Game getGameByName(String gameName)throws RemoteException;
 	public boolean closeGame(String username) throws RemoteException;
 	public Map<String, Game> gamesInLobby() throws RemoteException;
-	public Game openGameOnServer(String gameName, int variation, int universeSize) throws Exception, RemoteException;
+	public Game openGameOnServer(String gameName, int variation, int universeSize, Client player) throws Exception, RemoteException;
 
 
 }

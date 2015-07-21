@@ -30,7 +30,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 	
 	@Override
 	public void openGame(Game newGame) throws Exception,RemoteException {
-		System.out.println("try to open new game");
+		//System.out.println("try to open new game");
 		String gameName = newGame.getGameName();
 		if(this.runningGames.containsKey(gameName)||this.lobby.containsKey(gameName)){
 			System.out.println("Game already existing!");
@@ -46,11 +46,12 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		}
 	}
 	@Override
-	public Game openGameOnServer(String gameName, int variation, int universeSize) throws Exception,RemoteException {
+	public Game openGameOnServer(String gameName, int variation, int universeSize, Client player) throws Exception,RemoteException {
 		System.out.println("try to open new game");
 		Game newGame = null;
 		if (variation == 0) {
 			newGame = new PlayerVsPlayer(gameName, universeSize);
+			newGame.addPlayer(player);
 			System.out.println("erstelle neuese pvp game");
 			try {
 				this.openGame(newGame);
@@ -62,6 +63,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			
 		} else if (variation == 1) {
 			newGame = new PlayerVsPC(gameName, universeSize);
+			newGame.addPlayer(player);
 			System.out.println("erstelle neuese pvPC game");
 			try {
 				this.openGame(newGame);

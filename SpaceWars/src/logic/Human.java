@@ -45,10 +45,8 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	public void openGame(String gameName, int variation, int universeSize) throws RemoteException {
 		
 		try {
-			Game newGame = this.server.openGameOnServer(gameName, variation, universeSize);
-			newGame.addPlayer(this);
-			this.gamePlaying = newGame;
-			this.server.joinGame(this.getGamePlaying().getGameName());
+			this.setGamePlaying(this.server.openGameOnServer(gameName, variation, universeSize,this));
+			//this.server.joinGame(this.getGamePlaying().getGameName());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

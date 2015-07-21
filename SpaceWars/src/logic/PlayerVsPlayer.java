@@ -85,6 +85,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 				if (p.isFightAfterRoundEnded()) {
 					report.addReport(p.fight());
 				}else{
+					System.out.println(p.getName()+" kein kampf hat stattgefunden");
 					p.roundEnd();
 				}
 			}
