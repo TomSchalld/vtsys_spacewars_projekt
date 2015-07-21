@@ -75,13 +75,18 @@ public class BattleReport implements Report,Serializable{
 	}
 	public void setDefeatedShips(List<SpaceshipIf> defeatedShips) {
 		this.defeatedShips = defeatedShips;
-		this.writeListOfDefeats();
+		try {
+			this.writeListOfDefeats();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	private void writeListOfDefeats(){
+	private void writeListOfDefeats() throws RemoteException{
 		this.listOfDefeats = new String[this.defeatedShips.size()];
 		int i=0;
 		for(SpaceshipIf s:this.defeatedShips){
-			this.listOfDefeats[i++]=s.toString();
+			this.listOfDefeats[i++]=s.shipInfo();
 		}
 		this.defeatedShips.clear();
 	}
