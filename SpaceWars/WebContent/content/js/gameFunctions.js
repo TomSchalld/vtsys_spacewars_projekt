@@ -412,7 +412,7 @@ function setValues(result) {
 	} else {
 		closeWait()
 		$('#atlantisReportButton').hide();
-		$('#noFight').show();
+
 	}
 
 	/** ********Report Erde ********** */
@@ -435,7 +435,7 @@ function setValues(result) {
 	} else {
 		closeWait()
 		$('#erdeReportButton').hide();
-		$('#noFight').show();
+
 	}
 
 	/** ********Report Tatooine ********** */
@@ -458,7 +458,7 @@ function setValues(result) {
 	} else {
 		closeWait()
 		$('#tatooineReportButton').hide();
-		$('#noFight').show();
+
 	}
 
 	/** ********Report Coruscant ********** */
@@ -481,7 +481,7 @@ function setValues(result) {
 	} else {
 		closeWait()
 		$('#coruscantReportButton').hide();
-		$('#noFight').show();
+
 	}
 
 	/** ********Report Gemini ********** */
@@ -504,7 +504,7 @@ function setValues(result) {
 	} else {
 		closeWait()
 		$('#geminiReportButton').hide();
-		$('#noFight').show();
+
 	}
 
 	/** ********Report Caprica ********** */
@@ -528,7 +528,7 @@ function setValues(result) {
 	} else {
 		closeWait()
 		$('#capricaReportButton').hide();
-		$('#noFight').show();
+
 	}
 
 	/** ********Report Endor ********** */
@@ -551,8 +551,7 @@ function setValues(result) {
 	} else {
 		closeWait()
 		$('#endorReportButton').hide();
-		$('#noFight').show();
-		
+
 	}
 
 	cash = roundObject.playersCash;

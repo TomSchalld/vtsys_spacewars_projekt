@@ -13,6 +13,7 @@ var data = {
 };
 
 function openShop() {
+	centerPopup();
 	$('#shop').show();
 
 }
@@ -20,25 +21,41 @@ function closeShop() {
 	$('#shop').hide();
 }
 function openReport() {
+	centerPopup();
+	$('.tab-content').hide();
+	noFight();
 	$('#report').show();
-	
 
 }
 function closeReport() {
 	$('#report').hide();
 }
-function openWait(){
+function openWait() {
+	noFight();
 	$('#wait').show();
 }
-function closeWait(){
+function closeWait() {
 	$('#wait').hide();
-	$('#noFight').hide();
-	
+
 }
-function openHighscore(){
+function noFight() {
+	if (roundObject.roundReport.atlantis != null
+			&& roundObject.roundReport.caprica != null
+			&& roundObject.roundReport.coruscant != null
+			&& roundObject.roundReport.endor != null
+			&& roundObject.roundReport.erde != null
+			&& roundObject.roundReport.gemini != null
+			&& roundObject.roundReport.tatooine != null) {
+		$('#noFight').show();
+	} else {
+		$('#noFight').hide();
+	}
+}
+function openHighscore() {
+	noFight();
 	$('#highscore').show();
 }
-function closeHighscore(){
+function closeHighscore() {
 	$('#highscore').hide();
 }
 function chooseUniverse(size) {
@@ -168,16 +185,29 @@ function getListOfOpenGames() {
 	});
 }
 function setListOfOpenGames(result) {
-	
-	$.each(result,function(key, val){
-		$('#tableOfOpenGames')
-		.append(
-				"<tr><td>"+val.gameName+"</td><td>"+val.host+"</td><td>"+val.gameMode+"</td><td>"+val.universeSize+"</td>" +
-				"<td><button class='btn btn-default btn-sm' type='button' onclick=\"joinIt('"+val.gameName+"')\">Beitreten</button></td></tr>");
-	});
-	
+
+	$
+			.each(
+					result,
+					function(key, val) {
+						$('#tableOfOpenGames')
+								.append(
+										"<tr><td>"
+												+ val.gameName
+												+ "</td><td>"
+												+ val.host
+												+ "</td><td>"
+												+ val.gameMode
+												+ "</td><td>"
+												+ val.universeSize
+												+ "</td>"
+												+ "<td><button class='btn btn-default btn-sm' type='button' onclick=\"joinIt('"
+												+ val.gameName
+												+ "')\">Beitreten</button></td></tr>");
+					});
+
 }
-function joinIt(gameName){
+function joinIt(gameName) {
 	alert("Join Game");
 	data.joinGame = true;
 	data.gameName = gameName;
