@@ -27,30 +27,32 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		this.runningGames = new HashMap<String, Game>();
 		this.lobby = new HashMap<String, Game>();
 	}
-	
+
 	@Override
-	public void openGame(Game newGame) throws Exception,RemoteException {
-		//System.out.println("try to open new game");
+	public void openGame(Game newGame) throws Exception, RemoteException {
+		// System.out.println("try to open new game");
 		String gameName = newGame.getGameName();
-		if(this.runningGames.containsKey(gameName)||this.lobby.containsKey(gameName)){
+		if (this.runningGames.containsKey(gameName) || this.lobby.containsKey(gameName)) {
 			System.out.println("Game already existing!");
 			throw new Exception("Game Could not be Opened Exception");
 		}
-		if(newGame.hasEnoughPlayer()){
+		if (newGame.hasEnoughPlayer()) {
 			runningGames.put(gameName, newGame);
 			System.out.println("added new game to running games");
-		}else{
+		} else {
 			System.out.println("put game into lobby....");
 			lobby.put(gameName, newGame);
 			System.out.println("..done.");
 		}
 	}
+
 	@Override
-	public Game openGameOnServer(String gameName, int variation, int universeSize, Client player) throws Exception,RemoteException {
+	public Game openGameOnServer(String gameName, int variation, int universeSize, Client player)
+			throws Exception, RemoteException {
 		System.out.println("try to open new game");
 		Game newGame = null;
 		if (variation == 0) {
-			newGame = new PlayerVsPlayer(gameName, universeSize,variation);
+			newGame = new PlayerVsPlayer(gameName, universeSize, variation);
 			newGame.addPlayer(player);
 			System.out.println("erstelle neuese pvp game");
 			try {
@@ -60,7 +62,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 		} else if (variation == 1) {
 			newGame = new PlayerVsPC(gameName, universeSize);
 			newGame.addPlayer(player);
@@ -84,53 +86,55 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			}
 			// newGame.addPlayer(this);
 		}
-		
+
 		return newGame;
 	}
 
 	@Override
 	public void joinGame(String gameName) throws RemoteException {
-		if(this.lobby.containsKey(gameName)){
+		if (this.lobby.containsKey(gameName)) {
 			this.bringGameToRun(this.lobby.get(gameName));
-		}else{
+		} else {
 			System.out.println("There is no such game");
 		}
 	}
 
-	public void bringGameToRun(Game gameInLobby) throws RemoteException{
-		this.runningGames.put(gameInLobby.getGameName(),this.lobby.remove(gameInLobby.getGameName()));
+	public void bringGameToRun(Game gameInLobby) throws RemoteException {
+		this.runningGames.put(gameInLobby.getGameName(), this.lobby.remove(gameInLobby.getGameName()));
 		System.out.println("game is now running");
 	}
+
 	@Override
 	public boolean closeGame(String gameName) throws RemoteException {
 		// TODO Auto-generated method stub
-		
-		if(runningGames.containsKey(gameName)){
+
+		if (runningGames.containsKey(gameName)) {
 			Game gameToBeClosed = this.runningGames.get(gameName);
-			if(gameToBeClosed.isGameFinished()){
-				if(gameToBeClosed.killAllReferences()){
-					runningGames.remove(gameName);
-					return true;
-				}
+			if (gameToBeClosed.killAllReferences()) {
+				runningGames.remove(gameName);
+				return true;
+
 			}
-			
+
 		}
 		return false;
 	}
-	
+
 	@Override
 	public Game getGameByName(String gameName) throws RemoteException {
-		if(this.runningGames.containsKey(gameName)){
+		if (this.runningGames.containsKey(gameName)) {
 			return this.runningGames.get(gameName);
-		}else if(this.lobby.containsKey(gameName)){
+		} else if (this.lobby.containsKey(gameName)) {
 			return this.lobby.get(gameName);
 		}
 		return null;
 	}
+
 	@Override
-	public Map<String,Game> gamesInLobby() throws RemoteException{
+	public Map<String, Game> gamesInLobby() throws RemoteException {
 		return this.lobby;
 	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Registry registry = null;
