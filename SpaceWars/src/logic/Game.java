@@ -37,4 +37,6 @@ public interface Game extends Remote {
 
 	void setVariation(int variation) throws RemoteException;
 
+	public String getWinnerByName() throws RemoteException;
+
 }
