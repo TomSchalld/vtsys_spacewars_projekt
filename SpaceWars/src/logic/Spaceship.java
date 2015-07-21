@@ -58,10 +58,15 @@ public abstract class Spaceship extends UnicastRemoteObject implements Spaceship
 	@Override
 	public String toString() {
 		String s = "";
-		if (this instanceof Fighter) {
-			s += "Fighter von: ";
-		} else {
-			s += "Battlestar von: ";
+		try {
+			if (this.isFighter()) {
+				s += "Fighter von: ";
+			} else {
+				s += "Battlestar von: ";
+			}
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		try {
 			s += this.getOwner().getUsername() + " mit iD: " + this.getShipID() + " im Orbit von: ";
@@ -93,12 +98,12 @@ public abstract class Spaceship extends UnicastRemoteObject implements Spaceship
 		try {
 			if (this.getOwner().equals(((SpaceshipIf) other).getOwner())) {
 				if (this.getShipID() == ((SpaceshipIf) other).getShipID()) {
-					if (this instanceof Fighter) {
-						if (other instanceof Fighter) {
+					if (this.isFighter()) {
+						if (((SpaceshipIf)other).isFighter()) {
 							return true;
 						}
-					} else if (this instanceof Battlestar) {
-						if (other instanceof Battlestar) {
+					} else if (!this.isFighter()) {
+						if (!((SpaceshipIf)other).isFighter()) {
 							return true;
 						}
 					}

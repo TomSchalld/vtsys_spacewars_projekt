@@ -24,14 +24,14 @@ public class BattleReport implements Report,Serializable{
 	private void init() throws RemoteException{
 		this.nameOfbattleGround=this.battleGround.getName();
 		for(SpaceshipIf s:this.battleGround.getShipsInOrbit()){
-			if(s instanceof Battlestar){
+			if(!s.isFighter()){
 				this.countOfDefendingBattleships++;
 			}else{
 				this.countOfDefendingFighters++;
 			}
 		}
 		for(SpaceshipIf s:this.battleGround.getShipsTryToOrbit()){
-			if(s instanceof Battlestar){
+			if(!s.isFighter()){
 				this.countOfAtackingBattleships++;
 			}else{
 				this.countOfAtackingFighters++;
