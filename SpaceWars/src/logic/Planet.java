@@ -132,7 +132,7 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		this.battlestarsInOrbit = 0;
 		System.out.println("[ round end kein kampf\n");
 		for (SpaceshipIf s : this.getShipsInOrbit()) {
-			if (s instanceof Fighter) {
+			if (s.isFighter()) {
 				this.fighterInOrbit++;
 				System.out.println("Fighter "+s.shipInfo());
 			} else {
@@ -206,7 +206,7 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		this.setFightAfterRoundEnded(false);
 		for (SpaceshipIf s : this.getShipsInOrbit()) {
 			s.increaseRank();
-			if (s instanceof Fighter) {
+			if (s.isFighter()) {
 				report.addFighterAfterBattle();
 				this.fighterInOrbit++;
 				System.out.println(s.shipInfo());

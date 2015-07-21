@@ -77,4 +77,8 @@ public class Fighter extends Spaceship {
 		s+=rank;
 		return s;
 	}
+	@Override
+	public boolean isFighter() throws RemoteException {
+		return true;
+	}
 }

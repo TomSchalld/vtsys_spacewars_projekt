@@ -81,5 +81,10 @@ public class Battlestar extends Spaceship {
 		s+=rank;
 		return s;
 	}
+	@Override
+	public boolean isFighter() throws RemoteException {
+
+		return false;
+	}
 	
 }
