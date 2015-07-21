@@ -38,19 +38,7 @@ function closeWait() {
 	$('#wait').hide();
 
 }
-function noFight() {
-	if (roundObject.roundReport.atlantis != null
-			&& roundObject.roundReport.caprica != null
-			&& roundObject.roundReport.coruscant != null
-			&& roundObject.roundReport.endor != null
-			&& roundObject.roundReport.erde != null
-			&& roundObject.roundReport.gemini != null
-			&& roundObject.roundReport.tatooine != null) {
-		$('#noFight').show();
-	} else {
-		$('#noFight').hide();
-	}
-}
+
 function openHighscore() {
 	noFight();
 	$('#highscore').show();
