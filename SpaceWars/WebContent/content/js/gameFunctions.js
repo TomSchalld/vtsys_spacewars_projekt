@@ -39,6 +39,7 @@ var roundObject = {
 	"fightersToBuy" : 0,
 	"battlestarsToBuy" : 0,
 	"playersCash" : 0,
+	"endReport":null,
 	"roundReport" : null,
 	"closeGame":false
 };
@@ -608,6 +609,7 @@ function endRound() {
 	});
 
 }
+
 function openReport() {
 	$('.tab-content').hide();
 	noFight();
