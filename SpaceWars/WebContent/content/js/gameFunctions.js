@@ -566,13 +566,13 @@ function noFight() {
 	if (roundObject.roundReport == null) {
 		$('#noFight').show();
 	} else {
-		if (roundObject.roundReport.atlantis != null
-				&& roundObject.roundReport.caprica != null
-				&& roundObject.roundReport.coruscant != null
-				&& roundObject.roundReport.endor != null
-				&& roundObject.roundReport.erde != null
-				&& roundObject.roundReport.gemini != null
-				&& roundObject.roundReport.tatooine != null) {
+		if (roundObject.roundReport.atlantis == null
+				&& roundObject.roundReport.caprica == null
+				&& roundObject.roundReport.coruscant == null
+				&& roundObject.roundReport.endor == null
+				&& roundObject.roundReport.erde == null
+				&& roundObject.roundReport.gemini == null
+				&& roundObject.roundReport.tatooine == null) {
 			$('#noFight').show();
 			
 		} else {
