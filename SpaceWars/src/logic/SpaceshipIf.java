@@ -21,6 +21,8 @@ public interface SpaceshipIf extends Remote {
 
 	public int getShipID() throws RemoteException;
 
+	public String shipInfo() throws RemoteException;
+
 	
 
 }

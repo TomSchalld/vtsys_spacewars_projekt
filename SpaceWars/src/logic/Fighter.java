@@ -48,5 +48,33 @@ public class Fighter extends Spaceship {
 		int random=(int)(Math.random()*10+this.rank.getAttackBoost());
 		return random;
 	}
-	
+	@Override
+	public String shipInfo() throws RemoteException {
+		String s = "Fighter von : ";
+		
+		try {
+			s += this.getOwner().getUsername() + " mit iD: " + this.getShipID() + " ";
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			if (this.getOrbiting() != null) {
+				try {
+					s += "im Orbit von: "+ this.getOrbiting().getName();
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				s += "Ship ist in Stock";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		s+=" mit Rang ";
+		s+=rank;
+		return s;
+	}
 }

@@ -52,5 +52,34 @@ public class Battlestar extends Spaceship {
 		s+=rank;
 		return s;
 	}
+	@Override
+	public String shipInfo() throws RemoteException {
+		String s = "Battlestar von : ";
+		
+		try {
+			s += this.getOwner().getUsername() + " mit iD: " + this.getShipID() + " ";
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			if (this.getOrbiting() != null) {
+				try {
+					s += "im Orbit von: "+ this.getOrbiting().getName();
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				s += "Ship ist in Stock";
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		s+=" mit Rang ";
+		s+=rank;
+		return s;
+	}
 	
 }

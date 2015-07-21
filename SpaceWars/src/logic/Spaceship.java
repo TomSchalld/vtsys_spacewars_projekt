@@ -50,7 +50,11 @@ public abstract class Spaceship extends UnicastRemoteObject implements Spaceship
 
 	@Override
 	public abstract int attack() throws RemoteException;
-
+	
+	@Override
+	public abstract String shipInfo() throws RemoteException;
+	
+	
 	@Override
 	public String toString() {
 		String s = "";
