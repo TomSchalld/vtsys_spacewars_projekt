@@ -563,7 +563,7 @@ function setValues(result) {
 }
 
 function noFight() {
-	if (roundObject.roundReport != null) {
+	if (roundObject.roundReport == null) {
 		$('#noFight').show();
 	} else {
 		if (roundObject.roundReport.atlantis != null
