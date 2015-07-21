@@ -39,6 +39,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		this.cash = 5000;
 		this.setStock(new ArrayList<SpaceshipIf>());
 		userCount++;
+		System.out.println(userCount);
 	}
 
 	@Override
