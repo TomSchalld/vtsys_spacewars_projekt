@@ -89,7 +89,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		System.out.println("Round End ###########################################################################\n\n\n");
 		if (this.playersReady()) {
 			System.out.println("nach if");
-			RoundReport report = new RoundReport();
+			RoundReport report = new RoundReport(this.round);
 			Map<String, PlanetIf> planets = this.getUniverse().getPlanets();
 			for (PlanetIf p : planets.values()) {
 				System.out.println(p.getName()+"wird auf kampf uberpruft");

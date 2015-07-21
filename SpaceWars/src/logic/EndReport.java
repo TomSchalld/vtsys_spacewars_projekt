@@ -3,6 +3,8 @@ package logic;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import clientServer.Client;
 
 public class EndReport implements Report {
@@ -42,6 +44,16 @@ public class EndReport implements Report {
 		this.addRoundReport((RoundReport)report);
 	}
 	
+	public JSONObject endReportToJSON(){
+		JSONObject report = new JSONObject();
+		report.put("winner", this.winner);
+		report.put("looser", this.looser);
+		report.put("roundReports", this.roundReports);
+		report.put("roundCount", this.roundReports.size());
+		
+		
+		return report;
+	}
 	@Override
 	public String toString() {
 		String s="";
