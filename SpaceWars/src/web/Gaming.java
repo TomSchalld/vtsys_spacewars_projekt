@@ -1,22 +1,16 @@
 package web;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.rmi.RemoteException;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +21,7 @@ import logic.Fighter;
 import logic.Game;
 import logic.PlanetIf;
 import logic.Report;
-import logic.Spaceship;
+import logic.SpaceshipIf;
 import logic.Universe;
 
 /**
@@ -111,7 +105,7 @@ public class Gaming extends HttpServlet {
 
 	private void doRound(JSONObject roundObject, String sID)
 			throws RemoteException, JSONException, InterruptedException {
-		List<Spaceship> tmpShips = new LinkedList<Spaceship>();
+		List<SpaceshipIf> tmpShips = new LinkedList<SpaceshipIf>();
 		Client user = UserOnline.getUserById(sID);
 		Game actual = user.getGamePlaying();
 		int actualRound = actual.getRound();
@@ -137,7 +131,7 @@ public class Gaming extends HttpServlet {
 			System.out.println(planetName);
 			System.out.println("anzahl fighter soll " + planet.getInt("newFighter"));
 			for (int i = 0; i < planet.getInt("newFighter"); i++) {
-				for (Spaceship ship : user.getStock()) {
+				for (SpaceshipIf ship : user.getStock()) {
 					if (ship instanceof Fighter) {
 						if (!tmpShips.contains(ship)) {
 							tmpShips.add(ship);
@@ -151,7 +145,7 @@ public class Gaming extends HttpServlet {
 			System.out.println("anzahl battlestar soll " + planet.getInt("newBattlestar"));
 
 			for (int i = 0; i < planet.getInt("newBattlestar"); i++) {
-				for (Spaceship ship : user.getStock()) {
+				for (SpaceshipIf ship : user.getStock()) {
 					if (ship instanceof Battlestar) {
 						if (!tmpShips.contains(ship)) {
 							tmpShips.add(ship);
@@ -166,7 +160,7 @@ public class Gaming extends HttpServlet {
 		user.getStock().removeAll(tmpShips);
 		// ships sendet
 		if (!user.getStock().isEmpty()) {
-			for (Spaceship ships : user.getStock()) {
+			for (SpaceshipIf ships : user.getStock()) {
 				if (ships instanceof Fighter) {
 					fighterInStockAfterRound++;
 				} else {

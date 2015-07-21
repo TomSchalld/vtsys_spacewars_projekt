@@ -15,7 +15,7 @@ public class BattleReport implements Report,Serializable{
 	private int countOfDefendingBattleships =0;
 	private int fighterAfterBattle =0;
 	private int battlestarsAfterBattle =0;
-	private List<Spaceship> defeatedShips;
+	private List<SpaceshipIf> defeatedShips;
 	private String listOfDefeats[];
 	public BattleReport(PlanetIf battleGround) throws RemoteException{
 		this.battleGround =battleGround;
@@ -23,14 +23,14 @@ public class BattleReport implements Report,Serializable{
 	}
 	private void init() throws RemoteException{
 		this.nameOfbattleGround=this.battleGround.getName();
-		for(Spaceship s:this.battleGround.getShipsInOrbit()){
+		for(SpaceshipIf s:this.battleGround.getShipsInOrbit()){
 			if(s instanceof Battlestar){
 				this.countOfDefendingBattleships++;
 			}else{
 				this.countOfDefendingFighters++;
 			}
 		}
-		for(Spaceship s:this.battleGround.getShipsTryToOrbit()){
+		for(SpaceshipIf s:this.battleGround.getShipsTryToOrbit()){
 			if(s instanceof Battlestar){
 				this.countOfAtackingBattleships++;
 			}else{
@@ -55,7 +55,7 @@ public class BattleReport implements Report,Serializable{
 		return winnersUsername;
 	}
 	
-	public List<Spaceship> getDefeatedShips() {
+	public List<SpaceshipIf> getDefeatedShips() {
 		return defeatedShips;
 	}
 	public void setWinnersUsername(String winnersUsername) {
@@ -73,14 +73,14 @@ public class BattleReport implements Report,Serializable{
 	public void setNameOfbattleGround(String nameOfbattleGround) {
 		this.nameOfbattleGround = nameOfbattleGround;
 	}
-	public void setDefeatedShips(List<Spaceship> defeatedShips) {
+	public void setDefeatedShips(List<SpaceshipIf> defeatedShips) {
 		this.defeatedShips = defeatedShips;
 		this.writeListOfDefeats();
 	}
 	private void writeListOfDefeats(){
 		this.listOfDefeats = new String[this.defeatedShips.size()];
 		int i=0;
-		for(Spaceship s:this.defeatedShips){
+		for(SpaceshipIf s:this.defeatedShips){
 			this.listOfDefeats[i++]=s.toString();
 		}
 		this.defeatedShips.clear();

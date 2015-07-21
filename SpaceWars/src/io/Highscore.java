@@ -18,6 +18,7 @@ import logic.EndReport;
 import logic.Report;
 import logic.RoundReport;
 import logic.Spaceship;
+import logic.SpaceshipIf;
 
 public class Highscore {
 
@@ -44,7 +45,7 @@ public class Highscore {
 				bRep = ((RoundReport) rp).getReports();
 				for (BattleReport br : bRep.values()) {
 					sRep = br.getDefeatedShips();
-					for (Spaceship sS : sRep) {
+					for (SpaceshipIf sS : sRep) {
 						if (sS.getOwner().equals(e.getUsername())) {
 							defeatedShipsCount++;
 						}

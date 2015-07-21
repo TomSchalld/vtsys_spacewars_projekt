@@ -27,7 +27,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	protected int cash;
 	protected int amountOfPlanets;
 	protected Game gamePlaying;
-	private List<Spaceship> stock;
+	private List<SpaceshipIf> stock;
 	protected boolean playerReady;
 	private JSONObject roundReport;
 
@@ -37,7 +37,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		this.username = username;
 		this.ownerId = userCount;
 		this.cash = 5000;
-		this.setStock(new ArrayList<Spaceship>());
+		this.setStock(new ArrayList<SpaceshipIf>());
 		userCount++;
 	}
 
@@ -48,6 +48,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 			Game newGame = this.server.openGameOnServer(gameName, variation, universeSize);
 			newGame.addPlayer(this);
 			this.gamePlaying = newGame;
+			this.server.joinGame(this.getGamePlaying().getGameName());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -176,14 +177,14 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		}
 	}
 
-	public void sendShip(Spaceship ship, PlanetIf destination) throws RemoteException {
-		if (ship.orbiting == null) {
+	public void sendShip(SpaceshipIf ship, PlanetIf destination) throws RemoteException {
+		if (ship.getOrbiting() == null) {
 			if (destination != null) {
 				destination.addShipToOrbit(ship);
 			}
 			ship.setOrbiting(destination);
 		} else {
-			ship.orbiting.removeShipFromOrbit(ship);
+			ship.getOrbiting().removeShipFromOrbit(ship);
 			if (destination != null) {
 				destination.addShipToOrbit(ship);
 				ship.setOrbiting(destination);
@@ -197,13 +198,13 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	@Override
 	public void sendAllShipsToStock(PlanetIf origin) throws RemoteException {
-		List<Spaceship> tmp = new LinkedList<Spaceship>();
-		for (Spaceship s : origin.getShipsInOrbit()) {
+		List<SpaceshipIf> tmp = new LinkedList<SpaceshipIf>();
+		for (SpaceshipIf s : origin.getShipsInOrbit()) {
 			if (s.getOwner().equals(this)) {
 				tmp.add(s);
 			}
 		}
-		for (Spaceship s : tmp) {
+		for (SpaceshipIf s : tmp) {
 			sendShip(s, null);
 		}
 
@@ -211,7 +212,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	public String toString() {
 		String string = this.username + " Cash: " + this.cash + " Planeten: " + this.amountOfPlanets + " ";
-		for (Spaceship s : this.getStock()) {
+		for (SpaceshipIf s : this.getStock()) {
 			if (s != null) {
 				string += "\n" + s.toString();
 			}
@@ -219,12 +220,12 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		return string;
 	}
 
-	public List<Spaceship> getStock() {
+	public List<SpaceshipIf> getStock() {
 		return stock;
 	}
 
-	public void setStock(List<Spaceship> stock) {
-		this.stock = stock;
+	public void setStock(ArrayList<SpaceshipIf> arrayList) {
+		this.stock = arrayList;
 	}
 
 	@Override
@@ -238,5 +239,11 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	@Override
 	public void setCash(int cash) throws RemoteException {
 		this.cash = cash;
+	}
+
+	@Override
+	public void setStock(List<SpaceshipIf> stock) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import logic.Game;
 import logic.PlanetIf;
-import logic.Spaceship;
+import logic.SpaceshipIf;
 
 public interface Client extends Remote {
 	public void openGame(String gameName, int variation, int universeSize) throws RemoteException;
@@ -43,13 +43,13 @@ public interface Client extends Remote {
 
 	public void buyFighter() throws RemoteException;
 
-	public void sendShip(Spaceship ship, PlanetIf destination) throws RemoteException;
+	public void sendShip(SpaceshipIf ship, PlanetIf destination) throws RemoteException;
 	
 	public void sendAllShipsToStock(PlanetIf origin) throws RemoteException;
 
-	public List<Spaceship> getStock() throws RemoteException;
+	public List<SpaceshipIf> getStock() throws RemoteException;
 
-	public void setStock(List<Spaceship> stock) throws RemoteException;
+	public void setStock(List<SpaceshipIf> stock) throws RemoteException;
 
 	public void setCash(int cash) throws RemoteException;
 

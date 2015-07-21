@@ -26,6 +26,7 @@ public class PlayerVsPC extends PlayerVsPlayer {
 			this.players[1]=new KI("Computer","192.168.178.23");
 			this.players[1].setGamePlaying(this);
 			this.hasEnoughPlayer = true;
+			
 		} catch (MalformedURLException | NotBoundException e) {
 			e.printStackTrace();
 		}

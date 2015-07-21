@@ -16,17 +16,17 @@ public interface PlanetIf extends Remote {
 
 	void roundEnd() throws RemoteException;
 
-	boolean removeShipFromOrbit(Spaceship shipToRemove) throws RemoteException;
+	boolean removeShipFromOrbit(SpaceshipIf shipToRemove) throws RemoteException;
 
-	void addShipToOrbit(Spaceship newShip) throws RemoteException;
+	void addShipToOrbit(SpaceshipIf ship) throws RemoteException;
 
 	void setPlanetOwner(Client planetOwner) throws RemoteException;
 
 	Client getPlanetOwner() throws RemoteException;
 
-	List<Spaceship> getShipsTryToOrbit() throws RemoteException;
+	List<SpaceshipIf> getShipsTryToOrbit() throws RemoteException;
 
-	List<Spaceship> getShipsInOrbit() throws RemoteException;
+	List<SpaceshipIf> getShipsInOrbit() throws RemoteException;
 
 	void setFightAfterRoundEnded(boolean fightAfterRoundEnded) throws RemoteException;
 

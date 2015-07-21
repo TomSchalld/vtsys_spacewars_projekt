@@ -62,10 +62,10 @@ public class KI extends Human {
 	private void sendShips() throws RemoteException {
 		PlanetIf randomPlanet;
 		Universe actual = this.getGamePlaying().getUniverse();
-		Spaceship randomShip;
+		SpaceshipIf randomShip;
 		int shipsOnPlanetOfInterest;
 		int shipsInStock = this.getStock().size();
-		List<Spaceship> shipsToBeSend = new LinkedList<Spaceship>();
+		List<SpaceshipIf> shipsToBeSend = new LinkedList<SpaceshipIf>();
 		if (shipsInStock > 0) {
 			if (shipsInStock >= 5) {
 				randomPlanet = actual.getRandomPlanet();
@@ -134,9 +134,9 @@ public class KI extends Human {
 
 	}
 
-	private Spaceship getRandomShip() {
+	private SpaceshipIf getRandomShip() {
 		Random random = new Random();
-		List<Spaceship> ships = this.getStock();
+		List<SpaceshipIf> ships = this.getStock();
 		return ships.get(random.nextInt(ships.size()));
 	}
 
