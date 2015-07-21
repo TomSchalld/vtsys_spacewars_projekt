@@ -25,7 +25,7 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 	private int planetId;
 	private boolean fightAfterRoundEnded = false;
 
-	public Planet(String planetName, int planetId) throws RemoteException{
+	public Planet(String planetName, int planetId) throws RemoteException {
 		this.name = planetName;
 		this.planetId = planetId;
 		this.generatedCreditsPerShip = (int) Math.random() * 450 + 150;
@@ -34,7 +34,7 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 	}
 
 	@Override
-	public int hashCode(){
+	public int hashCode() {
 		return this.planetId;
 	}
 
@@ -57,54 +57,65 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		return true;
 	}
 
-	@Override public String getName() throws RemoteException{
+	@Override
+	public String getName() throws RemoteException {
 		return name;
 	}
 
-	@Override public int getGeneratedCreditsPerShip() throws RemoteException{
+	@Override
+	public int getGeneratedCreditsPerShip() throws RemoteException {
 		return generatedCreditsPerShip;
 	}
 
-	@Override public int getGeneratedCredits() throws RemoteException{
+	@Override
+	public int getGeneratedCredits() throws RemoteException {
 		return generatedCredits;
 	}
 
-	@Override public int getPlanetId() throws RemoteException{
+	@Override
+	public int getPlanetId() throws RemoteException {
 		return planetId;
 	}
 
-	@Override public boolean isFightAfterRoundEnded() throws RemoteException{
+	@Override
+	public boolean isFightAfterRoundEnded() throws RemoteException {
 		return fightAfterRoundEnded;
 	}
 
-	@Override public void setFightAfterRoundEnded(boolean fightAfterRoundEnded) throws RemoteException{
+	@Override
+	public void setFightAfterRoundEnded(boolean fightAfterRoundEnded) throws RemoteException {
 		this.fightAfterRoundEnded = fightAfterRoundEnded;
 	}
 
-	@Override public List<SpaceshipIf> getShipsInOrbit() throws RemoteException{
+	@Override
+	public List<SpaceshipIf> getShipsInOrbit() throws RemoteException {
 		return shipsInOrbit;
 	}
 
-	@Override public List<SpaceshipIf> getShipsTryToOrbit() throws RemoteException{
+	@Override
+	public List<SpaceshipIf> getShipsTryToOrbit() throws RemoteException {
 		return shipsTryToOrbit;
 	}
 
-	@Override public Client getPlanetOwner() throws RemoteException{
+	@Override
+	public Client getPlanetOwner() throws RemoteException {
 		return planetOwner;
 	}
 
-	@Override public void setPlanetOwner(Client planetOwner) throws RemoteException{
+	@Override
+	public void setPlanetOwner(Client planetOwner) throws RemoteException {
 		this.planetOwner = planetOwner;
 	}
 
-	@Override 
+	@Override
 	public void addShipToOrbit(SpaceshipIf newShip) throws RemoteException {
 		if (newShip != null) {
-			System.out.println("newShip ownerId: "+newShip.getOwner().getOwnerId());
-			if(this.getPlanetOwner()!=null){
-				System.out.println("newShip ownerId: "+this.getPlanetOwner().getOwnerId());
+			System.out.println("newShip ownerId: " + newShip.getOwner().getOwnerId());
+			if (this.getPlanetOwner() != null) {
+				System.out.println("newShip ownerId: " + this.getPlanetOwner().getOwnerId());
 			}
-			if (this.getPlanetOwner() == null || this.getPlanetOwner().getOwnerId()==newShip.getOwner().getOwnerId()) {
+			if (this.getPlanetOwner() == null
+					|| this.getPlanetOwner().getOwnerId() == newShip.getOwner().getOwnerId()) {
 				if (this.getShipsInOrbit().size() < 5) {
 					this.shipsInOrbit.add(newShip);
 					this.setPlanetOwner(newShip.getOwner());
@@ -122,22 +133,28 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 
 	}
 
-	@Override public boolean removeShipFromOrbit(SpaceshipIf shipToRemove) throws RemoteException{
+	@Override
+	public boolean removeShipFromOrbit(SpaceshipIf shipToRemove) throws RemoteException {
 		return this.shipsInOrbit.remove(shipToRemove);
 
 	}
-
-	@Override public void roundEnd() throws RemoteException {
+	@Override
+	public void delShips() throws RemoteException {
+		this.shipsInOrbit.clear();
+		this.shipsTryToOrbit.clear();
+	}
+	@Override
+	public void roundEnd() throws RemoteException {
 		this.fighterInOrbit = 0;
 		this.battlestarsInOrbit = 0;
 		System.out.println("[ round end kein kampf\n");
 		for (SpaceshipIf s : this.getShipsInOrbit()) {
 			if (s.isFighter()) {
 				this.fighterInOrbit++;
-				System.out.println("Fighter "+s.shipInfo());
+				System.out.println("Fighter " + s.shipInfo());
 			} else {
 				this.battlestarsInOrbit++;
-				System.out.println("Battlestar "+s.shipInfo());
+				System.out.println("Battlestar " + s.shipInfo());
 			}
 		}
 		System.out.println("\t\t]");
@@ -146,12 +163,13 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		for (SpaceshipIf s : this.getShipsInOrbit()) {
 			System.out.println(s.shipInfo());
 		}
-		System.out.println("Anzahl battlestar in orbit: "+this.battlestarsInOrbit);
-		System.out.println("Anzahl fighter in orbit: "+this.fighterInOrbit);
+		System.out.println("Anzahl battlestar in orbit: " + this.battlestarsInOrbit);
+		System.out.println("Anzahl fighter in orbit: " + this.fighterInOrbit);
 		System.out.println("-----------------------------------ende--------------------------------------");
 	}
 
-	@Override public BattleReport fight() throws RemoteException {
+	@Override
+	public BattleReport fight() throws RemoteException {
 		Client attacker = this.getShipsTryToOrbit().get(0).getOwner();
 		Client defender = this.planetOwner;
 		BattleReport report = new BattleReport(this);
@@ -227,11 +245,13 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		return report;
 	}
 
-	@Override public int getFighterInOrbit() throws RemoteException{
+	@Override
+	public int getFighterInOrbit() throws RemoteException {
 		return fighterInOrbit;
 	}
 
-	@Override public int getBattlestarsInOrbit() throws RemoteException{
+	@Override
+	public int getBattlestarsInOrbit() throws RemoteException {
 		return battlestarsInOrbit;
 	}
 

@@ -40,4 +40,6 @@ public interface PlanetIf extends Remote {
 
 	String getName() throws RemoteException;
 
+	void delShips() throws RemoteException;
+
 }

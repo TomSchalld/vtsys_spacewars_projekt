@@ -108,7 +108,6 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		if(runningGames.containsKey(gameName)){
 			Game gameToBeClosed = this.runningGames.get(gameName);
 			if(gameToBeClosed.isGameFinished()){
-				this.addEndReportToHighscore(gameToBeClosed.getEndreport());
 				if(gameToBeClosed.killAllReferences()){
 					runningGames.remove(gameName);
 					return true;
@@ -118,9 +117,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		}
 		return false;
 	}
-	public void addEndReportToHighscore(Report report){
-		// TODO generate highscore
-	}
+	
 	@Override
 	public Game getGameByName(String gameName) throws RemoteException {
 		if(this.runningGames.containsKey(gameName)){

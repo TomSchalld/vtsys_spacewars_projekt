@@ -47,26 +47,37 @@ public class Gaming extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("application/json");
-		JSONObject roundObject = requestParamsToJSON(request);
-		System.out.println("input::::::");
-		System.out.println(roundObject.toString());
-		System.out.println("input::::::\n\n\n\n\n");
-		try {
-			doRound(roundObject, request.getRequestedSessionId());
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (!request.getParameter("closeGame").equals("true")) {
+			JSONObject roundObject = requestParamsToJSON(request);
+			System.out.println("input::::::");
+			System.out.println(roundObject.toString());
+			System.out.println("input::::::\n\n\n\n\n");
+			try {
+				doRound(roundObject, request.getRequestedSessionId());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			System.out.println("output::::::");
+			System.out.println(roundObject.toString());
+			System.out.println("output::::::\n\n\n\n\n");
+
+			response.getWriter().write(roundObject.toString());
+			response.getWriter().close();
+		}else{
+			System.out.println("User is closing game...");
+			Client user = UserOnline.getUserById(request.getRequestedSessionId());
+			if(user.getGamePlaying()!=null){
+				user.closeGame();
+			}
+			response.setContentType("text/plain;charset=UTF-8");
+			response.getWriter().write("?username="+user.getUsername());
+			response.getWriter().close();
 		}
-
-		System.out.println("output::::::");
-		System.out.println(roundObject.toString());
-		System.out.println("output::::::\n\n\n\n\n");
-
-		response.getWriter().write(roundObject.toString());
-		response.getWriter().close();
 
 	}
 
@@ -182,8 +193,8 @@ public class Gaming extends HttpServlet {
 				Thread.sleep(1000);
 			}
 			this.generateHighscore(user.getGamePlaying().getEndreport());
-		}else{
-			roundObject.put("endReport", ((EndReport)user.getGamePlaying().getEndreport()).endReportToJSON());
+		} else {
+			roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
 		}
 		roundObject.put("playersCash", user.getCash());
 		roundObject.put("roundReport", user.getRoundReport());
@@ -223,7 +234,7 @@ public class Gaming extends HttpServlet {
 	}
 
 	private void generateHighscore(Report endreport) {
-		
+
 	}
 
 }

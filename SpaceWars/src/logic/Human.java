@@ -57,7 +57,10 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		}
 
 	}
-
+	@Override
+	public void closeGame() throws RemoteException{
+		this.server.closeGame(this.getGamePlaying().getGameName());
+	}
 	@Override
 	public void setAmountOfPlanets(int planets) throws RemoteException {
 		this.amountOfPlanets = planets;

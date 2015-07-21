@@ -56,4 +56,6 @@ public interface Client extends Remote {
 	public void setAmountOfPlanets(int planets) throws RemoteException;
 
 	public boolean isKI() throws RemoteException;
+
+	public void closeGame() throws RemoteException;
 }

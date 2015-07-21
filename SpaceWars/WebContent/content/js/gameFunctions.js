@@ -39,7 +39,8 @@ var roundObject = {
 	"fightersToBuy" : 0,
 	"battlestarsToBuy" : 0,
 	"playersCash" : 0,
-	"roundReport" : null
+	"roundReport" : null,
+	"closeGame":false
 };
 var bs = "Battlestar";
 var fight = "Fighter";
@@ -581,7 +582,18 @@ function noFight() {
 		}
 	}
 }
-
+function finishGame(){
+	roundObject.closeGame = true;
+	$.ajax({
+		url : "/SpaceWars/gaming",
+		type : "POST",
+		data : roundObject,
+		success : function(result) {
+			window.location.href = "./menuMain.html" + result;
+			//clearData();
+		}
+	});
+}
 function endRound() {
 	openWait();
 	$.ajax({

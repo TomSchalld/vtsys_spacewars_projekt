@@ -98,7 +98,13 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		return randomKey;
 
 	}
-
+	@Override
+	public void killUniverse() throws RemoteException{
+		for(PlanetIf p:this.getPlanets().values()){
+			p.delShips();
+		}
+		this.getPlanets().clear();
+	}
 	@Override
 	public int getSize() throws RemoteException {
 
