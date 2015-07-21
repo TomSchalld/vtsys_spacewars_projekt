@@ -574,8 +574,10 @@ function noFight() {
 				&& roundObject.roundReport.gemini != null
 				&& roundObject.roundReport.tatooine != null) {
 			$('#noFight').show();
+			
 		} else {
 			$('#noFight').hide();
+			$('.tab-content').show();
 		}
 	}
 }
