@@ -563,16 +563,20 @@ function setValues(result) {
 }
 
 function noFight() {
-	if (roundObject.roundReport.atlantis != null
-			&& roundObject.roundReport.caprica != null
-			&& roundObject.roundReport.coruscant != null
-			&& roundObject.roundReport.endor != null
-			&& roundObject.roundReport.erde != null
-			&& roundObject.roundReport.gemini != null
-			&& roundObject.roundReport.tatooine != null) {
+	if (roundObject.roundReport != null) {
 		$('#noFight').show();
 	} else {
-		$('#noFight').hide();
+		if (roundObject.roundReport.atlantis != null
+				&& roundObject.roundReport.caprica != null
+				&& roundObject.roundReport.coruscant != null
+				&& roundObject.roundReport.endor != null
+				&& roundObject.roundReport.erde != null
+				&& roundObject.roundReport.gemini != null
+				&& roundObject.roundReport.tatooine != null) {
+			$('#noFight').show();
+		} else {
+			$('#noFight').hide();
+		}
 	}
 }
 
