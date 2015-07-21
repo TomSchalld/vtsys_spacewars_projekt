@@ -100,6 +100,10 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 	@Override 
 	public void addShipToOrbit(SpaceshipIf newShip) throws RemoteException {
 		if (newShip != null) {
+			System.out.println("newShip ownerId: "+newShip.getOwner().getOwnerId());
+			if(this.getPlanetOwner()!=null){
+				System.out.println("newShip ownerId: "+this.getPlanetOwner().getOwnerId());
+			}
 			if (this.getPlanetOwner() == null || this.getPlanetOwner().getOwnerId()==newShip.getOwner().getOwnerId()) {
 				if (this.getShipsInOrbit().size() < 5) {
 					this.shipsInOrbit.add(newShip);
