@@ -44,56 +44,18 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	@Override
 	public void openGame(String gameName, int variation, int universeSize) throws RemoteException {
-		
+
 		try {
-			this.server.openGameOnServer(gameName, variation, universeSize,this);
-			if(this.getGamePlaying() instanceof PlayerVsPC){
-				this.getGamePlaying().addPlayer(new KI("Computer","192.168.178.23"));
+			this.server.openGameOnServer(gameName, variation, universeSize, this);
+			if (this.getGamePlaying() instanceof PlayerVsPC) {
+				System.out.println("PvPC");
+				this.getGamePlaying().addPlayer(new KI("Computer", "192.168.178.23"));
 			}
-			//this.server.joinGame(this.getGamePlaying().getGameName());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		/*
-		
-		
-		if (variation == 0) {
-			newGame = new PlayerVsPlayer(gameName, universeSize);
-			System.out.println("erstelle neuese pvp game");
-			try {
-				this.server.openGame(newGame);
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			newGame.addPlayer(this);
-		} else if (variation == 1) {
-			newGame = new PlayerVsPC(gameName, universeSize);
-			newGame.addPlayer(this);
-			System.out.println("User added");
-			try {
-				this.server.openGame(newGame);
-				System.out.println("send game to server");
-			} catch (Exception e) {
-				System.out.println("exception e");
-				e.printStackTrace();
-			}
 
-		} else if (variation == 2) {
-			// newGame = new PlayerPlayerVsPC(gameName, universeSize);
-			try {
-				// this.server.openGame(newGame);
-				// } catch (RemoteException e) {
-				// e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			// newGame.addPlayer(this);
-		}*/
 	}
 
 	@Override
@@ -158,6 +120,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	public String getUsername() {
 		return username;
 	}
+
 	@Override
 	public void buyBattlestar() throws RemoteException {
 		if (this.cash - Battlestar.getPrice() >= 0) {
@@ -169,6 +132,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 			System.out.println("Not enough Credits to buy Battlestar " + this.cash);
 		}
 	}
+
 	@Override
 	public void buyFighter() throws RemoteException {
 		if (this.cash - Fighter.getPrice() >= 0) {
@@ -178,6 +142,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 			System.out.println("Not enough Credits to buy Fighter");
 		}
 	}
+
 	@Override
 	public void sendShip(SpaceshipIf ship, PlanetIf destination) throws RemoteException {
 		if (ship.getOrbiting() == null) {
@@ -246,6 +211,6 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	@Override
 	public void setStock(List<SpaceshipIf> stock) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
