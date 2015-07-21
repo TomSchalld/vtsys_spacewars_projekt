@@ -45,7 +45,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	public void openGame(String gameName, int variation, int universeSize) throws RemoteException {
 		
 		try {
-			this.setGamePlaying(this.server.openGameOnServer(gameName, variation, universeSize,this));
+			this.server.openGameOnServer(gameName, variation, universeSize,this);
 			//this.server.joinGame(this.getGamePlaying().getGameName());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -154,7 +154,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	public String getUsername() {
 		return username;
 	}
-
+	@Override
 	public void buyBattlestar() throws RemoteException {
 		if (this.cash - Battlestar.getPrice() >= 0) {
 			System.out.println("cash before buy battlestar " + this.cash);
@@ -165,7 +165,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 			System.out.println("Not enough Credits to buy Battlestar " + this.cash);
 		}
 	}
-
+	@Override
 	public void buyFighter() throws RemoteException {
 		if (this.cash - Fighter.getPrice() >= 0) {
 			this.cash -= Fighter.getPrice();
@@ -174,7 +174,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 			System.out.println("Not enough Credits to buy Fighter");
 		}
 	}
-
+	@Override
 	public void sendShip(SpaceshipIf ship, PlanetIf destination) throws RemoteException {
 		if (ship.getOrbiting() == null) {
 			if (destination != null) {
