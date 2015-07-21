@@ -18,14 +18,22 @@ function setMarginsWait() {
     leftMargin = (width-containerWidth)/2;    
     $("#wait").css("marginLeft", leftMargin);
 }
+function setMarginsHighscore() {
+    width = $(window).width();
+    containerWidth = $("#highscore").width();  
+    leftMargin = (width-containerWidth)/2;    
+    $("#highscore").css("marginLeft", leftMargin);
+}
 
 $(document).ready(function() {
 	setMarginsShop();
 	setMarginsReport();
 	setMarginsWait();
+	setMarginsHighscore();
     $(window).resize(function() {
     	setMarginsShop();
     	setMarginsReport();
     	setMarginsWait(); 
+    	setMarginsHighscore();
     });
 });

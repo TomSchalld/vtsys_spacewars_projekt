@@ -56,7 +56,7 @@
 						type="button" onclick="joinGame()">Spiel beitreten</button></li>
 			</ul>
 			<button class="btn btn-lg btn-primary btn-block corners" type="button"
-				onclick="getHighscore()">Highscore</button>
+				onclick="openHighscore()">Highscore</button>
 			<button class="btn btn-lg btn-primary btn-block corners" type="button"
 				onclick="showSettings()">Einstellungen</button>
 			<button class="btn btn-lg btn-primary btn-block corners" type="button"
@@ -68,6 +68,38 @@
 
 
 		</div>
+		<!----------------------------------------------------------Highscore---------------------------------------------------------->
+	<div id="highscore" class="fade in menu-box game-box popup">
+
+
+		<div class="row">
+
+			<div class="col-md-12">
+				<h2>Warten auf Gegener</h2>
+				<button type="button" class="close" aria-label="Schließen"
+						onclick="closeHighscore()">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 belongs"></div>
+			<div class="col-md-6 belongs">
+				<img src="../resources/images/werbung.png" alt="..."
+					class="img-thumbnail">
+			</div>
+			<div class="col-md-3 belongs"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				Während Sie warten, nutzen Sie die Zeit und schauen Sie doch einmal
+				bei einem unserer Sponsorn vorbei. 
+
+			</div>
+		</div>
+
+	</div>
+		
 	
 
 
@@ -81,5 +113,7 @@
 		<script src="../js/ie10-viewport-bug-workaround.js"></script>
 		<script src="../js/useful.js"></script>
 		<script src="../js/loadUsername.js"></script>
+		<script src="../js/recenter.js"></script>
+		<script src="../js/highscore.js"></script>
 </body>
 </html>
