@@ -163,4 +163,10 @@ public class KI extends Human {
 		System.out.println("Skynet is not sending ships to stock");
 	}
 
+	@Override
+	public boolean isKI() throws RemoteException {
+		
+		return true;
+	}
+	
 }

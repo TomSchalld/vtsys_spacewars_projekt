@@ -33,4 +33,8 @@ public interface Game extends Remote {
 
 	public String getHostName() throws RemoteException;
 
+	int getVariation() throws RemoteException;
+
+	void setVariation(int variation) throws RemoteException;
+
 }

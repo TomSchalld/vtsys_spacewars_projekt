@@ -44,7 +44,7 @@ public interface Client extends Remote {
 	public void buyFighter() throws RemoteException;
 
 	public void sendShip(SpaceshipIf ship, PlanetIf destination) throws RemoteException;
-	
+
 	public void sendAllShipsToStock(PlanetIf origin) throws RemoteException;
 
 	public List<SpaceshipIf> getStock() throws RemoteException;
@@ -54,4 +54,6 @@ public interface Client extends Remote {
 	public void setCash(int cash) throws RemoteException;
 
 	public void setAmountOfPlanets(int planets) throws RemoteException;
+
+	public boolean isKI() throws RemoteException;
 }
