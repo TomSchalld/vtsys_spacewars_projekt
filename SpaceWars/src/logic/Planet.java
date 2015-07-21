@@ -109,13 +109,13 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 					this.shipsInOrbit.add(newShip);
 					this.setPlanetOwner(newShip.getOwner());
 					this.generatedCredits = this.generatedCreditsPerShip * this.getShipsInOrbit().size();
-					System.out.println(newShip + " zu Orbit hinzugefügt planet: " + this.getName());
+					System.out.println(newShip.shipInfo() + " zu Orbit hinzugefügt planet: " + this.getName());
 				}
 
 			} else {
 				this.shipsTryToOrbit.add(newShip);
 				this.setFightAfterRoundEnded(true);
-				System.out.println(newShip + " zu tryTo Orbit hinzugefügt planet: " + this.getName());
+				System.out.println(newShip.shipInfo() + " zu tryTo Orbit hinzugefügt planet: " + this.getName());
 			}
 
 		}
@@ -140,8 +140,10 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		System.out.println("-----------------------------------ships in Orbit of planet: " + this.getName()
 				+ "--------------------------------------");
 		for (SpaceshipIf s : this.getShipsInOrbit()) {
-			System.out.println(s);
+			System.out.println(s.shipInfo());
 		}
+		System.out.println("Anzahl battlestar in orbit: "+this.battlestarsInOrbit);
+		System.out.println("Anzahl fighter in orbit: "+this.fighterInOrbit);
 		System.out.println("-----------------------------------ende--------------------------------------");
 	}
 
@@ -156,13 +158,13 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		int angreiferAttack;
 		int defendingShipAttack;
 		for (SpaceshipIf angreifer : this.getShipsTryToOrbit()) {
-			System.out.println("[for1]" + angreifer);
+			System.out.println("[for1]" + angreifer.shipInfo());
 			for (SpaceshipIf defendingShip : this.getShipsInOrbit()) {
-				System.out.println("[for2]" + defendingShip);
+				System.out.println("[for2]" + defendingShip.shipInfo());
 				if (!shipsDefeated.contains(angreifer)) {
 					if (!shipsDefeated.contains(defendingShip)) {
-						System.out.println(angreifer + "ist angreifendes Schiff\n");
-						System.out.println(defendingShip + "ist verteidigendes Schiff\n");
+						System.out.println(angreifer.shipInfo() + "ist angreifendes Schiff\n");
+						System.out.println(defendingShip.shipInfo() + "ist verteidigendes Schiff\n");
 						angreiferAttack = angreifer.attack();
 						defendingShipAttack = defendingShip.attack();
 						System.out.println(
@@ -203,18 +205,18 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 			if (s instanceof Fighter) {
 				report.addFighterAfterBattle();
 				this.fighterInOrbit++;
-				System.out.println(s);
+				System.out.println(s.shipInfo());
 			} else {
 				report.addBattlestarsAfterBattle();
 				this.battlestarsInOrbit++;
-				System.out.println(s);
+				System.out.println(s.shipInfo());
 
 			}
 		}
 		System.out.println("-----------------------------------ships in Orbit of planet: " + this.getName()
 				+ "--------------------------------------");
 		for (SpaceshipIf s : this.getShipsInOrbit()) {
-			System.out.println(s);
+			System.out.println(s.shipInfo());
 		}
 		System.out.println("-----------------------------------ende--------------------------------------");
 
