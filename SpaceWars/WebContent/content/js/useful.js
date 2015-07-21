@@ -23,6 +23,8 @@ function closeShop() {
 
 function closeReport() {
 	$('#report').hide();
+	$('.tab-pane').removeClass('active');
+	$('.repButton').removeClass('active');
 }
 function openWait() {
 	noFight();

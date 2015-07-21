@@ -589,18 +589,18 @@ function endRound() {
 		type : "POST",
 		data : roundObject,
 		success : function(result) {
-			openReport();
 			console.log(result)
 			setValues(result);
+			openReport();
 		}
 	});
 
 }
 function openReport() {
-	centerPopup();
 	$('.tab-content').hide();
 	noFight();
 	$('#report').show();
+	centerPopup();
 
 }
 $(document).ready(function() {

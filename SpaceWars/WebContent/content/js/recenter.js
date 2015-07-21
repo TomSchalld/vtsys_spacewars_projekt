@@ -39,4 +39,7 @@ function centerPopup() {
 
 $(document).ready(function() {
 	centerPopup();
+	$( ".repButton" ).bind( "click", function() {
+		 centerPopup();
+		});
 });
