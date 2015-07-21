@@ -597,10 +597,10 @@ function endRound() {
 
 }
 function openReport() {
-	centerPopup();
 	$('.tab-content').hide();
 	noFight();
 	$('#report').show();
+	centerPopup();
 
 }
 $(document).ready(function() {
