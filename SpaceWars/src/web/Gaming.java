@@ -132,7 +132,7 @@ public class Gaming extends HttpServlet {
 			System.out.println("anzahl fighter soll " + planet.getInt("newFighter"));
 			for (int i = 0; i < planet.getInt("newFighter"); i++) {
 				for (SpaceshipIf ship : user.getStock()) {
-					if (ship instanceof Fighter) {
+					if (ship.isFighter()) {
 						if (!tmpShips.contains(ship)) {
 							tmpShips.add(ship);
 							user.sendShip(ship, universe.getPlanetByName(planetName));
@@ -146,7 +146,7 @@ public class Gaming extends HttpServlet {
 
 			for (int i = 0; i < planet.getInt("newBattlestar"); i++) {
 				for (SpaceshipIf ship : user.getStock()) {
-					if (ship instanceof Battlestar) {
+					if (!ship.isFighter()) {
 						if (!tmpShips.contains(ship)) {
 							tmpShips.add(ship);
 							user.sendShip(ship, universe.getPlanetByName(planetName));
@@ -161,7 +161,7 @@ public class Gaming extends HttpServlet {
 		// ships sendet
 		if (!user.getStock().isEmpty()) {
 			for (SpaceshipIf ships : user.getStock()) {
-				if (ships instanceof Fighter) {
+				if (ships.isFighter()) {
 					fighterInStockAfterRound++;
 				} else {
 					battlestarsInStockAfterRound++;
