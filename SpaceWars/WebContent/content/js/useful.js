@@ -21,6 +21,7 @@ function closeShop() {
 }
 function openReport() {
 	$('#report').show();
+	
 
 }
 function closeReport() {
@@ -31,6 +32,8 @@ function openWait(){
 }
 function closeWait(){
 	$('#wait').hide();
+	$('#noFight').hide();
+	
 }
 function openHighscore(){
 	$('#highscore').show();
