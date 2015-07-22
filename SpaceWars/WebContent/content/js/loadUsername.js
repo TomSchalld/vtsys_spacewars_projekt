@@ -6,7 +6,7 @@ $(document).ready(function() {
 		data : data,
 		success : function(result) {
 			
-			window.location.href = "./" + result;
+			window.location.href = "/" + result;
 			clearData();
 		}
 	});
