@@ -21,7 +21,6 @@ $(document).ready(function() {
 		type : "GET",
 		data : data,
 		success : function(result) {
-			window.location.href = "./menuHighscore.html";
 			console.log(result);
 			$('#highscore-table').dynatable();
 			clearData();
