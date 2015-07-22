@@ -30,6 +30,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	private List<SpaceshipIf> stock;
 	protected boolean playerReady;
 	private JSONObject roundReport;
+	private String team;
 
 	public Human(String username, String serveraddress)
 			throws MalformedURLException, RemoteException, NotBoundException {
@@ -40,8 +41,13 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		this.setStock(new ArrayList<SpaceshipIf>());
 		userCount++;
 		System.out.println(userCount);
+		this.team = this.username+ownerId;
 	}
-
+	@Override
+	public void setTeam(String team) throws RemoteException{
+		this.team = team;
+	}
+	
 	@Override
 	public void openGame(String gameName, int variation, int universeSize) throws RemoteException {
 
@@ -223,5 +229,10 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	public boolean isKI() throws RemoteException {
 	
 		return false;
+	}
+	@Override
+	public String getTeam() throws RemoteException {
+		// TODO Auto-generated method stub
+		return this.team;
 	}
 }
