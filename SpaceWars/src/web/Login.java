@@ -70,7 +70,7 @@ public class Login extends HttpServlet {
 				out.write(Highscore.getScores().toString());
 			}else if(request.getParameter("getUsername").equals("true")){
 				System.out.println(uname + " username request");
-				out.write("?username=" + uname);
+				out.write(uname);
 			} else {
 				out.write("username=" + uname);
 

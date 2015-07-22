@@ -5,11 +5,11 @@ $(document).ready(function() {
 		type : "GET",
 		data : data,
 		success : function(result) {
-			
-			window.location.href = "/" + result;
+			data.username = result;
+			//window.location.href = "/" + result;
 			clearData();
 		}
 	});
-	data.username = getUrlParameter("username");
+	//data.username = getUrlParameter("username");
 	$('#username').text("Commander " + data.username + " ist auf der Brücke")
 });
