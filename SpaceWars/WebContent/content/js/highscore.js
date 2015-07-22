@@ -19,8 +19,8 @@ function fillHighscoreTable(result) {
 function backToMenu() {
 	$.ajax({
 		url : "/SpaceWars/gaming",
-		type : "POST",
-		data : roundObject,
+		type : "GET",
+		data : data,
 		success : function(result) {
 			window.location.href = "./menuMain.html" + result;
 			// clearData();
