@@ -24,6 +24,13 @@ function setMarginsHighscore() {
 	leftMargin = (width - containerWidth) / 2;
 	$("#highscore").css("marginLeft", leftMargin);
 }
+function setMarginsEndreport() {
+	width = $(window).width();
+	containerWidth = $("#endreport").width();
+	leftMargin = (width - containerWidth) / 2;
+	$("#endreport").css("marginLeft", leftMargin);
+}
+
 function centerPopup() {
 	setMarginsShop();
 	setMarginsReport();
@@ -34,6 +41,7 @@ function centerPopup() {
 		setMarginsReport();
 		setMarginsWait();
 		setMarginsHighscore();
+		setMarginsEndreport();
 	});
 }
 

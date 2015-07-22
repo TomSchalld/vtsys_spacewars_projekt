@@ -618,28 +618,29 @@ function openReport() {
 
 }
 function closeReport() {
-
+	centerPopup();
 	$('#report').hide();
 	$('.tab-pane').removeClass('active');
 	$('.repButton').removeClass('active');
-	if (roundObject.endReport != null) {
-		$('#endRoundButton').attr('disabled', 'disabled'); 
+	if (roundObject.endReport === "null") {
+	} else {
+		centerPopup();
+		$('#endRoundButton').attr('disabled', 'disabled');
 		$('#endreport').show();
-		if (roundObject.endReport.winner[1] == null) {
-			$('#winner-text').text(
-					roundObject.endReport.winner[0]
-							+ " war zu stark und hat in "
-							+ roundObject.roundReport.roundCount
-							+ " Runden gewonnen");
-		} else {
-			$('#winner-text').text(
-					roundObject.endReport.winner[0] + "und"
-							+ roundObject.endReport.winner[1]
-							+ " waren zu stark und haben in "
-							+ roundObject.roundReport.roundCount
-							+ " Runden gewonnen");
+		/*
+		 * if (roundObject.endReport.winner[1] === null) {
+		 * $('#winner-text').text( roundObject.endReport.winner[0] + " war zu
+		 * stark und hat in " + roundObject.roundReport.roundCount + " Runden
+		 * gewonnen"); } else {
+		 */
+		$('#winner-text').text(
+				roundObject.endReport.winner[0] + "und"
+						+ roundObject.endReport.winner[1]
+						+ " waren zu stark und haben in "
+						+ roundObject.roundReport.roundCount
+						+ " Runden gewonnen");
 
-		}
+		// }
 
 	}
 }
