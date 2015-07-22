@@ -17,17 +17,30 @@ public class EndReport implements Report {
 	public List<Report> roundReports; 
 	public Client winner[];
 	public Client looser[];
+	public String gameName;
 	public EndReport(){
 		this.roundReports = new LinkedList<Report>();
 	}
 	public void addWinner(Client winner){
 		this.winner = new Client[1];
 		this.winner[0]=winner;
+		try {
+			this.gameName = winner.getGamePlaying().getGameName();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void addWinner(Client winner, Client otherWinner){
 		this.winner = new Client[2];
 		this.winner[0]=winner;
 		this.winner[1]=otherWinner;
+		try {
+			this.gameName = winner.getGamePlaying().getGameName();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void addLooser(Client looser){
 		this.looser = new Client[1];

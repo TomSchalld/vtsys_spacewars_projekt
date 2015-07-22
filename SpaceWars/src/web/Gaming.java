@@ -1,7 +1,14 @@
 package web;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -195,11 +202,13 @@ public class Gaming extends HttpServlet {
 				Thread.sleep(1000);
 				if (user.getGamePlaying().isGameFinished()) {
 					roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
+					this.generateHighscore(user.getGamePlaying().getEndreport());
 				}
 			}
-			//this.generateHighscore(user.getGamePlaying().getEndreport());
+			
 		} else {
 			roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
+			this.generateHighscore(user.getGamePlaying().getEndreport());
 		}
 		roundObject.put("playersCash", user.getCash());
 		roundObject.put("roundReport", user.getRoundReport());
@@ -239,7 +248,23 @@ public class Gaming extends HttpServlet {
 	}
 
 	private void generateHighscore(Report endreport) {
-
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		EndReport report = (EndReport)endreport;
+		JSONObject appendToFile = new JSONObject();
+		appendToFile.put("endReport", report.endReportToJSON());
+		appendToFile.put("gameName", report.gameName);
+		appendToFile.put("datum",dateFormat.format(cal.getTime()));
+		
+		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("../../WebContent/content/resources/highscore.json", true)))) {
+		    out.println(appendToFile.toString());
+		    out.flush();
+		    out.close();
+		    System.out.println("Highscore is written");
+		}catch (IOException e) {
+		    //exception handling left as an exercise for the reader
+		}
+		
 	}
 
 }
