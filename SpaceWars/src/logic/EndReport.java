@@ -48,7 +48,7 @@ public class EndReport implements Report {
 		JSONObject report = new JSONObject();
 		report.put("winner", this.winner);
 		report.put("looser", this.looser);
-		report.put("roundReports", this.roundReports);
+		//report.put("roundReports", this.roundReports);
 		report.put("roundCount", this.roundReports.size());
 		
 		
