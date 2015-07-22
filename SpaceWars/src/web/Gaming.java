@@ -202,12 +202,12 @@ public class Gaming extends HttpServlet {
 				Thread.sleep(1000);
 				if (user.getGamePlaying().isGameFinished()) {
 					roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
-					this.generateHighscore(user.getGamePlaying().getEndreport());
 				}
 			}
 			
 		} else {
 			roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
+			System.out.println("do highscore...");
 			this.generateHighscore(user.getGamePlaying().getEndreport());
 		}
 		roundObject.put("playersCash", user.getCash());
@@ -255,8 +255,8 @@ public class Gaming extends HttpServlet {
 		appendToFile.put("endReport", report.endReportToJSON());
 		appendToFile.put("gameName", report.gameName);
 		appendToFile.put("datum",dateFormat.format(cal.getTime()));
-		
-		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("../../WebContent/content/resources/highscore.json", true)))) {
+		//String path=Thread.currentThread().getContextClassLoader().getResource("com/youpackage/");
+		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("../content/resources/json/highscore.json", true)))) {
 		    out.println(appendToFile.toString());
 		    out.flush();
 		    out.close();
