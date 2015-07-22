@@ -76,7 +76,7 @@ function startPVP() {
 		type : "GET",
 		data : data,
 		success : function(result) {
-			alert(result);
+			//alert(result);
 			window.location.href = "./" + result;
 			clearData();
 		}
@@ -183,7 +183,7 @@ function setListOfOpenGames(result) {
 
 }
 function joinIt(gameName) {
-	alert("Join Game");
+	//alert("Join Game");
 	data.joinGame = true;
 	data.gameName = gameName;
 	$.ajax({
