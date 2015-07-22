@@ -14,10 +14,6 @@ function openHighscore() {
 
 }
 
-
-
-
-
 function closeHighscore() {
 	$('#highscore').hide();
 }
