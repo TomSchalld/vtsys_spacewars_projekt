@@ -39,9 +39,9 @@ var roundObject = {
 	"fightersToBuy" : 0,
 	"battlestarsToBuy" : 0,
 	"playersCash" : 0,
-	"endReport":null,
+	"endReport" : null,
 	"roundReport" : null,
-	"closeGame":false
+	"closeGame" : false
 };
 var bs = "Battlestar";
 var fight = "Fighter";
@@ -576,14 +576,14 @@ function noFight() {
 				&& roundObject.roundReport.gemini == null
 				&& roundObject.roundReport.tatooine == null) {
 			$('#noFight').show();
-			
+
 		} else {
 			$('#noFight').hide();
 			$('.tab-content').show();
 		}
 	}
 }
-function finishGame(){
+function finishGame() {
 	roundObject.closeGame = true;
 	$.ajax({
 		url : "/SpaceWars/gaming",
@@ -591,7 +591,7 @@ function finishGame(){
 		data : roundObject,
 		success : function(result) {
 			window.location.href = "./menuMain.html" + result;
-			//clearData();
+			// clearData();
 		}
 	});
 }
@@ -619,21 +619,28 @@ function openReport() {
 }
 function closeReport() {
 
-
-	
 	$('#report').hide();
 	$('.tab-pane').removeClass('active');
 	$('.repButton').removeClass('active');
-	if(roundObject.endReport != null){
+	if (roundObject.endReport != null) {
+		$('#shop').attr('disabled', 'disabled'); 
 		$('#endreport').show();
-		if(roundObject.endReport.winner[1]==null){
-		$('#winner-text').text(roundObject.endReport.winner[0]+" war zu stark und hat in "+roundObject.roundReport.roundCount+" Runden gewonnen");
-		}else{
-			$('#winner-text').text(roundObject.endReport.winner[0]+"und"+roundObject.endReport.winner[1]+" waren zu stark und haben in "+roundObject.roundReport.roundCount+" Runden gewonnen");
-			
+		if (roundObject.endReport.winner[1] == null) {
+			$('#winner-text').text(
+					roundObject.endReport.winner[0]
+							+ " war zu stark und hat in "
+							+ roundObject.roundReport.roundCount
+							+ " Runden gewonnen");
+		} else {
+			$('#winner-text').text(
+					roundObject.endReport.winner[0] + "und"
+							+ roundObject.endReport.winner[1]
+							+ " waren zu stark und haben in "
+							+ roundObject.roundReport.roundCount
+							+ " Runden gewonnen");
+
 		}
-		
-		
+
 	}
 }
 
