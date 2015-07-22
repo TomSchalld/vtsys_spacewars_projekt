@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
 		String uID = session.getId();
 		Client user = UserOnline.getUserById(uID);
 		if(user == null){
-			String site = "http://google.com" ;
+			String site = "http://www.google.com" ;
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site); 
 		}else{
