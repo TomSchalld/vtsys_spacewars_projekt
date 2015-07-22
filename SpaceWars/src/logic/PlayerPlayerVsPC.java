@@ -1,5 +1,7 @@
 package logic;
 
+import clientServer.Client;
+
 public class PlayerPlayerVsPC extends Game {
 
 	public PlayerPlayerVsPC(String gameName, int universeSize) {
@@ -8,7 +10,7 @@ public class PlayerPlayerVsPC extends Game {
 	}
 
 	@Override
-	protected void addPlayer(Player newPlayer) {
+	protected void addPlayer(Client newPlayer) {
 		if (this.players[0] == null) {
 			this.players[0] = newPlayer;
 		} else if (this.players[1] == null) {
@@ -17,12 +19,12 @@ public class PlayerPlayerVsPC extends Game {
 			this.players[2] = newPlayer;
 		}
 	}
-	public void addPlayers(Player one, Player two){
+	public void addPlayers(Client one, Client two){
 		one.setGamePlaying(this);
 		two.setGamePlaying(this);
 		this.addPlayer(one);
 		this.addPlayer(two);
-		this.addPlayer(new Computer(this));
+		this.addPlayer(new KI(this));
 	}
 
 	@Override
