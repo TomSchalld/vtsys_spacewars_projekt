@@ -73,6 +73,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 
 	@Override
 	public boolean playersReady() throws RemoteException {
+		if(this.players[0]==null||this.players[1]==null){
+			return false;
+		}
 		if (this.players[0].isPlayerReady() == true && this.players[1].isPlayerReady() == true) {
 			return true;
 		}

@@ -1,8 +1,10 @@
 package logic;
 
+import java.rmi.RemoteException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import clientServer.Client;
@@ -46,9 +48,19 @@ public class EndReport implements Report {
 	
 	public JSONObject endReportToJSON(){
 		JSONObject report = new JSONObject();
-		report.put("winner", this.winner);
-		report.put("looser", this.looser);
-		//report.put("roundReports", this.roundReports);
+		try {
+			report.put("winner", this.winner[0].getUsername());
+		} catch (JSONException | RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			report.put("looser", this.looser[0].getUsername());
+		} catch (JSONException | RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		report.put("roundReports", this.roundReports);
 		report.put("roundCount", this.roundReports.size());
 		
 		
