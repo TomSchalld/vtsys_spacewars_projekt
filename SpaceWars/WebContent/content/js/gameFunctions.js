@@ -603,6 +603,15 @@ function openReport() {
 	centerPopup();
 
 }
+function closeReport() {
+	$('#report').hide();
+	$('.tab-pane').removeClass('active');
+	$('.repButton').removeClass('active');
+	if(roundObject.endReport != null){
+		
+	}
+}
+
 $(document).ready(function() {
 	init();
 });
