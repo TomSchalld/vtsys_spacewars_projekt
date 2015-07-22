@@ -1,6 +1,7 @@
 package web;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
 
 import clientServer.Client;
 import logic.Battlestar;
@@ -202,12 +205,12 @@ public class Gaming extends HttpServlet {
 				Thread.sleep(1000);
 				if (user.getGamePlaying().isGameFinished()) {
 					roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
-					this.generateHighscore(user.getGamePlaying().getEndreport());
 				}
 			}
 			
 		} else {
 			roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
+			System.out.println("do highscore...");
 			this.generateHighscore(user.getGamePlaying().getEndreport());
 		}
 		roundObject.put("playersCash", user.getCash());
@@ -256,13 +259,17 @@ public class Gaming extends HttpServlet {
 		appendToFile.put("gameName", report.gameName);
 		appendToFile.put("datum",dateFormat.format(cal.getTime()));
 		
-		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("../../WebContent/content/resources/highscore.json", true)))) {
+		String path = this.getServletContext().getRealPath("/content/resources/json/");
+		path+="//highscore.json";
+		System.out.println(path);
+		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
 		    out.println(appendToFile.toString());
 		    out.flush();
 		    out.close();
 		    System.out.println("Highscore is written");
 		}catch (IOException e) {
 		    //exception handling left as an exercise for the reader
+			e.printStackTrace();
 		}
 		
 	}
