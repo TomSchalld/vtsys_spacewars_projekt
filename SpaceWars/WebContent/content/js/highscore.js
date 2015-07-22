@@ -16,6 +16,18 @@ function fillHighscoreTable(result) {
 						+ "</td></tr>");
 	});
 }
+function backToMenu() {
+	$.ajax({
+		url : "/SpaceWars/gaming",
+		type : "POST",
+		data : roundObject,
+		success : function(result) {
+			window.location.href = "./menuMain.html" + result;
+			// clearData();
+		}
+	});
+	
+}
 $(document).ready(function() {
 
 	data.highscore = true;
