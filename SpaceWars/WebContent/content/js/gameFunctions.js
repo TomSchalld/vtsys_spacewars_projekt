@@ -632,9 +632,9 @@ function closeReport() {
 
 		$('#winner-text').text(
 					roundObject.endReport.winner
-							+ " war einfach zu stark und hat in "
+							+ " nur  "
 							+ roundObject.endReport.roundCount
-							+ " Runden gewonnen!");
+							+ " Runden zum Sieg, Herzlichen Glückwunsch!");
 		
 
 	}
