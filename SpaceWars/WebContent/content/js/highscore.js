@@ -1,11 +1,3 @@
-/*var highscoreObject = [ {
-	"roundCound" : 0,
-	"newBattlestar" : 0,
-	"sum" : 0
-}, {
-
-} ];*/
-
 function openHighscore() {
 	data.highscore = true;
 	$.ajax({
@@ -21,6 +13,11 @@ function openHighscore() {
 	
 
 }
+
+
+
+
+
 function closeHighscore() {
 	$('#highscore').hide();
 }
