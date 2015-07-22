@@ -262,6 +262,7 @@ public class Gaming extends HttpServlet {
 			}
 		}
 		score.put("roundCount", report.roundReports.size());
+		score.put("winner", report.getWinner());
 		score.put("gameName", report.gameName);
 		score.put("datum", dateFormat.format(cal.getTime()));
 		score.put("defeatedShipCount", sumOfDefeatedShipsInGame);

@@ -58,7 +58,21 @@ public class EndReport implements Report {
 	public void addReport(Report report) {
 		this.addRoundReport((RoundReport)report);
 	}
-	
+	public String getWinner(){
+		String winner = "";
+		
+		try {
+			for(Client c: this.winner){
+				winner += c.getUsername()+", ";
+			}
+			
+		} catch (JSONException | RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return winner;
+
+	}
 	public JSONObject endReportToJSON(){
 		JSONObject report = new JSONObject();
 		String winner = "Gewinner: ";
