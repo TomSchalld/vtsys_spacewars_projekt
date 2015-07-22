@@ -7,6 +7,7 @@ $(document).ready(function() {
 			"getUsername" : true
 		},
 		success : function(result) {
+			
 			window.location.href = "./" + result;
 			clearData();
 		}
