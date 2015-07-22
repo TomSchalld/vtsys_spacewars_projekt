@@ -633,7 +633,7 @@ function closeReport() {
 		$('#winner-text').text(
 					roundObject.endReport.winner
 							+ " war einfach zu stark und hat in "
-							+ roundObject.roundReport.roundCount
+							+ roundObject.endReport.roundCount
 							+ " Runden gewonnen!");
 		
 
