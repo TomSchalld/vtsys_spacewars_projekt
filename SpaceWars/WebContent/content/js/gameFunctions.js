@@ -625,9 +625,7 @@ function closeReport() {
 	if (roundObject.endReport === "null") {
 	} else {
 		centerPopup();
-		$('#endRoundButton').attr('disabled', 'disabled');
-		$('#openShopButton').attr('disabled', 'disabled');
-		$('#openReportButton').attr('disabled', 'disabled');
+		$('.disableButton').attr('disabled', 'disabled');
 		$('#endreport').show();
 
 		$('#winner-text').text(
