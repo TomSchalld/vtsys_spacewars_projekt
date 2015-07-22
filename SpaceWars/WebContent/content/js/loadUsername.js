@@ -7,7 +7,7 @@ $(document).ready(function() {
 		success : function(result) {
 			
 			data.username = result;
-			$('#username').text("Commander " + data.username + " ist auf der Brücke")
+			$('#username').text("Commander " + data.username + " ist auf der Brücke");
 			//window.location.href = "/" + result;
 			clearData();
 		}
