@@ -632,7 +632,7 @@ function closeReport() {
 		 * $('#winner-text').text( roundObject.endReport.winner[0] + " war zu
 		 * stark und hat in " + roundObject.roundReport.roundCount + " Runden
 		 * gewonnen"); } else {
-		 */
+		 
 		$('#winner-text').text(
 				roundObject.endReport.winner[0] + "und"
 						+ roundObject.endReport.winner[1]
@@ -640,7 +640,7 @@ function closeReport() {
 						+ roundObject.roundReport.roundCount
 						+ " Runden gewonnen");
 
-		// }
+		// }*/
 
 	}
 }
