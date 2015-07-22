@@ -263,6 +263,7 @@ public class Gaming extends HttpServlet {
 		    System.out.println("Highscore is written");
 		}catch (IOException e) {
 		    //exception handling left as an exercise for the reader
+			e.printStackTrace();
 		}
 		
 	}
