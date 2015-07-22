@@ -626,6 +626,8 @@ function closeReport() {
 	} else {
 		centerPopup();
 		$('#endRoundButton').attr('disabled', 'disabled');
+		$('#openShopButton').attr('disabled', 'disabled');
+		$('#openReport').attr('disabled', 'disabled');
 		$('#endreport').show();
 		/*
 		 * if (roundObject.endReport.winner[1] === null) {

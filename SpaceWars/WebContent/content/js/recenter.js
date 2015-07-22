@@ -36,6 +36,7 @@ function centerPopup() {
 	setMarginsReport();
 	setMarginsWait();
 	setMarginsHighscore();
+	setMarginsEndreport();
 	$(window).resize(function() {
 		setMarginsShop();
 		setMarginsReport();
