@@ -1,9 +1,21 @@
+/*var highscoreObject = [ {
+	"roundCound" : 0,
+	"newBattlestar" : 0,
+	"sum" : 0
+}, {
+
+} ];*/
 
 function openHighscore() {
-	$('#my-table').dynatable();
+	$('#sorting-example').dynatable();
 	$('#highscore').show();
-	
+
 }
 function closeHighscore() {
 	$('#highscore').hide();
 }
+
+$(document).ready(function() {
+	$('#sorting-example').dynatable();
+
+});

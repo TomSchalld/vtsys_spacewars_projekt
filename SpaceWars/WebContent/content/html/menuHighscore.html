@@ -42,34 +42,51 @@
 		</div>
 	</nav>
 
-	<div class="menu-box">
 
-		<div class="btn-group corners">
-			<button class="btn btn-lg btn-primary btn-block corners"
-				type="button" onclick="startPVPC()">Scharmützel</button>
-			<button type="button"
-				class="btn btn-lg btn-primary btn-block dropdown-toggle corners"
-				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mehrspieler</button>
-			<ul class="btn btn-lg btn-block dropdown-menu btn-transparent">
-				<li><button class="btn btn-lg btn-primary btn-block corners"
-						type="button" onclick="openCreateGame()">Spiel erstellen</button></li>
-				<li><button class="btn btn-lg btn-primary btn-block corners"
-						type="button" onclick="joinGame()">Spiel beitreten</button></li>
-			</ul>
-			<button class="btn btn-lg btn-primary btn-block corners"
-				type="button" onclick="openHighscore()">Highscore</button>
-			<button class="btn btn-lg btn-primary btn-block corners"
-				type="button" onclick="showSettings()">Einstellungen</button>
-			<button class="btn btn-lg btn-primary btn-block corners"
-				type="button" onclick="logout()">Spiel verlassen</button>
+		<div id="highscore" class="fade in menu-box game-box ">
 
 
+			<div class="row">
+
+				<div class="col-md-12">
+					<h2>Warten auf Gegener</h2>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table id="sorting-example">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th data-dynatable-sorts="computerYear">Year</th>
+								<th style="display: none">Computer Year</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Steve</td>
+								<td>Two Thousand and Thirteen</td>
+								<td>2013</td>
+							</tr>
+							<tr>
+								<td>C</td>
+								<td>Two Thousand and Thirteen</td>
+								<td>2016</td>
+							</tr>
+							<tr>
+								<td>A</td>
+								<td>Two Thousand and Thirteen</td>
+								<td>2019</td>
+							</tr>
+						</tbody>
+					</table>
 
 
-
+				</div>
+			</div>
 
 		</div>
-
 
 
 
