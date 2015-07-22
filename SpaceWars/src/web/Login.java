@@ -68,6 +68,8 @@ public class Login extends HttpServlet {
 			} else if (request.getParameter("highscore").equals("true")) {
 				response.setContentType("application/json");
 				out.write(Highscore.getScores().toString());
+			}else if(request.getParameter("getUsername").equals("true")){
+				out.write("?username=" + uname);
 			} else {
 				out.write("username=" + uname);
 
