@@ -15,6 +15,8 @@ public interface UniverseIf extends Remote {
 	PlanetIf getRandomPlanet() throws RemoteException;
 
 	Map<String, PlanetIf> getPlanets() throws RemoteException;
+
+	public void killUniverse() throws RemoteException;
 	
 
 }

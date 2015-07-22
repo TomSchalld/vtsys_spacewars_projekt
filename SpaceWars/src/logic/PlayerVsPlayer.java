@@ -24,9 +24,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	protected int round;
 	private static int gameCount = 0;
 	protected Report endReport;
-	private int variation; //0 = Player vs. Player 
-							//1= Player vs. PC
-							//3= Player, Player vs PC
+	private int variation; // 0 = Player vs. Player
+							// 1= Player vs. PC
+							// 3= Player, Player vs PC
 
 	public PlayerVsPlayer(String gameName, int universeSize, int variation) throws RemoteException {
 		this.gameName = gameName;
@@ -38,10 +38,12 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		this.players = new Client[2];
 		this.variation = variation;
 	}
+
 	@Override
 	public int getVariation() throws RemoteException {
 		return variation;
 	}
+
 	@Override
 	public void setVariation(int variation) throws RemoteException {
 		this.variation = variation;
@@ -84,19 +86,20 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 
 	@Override
 	public RoundReport endRound() throws RemoteException {
-		int planetsPOne=0;
-		int planetsPTwo=0;
-		System.out.println("Round End ###########################################################################\n\n\n");
+		int planetsPOne = 0;
+		int planetsPTwo = 0;
+		System.out
+				.println("Round End ###########################################################################\n\n\n");
 		if (this.playersReady()) {
 			System.out.println("nach if");
 			RoundReport report = new RoundReport(this.round);
 			Map<String, PlanetIf> planets = this.getUniverse().getPlanets();
 			for (PlanetIf p : planets.values()) {
-				System.out.println(p.getName()+"wird auf kampf uberpruft");
+				System.out.println(p.getName() + "wird auf kampf uberpruft");
 				if (p.isFightAfterRoundEnded()) {
 					report.addReport(p.fight());
-				}else{
-					System.out.println(p.getName()+" kein kampf hat stattgefunden");
+				} else {
+					System.out.println(p.getName() + " kein kampf hat stattgefunden");
 					p.roundEnd();
 				}
 			}
@@ -108,14 +111,14 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 
 			this.setPlayersUnready();
 			for (Client c : this.players) {
-				planetsPOne=0;
-				planetsPTwo=0;
+				planetsPOne = 0;
+				planetsPTwo = 0;
 				c.setRoundReport(report.exportRoundToJSON());
 				for (PlanetIf p : this.getUniverse().getPlanets().values()) {
 					if (p.getPlanetOwner() != null) {
-						if(p.getPlanetOwner().equals(this.players[0])){
+						if (p.getPlanetOwner().equals(this.players[0])) {
 							this.players[0].setAmountOfPlanets(++planetsPOne);
-						}else{
+						} else {
 							this.players[1].setAmountOfPlanets(++planetsPTwo);
 						}
 						if (p.getPlanetOwner().equals(c)) {
@@ -126,17 +129,19 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 				}
 			}
 			this.round++;
-			System.out.println(this.players[0].getUsername()+" anzahl planeten = "+this.players[0].getAmountOfPlanets());
-			System.out.println(this.players[1].getUsername()+" anzahl planeten = "+this.players[1].getAmountOfPlanets());
-			System.out.println("Universe size is: "+this.getUniverse().getPlanets().keySet().size());
-			EndReport er = (EndReport)this.getEndreport();
+			System.out.println(
+					this.players[0].getUsername() + " anzahl planeten = " + this.players[0].getAmountOfPlanets());
+			System.out.println(
+					this.players[1].getUsername() + " anzahl planeten = " + this.players[1].getAmountOfPlanets());
+			System.out.println("Universe size is: " + this.getUniverse().getPlanets().keySet().size());
+			EndReport er = (EndReport) this.getEndreport();
 			if (this.players[0].getAmountOfPlanets() == this.getUniverse().getPlanets().keySet().size()) {
 				this.gameFinished = true;
 				this.winner = this.players[0];
-				
+
 				er.addWinner(players[0]);
 				er.addLooser(this.players[1]);
-				System.out.println("game is over. Winner is: "+this.players[0].getUsername());
+				System.out.println("game is over. Winner is: " + this.players[0].getUsername());
 			} else if (this.players[1].getAmountOfPlanets() == this.getUniverse().getPlanets().keySet().size()) {
 				this.gameFinished = true;
 				this.winner = this.players[1];
@@ -163,12 +168,12 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	public boolean isGameFinished() throws RemoteException {
 		return this.gameFinished;
 	}
-	
+
 	@Override
 	public Report getEndreport() throws RemoteException {
 		return this.endReport;
 	}
-	
+
 	@Override
 	public String getGameName() throws RemoteException {
 		return this.gameName;
@@ -176,7 +181,15 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 
 	@Override
 	public boolean killAllReferences() throws RemoteException {
-		return false;
+		this.winner = null;
+
+		for (Client c : this.players) {
+			c.setGamePlaying(null);
+			c = null;
+		}
+		this.universe = null;
+		this.endReport = null;
+		return true;
 	}
 
 	@Override
@@ -189,6 +202,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		// TODO Auto-generated method stub
 		return this.winner.getUsername();
 	}
+
 	@Override
 	public String getHostName() throws RemoteException {
 		// TODO Auto-generated method stub
