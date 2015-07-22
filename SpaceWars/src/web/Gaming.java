@@ -23,15 +23,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 import clientServer.Client;
+import logic.BattleReport;
 import logic.Battlestar;
 import logic.EndReport;
 import logic.Fighter;
 import logic.Game;
 import logic.PlanetIf;
 import logic.Report;
+import logic.RoundReport;
 import logic.SpaceshipIf;
 import logic.UniverseIf;
 
@@ -78,14 +78,14 @@ public class Gaming extends HttpServlet {
 
 			response.getWriter().write(roundObject.toString());
 			response.getWriter().close();
-		}else{
+		} else {
 			System.out.println("User is closing game...");
 			Client user = UserOnline.getUserById(request.getRequestedSessionId());
-			if(user.getGamePlaying()!=null){
+			if (user.getGamePlaying() != null) {
 				user.closeGame();
 			}
 			response.setContentType("text/plain;charset=UTF-8");
-			response.getWriter().write("?username="+user.getUsername());
+			response.getWriter().write("?username=" + user.getUsername());
 			response.getWriter().close();
 		}
 
@@ -207,7 +207,7 @@ public class Gaming extends HttpServlet {
 					roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
 				}
 			}
-			
+
 		} else {
 			roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
 			System.out.println("do highscore...");
@@ -253,24 +253,19 @@ public class Gaming extends HttpServlet {
 	private void generateHighscore(Report endreport) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
-		EndReport report = (EndReport)endreport;
-		JSONObject appendToFile = new JSONObject();
-		appendToFile.put("endReport", report.endReportToJSON());
-		appendToFile.put("gameName", report.gameName);
-		appendToFile.put("datum",dateFormat.format(cal.getTime()));
-		
-		String path = this.getServletContext().getRealPath("/content/resources/json/");
-		path+="//highscore.json";
-		System.out.println(path);
-		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
-		    out.println(appendToFile.toString());
-		    out.flush();
-		    out.close();
-		    System.out.println("Highscore is written");
-		}catch (IOException e) {
-		    //exception handling left as an exercise for the reader
-			e.printStackTrace();
+		EndReport report = (EndReport) endreport;
+		JSONObject score = new JSONObject();
+		int sumOfDefeatedShipsInGame = 0;
+		for (Report rr : report.roundReports) {
+			for (BattleReport br : ((RoundReport) rr).getReports().values()) {
+				sumOfDefeatedShipsInGame += br.getDefeatedShips().size();
+			}
 		}
+		score.put("roundCount", report.roundReports.size());
+		score.put("gameName", report.gameName);
+		score.put("datum", dateFormat.format(cal.getTime()));
+		score.put("defeatedShipCount", sumOfDefeatedShipsInGame);
+		Highscore.addHighscore(score);
 		
 	}
 

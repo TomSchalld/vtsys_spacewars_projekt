@@ -58,7 +58,9 @@ public class Login extends HttpServlet {
 			UserOnline.getUserById(uID).joinGame(request.getParameter("gameName"));
 		} else if (request.getParameter("getGames").equals("true")) {
 			getGamesFromLobby(response, out);
-
+		}else if(request.getParameter("highscore").equals("true")){
+			out.write(Highscore.getScores().toString());
+			
 		} else {
 			out.write("username=" + uname);
 
@@ -75,6 +77,7 @@ public class Login extends HttpServlet {
 	 * @throws RemoteException
 	 * @throws JSONException
 	 */
+	
 	private void getGamesFromLobby(HttpServletResponse response, PrintWriter out)
 			throws MalformedURLException, RemoteException, JSONException {
 		System.out.println("Get Games");
@@ -87,9 +90,11 @@ public class Login extends HttpServlet {
 			Map<String, Game> games = gameServer.gamesInLobby();
 			for (String s : games.keySet()) {
 				val = new JSONObject();
-				if (games.get(s) instanceof PlayerVsPlayer) {
+				if (games.get(s).getVariation() == 0) {
 					val.put("gameMode", "PvP");
-				} else {
+				} else if (games.get(s).getVariation() == 1) {
+					val.put("gameMode", "PvPC");
+				} else if (games.get(s).getVariation() == 2) {
 					val.put("gameMode", "PPvC");
 				}
 				val.put("host", games.get(s).getHostName());

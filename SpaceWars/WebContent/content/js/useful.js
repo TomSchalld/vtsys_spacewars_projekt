@@ -5,6 +5,7 @@ var data = {
 	"joinGame" : false,
 	"getGames" : false,
 	"gameData" : null,
+	"highscore":false,
 	"gameName" : "",
 	"gamePw" : "",
 	"race" : "",
