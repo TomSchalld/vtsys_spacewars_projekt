@@ -202,6 +202,7 @@ function clearData() {
 	data.createGame = false;
 	data.joinGame = false;
 	data.getGames = false;
+	data.highscore = false;
 }
 function chooseRace(race) {
 	data.race = race;

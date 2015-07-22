@@ -7,8 +7,18 @@
 } ];*/
 
 function openHighscore() {
-	$('#sorting-example').dynatable();
-	$('#highscore').show();
+	data.highscore = true;
+	$.ajax({
+		url : "/SpaceWars/login",
+		type : "GET",
+		data : data,
+		success : function(result) {
+			window.location.href = "./menuHighscore.html";
+			console.log(result)
+			clearData();
+		}
+	});
+	
 
 }
 function closeHighscore() {
@@ -16,6 +26,6 @@ function closeHighscore() {
 }
 
 $(document).ready(function() {
-	$('#sorting-example').dynatable();
+	$('#highscore-table').dynatable();
 
 });

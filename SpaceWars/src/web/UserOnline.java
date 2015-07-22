@@ -15,7 +15,10 @@ public class UserOnline {
 		return false;
 	}
 	public static Client getUserById(String uID){
-		return user.get(uID);
+		if(isUserExisting(uID)){
+			return user.get(uID);
+		}
+		return null;
 	}
 	public static void addUser(String uID, Client newUser) {
 		user.put(uID, newUser);
