@@ -623,7 +623,7 @@ function closeReport() {
 	$('.tab-pane').removeClass('active');
 	$('.repButton').removeClass('active');
 	if (roundObject.endReport != null) {
-		$('#shop').attr('disabled', 'disabled'); 
+		$('#endRoundButton').attr('disabled', 'disabled'); 
 		$('#endreport').show();
 		if (roundObject.endReport.winner[1] == null) {
 			$('#winner-text').text(
