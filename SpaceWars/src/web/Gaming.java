@@ -256,7 +256,7 @@ public class Gaming extends HttpServlet {
 		appendToFile.put("gameName", report.gameName);
 		appendToFile.put("datum",dateFormat.format(cal.getTime()));
 		String path = this.getServletContext().getRealPath("/content/resources/json/");
-		path+="highscore.json";
+		path+="//highscore.json";
 		System.out.println(path);
 		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
 		    out.println(appendToFile.toString());
