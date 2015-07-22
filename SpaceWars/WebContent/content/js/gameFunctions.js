@@ -627,22 +627,15 @@ function closeReport() {
 		centerPopup();
 		$('#endRoundButton').attr('disabled', 'disabled');
 		$('#openShopButton').attr('disabled', 'disabled');
-		$('#openReport').attr('disabled', 'disabled');
+		$('#openReportButton').attr('disabled', 'disabled');
 		$('#endreport').show();
-		/*
-		 * if (roundObject.endReport.winner[1] === null) {
-		 * $('#winner-text').text( roundObject.endReport.winner[0] + " war zu
-		 * stark und hat in " + roundObject.roundReport.roundCount + " Runden
-		 * gewonnen"); } else {
-		 
-		$('#winner-text').text(
-				roundObject.endReport.winner[0] + "und"
-						+ roundObject.endReport.winner[1]
-						+ " waren zu stark und haben in "
-						+ roundObject.roundReport.roundCount
-						+ " Runden gewonnen");
 
-		// }*/
+		$('#winner-text').text(
+					roundObject.endReport.winner
+							+ " war einfach zu stark und hat in "
+							+ roundObject.endReport.roundCount
+							+ " Runden gewonnen!");
+		
 
 	}
 }
