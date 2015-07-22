@@ -2,7 +2,7 @@ body {
  /* padding-top: 40px;
   padding-bottom: 40px;*/
 
-  background: url(../resources/images/bg/bg.jpg) no-repeat center center fixed;
+  background: rgba(0, 0, 0, 1) url(../resources/images/bg/bg.jpg) no-repeat center center fixed;
 }
 
 .form-signin {
