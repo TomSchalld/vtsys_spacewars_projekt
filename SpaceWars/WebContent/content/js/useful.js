@@ -31,13 +31,8 @@ function closeWait() {
 
 }
 
-function openHighscore() {
-	noFight();
-	$('#highscore').show();
-}
-function closeHighscore() {
-	$('#highscore').hide();
-}
+
+
 function chooseUniverse(size) {
 	data.universeSize = size;
 	data.createGame = true;

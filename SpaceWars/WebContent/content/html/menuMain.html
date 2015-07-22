@@ -18,7 +18,7 @@
 <!-- Custom styles for this template -->
 <link href="../css/signin.css" rel="stylesheet">
 <link href="../css/styles.css" rel="stylesheet">
-
+<link href="../css/jquery.dynatable.css" rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -45,7 +45,8 @@
 	<div class="menu-box">
 
 		<div class="btn-group corners">
-			<button class="btn btn-lg btn-primary btn-block corners" type="button" onclick="startPVPC()">Scharmützel</button>
+			<button class="btn btn-lg btn-primary btn-block corners"
+				type="button" onclick="startPVPC()">Scharmützel</button>
 			<button type="button"
 				class="btn btn-lg btn-primary btn-block dropdown-toggle corners"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mehrspieler</button>
@@ -55,12 +56,12 @@
 				<li><button class="btn btn-lg btn-primary btn-block corners"
 						type="button" onclick="joinGame()">Spiel beitreten</button></li>
 			</ul>
-			<button class="btn btn-lg btn-primary btn-block corners" type="button"
-				onclick="openHighscore()">Highscore</button>
-			<button class="btn btn-lg btn-primary btn-block corners" type="button"
-				onclick="showSettings()">Einstellungen</button>
-			<button class="btn btn-lg btn-primary btn-block corners" type="button"
-				onclick="logout()">Spiel verlassen</button>
+			<button class="btn btn-lg btn-primary btn-block corners"
+				type="button" onclick="openHighscore()">Highscore</button>
+			<button class="btn btn-lg btn-primary btn-block corners"
+				type="button" onclick="showSettings()">Einstellungen</button>
+			<button class="btn btn-lg btn-primary btn-block corners"
+				type="button" onclick="logout()">Spiel verlassen</button>
 
 
 
@@ -69,38 +70,45 @@
 
 		</div>
 		<!----------------------------------------------------------Highscore---------------------------------------------------------->
-	<div id="highscore" class="fade in menu-box game-box popup">
+		<div id="highscore" class="fade in menu-box game-box popup">
 
 
-		<div class="row">
+			<div class="row">
 
-			<div class="col-md-12">
-				<h2>Warten auf Gegener</h2>
-				<button type="button" class="close" aria-label="Schließen"
+				<div class="col-md-12">
+					<h2>Warten auf Gegener</h2>
+					<button type="button" class="close" aria-label="Schließen"
 						onclick="closeHighscore()">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3 belongs"></div>
-			<div class="col-md-6 belongs">
-				<img src="../resources/images/werbung.png" alt="..."
-					class="img-thumbnail">
-			</div>
-			<div class="col-md-3 belongs"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				Während Sie warten, nutzen Sie die Zeit und schauen Sie doch einmal
-				bei einem unserer Sponsorn vorbei. 
+			<div class="row">
+				<div class="col-md-12">
+					<table id="sorting-example">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th data-dynatable-sorts="computerYear">Year</th>
+								<th style="display: none">Computer Year</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Steve</td>
+								<td>Two Thousand and Thirteen</td>
+								<td>2013</td>
+							</tr>
+						</tbody>
+					</table>
 
+
+				</div>
 			</div>
+
 		</div>
 
-	</div>
-		
-	
+
 
 
 
@@ -115,5 +123,6 @@
 		<script src="../js/loadUsername.js"></script>
 		<script src="../js/recenter.js"></script>
 		<script src="../js/highscore.js"></script>
+		<script src="../js/jquery.dynatable.js"></script>
 </body>
 </html>
