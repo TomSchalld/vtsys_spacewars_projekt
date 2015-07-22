@@ -1,6 +1,7 @@
 package web;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
 
 import clientServer.Client;
 import logic.Battlestar;
@@ -255,7 +258,9 @@ public class Gaming extends HttpServlet {
 		appendToFile.put("endReport", report.endReportToJSON());
 		appendToFile.put("gameName", report.gameName);
 		appendToFile.put("datum",dateFormat.format(cal.getTime()));
-		String path = this.getServletContext().getRealPath("/content/resources/json/");
+		File f = new File("highscore.json");
+		System.out.println(f.getAbsolutePath());
+		/*String path = this.getServletContext().getRealPath("/content/resources/json/");
 		path+="//highscore.json";
 		System.out.println(path);
 		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
@@ -266,7 +271,7 @@ public class Gaming extends HttpServlet {
 		}catch (IOException e) {
 		    //exception handling left as an exercise for the reader
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 
