@@ -54,7 +54,7 @@ public class EndReport implements Report {
 			for(Client c: this.winner){
 				winner += c.getUsername()+", ";
 			}
-			winner +=" Herzlichen Glueckwunsch.";
+			
 			report.put("winner", winner);
 		} catch (JSONException | RemoteException e) {
 			// TODO Auto-generated catch block
@@ -64,7 +64,7 @@ public class EndReport implements Report {
 			for(Client c: this.looser){
 				looser += c.getUsername()+", ";
 			}
-			looser +=" vielleicht beim nachsten Mal.";
+			
 			report.put("looser", looser);
 		} catch (JSONException | RemoteException e) {
 			// TODO Auto-generated catch block
