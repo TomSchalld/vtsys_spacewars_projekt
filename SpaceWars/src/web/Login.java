@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.json.*;
 
+import clientServer.Client;
 import clientServer.GameServer;
 import clientServer.Server;
 import logic.Game;
@@ -47,26 +48,34 @@ public class Login extends HttpServlet {
 		response.setContentType("text/plain;charset=UTF-8");
 		HttpSession session = request.getSession();
 		String uID = session.getId();
-		String uname = request.getParameter("username");
-		PrintWriter out = response.getWriter();
-		if (request.getParameter("createGame").equals("true")) {
-			createGame(request, uID, out);
-		} else if (request.getParameter("logout").equals("true")) {
-			logout(session, uname);
-		} else if (request.getParameter("joinGame").equals("true")) {
-			out.write("?username=" + uname);
-			UserOnline.getUserById(uID).joinGame(request.getParameter("gameName"));
-		} else if (request.getParameter("getGames").equals("true")) {
-			getGamesFromLobby(response, out);
-		}else if(request.getParameter("highscore").equals("true")){
-			out.write(Highscore.getScores().toString());
-			
-		} else {
-			out.write("username=" + uname);
+		Client user = UserOnline.getUserById(uID);
+		if(user == null){
+			String site = "http://google.com" ;
+			response.setStatus(response.SC_MOVED_TEMPORARILY);
+			response.setHeader("Location", site); 
+		}else{
+			String uname = user.getUsername();
+			PrintWriter out = response.getWriter();
+			if (request.getParameter("createGame").equals("true")) {
+				createGame(request, uID, out);
+			} else if (request.getParameter("logout").equals("true")) {
+				logout(session, uname);
+			} else if (request.getParameter("joinGame").equals("true")) {
+				out.write("?username=" + uname);
+				UserOnline.getUserById(uID).joinGame(request.getParameter("gameName"));
+			} else if (request.getParameter("getGames").equals("true")) {
+				getGamesFromLobby(response, out);
+			} else if (request.getParameter("highscore").equals("true")) {
+				response.setContentType("application/json");
+				out.write(Highscore.getScores().toString());
+			} else {
+				out.write("username=" + uname);
 
+			}
+			System.out.println(session.getId());
+			out.flush();
 		}
-		System.out.println(session.getId());
-		out.flush();
+		
 		// out.close();
 	}
 
