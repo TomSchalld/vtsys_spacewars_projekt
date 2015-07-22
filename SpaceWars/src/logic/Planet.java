@@ -128,6 +128,7 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 				this.shipsTryToOrbit.add(newShip);
 				this.setFightAfterRoundEnded(true);
 				System.out.println(newShip.shipInfo() + " zu tryTo Orbit hinzugefügt planet: " + this.getName());
+
 			}
 
 		}
