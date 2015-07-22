@@ -33,7 +33,6 @@ function closeWait() {
 }
 
 
-
 function chooseUniverse(size) {
 	data.universeSize = size;
 	data.createGame = true;

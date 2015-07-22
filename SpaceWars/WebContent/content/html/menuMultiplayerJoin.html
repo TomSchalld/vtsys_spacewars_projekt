@@ -46,25 +46,33 @@
 
 		<div class="row">
 			<div class="col-md-12">
-				<h2>Lobby</h2>
+				<h2>
+					Lobby
+					<button type="button" class="close" aria-label="Schließen"
+						onclick="openHighscore()">
+						<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+					</button>
+				</h2>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12 yscroll">
-				<table id = "tableOfOpenGames" class="table table-hover">
-					<tr>
-						<th>Spielname</th>
-						<th>Ersteller</th>
-						<th>Spieltyp</th>
-						<th>Kartentyp</th>
-						<th></th>
-					</tr>
-<!-- 					<tr> -->
-<!-- 						<td>Testspiel</td> -->
-<!-- 						<td>Fabian</td> -->
-<!-- 						<td>Mensch gegen Computer</td> -->
-<!-- 						<td>Großes Universum</td> -->
-<!-- 						<td><button class="btn btn-default btn-sm" type="button">Beitreten</button></td></tr> -->
+			<div class="col-md-12">
+
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Spiel Name</th>
+							<th>Spielname</th>
+							<th>Ersteller</th>
+							<th>Spieltyp</th>
+							<th>Kartentyp</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="tableOfOpenGames">
+					
+					</tbody>
+
 				</table>
 			</div>
 		</div>
