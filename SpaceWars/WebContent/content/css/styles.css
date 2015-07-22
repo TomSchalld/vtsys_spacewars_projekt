@@ -119,3 +119,14 @@ img {
 .end-box {
 	background-image: url(../resources/images/bg/bg-game.jpg);
 }
+thead{
+   background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0;
+    border-top: 1px solid #68838b;
+    line-height: 1.42857;
+    padding: 8px;
+    vertical-align: middle;
+    color: black;
+}
+.dynatable-sort-header{
+	 color: black;
+}

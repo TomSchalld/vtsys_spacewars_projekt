@@ -1,17 +1,14 @@
-/*var highscoreObject = [ {
-	"roundCound" : 0,
-	"newBattlestar" : 0,
-	"sum" : 0
-}, {
-
-} ];*/
-
 function openHighscore() {
 	
 	window.location.href = "./menuHighscore.html";
 	
 
 }
+
+
+
+
+
 function closeHighscore() {
 	$('#highscore').hide();
 }
