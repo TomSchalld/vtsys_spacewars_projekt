@@ -48,14 +48,24 @@ public class EndReport implements Report {
 	
 	public JSONObject endReportToJSON(){
 		JSONObject report = new JSONObject();
+		String winner = "Gewinner: ";
+		String looser = "Verlierer: ";
 		try {
-			report.put("winner", this.winner[0].getUsername());
+			for(Client c: this.winner){
+				winner += c.getUsername()+", ";
+			}
+			winner +=" Herzlichen Glueckwunsch.";
+			report.put("winner", winner);
 		} catch (JSONException | RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			report.put("looser", this.looser[0].getUsername());
+			for(Client c: this.looser){
+				looser += c.getUsername()+", ";
+			}
+			looser +=" vielleicht beim nachsten Mal.";
+			report.put("looser", looser);
 		} catch (JSONException | RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
