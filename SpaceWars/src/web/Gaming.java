@@ -185,6 +185,8 @@ public class Gaming extends HttpServlet {
 		roundObject.put("battlestarsInStock", battlestarsInStockAfterRound);
 		roundObject.put("fightersToBuy", 0);
 		roundObject.put("battlestarsToBuy", 0);
+		roundObject.put("endReport", "null");
+		roundObject.put("closeGame", "false");
 		user.setPlayerReady(true);
 		if (!user.getGamePlaying().isGameFinished()) {
 			int count = 0;

@@ -112,6 +112,7 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			Game gameToBeClosed = this.runningGames.get(gameName);
 			if (gameToBeClosed.killAllReferences()) {
 				runningGames.remove(gameName);
+				System.out.println("Game is closed");
 				return true;
 
 			}
