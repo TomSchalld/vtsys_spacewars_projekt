@@ -1,11 +1,9 @@
 $(document).ready(function() {
-
+	data.getUsername = true;
 	$.ajax({
 		url : "/SpaceWars/login",
 		type : "GET",
-		data : {
-			"getUsername" : true
-		},
+		data : data,
 		success : function(result) {
 			
 			window.location.href = "./" + result;

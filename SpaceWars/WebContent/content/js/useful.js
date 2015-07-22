@@ -2,6 +2,7 @@ var data = {
 	"username" : "",
 	"logout" : false,
 	"createGame" : false,
+	"getUsername":false,
 	"joinGame" : false,
 	"getGames" : false,
 	"gameData" : null,
@@ -202,6 +203,7 @@ function clearData() {
 	data.joinGame = false;
 	data.getGames = false;
 	data.highscore = false;
+	data.getUsername = false;
 }
 function chooseRace(race) {
 	data.race = race;
