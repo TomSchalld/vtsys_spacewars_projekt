@@ -15,7 +15,16 @@ public class PlayerPlayerVsPC extends PlayerVsPlayer {
 		super(gameName, universeSize, 2);
 		this.players = new Client[3];
 	}
-
+	@Override
+	public boolean playersReady() throws RemoteException {
+		if (this.players[0] == null || this.players[1] == null || this.players[2]==null) {
+			return false;
+		}
+		if (this.players[0].isPlayerReady() == true && this.players[1].isPlayerReady() == true && this.players[2].isPlayerReady() == true) {
+			return true;
+		}
+		return false;
+	}
 	@Override
 	public void addPlayer(Client newPlayer) {
 		if (this.players[0] == null) {
