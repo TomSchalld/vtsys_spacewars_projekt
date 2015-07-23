@@ -7,6 +7,10 @@ import java.util.List;
 import clientServer.Client;
 
 public class MultiPlanet extends Planet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Client secondPlanetOwner;
 	private List<SpaceshipIf> secondOwnerOrbit;
 	private int friendlyFighterInOrbit = 0;
