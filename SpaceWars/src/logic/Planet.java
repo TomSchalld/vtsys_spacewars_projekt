@@ -159,6 +159,7 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 				System.out.println("Battlestar " + s.shipInfo());
 			}
 		}
+		
 		System.out.println("\t\t]");
 		System.out.println("-----------------------------------ships in Orbit of planet: " + this.getName()
 				+ "--------------------------------------");
@@ -167,6 +168,7 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		}
 		System.out.println("Anzahl battlestar in orbit: " + this.battlestarsInOrbit);
 		System.out.println("Anzahl fighter in orbit: " + this.fighterInOrbit);
+		this.getPlanetOwner().setAmountOfPlanets(this.getPlanetOwner().getAmountOfPlanets()+1);
 		System.out.println("-----------------------------------ende--------------------------------------");
 	}
 
