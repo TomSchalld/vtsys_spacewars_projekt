@@ -130,3 +130,6 @@ thead{
 .dynatable-sort-header{
 	 color: black;
 }
+#manual{
+	background: rgba(255, 255, 255, 0.8)
+}
