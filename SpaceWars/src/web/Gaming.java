@@ -202,11 +202,12 @@ public class Gaming extends HttpServlet {
 			int count = 0;
 			while (actualRound == actual.getRound()) {
 				//racecondition
-				System.out.println("Schleifendurchläufe: " + count++ + "username: " + user.getUsername());
+				System.out.println("Schleifendurchläufe: " + count++ + "username: " + user.getUsername()+" actualRound: "+actualRound+" actual.GetRound: "+actual.getRound());
 				Thread.sleep(1000);
 				if (user.getGamePlaying().isGameFinished()) {
 					roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
 				}
+				
 			}
 
 		} else {
