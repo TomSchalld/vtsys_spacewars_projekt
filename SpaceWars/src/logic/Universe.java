@@ -26,6 +26,7 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		this.planetId = 0;
 		this.createWorld();
 		this.isMultiverse = false;
+		System.out.println("universe erstellt");
 	}
 
 	public Universe(int universeSize, boolean isMultiverse) throws RemoteException {

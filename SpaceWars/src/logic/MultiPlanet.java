@@ -51,7 +51,7 @@ public class MultiPlanet extends Planet {
 
 	@Override
 	public void setPlanetOwner(Client planetOwner) throws RemoteException {
-		// TODO Auto-generated method stub
+		System.out.println("unterklassen setPlanetOwner");
 		if (this.getPlanetOwner() != null) {
 			if (this.getPlanetOwner().isKI()) {
 				super.setPlanetOwner(planetOwner);
@@ -68,6 +68,7 @@ public class MultiPlanet extends Planet {
 
 	@Override
 	public void addShipToOrbit(SpaceshipIf newShip) throws RemoteException {
+		System.out.println("unterklasse add ship to orbit");
 		if (newShip != null) {
 			System.out.println("newShip ownerId: " + newShip.getOwner().getOwnerId());
 			if (this.getPlanetOwner() == null || this.getPlanetOwner().equals(newShip.getOwner())) {
