@@ -15,6 +15,7 @@ public class MultiPlanet extends Planet {
 	public MultiPlanet(String planetName, int planetId) throws RemoteException {
 		super(planetName, planetId);
 		this.secondOwnerOrbit = new LinkedList<SpaceshipIf>();
+		System.out.println("Multiplanet mit namen :"+this.getName()+" wurde erstellt");
 	}
 
 	@Override
