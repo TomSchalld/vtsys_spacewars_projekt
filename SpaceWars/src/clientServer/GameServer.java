@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import logic.Game;
+import logic.PlayerPlayerVsPC;
 import logic.PlayerVsPC;
 import logic.PlayerVsPlayer;
 import logic.Report;
@@ -76,15 +77,17 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 			}
 
 		} else if (variation == 2) {
-			// newGame = new PlayerPlayerVsPC(gameName, universeSize);
+			newGame = new PlayerPlayerVsPC(gameName, universeSize);
+			newGame.addPlayer(player);
+			System.out.println("erstelle neuese P,PvPC game");
+
 			try {
-				// this.server.openGame(newGame);
-				// } catch (RemoteException e) {
-				// e.printStackTrace();
+				this.openGame(newGame);
+			} catch (RemoteException e) {
+				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// newGame.addPlayer(this);
 		}
 
 		return newGame;

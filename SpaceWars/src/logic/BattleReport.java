@@ -37,6 +37,16 @@ public class BattleReport implements Report,Serializable{
 				this.countOfAtackingFighters++;
 			}
 		}
+		if(this.battleGround.isMultiPlanet()){
+			MultiPlanet mP = (MultiPlanet)this.battleGround;
+			for(SpaceshipIf s:mP.getSecondOwnerOrbit()){
+				if(!s.isFighter()){
+					this.countOfDefendingBattleships++;
+				}else{
+					this.countOfDefendingFighters++;
+				}
+			}
+		}
 	}
 	
 	public int getCountOfAtackingFighters() {

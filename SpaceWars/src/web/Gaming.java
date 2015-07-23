@@ -228,13 +228,13 @@ public class Gaming extends HttpServlet {
 				if (pl.getPlanetOwner() != null) {
 					if (pl.getPlanetOwner().equals(user)) {
 						planet = roundObject.getJSONObject(planetName);
-						planet.put("newFighter", pl.getFighterInOrbit());
-						planet.put("newBattlestar", pl.getBattlestarsInOrbit());
-						plsum = pl.getFighterInOrbit() + pl.getBattlestarsInOrbit();
+						planet.put("newFighter", pl.getFighterInOrbit(user));
+						planet.put("newBattlestar", pl.getBattlestarsInOrbit(user));
+						plsum = pl.getFighterInOrbit(user) + pl.getBattlestarsInOrbit(user);
 						planet.put("sum", plsum);
 						System.out.println(
 								pl.getName() + " zu JSON nach Runde user:" + user.getUsername() + " anzahlFighter: "
-										+ pl.getFighterInOrbit() + " anzahl batlestar: " + pl.getBattlestarsInOrbit());
+										+ pl.getFighterInOrbit(user) + " anzahl batlestar: " + pl.getBattlestarsInOrbit(user));
 					} else {
 						planet = roundObject.getJSONObject(planetName);
 						planet.put("newFighter", 0);

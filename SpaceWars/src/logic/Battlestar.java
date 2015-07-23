@@ -54,7 +54,7 @@ public class Battlestar extends Spaceship {
 	}
 	@Override
 	public String shipInfo() throws RemoteException {
-		String s = "Battlestar von : ";
+		String s = "Schlachtschiff von : ";
 		
 		try {
 			s += this.getOwner().getUsername() + " mit iD: " + this.getShipID() + " ";

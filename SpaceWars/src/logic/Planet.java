@@ -14,14 +14,14 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Client planetOwner;
+	protected Client planetOwner;
 	private String name;
 	private List<SpaceshipIf> shipsInOrbit;
 	private List<SpaceshipIf> shipsTryToOrbit;
-	private int fighterInOrbit = 0;
-	private int battlestarsInOrbit = 0;
-	private int generatedCreditsPerShip;
-	private int generatedCredits;
+	protected int fighterInOrbit = 0;
+	protected int battlestarsInOrbit = 0;
+	protected int generatedCreditsPerShip;
+	protected int generatedCredits;
 	private int planetId;
 	private boolean fightAfterRoundEnded = false;
 
@@ -105,15 +105,13 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 	@Override
 	public void setPlanetOwner(Client planetOwner) throws RemoteException {
 		this.planetOwner = planetOwner;
+		planetOwner.setAmountOfPlanets(planetOwner.getAmountOfPlanets()+1);
 	}
 
 	@Override
 	public void addShipToOrbit(SpaceshipIf newShip) throws RemoteException {
 		if (newShip != null) {
 			System.out.println("newShip ownerId: " + newShip.getOwner().getOwnerId());
-			if (this.getPlanetOwner() != null) {
-				System.out.println("newShip ownerId: " + this.getPlanetOwner().getOwnerId());
-			}
 			if (this.getPlanetOwner() == null
 					|| this.getPlanetOwner().getOwnerId() == newShip.getOwner().getOwnerId()) {
 				if (this.getShipsInOrbit().size() < 5) {
@@ -220,6 +218,7 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 			report.setWinnersUsername(attacker.getUsername());
 			report.setLoosersUsername(defender.getUsername());
 			this.setPlanetOwner(attacker);
+			defender.setAmountOfPlanets(defender.getAmountOfPlanets()-1);
 		} else {
 
 			report.setWinnersUsername(defender.getUsername());
@@ -257,6 +256,40 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 	@Override
 	public int getBattlestarsInOrbit() throws RemoteException {
 		return battlestarsInOrbit;
+	}
+
+	@Override
+	public Client getSecondOwner() throws RemoteException {
+		return null;
+	}
+
+	@Override
+	public int getFighterInOrbit(Client owner) throws RemoteException {
+
+		return this.getFighterInOrbit();
+	}	
+
+	@Override
+	public int getBattlestarsInOrbit(Client owner) throws RemoteException {
+		return this.getBattlestarsInOrbit();
+	}
+
+	@Override
+	public boolean isMultiPlanet() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void payCash() throws RemoteException {
+		this.getPlanetOwner().addCash(this.getGeneratedCreditsPerShip());
+		
+	}
+
+	@Override
+	public List<SpaceshipIf> getSecondOwnerOrbit() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

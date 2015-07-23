@@ -18,6 +18,7 @@ public class EndReport implements Report {
 	public Client winner[];
 	public Client looser[];
 	public String gameName;
+	private int roundCount =0;
 	public EndReport(){
 		this.roundReports = new LinkedList<Report>();
 	}
@@ -53,6 +54,7 @@ public class EndReport implements Report {
 	}
 	private void addRoundReport(Report roundReport){
 		this.roundReports.add(roundReport);
+		this.roundCount++;
 	}
 	@Override
 	public void addReport(Report report) {
@@ -98,7 +100,7 @@ public class EndReport implements Report {
 			e.printStackTrace();
 		}
 		report.put("roundReports", this.roundReports);
-		report.put("roundCount", this.roundReports.size());
+		report.put("roundCount", this.roundCount);
 		
 		
 		return report;

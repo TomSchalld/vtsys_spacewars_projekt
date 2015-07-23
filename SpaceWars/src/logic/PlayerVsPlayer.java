@@ -22,16 +22,20 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	protected Client[] players;
 	protected UniverseIf universe;
 	protected int round;
-	private static int gameCount = 0;
+	protected static int gameCount = 0;
 	protected Report endReport;
-	private int variation; // 0 = Player vs. Player
-							// 1= Player vs. PC
-							// 3= Player, Player vs PC
+	protected int variation; // 0 = Player vs. Player
+								// 1= Player vs. PC
+								// 2= Player, Player vs PC
 
 	public PlayerVsPlayer(String gameName, int universeSize, int variation) throws RemoteException {
 		this.gameName = gameName;
 		this.gameId = gameCount;
-		this.universe = new Universe(universeSize);
+		if (variation != 2) {
+			this.universe = new Universe(universeSize);
+		} else {
+			this.universe = new Universe(universeSize, true);
+		}
 		this.round = 0;
 		this.endReport = new EndReport();
 		gameCount++;
@@ -73,7 +77,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 
 	@Override
 	public boolean playersReady() throws RemoteException {
-		if(this.players[0]==null||this.players[1]==null){
+		if (this.players[0] == null || this.players[1] == null) {
 			return false;
 		}
 		if (this.players[0].isPlayerReady() == true && this.players[1].isPlayerReady() == true) {
@@ -108,7 +112,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			}
 			for (PlanetIf p : planets.values()) {
 				if (!p.getShipsInOrbit().isEmpty()) {
-					p.getShipsInOrbit().get(0).getOwner().addCash(p.getGeneratedCredits());
+					p.payCash();
 				}
 			}
 
@@ -119,11 +123,11 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 				c.setRoundReport(report.exportRoundToJSON());
 				for (PlanetIf p : this.getUniverse().getPlanets().values()) {
 					if (p.getPlanetOwner() != null) {
-						if (p.getPlanetOwner().equals(this.players[0])) {
-							this.players[0].setAmountOfPlanets(++planetsPOne);
-						} else {
-							this.players[1].setAmountOfPlanets(++planetsPTwo);
-						}
+						// if (p.getPlanetOwner().equals(this.players[0])) {
+						// this.players[0].setAmountOfPlanets(++planetsPOne);
+						// } else {
+						// this.players[1].setAmountOfPlanets(++planetsPTwo);
+						// }
 						if (p.getPlanetOwner().equals(c)) {
 							c.sendAllShipsToStock(p);
 						}
@@ -137,32 +141,42 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			System.out.println(
 					this.players[1].getUsername() + " anzahl planeten = " + this.players[1].getAmountOfPlanets());
 			System.out.println("Universe size is: " + this.getUniverse().getPlanets().keySet().size());
-			EndReport er = (EndReport) this.getEndreport();
-			if(!this.players[0].isKI()){
-				if(this.players[0].getAmountOfPlanets()==0&&this.players[0].getCash()<Fighter.price){
-					this.gameFinished = true;
-					this.winner = this.players[1];
-					er.addWinner(this.players[0]);
-					er.addLooser(this.players[1]);
-					System.out.println("game is over. Winner is: " + this.players[0].getUsername());
-				}
-			}
-			if (this.players[0].getAmountOfPlanets() == this.getUniverse().getPlanets().keySet().size()) {
-				this.gameFinished = true;
-				this.winner = this.players[0];
-				er.addWinner(this.players[0]);
-				er.addLooser(this.players[1]);
-				System.out.println("game is over. Winner is: " + this.players[0].getUsername());
-			} else if (this.players[1].getAmountOfPlanets() == this.getUniverse().getPlanets().keySet().size()) {
-				this.gameFinished = true;
-				this.winner = this.players[1];
-				er.addWinner(this.players[1]);
-				er.addLooser(this.players[0]);
-			}
+			this.checkAndSetWinner();
 			this.endReport.addReport(report);
 			return report;
 		}
 		return null;
+	}
+
+	private void checkAndSetWinner() throws RemoteException {
+		EndReport er = (EndReport) this.getEndreport();
+		if (this.players[0].getAmountOfPlanets() == 0 && this.players[0].getCash() < Fighter.price) {
+			this.gameFinished = true;
+			this.winner = this.players[1];
+			er.addWinner(this.players[1]);
+			er.addLooser(this.players[0]);
+			System.out.println("game is over. Winner is: " + this.players[1].getUsername());
+		} else if (this.players[1].getAmountOfPlanets() == 0 && this.players[1].getCash() < Fighter.price) {
+			this.gameFinished = true;
+			this.winner = this.players[0];
+			er.addWinner(this.players[0]);
+			er.addLooser(this.players[1]);
+			System.out.println("game is over. Winner is: " + this.players[0].getUsername());
+		}
+		if (this.players[0].getAmountOfPlanets() == this.getUniverse().getPlanets().keySet().size()) {
+			this.gameFinished = true;
+			this.winner = this.players[0];
+			er.addWinner(this.players[0]);
+			er.addLooser(this.players[1]);
+			System.out.println("game is over. Winner is: " + this.players[0].getUsername());
+		} else if (this.players[1].getAmountOfPlanets() == this.getUniverse().getPlanets().keySet().size()) {
+			this.gameFinished = true;
+			this.winner = this.players[1];
+			er.addWinner(this.players[1]);
+			er.addLooser(this.players[0]);
+			System.out.println("game is over. Winner is: " + this.players[0].getUsername());
+
+		}
 	}
 
 	@Override

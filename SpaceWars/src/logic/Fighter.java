@@ -50,7 +50,7 @@ public class Fighter extends Spaceship {
 	}
 	@Override
 	public String shipInfo() throws RemoteException {
-		String s = "Fighter von : ";
+		String s = "Jäger von : ";
 		
 		try {
 			s += this.getOwner().getUsername() + " mit iD: " + this.getShipID() + " ";

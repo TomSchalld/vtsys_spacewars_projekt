@@ -49,11 +49,11 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 		String uID = session.getId();
 		Client user = UserOnline.getUserById(uID);
-		if(user == null){
-			String site = "http://www.google.com" ;
+		if (user == null) {
+			String site = "http://www.google.com";
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
-			response.setHeader("Location", site); 
-		}else{
+			response.setHeader("Location", site);
+		} else {
 			String uname = user.getUsername();
 			PrintWriter out = response.getWriter();
 			if (request.getParameter("createGame").equals("true")) {
@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
 			} else if (request.getParameter("highscore").equals("true")) {
 				response.setContentType("application/json");
 				out.write(Highscore.getScores().toString());
-			}else if(request.getParameter("getUsername").equals("true")){
+			} else if (request.getParameter("getUsername").equals("true")) {
 				System.out.println(uname + " username request");
 				out.write(uname);
 			} else {
@@ -78,7 +78,7 @@ public class Login extends HttpServlet {
 			System.out.println(session.getId());
 			out.flush();
 		}
-		
+
 		// out.close();
 	}
 
@@ -89,7 +89,7 @@ public class Login extends HttpServlet {
 	 * @throws RemoteException
 	 * @throws JSONException
 	 */
-	
+
 	private void getGamesFromLobby(HttpServletResponse response, PrintWriter out)
 			throws MalformedURLException, RemoteException, JSONException {
 		System.out.println("Get Games");
@@ -163,11 +163,20 @@ public class Login extends HttpServlet {
 			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
 			System.out.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
 		} else if (variation == 1) {
-			out.write("?");
+			out.write("gameSeven.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
 			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
 			System.out.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
 		} else if (variation == 2) {
-			out.write("?variation=2");
+			if (universeSize == 1) {
+				out.write("gameThree.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
+
+			} else if (universeSize == 2) {
+				out.write("gameFive.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
+			} else {
+				out.write("gameSeven.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
+			}
+			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
+			System.out.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
 		} else {
 			out.write("?gameName=" + gameName + "&universeSize=" + universeSize + "&");
 		}

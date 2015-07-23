@@ -186,6 +186,13 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 				tmp.add(s);
 			}
 		}
+		if(origin.getSecondOwnerOrbit()!=null){
+			for (SpaceshipIf s : origin.getSecondOwnerOrbit()) {
+				if (s.getOwner().equals(this)) {
+					tmp.add(s);
+				}
+			}
+		}
 		for (SpaceshipIf s : tmp) {
 			sendShip(s, null);
 		}

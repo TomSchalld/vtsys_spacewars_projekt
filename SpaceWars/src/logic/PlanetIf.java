@@ -42,4 +42,15 @@ public interface PlanetIf extends Remote {
 
 	void delShips() throws RemoteException;
 
+	Client getSecondOwner() throws RemoteException;
+
+	int getFighterInOrbit(Client owner) throws RemoteException;
+
+	int getBattlestarsInOrbit(Client owner) throws RemoteException;
+
+	boolean isMultiPlanet() throws RemoteException;
+	void payCash() throws RemoteException;
+
+	List<SpaceshipIf> getSecondOwnerOrbit() throws RemoteException;
+
 }
