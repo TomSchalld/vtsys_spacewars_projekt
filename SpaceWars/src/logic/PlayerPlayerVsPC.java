@@ -17,6 +17,7 @@ public class PlayerPlayerVsPC extends PlayerVsPlayer {
 	}
 	@Override
 	public boolean playersReady() throws RemoteException {
+		System.out.println("players ready unterklasse");
 		if (this.players[0] == null || this.players[1] == null || this.players[2]==null) {
 			return false;
 		}

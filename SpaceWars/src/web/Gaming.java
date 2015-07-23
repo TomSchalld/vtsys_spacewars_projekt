@@ -200,8 +200,8 @@ public class Gaming extends HttpServlet {
 		user.setPlayerReady(true);
 		if (!user.getGamePlaying().isGameFinished()) {
 			int count = 0;
-			//while (actualRound == actual.getRound()) {
-			while(user.isPlayerReady()){ //racecondition
+			while (actualRound == actual.getRound()) {
+				//racecondition
 				System.out.println("Schleifendurchläufe: " + count++ + "username: " + user.getUsername());
 				Thread.sleep(1000);
 				if (user.getGamePlaying().isGameFinished()) {

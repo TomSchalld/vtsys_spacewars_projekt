@@ -138,7 +138,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 
 				}
 			}
-			this.round++;
+			
 			System.out.println(
 					this.players[0].getUsername() + " anzahl planeten = " + this.players[0].getAmountOfPlanets());
 			System.out.println(
@@ -146,7 +146,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			System.out.println("Universe size is: " + this.getUniverse().getPlanets().keySet().size());
 			this.checkAndSetWinner();
 			this.endReport.addReport(report);
+			this.round++;
 			return report;
+			
 		}
 		return null;
 	}
