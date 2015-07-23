@@ -13,6 +13,7 @@ public class PlayerPlayerVsPC extends PlayerVsPlayer {
 
 	public PlayerPlayerVsPC(String gameName, int universeSize) throws RemoteException {
 		super(gameName, universeSize, 2);
+		this.players = new Client[3];
 	}
 
 	@Override
