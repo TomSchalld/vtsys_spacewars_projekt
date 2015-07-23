@@ -168,7 +168,9 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		}
 		System.out.println("Anzahl battlestar in orbit: " + this.battlestarsInOrbit);
 		System.out.println("Anzahl fighter in orbit: " + this.fighterInOrbit);
-		this.getPlanetOwner().setAmountOfPlanets(this.getPlanetOwner().getAmountOfPlanets()+1);
+		if(this.planetOwner!=null){
+			this.planetOwner.setAmountOfPlanets(this.planetOwner.getAmountOfPlanets()+1);
+		}
 		System.out.println("-----------------------------------ende--------------------------------------");
 	}
 

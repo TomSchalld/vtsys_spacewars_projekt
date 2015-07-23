@@ -148,7 +148,9 @@ public class MultiPlanet extends Planet {
 		for (SpaceshipIf s : this.secondOwnerOrbit) {
 			System.out.println(s.shipInfo());
 		}
-		this.planetOwner.setAmountOfPlanets(this.planetOwner.getAmountOfPlanets()+1);
+		if(this.planetOwner!=null){
+			this.planetOwner.setAmountOfPlanets(this.planetOwner.getAmountOfPlanets()+1);
+		}
 		System.out.println("-----------------------------------ende--------------------------------------");
 
 	}
