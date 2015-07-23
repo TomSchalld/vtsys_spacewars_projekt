@@ -67,10 +67,12 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 
 	private void createThreePlanets() throws RemoteException {
 		if (!this.isMultiverse) {
+			System.out.println("three planets universe");
 			this.planets.put("tatooine", new Planet("tatooine", planetId++));
 			this.planets.put("endor", new Planet("endor", planetId++));
 			this.planets.put("coruscant", new Planet("coruscant", planetId++));
 		}else{
+			System.out.println("three planets multiverse");
 			this.planets.put("tatooine", new MultiPlanet("tatooine", planetId++));
 			this.planets.put("endor", new MultiPlanet("endor", planetId++));
 			this.planets.put("coruscant", new MultiPlanet("coruscant", planetId++));
@@ -83,9 +85,11 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 	private void createFivePlanets() throws RemoteException {
 		this.createThreePlanets();
 		if (!this.isMultiverse) {
+			System.out.println("five planets universe");
 			this.planets.put("erde", new Planet("erde", planetId++));
 			this.planets.put("caprica", new Planet("caprica", planetId++));
 		}else{
+			System.out.println("five planets multiverse");
 			this.planets.put("erde", new MultiPlanet("erde", planetId++));
 			this.planets.put("caprica", new MultiPlanet("caprica", planetId++));
 		}
@@ -97,9 +101,11 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 	private void createSevenPlanets() throws RemoteException {
 		this.createFivePlanets();
 		if (!this.isMultiverse) {
+			System.out.println("seven planets universe");
 			this.planets.put("gemini", new Planet("gemini", planetId++));
 			this.planets.put("atlantis", new Planet("atlantis", planetId++));
 		}else{
+			System.out.println("seven planets multiverse");
 			this.planets.put("gemini", new MultiPlanet("gemini", planetId++));
 			this.planets.put("atlantis", new MultiPlanet("atlantis", planetId++));
 		}
