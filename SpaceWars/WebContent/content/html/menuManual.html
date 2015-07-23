@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+<title>Signin Template for Bootstrap</title>
+
+<!-- Bootstrap core CSS -->
+<link href="../css/bootstrap.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="../css/jquery.dynatable.css" rel="stylesheet">
+<link href="../css/signin.css" rel="stylesheet">
+<link href="../css/styles.css" rel="stylesheet">
+
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Navigation ein-/ausblenden</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<div class="navbar-form navbar-right">
+					<button type="button" id="backButton" class="btn btn-success"
+						onclick="backToMenu()">
+						zurück zum Hauptmenü <span
+							class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+			<!--/.navbar-collapse -->
+		</div>
+	</nav>
+
+
+	<div id="manual" class="fade in menu-box game-box ">
+
+
+		<div class="row">
+
+			<div class="col-md-12">
+				<h2>Manuel</h2>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+
+				<h4>Hallo Commander, wir heißen Sie noch einmal willkommen!</h4>
+				<br /> SpaceWars ist ein Rundenbasiertes Onlinespiel, in dem es
+				darum geht alle Planeten des Universums in Ihre Gewalt zu bringen.
+				Im Spiel können Sie Schiffe kaufen und auf Planeten schicken.
+				Zerstören Sie die Schiffe Ihres Gegenspielers gehört das Schiff
+				Ihnen. <br> Als neuer Governor stehen Ihnen natürlich die
+				eingetriebenen Steuern des Planetens zu. Von dem Gewonnenen Geld
+				können Sie weitere Schiffe zu ihrer Flotte hinzufügen können.
+				<h4>Spielmodi...</h4>
+				<em>Einzelspieler:</em> Der Einzelspielermodus ist über den
+				Menüpunkt „Scharmützel“ zu erreichen. Hier kann zunächst die
+				Kartengröße gewählt werden. Entscheiden Sie sich zwischen drei, fünf
+				oder sieben Planeten. Nach dieser Einstellung geht es los… <br />
+				Sie kämpfen gegen den Computer. Ein kleiner Tipp: unterschätzen Sie
+				ihn niemals!<br /> <br /> <em>Mehrspieler:</em> Der
+				Mehrspielermodus gliedert sich in zwei Untermodi auf. Sie können mit
+				einem zweiten Commander gegen den Computer kämpfen, oder einen
+				anderen Commander herausfordern. In beiden Fällen muss einer von
+				Ihnen ein Spiel erstellen, der zweite Spieler kann diesem Spiel
+				beitreten. <br /> Um das Spiel zu erstellen wählen Sie zunächst die
+				Kartengröße und bestimmen anschießend zwischen Player vs. Player
+				oder Player - Player Vs Computer. <br /> Ihr Partner kann über
+				„Mehrspieler“ => „Spielbeitreten“ zur Lobby gelangen. Hier liegen
+				alle erstellten Spiele. Über den Spielnamen oder den Namen des
+				Erstellers kann er das Spiel finden und diesem beitreten. </br>
+				<h4>Im Spiel...</h4>
+				Im Spiel gehen Sie zunächst in den Shop (Oranger Button im Menü
+				oben). Hier können Sie ihrem Konto entsprechend Schiffe kaufen. Es
+				gibt zwei unterschiedliche Schifftypen. Schlachtschiffe sind
+				wesentlich teurer, allerdings auch wesentlich stärker als Jäger,
+				entscheiden Sie also weise. Bedenken Sie auch, je mehr Schiffe (egal
+				welchem Typs) Sie auf einem Planeten halten, desto größer sind die
+				Steuereinnahmen. Maximal können Sie fünf Schiffe auf einem Planeten
+				stationieren. <br /> Nach dem Kauf, können Sie die Schiffe über die
+				„Plus-“ und „Minusbutton“ auf den Planeten verteilen. In der
+				Menüleiste können Sie erkennen, wie viele Schiffe noch nicht auf
+				Planeten verteilt wurden<br /> Ist Ihr Zug abgeschlossen beenden
+				Sie die Runde über den grünen Button in der Menüleiste. Anschließend
+				werden die Kämpfe für jeden Planeten simuliert. Je mehr Schiffe
+				stationiert sind, desto größer ist die Wahrscheinlichkeit, den Kampf
+				zu gewinnen. Die Stärke jedes Schiffes berechnet sich aus dem Typ
+				und der Anzahl überstandener Schlachte. <br /> Nach jeder Runde
+				wird ihnen von geschlagenen Schlachten berichte. Es kommt zur
+				Schlacht, sobald Sie und Ihr Gegner versuchen Schiffe auf dem
+				gleichen Planeten zu stationieren. Dem Report können Sie entnehmen
+				auf welchen Planeten es zu Schlachten kam, welcher Spieler gesiegt
+				hat und wie viele Schiffe übriggeblieben sind. Sie erhalten zudem
+				eine Liste aller zerstörten Schiffe.
+
+
+
+
+
+
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+	<!-- Bootstrap-JavaScript
+    ================================================== -->
+	<!-- Am Ende des Dokuments platziert, damit Seiten schneller laden -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<!-- IE10-Anzeigefenster-Hack für Fehler auf Surface und Desktop-Windows-8 -->
+	<script src="../js/ie10-viewport-bug-workaround.js"></script>
+	<script src="../js/useful.js"></script>
+	<script src="../js/loadUsername.js"></script>
+	<script src="../js/recenter.js"></script>
+	<script src="../js/highscore.js"></script>
+	<script src="../js/jquery.dynatable.js"></script>
+</body>
+</html>
