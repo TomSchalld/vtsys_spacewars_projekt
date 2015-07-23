@@ -121,7 +121,7 @@ function joinGame() {
 	window.location.href = "./menuMultiplayerJoin.html" + "?username="
 			+ data.username;
 }
-function joinGame() {
+function showManual() {
 
 	window.location.href = "./menuManual.html" + "?username="
 			+ data.username;
