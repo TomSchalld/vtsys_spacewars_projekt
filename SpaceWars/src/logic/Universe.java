@@ -24,8 +24,8 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		this.planets = new HashMap<String, PlanetIf>();
 		this.universeSize = universeSize;
 		this.planetId = 0;
-		this.createWorld();
 		this.isMultiverse = false;
+		this.createWorld();
 		System.out.println("universe erstellt");
 	}
 
@@ -33,8 +33,8 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		this.planets = new HashMap<String, PlanetIf>();
 		this.universeSize = universeSize;
 		this.planetId = 0;
-		this.createWorld();
 		this.isMultiverse = true;
+		this.createWorld();
 		System.out.println("multiverse erstellt");
 	}
 
