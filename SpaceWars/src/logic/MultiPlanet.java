@@ -368,7 +368,9 @@ public class MultiPlanet extends Planet {
 	@Override
 	public void payCash() throws RemoteException {
 		super.payCash();
-		this.secondPlanetOwner.addCash(this.getGeneratedCreditsPerShip());
+		if(this.secondPlanetOwner!=null){
+			this.secondPlanetOwner.addCash(this.getGeneratedCreditsPerShip());
+		}
 	}
 	
 
