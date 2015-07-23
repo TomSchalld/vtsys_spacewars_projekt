@@ -34,6 +34,7 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		this.planetId = 0;
 		this.createWorld();
 		this.isMultiverse = true;
+		System.out.println("multiverse erstellt");
 	}
 
 	@Override
