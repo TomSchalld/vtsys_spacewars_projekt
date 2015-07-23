@@ -124,9 +124,11 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 				}
 
 			} else {
+
 				this.shipsTryToOrbit.add(newShip);
 				this.setFightAfterRoundEnded(true);
 				System.out.println(newShip.shipInfo() + " zu tryTo Orbit hinzugefügt planet: " + this.getName());
+
 			}
 
 		}
@@ -138,11 +140,13 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		return this.shipsInOrbit.remove(shipToRemove);
 
 	}
+
 	@Override
 	public void delShips() throws RemoteException {
 		this.shipsInOrbit.clear();
 		this.shipsTryToOrbit.clear();
 	}
+
 	@Override
 	public void roundEnd() throws RemoteException {
 		this.fighterInOrbit = 0;

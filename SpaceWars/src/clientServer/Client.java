@@ -58,4 +58,8 @@ public interface Client extends Remote {
 	public boolean isKI() throws RemoteException;
 
 	public void closeGame() throws RemoteException;
+
+	public String getTeam() throws RemoteException;
+
+	public void setTeam(String team) throws RemoteException;
 }
