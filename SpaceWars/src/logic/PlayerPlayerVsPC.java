@@ -92,11 +92,6 @@ public class PlayerPlayerVsPC extends PlayerVsPlayer {
 		}
 	}
 
-	@Override
-	public RoundReport endRound() {
-		return null;
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }
