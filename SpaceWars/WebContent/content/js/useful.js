@@ -49,6 +49,22 @@ function chooseUniverse(size) {
 		}
 	});
 }
+function startPPVPC(){
+	data.createGame = true;
+	data.gameName = getUrlParameter("gameName");
+	data.universeSize = getUrlParameter("universeSize");
+	data.gameMode = 2;
+	$.ajax({
+		url : "/SpaceWars/login",
+		type : "GET",
+		data : data,
+		success : function(result) {
+			//alert(result);
+			window.location.href = "./" + result;
+			clearData();
+		}
+	});
+}
 function startPVPC() {
 	var date = new Date();
 	data.createGame = true;
