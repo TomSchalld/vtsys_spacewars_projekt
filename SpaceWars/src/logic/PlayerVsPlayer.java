@@ -153,7 +153,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return null;
 	}
 
-	private void checkAndSetWinner() throws RemoteException {
+	protected void checkAndSetWinner() throws RemoteException {
 		EndReport er = (EndReport) this.getEndreport();
 		if (this.players[0].getAmountOfPlanets() == 0 && this.players[0].getCash() < Fighter.price) {
 			this.gameFinished = true;

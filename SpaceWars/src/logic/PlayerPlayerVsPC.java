@@ -63,8 +63,9 @@ public class PlayerPlayerVsPC extends PlayerVsPlayer {
 		this.players[1].setPlayerReady(false);
 		this.players[2].setPlayerReady(false);
 	}
-
-	private void checkAndSetWinner() throws RemoteException {
+	@Override
+	protected void checkAndSetWinner() throws RemoteException {
+		System.out.println("check and set winner unterklasse");
 		EndReport er = (EndReport) this.getEndreport();
 		if (this.players[0].getAmountOfPlanets() == 0 && this.players[0].getCash() < Fighter.price) {
 			this.gameFinished = true;
