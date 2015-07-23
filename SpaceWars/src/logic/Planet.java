@@ -225,6 +225,7 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 
 			report.setWinnersUsername(defender.getUsername());
 			report.setLoosersUsername(attacker.getUsername());
+			defender.setAmountOfPlanets(defender.getAmountOfPlanets()+1);
 		}
 		this.setFightAfterRoundEnded(false);
 		for (SpaceshipIf s : this.getShipsInOrbit()) {

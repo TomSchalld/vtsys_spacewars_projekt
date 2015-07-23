@@ -148,7 +148,7 @@ public class MultiPlanet extends Planet {
 		for (SpaceshipIf s : this.secondOwnerOrbit) {
 			System.out.println(s.shipInfo());
 		}
-
+		this.planetOwner.setAmountOfPlanets(this.planetOwner.getAmountOfPlanets()+1);
 		System.out.println("-----------------------------------ende--------------------------------------");
 
 	}
@@ -259,6 +259,7 @@ public class MultiPlanet extends Planet {
 					defender.setAmountOfPlanets(defender.getAmountOfPlanets() - 1);
 					secondDefender.setAmountOfPlanets(secondDefender.getAmountOfPlanets() + 1);
 				}
+				defender.setAmountOfPlanets(defender.getAmountOfPlanets() + 1);
 				combinedForce.clear();
 			} else {
 				for (SpaceshipIf s : this.getShipsTryToOrbit()) {

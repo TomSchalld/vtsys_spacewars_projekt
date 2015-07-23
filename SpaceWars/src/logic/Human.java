@@ -56,6 +56,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 			if (this.getGamePlaying().getVariation()!=0) {
 				System.out.println("PvPC");
 				this.getGamePlaying().addPlayer(new KI("Computer", "192.168.178.23"));
+				this.server.joinGame(gameName);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
