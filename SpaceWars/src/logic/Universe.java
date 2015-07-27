@@ -47,7 +47,9 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		System.out.println("multiverse erstellt");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.UniverseIf#getPlanets()
 	 */
 	@Override
@@ -83,20 +85,38 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 	/**
 	 * @throws RemoteException
 	 */
+	// private void createThreePlanets() throws RemoteException {
+	// if (!this.isMultiverse) {
+	// System.out.println("three planets universe");
+	// this.planets.put("tatooine", new Planet("tatooine", planetId++));
+	// this.planets.put("endor", new Planet("endor", planetId++));
+	// this.planets.put("coruscant", new Planet("coruscant", planetId++));
+	// }else{
+	// System.out.println("three planets multiverse");
+	// this.planets.put("tatooine", new MultiPlanet("tatooine", planetId++));
+	// this.planets.put("endor", new MultiPlanet("endor", planetId++));
+	// this.planets.put("coruscant", new MultiPlanet("coruscant", planetId++));
+	// }
+	//
+	//
+	// System.out.println("Tatooine endor coruscant erstellt");
+	//
+	// }
 	private void createThreePlanets() throws RemoteException {
 		if (!this.isMultiverse) {
 			System.out.println("three planets universe");
-			this.planets.put("tatooine", new Planet("tatooine", planetId++));
-			this.planets.put("endor", new Planet("endor", planetId++));
-			this.planets.put("coruscant", new Planet("coruscant", planetId++));
-		}else{
+			this.planets.put("erde", new Planet("erde", planetId++));
+			this.planets.put("caprica", new Planet("caprica", planetId++));
+			this.planets.put("atlantis", new Planet("atlantis", planetId++));
+
+		} else {
 			System.out.println("three planets multiverse");
-			this.planets.put("tatooine", new MultiPlanet("tatooine", planetId++));
-			this.planets.put("endor", new MultiPlanet("endor", planetId++));
-			this.planets.put("coruscant", new MultiPlanet("coruscant", planetId++));
+			this.planets.put("erde", new MultiPlanet("erde", planetId++));
+			this.planets.put("caprica", new MultiPlanet("caprica", planetId++));
+			this.planets.put("atlantis", new MultiPlanet("atlantis", planetId++));
 		}
 
-		System.out.println("Tatooine endor coruscant erstellt");
+		// System.out.println("Tatooine endor coruscant erstellt");
 
 	}
 
@@ -107,15 +127,15 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		this.createThreePlanets();
 		if (!this.isMultiverse) {
 			System.out.println("five planets universe");
-			this.planets.put("erde", new Planet("erde", planetId++));
-			this.planets.put("caprica", new Planet("caprica", planetId++));
-		}else{
+			this.planets.put("tatooine", new Planet("tatooine", planetId++));
+			this.planets.put("coruscant", new Planet("coruscant", planetId++));
+		} else {
 			System.out.println("five planets multiverse");
-			this.planets.put("erde", new MultiPlanet("erde", planetId++));
-			this.planets.put("caprica", new MultiPlanet("caprica", planetId++));
+			this.planets.put("tatooine", new MultiPlanet("tatooine", planetId++));
+			this.planets.put("coruscant", new MultiPlanet("coruscant", planetId++));
 		}
 
-		System.out.println("erde und caprica erstellt");
+		// System.out.println("erde und caprica erstellt");
 
 	}
 
@@ -127,18 +147,20 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		if (!this.isMultiverse) {
 			System.out.println("seven planets universe");
 			this.planets.put("gemini", new Planet("gemini", planetId++));
-			this.planets.put("atlantis", new Planet("atlantis", planetId++));
-		}else{
+			this.planets.put("endor", new Planet("endor", planetId++));
+		} else {
 			System.out.println("seven planets multiverse");
 			this.planets.put("gemini", new MultiPlanet("gemini", planetId++));
-			this.planets.put("atlantis", new MultiPlanet("atlantis", planetId++));
+			this.planets.put("endor", new MultiPlanet("endor", planetId++));
 		}
 
 		System.out.println("gemini und atlantis erstellt");
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.UniverseIf#getRandomPlanet()
 	 */
 	@Override
@@ -146,7 +168,9 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		return getPlanetByName(getRandomPlanetName());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.UniverseIf#getPlanetByName(java.lang.String)
 	 */
 	@Override
@@ -154,7 +178,9 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		return this.getPlanets().get(name);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.UniverseIf#getRandomPlanetName()
 	 */
 	@Override
@@ -169,7 +195,9 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.UniverseIf#killUniverse()
 	 */
 	@Override
@@ -180,7 +208,9 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		this.getPlanets().clear();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.UniverseIf#getSize()
 	 */
 	@Override
