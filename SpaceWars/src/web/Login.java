@@ -109,7 +109,7 @@ public class Login extends HttpServlet {
 			Server gameServer = (Server) Naming.lookup(NameHelper.getServeraddress());
 			JSONObject val;
 			gamesList = new JSONObject();
-
+			int i =0;
 			Map<String, Game> games = gameServer.gamesInLobby();
 			for (String s : games.keySet()) {
 				val = new JSONObject();
@@ -123,7 +123,7 @@ public class Login extends HttpServlet {
 				val.put("host", games.get(s).getHostName());
 				val.put("universeSize", games.get(s).getUniverse().getSize());
 				val.put("gameName", s);
-				gamesList.put("game", val);
+				gamesList.put(""+i, val);
 
 			}
 			response.setContentType("application/json");
