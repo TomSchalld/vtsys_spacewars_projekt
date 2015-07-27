@@ -236,6 +236,6 @@ function chooseRace(race) {
 $(document).ready(function(){
     $('.InputTextBox').keypress(function(e){
       if(e.keyCode==13)
-      $('.submitButton').click();
+      $('.submitButton').click(submitUser());
     });
 });
