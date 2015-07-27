@@ -123,7 +123,7 @@ public class Login extends HttpServlet {
 				val.put("host", games.get(s).getHostName());
 				val.put("universeSize", games.get(s).getUniverse().getSize());
 				val.put("gameName", s);
-				gamesList.put(""+i, val);
+				gamesList.put(""+(i++), val);
 
 			}
 			response.setContentType("application/json");
