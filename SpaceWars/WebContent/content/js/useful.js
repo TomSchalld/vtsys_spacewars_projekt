@@ -45,7 +45,7 @@ function chooseUniverse(size) {
 			window.location.href = "./menuTeam.html" + result;
 			clearData();
 		},
-		error : function(error){
+		error : function(error) {
 			doError(error);
 		}
 	});
@@ -64,7 +64,7 @@ function startPPVPC() {
 			window.location.href = "./" + result;
 			clearData();
 		},
-		error : function(error){
+		error : function(error) {
 			doError(error);
 		}
 	});
@@ -85,7 +85,7 @@ function startPVPC() {
 			window.location.href = "./" + result;
 			clearData();
 		},
-		error : function(error){
+		error : function(error) {
 			doError(error);
 		}
 	});
@@ -105,7 +105,7 @@ function startPVP() {
 			window.location.href = "./" + result;
 			clearData();
 		},
-		error : function(error){
+		error : function(error) {
 			doError(error);
 		}
 	});
@@ -134,7 +134,7 @@ function createGame() {
 			window.location.href = "./menuKarte.html" + result;
 			clearData();
 		},
-		error : function(error){
+		error : function(error) {
 			doError(error);
 		}
 	});
@@ -165,7 +165,7 @@ function submitUser() {
 			window.location.href = "html/menuMain.html" + result;
 			clearData();
 		},
-		error : function(error){
+		error : function(error) {
 			doError(error);
 		}
 	});
@@ -180,7 +180,7 @@ function logout() {
 			window.location.href = "../index.html";
 			clearData();
 		},
-		error : function(error){
+		error : function(error) {
 			doError(error);
 		}
 	});
@@ -198,7 +198,7 @@ function getListOfOpenGames() {
 			clearData();
 
 		},
-		error : function(error){
+		error : function(error) {
 			doError(error);
 		}
 	});
@@ -238,7 +238,7 @@ function joinIt(gameName) {
 			window.location.href = "./gameSeven.html" + result;
 			clearData();
 		},
-		error : function(error){
+		error : function(error) {
 			doError(error);
 		}
 	});
@@ -260,15 +260,15 @@ function doError(error) {
 
 	if (error.status === 1000) {
 		alert("Einloggen fehlgeschlagen, Sie sind bereits angemeldet!");
-		window.location.href = "../index.html";
 		clearData();
+		window.location.href = "html/menuMain.html";
 	} else if (error.status === 1001) {
 		alert("Sie dürfen hier nicht sein, Sie sind nicht eingeloggt!");
-		window.location.href = "html/menuMain.html"
 		clearData();
-	} else {
-		alert("unknown error "+error.status);
-	}
+		window.location.href = "../index.html";
 
+	} else {
+		alert("unknown error " + error.status);
+	}
 
 }
