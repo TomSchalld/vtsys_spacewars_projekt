@@ -30,7 +30,7 @@ function openWait() {
 }
 function closeWait() {
 	$('#wait').hide();
-	$('#endRoundButton').attr('enabled', 'enabled');
+	$('#endRoundButton').removeAttr('disabled');
 }
 
 function chooseUniverse(size) {
