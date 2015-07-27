@@ -25,6 +25,11 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 	private int planetId;
 	private boolean fightAfterRoundEnded = false;
 
+	/**Creates new Planet
+	 * @param planetName
+	 * @param planetId
+	 * @throws RemoteException
+	 */
 	public Planet(String planetName, int planetId) throws RemoteException {
 		this.name = planetName;
 		this.planetId = planetId;
@@ -33,11 +38,17 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		this.shipsTryToOrbit = new LinkedList<SpaceshipIf>();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.rmi.server.RemoteObject#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		return this.planetId;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.rmi.server.RemoteObject#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -57,57 +68,90 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getName()
+	 */
 	@Override
 	public String getName() throws RemoteException {
 		return name;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getGeneratedCreditsPerShip()
+	 */
 	@Override
 	public int getGeneratedCreditsPerShip() throws RemoteException {
 		return generatedCreditsPerShip;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getGeneratedCredits()
+	 */
 	@Override
 	public int getGeneratedCredits() throws RemoteException {
 		return generatedCredits;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getPlanetId()
+	 */
 	@Override
 	public int getPlanetId() throws RemoteException {
 		return planetId;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#isFightAfterRoundEnded()
+	 */
 	@Override
 	public boolean isFightAfterRoundEnded() throws RemoteException {
 		return fightAfterRoundEnded;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#setFightAfterRoundEnded(boolean)
+	 */
 	@Override
 	public void setFightAfterRoundEnded(boolean fightAfterRoundEnded) throws RemoteException {
 		this.fightAfterRoundEnded = fightAfterRoundEnded;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getShipsInOrbit()
+	 */
 	@Override
 	public List<SpaceshipIf> getShipsInOrbit() throws RemoteException {
 		return shipsInOrbit;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getShipsTryToOrbit()
+	 */
 	@Override
 	public List<SpaceshipIf> getShipsTryToOrbit() throws RemoteException {
 		return shipsTryToOrbit;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getPlanetOwner()
+	 */
 	@Override
 	public Client getPlanetOwner() throws RemoteException {
 		return planetOwner;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#setPlanetOwner(clientServer.Client)
+	 */
 	@Override
 	public void setPlanetOwner(Client planetOwner) throws RemoteException {
 		this.planetOwner = planetOwner;
 		planetOwner.setAmountOfPlanets(planetOwner.getAmountOfPlanets()+1);
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#addShipToOrbit(logic.SpaceshipIf)
+	 */
 	@Override
 	public void addShipToOrbit(SpaceshipIf newShip) throws RemoteException {
 		if (newShip != null) {
@@ -133,18 +177,27 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#removeShipFromOrbit(logic.SpaceshipIf)
+	 */
 	@Override
 	public boolean removeShipFromOrbit(SpaceshipIf shipToRemove) throws RemoteException {
 		return this.shipsInOrbit.remove(shipToRemove);
 
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#delShips()
+	 */
 	@Override
 	public void delShips() throws RemoteException {
 		this.shipsInOrbit.clear();
 		this.shipsTryToOrbit.clear();
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#roundEnd()
+	 */
 	@Override
 	public void roundEnd() throws RemoteException {
 		this.fighterInOrbit = 0;
@@ -174,6 +227,9 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		System.out.println("-----------------------------------ende--------------------------------------");
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#fight()
+	 */
 	@Override
 	public BattleReport fight() throws RemoteException {
 		Client attacker = this.getShipsTryToOrbit().get(0).getOwner();
@@ -253,44 +309,69 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 		return report;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getFighterInOrbit()
+	 */
 	@Override
 	public int getFighterInOrbit() throws RemoteException {
 		return fighterInOrbit;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getBattlestarsInOrbit()
+	 */
 	@Override
 	public int getBattlestarsInOrbit() throws RemoteException {
 		return battlestarsInOrbit;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getSecondOwner()
+	 */
 	@Override
 	public Client getSecondOwner() throws RemoteException {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getFighterInOrbit(clientServer.Client)
+	 */
+	
 	@Override
 	public int getFighterInOrbit(Client owner) throws RemoteException {
 
 		return this.getFighterInOrbit();
 	}	
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getBattlestarsInOrbit(clientServer.Client)
+	 */
 	@Override
 	public int getBattlestarsInOrbit(Client owner) throws RemoteException {
 		return this.getBattlestarsInOrbit();
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#isMultiPlanet()
+	 */
 	@Override
 	public boolean isMultiPlanet() throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#payCash()
+	 */
 	@Override
 	public void payCash() throws RemoteException {
 		this.getPlanetOwner().addCash(this.getGeneratedCreditsPerShip());
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.PlanetIf#getSecondOwnerOrbit()
+	 */
 	@Override
 	public List<SpaceshipIf> getSecondOwnerOrbit() throws RemoteException {
 		// TODO Auto-generated method stub

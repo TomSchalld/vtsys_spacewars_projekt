@@ -11,10 +11,18 @@ public class PlayerPlayerVsPC extends PlayerVsPlayer {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @param gameName
+	 * @param universeSize
+	 * @throws RemoteException
+	 */
 	public PlayerPlayerVsPC(String gameName, int universeSize) throws RemoteException {
 		super(gameName, universeSize, 2);
 		this.players = new Client[3];
 	}
+	/* (non-Javadoc)
+	 * @see logic.PlayerVsPlayer#playersReady()
+	 */
 	@Override
 	public boolean playersReady() throws RemoteException {
 		System.out.println("players ready unterklasse");
@@ -26,6 +34,9 @@ public class PlayerPlayerVsPC extends PlayerVsPlayer {
 		}
 		return false;
 	}
+	/* (non-Javadoc)
+	 * @see logic.PlayerVsPlayer#addPlayer(clientServer.Client)
+	 */
 	@Override
 	public void addPlayer(Client newPlayer) {
 		if (this.players[0] == null) {
@@ -58,11 +69,17 @@ public class PlayerPlayerVsPC extends PlayerVsPlayer {
 		}
 	}
 
+	/**
+	 * @throws RemoteException
+	 */
 	private void setPlayersUnready() throws RemoteException {
 		this.players[0].setPlayerReady(false);
 		this.players[1].setPlayerReady(false);
 		this.players[2].setPlayerReady(false);
 	}
+	/* (non-Javadoc)
+	 * @see logic.PlayerVsPlayer#checkAndSetWinner()
+	 */
 	@Override
 	protected void checkAndSetWinner() throws RemoteException {
 		System.out.println("check and set winner unterklasse");

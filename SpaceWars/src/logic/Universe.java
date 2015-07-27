@@ -20,6 +20,10 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 	private int planetId;
 	boolean isMultiverse;
 
+	/**
+	 * @param universeSize
+	 * @throws RemoteException
+	 */
 	public Universe(int universeSize) throws RemoteException {
 		this.planets = new HashMap<String, PlanetIf>();
 		this.universeSize = universeSize;
@@ -29,6 +33,11 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		System.out.println("universe erstellt");
 	}
 
+	/**
+	 * @param universeSize
+	 * @param isMultiverse
+	 * @throws RemoteException
+	 */
 	public Universe(int universeSize, boolean isMultiverse) throws RemoteException {
 		this.planets = new HashMap<String, PlanetIf>();
 		this.universeSize = universeSize;
@@ -38,11 +47,17 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		System.out.println("multiverse erstellt");
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.UniverseIf#getPlanets()
+	 */
 	@Override
 	public Map<String, PlanetIf> getPlanets() throws RemoteException {
 		return planets;
 	}
 
+	/**
+	 * @throws RemoteException
+	 */
 	private void createWorld() throws RemoteException {
 		switch (this.universeSize) {
 		case 1: {
@@ -65,6 +80,9 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 
 	}
 
+	/**
+	 * @throws RemoteException
+	 */
 	private void createThreePlanets() throws RemoteException {
 		if (!this.isMultiverse) {
 			System.out.println("three planets universe");
@@ -82,6 +100,9 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 
 	}
 
+	/**
+	 * @throws RemoteException
+	 */
 	private void createFivePlanets() throws RemoteException {
 		this.createThreePlanets();
 		if (!this.isMultiverse) {
@@ -98,6 +119,9 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 
 	}
 
+	/**
+	 * @throws RemoteException
+	 */
 	private void createSevenPlanets() throws RemoteException {
 		this.createFivePlanets();
 		if (!this.isMultiverse) {
@@ -114,16 +138,25 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.UniverseIf#getRandomPlanet()
+	 */
 	@Override
 	public PlanetIf getRandomPlanet() throws RemoteException {
 		return getPlanetByName(getRandomPlanetName());
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.UniverseIf#getPlanetByName(java.lang.String)
+	 */
 	@Override
 	public PlanetIf getPlanetByName(String name) throws RemoteException {
 		return this.getPlanets().get(name);
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.UniverseIf#getRandomPlanetName()
+	 */
 	@Override
 	public String getRandomPlanetName() throws RemoteException {
 
@@ -136,6 +169,9 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.UniverseIf#killUniverse()
+	 */
 	@Override
 	public void killUniverse() throws RemoteException {
 		for (PlanetIf p : this.getPlanets().values()) {
@@ -144,6 +180,9 @@ public class Universe extends UnicastRemoteObject implements UniverseIf, Seriali
 		this.getPlanets().clear();
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.UniverseIf#getSize()
+	 */
 	@Override
 	public int getSize() throws RemoteException {
 

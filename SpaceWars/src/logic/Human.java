@@ -33,6 +33,12 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	private JSONObject roundReport;
 	private String team;
 
+	/**
+	 * @param username
+	 * @throws MalformedURLException
+	 * @throws RemoteException
+	 * @throws NotBoundException
+	 */
 	public Human(String username)
 			throws MalformedURLException, RemoteException, NotBoundException {
 		this.server = (Server) Naming.lookup(NameHelper.getServeraddress());
@@ -44,11 +50,17 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		System.out.println(userCount);
 		this.team = this.username+ownerId;
 	}
+	/* (non-Javadoc)
+	 * @see clientServer.Client#setTeam(java.lang.String)
+	 */
 	@Override
 	public void setTeam(String team) throws RemoteException{
 		this.team = team;
 	}
 	
+	/* (non-Javadoc)
+	 * @see clientServer.Client#openGame(java.lang.String, int, int)
+	 */
 	@Override
 	public void openGame(String gameName, int variation, int universeSize) throws RemoteException {
 
@@ -68,15 +80,24 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		}
 
 	}
+	/* (non-Javadoc)
+	 * @see clientServer.Client#closeGame()
+	 */
 	@Override
 	public void closeGame() throws RemoteException{
 		this.server.closeGame(this.getGamePlaying().getGameName());
 	}
+	/* (non-Javadoc)
+	 * @see clientServer.Client#setAmountOfPlanets(int)
+	 */
 	@Override
 	public void setAmountOfPlanets(int planets) throws RemoteException {
 		this.amountOfPlanets = planets;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#joinGame(java.lang.String)
+	 */
 	@Override
 	public void joinGame(String gameName) throws RemoteException {
 		// TODO just in case get game, manipulate, copy back and overwrite
@@ -86,43 +107,73 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#getRoundReport()
+	 */
 	public JSONObject getRoundReport() throws RemoteException {
 		return roundReport;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#setRoundReport(org.json.JSONObject)
+	 */
 	public void setRoundReport(JSONObject roundReport) throws RemoteException {
 		this.roundReport = roundReport;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#getAmountOfPlanets()
+	 */
 	@Override
 	public int getAmountOfPlanets() {
 		return this.amountOfPlanets;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#addCash(int)
+	 */
 	public void addCash(int cash) {
 		this.cash += cash;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#getCash()
+	 */
 	public int getCash() {
 		return this.cash;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#getGamePlaying()
+	 */
 	public Game getGamePlaying() {
 		return gamePlaying;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#setGamePlaying(logic.Game)
+	 */
 	public void setGamePlaying(Game gamePlaying) {
 		this.gamePlaying = gamePlaying;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#getOwnerId()
+	 */
 	public int getOwnerId() {
 		return ownerId;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#isPlayerReady()
+	 */
 	public boolean isPlayerReady() {
 		return playerReady;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#setPlayerReady(boolean)
+	 */
 	public void setPlayerReady(boolean playerReady) throws RemoteException {
 		this.playerReady = playerReady;
 		System.out.println("Ich: " + this.getUsername() + " bin fertig!");
@@ -138,10 +189,16 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#getUsername()
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#buyBattlestar()
+	 */
 	@Override
 	public void buyBattlestar() throws RemoteException {
 		if (this.cash - Battlestar.getPrice() >= 0) {
@@ -154,6 +211,9 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#buyFighter()
+	 */
 	@Override
 	public void buyFighter() throws RemoteException {
 		if (this.cash - Fighter.getPrice() >= 0) {
@@ -164,6 +224,9 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#sendShip(logic.SpaceshipIf, logic.PlanetIf)
+	 */
 	@Override
 	public void sendShip(SpaceshipIf ship, PlanetIf destination) throws RemoteException {
 		if (ship.getOrbiting() == null) {
@@ -184,6 +247,9 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#sendAllShipsToStock(logic.PlanetIf)
+	 */
 	@Override
 	public void sendAllShipsToStock(PlanetIf origin) throws RemoteException {
 		List<SpaceshipIf> tmp = new LinkedList<SpaceshipIf>();
@@ -205,6 +271,9 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.rmi.server.RemoteObject#toString()
+	 */
 	public String toString() {
 		String string = this.username + " Cash: " + this.cash + " Planeten: " + this.amountOfPlanets + " ";
 		for (SpaceshipIf s : this.getStock()) {
@@ -215,10 +284,16 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		return string;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#getStock()
+	 */
 	public List<SpaceshipIf> getStock() {
 		return stock;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#equals(clientServer.Client)
+	 */
 	@Override
 	public boolean equals(Client other) throws RemoteException {
 		if (this.getOwnerId() == other.getOwnerId()) {
@@ -227,22 +302,34 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#setCash(int)
+	 */
 	@Override
 	public void setCash(int cash) throws RemoteException {
 		this.cash = cash;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#setStock(java.util.List)
+	 */
 	@Override
 	public void setStock(List<SpaceshipIf> stock) throws RemoteException {
 		// TODO Auto-generated method stub
 		this.stock=stock;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Client#isKI()
+	 */
 	@Override
 	public boolean isKI() throws RemoteException {
 	
 		return false;
 	}
+	/* (non-Javadoc)
+	 * @see clientServer.Client#getTeam()
+	 */
 	@Override
 	public String getTeam() throws RemoteException {
 		// TODO Auto-generated method stub

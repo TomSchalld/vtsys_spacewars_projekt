@@ -37,6 +37,9 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
+	/**
+	 * 
+	 */
 	public Login() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -45,6 +48,9 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 */
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -101,6 +107,13 @@ public class Login extends HttpServlet {
 	 * @throws JSONException
 	 */
 
+	/**
+	 * @param response
+	 * @param out
+	 * @throws MalformedURLException
+	 * @throws RemoteException
+	 * @throws JSONException
+	 */
 	private void getGamesFromLobby(HttpServletResponse response, PrintWriter out)
 			throws MalformedURLException, RemoteException, JSONException {
 		System.out.println("Get Games");
@@ -140,11 +153,22 @@ public class Login extends HttpServlet {
 	 * @param session
 	 * @param uname
 	 */
+	/**
+	 * @param session
+	 * @param uname
+	 */
 	private void logout(HttpSession session, String uname) {
 		UserOnline.logout(session.getId());
 		System.out.println(uname + " successfully logged out");
 	}
 
+	/**
+	 * @param request
+	 * @param user
+	 * @param out
+	 * @throws NumberFormatException
+	 * @throws RemoteException
+	 */
 	/**
 	 * @param request
 	 * @param user
@@ -197,6 +221,9 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 */
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

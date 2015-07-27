@@ -28,6 +28,12 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 								// 1= Player vs. PC
 								// 2= Player, Player vs PC
 
+	/**
+	 * @param gameName
+	 * @param universeSize
+	 * @param variation
+	 * @throws RemoteException
+	 */
 	public PlayerVsPlayer(String gameName, int universeSize, int variation) throws RemoteException {
 		this.gameName = gameName;
 		this.gameId = gameCount;
@@ -43,16 +49,25 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		this.variation = variation;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#getVariation()
+	 */
 	@Override
 	public int getVariation() throws RemoteException {
 		return variation;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#setVariation(int)
+	 */
 	@Override
 	public void setVariation(int variation) throws RemoteException {
 		this.variation = variation;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#addPlayer(clientServer.Client)
+	 */
 	@Override
 	public void addPlayer(Client newPlayer) throws RemoteException {
 		if (this.players[0] == null) {
@@ -68,6 +83,11 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 
 	}
 
+	/**
+	 * @param one
+	 * @param two
+	 * @throws RemoteException
+	 */
 	public void addPlayers(Client one, Client two) throws RemoteException {
 		one.setGamePlaying(this);
 		two.setGamePlaying(this);
@@ -75,6 +95,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		this.addPlayer(two);
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#playersReady()
+	 */
 	@Override
 	public boolean playersReady() throws RemoteException {
 		if (this.players[0] == null || this.players[1] == null) {
@@ -86,11 +109,17 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return false;
 	}
 
+	/**
+	 * @throws RemoteException
+	 */
 	private void setPlayersUnready() throws RemoteException {
 		this.players[0].setPlayerReady(false);
 		this.players[1].setPlayerReady(false);
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#endRound()
+	 */
 	@Override
 	public RoundReport endRound() throws RemoteException {
 		int planetsPOne = 0;
@@ -153,6 +182,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return null;
 	}
 
+	/**
+	 * @throws RemoteException
+	 */
 	protected void checkAndSetWinner() throws RemoteException {
 		EndReport er = (EndReport) this.getEndreport();
 		if (this.players[0].getAmountOfPlanets() == 0 && this.players[0].getCash() < Fighter.price) {
@@ -184,31 +216,49 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#getUniverse()
+	 */
 	@Override
 	public UniverseIf getUniverse() throws RemoteException {
 		return this.universe;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#hasEnoughPlayer()
+	 */
 	@Override
 	public boolean hasEnoughPlayer() throws RemoteException {
 		return this.hasEnoughPlayer;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#isGameFinished()
+	 */
 	@Override
 	public boolean isGameFinished() throws RemoteException {
 		return this.gameFinished;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#getEndreport()
+	 */
 	@Override
 	public Report getEndreport() throws RemoteException {
 		return this.endReport;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#getGameName()
+	 */
 	@Override
 	public String getGameName() throws RemoteException {
 		return this.gameName;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#killAllReferences()
+	 */
 	@Override
 	public boolean killAllReferences() throws RemoteException {
 		this.winner = null;
@@ -222,17 +272,26 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#getRound()
+	 */
 	@Override
 	public int getRound() throws RemoteException {
 		return round;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#getWinnerByName()
+	 */
 	@Override
 	public String getWinnerByName() throws RemoteException {
 		// TODO Auto-generated method stub
 		return this.winner.getUsername();
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Game#getHostName()
+	 */
 	@Override
 	public String getHostName() throws RemoteException {
 		// TODO Auto-generated method stub

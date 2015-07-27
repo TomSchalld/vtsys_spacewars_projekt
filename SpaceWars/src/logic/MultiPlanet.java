@@ -16,44 +16,71 @@ public class MultiPlanet extends Planet {
 	private int friendlyFighterInOrbit = 0;
 	private int friendlyBattlestarsInOrbit = 0;
 
+	/**
+	 * @param planetName
+	 * @param planetId
+	 * @throws RemoteException
+	 */
 	public MultiPlanet(String planetName, int planetId) throws RemoteException {
 		super(planetName, planetId);
 		this.secondOwnerOrbit = new LinkedList<SpaceshipIf>();
 		System.out.println("Multiplanet mit namen :"+this.getName()+" wurde erstellt");
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#isMultiPlanet()
+	 */
 	@Override
 	public boolean isMultiPlanet() throws RemoteException {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
 		return super.equals(obj);
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#getShipsInOrbit()
+	 */
 	@Override
 	public List<SpaceshipIf> getShipsInOrbit() throws RemoteException {
 		// TODO Auto-generated method stub
 		return super.getShipsInOrbit();
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#getShipsTryToOrbit()
+	 */
 	@Override
 	public List<SpaceshipIf> getShipsTryToOrbit() throws RemoteException {
 		// TODO Auto-generated method stub
 		return super.getShipsTryToOrbit();
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#getSecondOwner()
+	 */
 	@Override
 	public Client getSecondOwner() throws RemoteException {
 		return this.secondPlanetOwner;
 	}
 
+	/**
+	 * @param secondOwner
+	 * @throws RemoteException
+	 */
 	private void setSecondPlanetOwner(Client secondOwner) throws RemoteException {
 		this.secondPlanetOwner = secondOwner;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#setPlanetOwner(clientServer.Client)
+	 */
 	@Override
 	public void setPlanetOwner(Client planetOwner) throws RemoteException {
 		System.out.println("unterklassen setPlanetOwner");
@@ -71,6 +98,9 @@ public class MultiPlanet extends Planet {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#addShipToOrbit(logic.SpaceshipIf)
+	 */
 	@Override
 	public void addShipToOrbit(SpaceshipIf newShip) throws RemoteException {
 		System.out.println("unterklasse add ship to orbit");
@@ -98,6 +128,9 @@ public class MultiPlanet extends Planet {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#removeShipFromOrbit(logic.SpaceshipIf)
+	 */
 	@Override
 	public boolean removeShipFromOrbit(SpaceshipIf shipToRemove) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -113,6 +146,9 @@ public class MultiPlanet extends Planet {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#delShips()
+	 */
 	@Override
 	public void delShips() throws RemoteException {
 		// TODO Auto-generated method stub
@@ -120,6 +156,9 @@ public class MultiPlanet extends Planet {
 		this.secondOwnerOrbit.clear();
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#roundEnd()
+	 */
 	@Override
 	public void roundEnd() throws RemoteException {
 		this.fighterInOrbit = 0;
@@ -161,6 +200,9 @@ public class MultiPlanet extends Planet {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#fight()
+	 */
 	@Override
 	public BattleReport fight() throws RemoteException {
 		boolean isDoubleAttack = false;
@@ -340,11 +382,17 @@ public class MultiPlanet extends Planet {
 		}
 
 	}
+	/* (non-Javadoc)
+	 * @see logic.Planet#getSecondOwnerOrbit()
+	 */
 	@Override
 	public List<SpaceshipIf> getSecondOwnerOrbit() throws RemoteException {
 		return secondOwnerOrbit;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#getFighterInOrbit(clientServer.Client)
+	 */
 	@Override
 	public int getFighterInOrbit(Client owner) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -355,6 +403,9 @@ public class MultiPlanet extends Planet {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#getBattlestarsInOrbit(clientServer.Client)
+	 */
 	@Override
 	public int getBattlestarsInOrbit(Client owner) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -365,6 +416,9 @@ public class MultiPlanet extends Planet {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.Planet#payCash()
+	 */
 	@Override
 	public void payCash() throws RemoteException {
 		super.payCash();

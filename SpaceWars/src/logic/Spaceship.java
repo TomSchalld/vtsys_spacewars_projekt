@@ -17,44 +17,72 @@ public abstract class Spaceship extends UnicastRemoteObject implements Spaceship
 	static int shipID = 0;
 	private int shipNumber;
 
+	/**
+	 * @param owner
+	 * @throws RemoteException
+	 */
 	public Spaceship(Client owner) throws RemoteException {
 		this.ownerId = owner.getOwnerId();
 		this.owner = owner;
 		shipNumber = shipID++;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.SpaceshipIf#getShipID()
+	 */
 	@Override
 	public int getShipID() throws RemoteException {
 		return this.shipNumber;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.SpaceshipIf#getOwnerId()
+	 */
 	@Override
 	public int getOwnerId() throws RemoteException {
 		return ownerId;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.SpaceshipIf#getOrbiting()
+	 */
 	@Override
 	public PlanetIf getOrbiting() throws RemoteException {
 		return orbiting;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.SpaceshipIf#setOrbiting(logic.PlanetIf)
+	 */
 	@Override
 	public void setOrbiting(PlanetIf orbiting) throws RemoteException {
 		this.orbiting = orbiting;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.SpaceshipIf#getOwner()
+	 */
 	@Override
 	public Client getOwner() throws RemoteException {
 		return owner;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.SpaceshipIf#attack()
+	 */
 	@Override
 	public abstract int attack() throws RemoteException;
 	
+	/* (non-Javadoc)
+	 * @see logic.SpaceshipIf#shipInfo()
+	 */
 	@Override
 	public abstract String shipInfo() throws RemoteException;
 	
 	
+	/* (non-Javadoc)
+	 * @see java.rmi.server.RemoteObject#toString()
+	 */
 	@Override
 	public String toString() {
 		String s = "";
@@ -92,6 +120,9 @@ public abstract class Spaceship extends UnicastRemoteObject implements Spaceship
 		return s;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.rmi.server.RemoteObject#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object other) {
 
@@ -118,6 +149,9 @@ public abstract class Spaceship extends UnicastRemoteObject implements Spaceship
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see logic.SpaceshipIf#increaseRank()
+	 */
 	@Override
 	public abstract void increaseRank() throws RemoteException;
 

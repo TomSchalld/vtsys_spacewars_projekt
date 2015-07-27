@@ -20,6 +20,9 @@ public class Fighter extends Spaceship {
 		}
 	}
 	private Rank rank=Rank.Lieutenant;
+	/* (non-Javadoc)
+	 * @see logic.Spaceship#increaseRank()
+	 */
 	@Override
 	public void increaseRank(){
 		boolean rankIncreased = false;
@@ -35,6 +38,9 @@ public class Fighter extends Spaceship {
 	public Fighter(Client owner) throws RemoteException {
 		super(owner);
 	}
+	/**
+	 * @return the price of one Fighter
+	 */
 	public static int getPrice() {
 		return price;
 	}
@@ -43,11 +49,17 @@ public class Fighter extends Spaceship {
 		s+=rank;
 		return s;
 	}
+	/* (non-Javadoc)
+	 * @see logic.Spaceship#attack()
+	 */
 	@Override
 	public int attack() {
 		int random=(int)(Math.random()*10+this.rank.getAttackBoost());
 		return random;
 	}
+	/* (non-Javadoc)
+	 * @see logic.Spaceship#shipInfo()
+	 */
 	@Override
 	public String shipInfo() throws RemoteException {
 		String s = "Jäger von : ";
@@ -77,6 +89,9 @@ public class Fighter extends Spaceship {
 		s+=rank;
 		return s;
 	}
+	/* (non-Javadoc)
+	 * @see logic.SpaceshipIf#isFighter()
+	 */
 	@Override
 	public boolean isFighter() throws RemoteException {
 		return true;

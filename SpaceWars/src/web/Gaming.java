@@ -40,6 +40,9 @@ public class Gaming extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
+	/**
+	 * 
+	 */
 	public Gaming() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -48,6 +51,9 @@ public class Gaming extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 */
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -99,12 +105,19 @@ public class Gaming extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO check if sessionID is valid
 		doGet(request, response);
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	private JSONObject requestParamsToJSON(HttpServletRequest request) {
 		Map<String, String[]> params = request.getParameterMap();
 		JSONObject roundObject = new JSONObject();
@@ -129,6 +142,13 @@ public class Gaming extends HttpServlet {
 
 	}
 
+	/**
+	 * @param roundObject
+	 * @param user
+	 * @throws RemoteException
+	 * @throws JSONException
+	 * @throws InterruptedException
+	 */
 	private void doRound(JSONObject roundObject, Client user)
 			throws RemoteException, JSONException, InterruptedException {
 		List<SpaceshipIf> tmpShips = new LinkedList<SpaceshipIf>();
@@ -257,6 +277,9 @@ public class Gaming extends HttpServlet {
 
 	}
 
+	/**
+	 * @param endreport
+	 */
 	private void generateHighscore(Report endreport) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();

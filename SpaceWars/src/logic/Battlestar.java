@@ -29,6 +29,9 @@ public class Battlestar extends Spaceship {
 	public static int getPrice() {
 		return price;
 	}
+	/* (non-Javadoc)
+	 * @see logic.Spaceship#increaseRank()
+	 */
 	@Override
 	public void increaseRank(){
 		boolean rankIncreased = false;
@@ -41,6 +44,9 @@ public class Battlestar extends Spaceship {
 			}
 		}
 	}
+	/* (non-Javadoc)
+	 * @see logic.Spaceship#attack()
+	 */
 	@Override
 	public int attack() {
 		int random = (int)(Math.random()*100+this.rank.getAttackBoost());
@@ -52,6 +58,9 @@ public class Battlestar extends Spaceship {
 		s+=rank;
 		return s;
 	}
+	/* (non-Javadoc)
+	 * @see logic.Spaceship#shipInfo()
+	 */
 	@Override
 	public String shipInfo() throws RemoteException {
 		String s = "Schlachtschiff von : ";
@@ -81,6 +90,9 @@ public class Battlestar extends Spaceship {
 		s+=rank;
 		return s;
 	}
+	/* (non-Javadoc)
+	 * @see logic.SpaceshipIf#isFighter()
+	 */
 	@Override
 	public boolean isFighter() throws RemoteException {
 

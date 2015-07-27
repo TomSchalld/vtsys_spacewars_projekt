@@ -13,6 +13,11 @@ public class PlayerVsPC extends PlayerVsPlayer {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @param gameName
+	 * @param universeSize
+	 * @throws RemoteException
+	 */
 	public PlayerVsPC(String gameName,int universeSize) throws RemoteException {
 		super(gameName, universeSize,1);
 	}

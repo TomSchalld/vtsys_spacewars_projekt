@@ -21,6 +21,9 @@ public class BattleReport implements Report,Serializable{
 		this.battleGround =battleGround;
 		this.init();
 	}
+	/**Initializes the report
+	 * @throws RemoteException
+	 */
 	private void init() throws RemoteException{
 		this.nameOfbattleGround=this.battleGround.getName();
 		for(SpaceshipIf s:this.battleGround.getShipsInOrbit()){
@@ -83,6 +86,9 @@ public class BattleReport implements Report,Serializable{
 	public void setNameOfbattleGround(String nameOfbattleGround) {
 		this.nameOfbattleGround = nameOfbattleGround;
 	}
+	/**Sets a list of defeated ships an calls writeListOfDefeats()
+	 * @param defeatedShips
+	 */
 	public void setDefeatedShips(List<SpaceshipIf> defeatedShips) {
 		this.defeatedShips = defeatedShips;
 		try {
@@ -92,6 +98,9 @@ public class BattleReport implements Report,Serializable{
 			e.printStackTrace();
 		}
 	}
+	/**Writes a String Array of the defeated ships
+	 * @throws RemoteException
+	 */
 	private void writeListOfDefeats() throws RemoteException{
 		this.listOfDefeats = new String[this.defeatedShips.size()];
 		int i=0;
