@@ -49,8 +49,11 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	/* (non-Javadoc)
-	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -69,7 +72,7 @@ public class Login extends HttpServlet {
 			response.sendError(1001);
 		}
 		if (user == null) {
-			
+
 		} else {
 			String uname = user.getUsername();
 			PrintWriter out = response.getWriter();
@@ -78,7 +81,27 @@ public class Login extends HttpServlet {
 			} else if (request.getParameter("logout").equals("true")) {
 				logout(session, uname);
 			} else if (request.getParameter("joinGame").equals("true")) {
-				out.write("?username=" + uname);
+				Server gameServer = null;
+				try {
+					gameServer = (Server) Naming.lookup(NameHelper.getServeraddress());
+				} catch (NotBoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				String gameName = request.getParameter("gameName");
+				Game tmp = gameServer.getGameByName(gameName);
+				if (tmp.getUniverse().getSize() == 1) {
+					out.write("gameThree.html?gameName=" + gameName + "&universeSize=" + tmp.getUniverse().getSize()
+							+ "&");
+
+				} else if (tmp.getUniverse().getSize() == 2) {
+					out.write("gameFive.html?gameName=" + gameName + "&universeSize=" + tmp.getUniverse().getSize()
+							+ "&");
+				} else {
+					out.write("gameSeven.html?gameName=" + gameName + "&universeSize=" + tmp.getUniverse().getSize()
+							+ "&");
+				}
+
 				user.joinGame(request.getParameter("gameName"));
 			} else if (request.getParameter("getGames").equals("true")) {
 				getGamesFromLobby(response, out);
@@ -122,7 +145,7 @@ public class Login extends HttpServlet {
 			Server gameServer = (Server) Naming.lookup(NameHelper.getServeraddress());
 			JSONObject val;
 			gamesList = new JSONObject();
-			int i =0;
+			int i = 0;
 			Map<String, Game> games = gameServer.gamesInLobby();
 			for (String s : games.keySet()) {
 				val = new JSONObject();
@@ -136,7 +159,7 @@ public class Login extends HttpServlet {
 				val.put("host", games.get(s).getHostName());
 				val.put("universeSize", games.get(s).getUniverse().getSize());
 				val.put("gameName", s);
-				gamesList.put(""+(i++), val);
+				gamesList.put("" + (i++), val);
 
 			}
 			response.setContentType("application/json");
@@ -179,7 +202,7 @@ public class Login extends HttpServlet {
 	private void createGame(HttpServletRequest request, Client user, PrintWriter out)
 			throws NumberFormatException, RemoteException {
 		String gameName = request.getParameter("gameName");
-		
+
 		int variation = Integer.parseInt(request.getParameter("gameMode").trim()); // 0=pvp
 																					// 1=pvpc
 																					// 2=ppvpc
@@ -222,8 +245,11 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	/* (non-Javadoc)
-	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -235,7 +261,7 @@ public class Login extends HttpServlet {
 		try {
 			if (!UserOnline.isUserExisting(sessionId)) {
 				UserOnline.addUser(sessionId, new Human(uname));
-			}else{
+			} else {
 				response.sendError(1000);
 				System.out.println("username is in use");
 			}

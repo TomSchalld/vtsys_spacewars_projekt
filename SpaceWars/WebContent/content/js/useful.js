@@ -241,7 +241,7 @@ function joinIt(gameName) {
 		type : "GET",
 		data : data,
 		success : function(result) {
-			window.location.href = "./gameSeven.html" + result;
+			window.location.href = "./" + result;
 			clearData();
 		},
 		error : function(error) {
