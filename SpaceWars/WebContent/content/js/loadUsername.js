@@ -11,7 +11,9 @@ $(document).ready(function() {
 			//window.location.href = "/" + result;
 			clearData();
 		},
-		error : doError(error)
+		error : function(error){
+			doError(error);
+		}
 	});
 	//data.username = getUrlParameter("username");
 	

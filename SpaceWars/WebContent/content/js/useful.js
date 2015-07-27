@@ -150,7 +150,9 @@ function submitUser() {
 			window.location.href = "html/menuMain.html" + result;
 			clearData();
 		},
-		error : doError(error)
+		error : function(error){
+			doError(error);
+		}
 	});
 }
 function logout() {
