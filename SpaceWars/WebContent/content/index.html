@@ -26,26 +26,25 @@
 			<label for="username" class="sr-only">Name</label> <input
 				id="username" class="form-control InputTextBox"
 				placeholder="Wie sollen wir Sie nennen?" required="" autofocus=""
-				type="input" >
+				type="input">
 
-			<button id="sendUname" class="btn btn-lg btn-primary btn-block submitButton" type="button"
+			<button id="sendUname"
+				class="btn btn-lg btn-primary btn-block submitButton" type="button"
 				onclick="submitUser()">Spiel starten</button>
 		</form>
 
 	</div>
 	<!-- /container -->
 	<script src="js/useful.js"></script>
-	<script >
-		$(document).ready(function(){
-		    $('#username').keypress(function(e){
-		        if(e.keyCode==13){
-		        	$('#sendUname').click(function(){
-		        		submitUser();
-		        	});
-		        }
-		       
-		      });
-		  });</script>
+	<script>
+		$(document).ready(function() {
+			$('#username').keypress(function(e) {
+				if (e.keyCode == 13) {
+					submitUser();
+				}
+			});
+		});
+	</script>
 
 </body>
 </html>
