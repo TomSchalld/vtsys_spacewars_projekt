@@ -10,6 +10,9 @@ $(document).ready(function() {
 			$('#username').text("Commander " + data.username + " ist auf der Brücke");
 			//window.location.href = "/" + result;
 			clearData();
+		},
+		error : function(error){
+			doError(error);
 		}
 	});
 	//data.username = getUrlParameter("username");

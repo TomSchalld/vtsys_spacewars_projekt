@@ -44,6 +44,9 @@ function chooseUniverse(size) {
 		success : function(result) {
 			window.location.href = "./menuTeam.html" + result;
 			clearData();
+		},
+		error : function(error) {
+			doError(error);
 		}
 	});
 }
@@ -60,6 +63,9 @@ function startPPVPC() {
 			// alert(result);
 			window.location.href = "./" + result;
 			clearData();
+		},
+		error : function(error) {
+			doError(error);
 		}
 	});
 }
@@ -78,6 +84,9 @@ function startPVPC() {
 			// window.location.href = "./gameSeven.html" + result;
 			window.location.href = "./" + result;
 			clearData();
+		},
+		error : function(error) {
+			doError(error);
 		}
 	});
 
@@ -95,6 +104,9 @@ function startPVP() {
 			// alert(result);
 			window.location.href = "./" + result;
 			clearData();
+		},
+		error : function(error) {
+			doError(error);
 		}
 	});
 
@@ -121,6 +133,9 @@ function createGame() {
 		success : function(result) {
 			window.location.href = "./menuKarte.html" + result;
 			clearData();
+		},
+		error : function(error) {
+			doError(error);
 		}
 	});
 }
@@ -149,6 +164,9 @@ function submitUser() {
 		success : function(result) {
 			window.location.href = "html/menuMain.html" + result;
 			clearData();
+		},
+		error : function(error) {
+			doError(error);
 		}
 	});
 }
@@ -161,6 +179,9 @@ function logout() {
 		success : function(result) {
 			window.location.href = "../index.html";
 			clearData();
+		},
+		error : function(error) {
+			doError(error);
 		}
 	});
 }
@@ -176,6 +197,9 @@ function getListOfOpenGames() {
 			setListOfOpenGames(result);
 			clearData();
 
+		},
+		error : function(error) {
+			doError(error);
 		}
 	});
 }
@@ -213,6 +237,9 @@ function joinIt(gameName) {
 		success : function(result) {
 			window.location.href = "./gameSeven.html" + result;
 			clearData();
+		},
+		error : function(error) {
+			doError(error);
 		}
 	});
 }
@@ -229,11 +256,21 @@ function chooseRace(race) {
 	window.location.href = "./menuKarte.html" + "?username=" + data.username;
 
 }
+function doError(error) {
 
-$(document).ready(function() {
-	$('.InputTextBox').keypress(function(e) {
-		if (e.keyCode == 13){
-			$('.submitButton').click();
-		}
-	});
-});
+
+	if (error.status === 1000) {
+		alert("Einloggen fehlgeschlagen, Sie sind bereits angemeldet!");
+		clearData();
+		window.location.href = "html/menuMain.html";
+	} else if (error.status === 1001) {
+		alert("Sie dürfen hier nicht sein, Sie sind nicht eingeloggt!");
+		clearData();
+		window.location.href = "../index.html";
+
+	} else {
+		alert("unknown error " + error.status);
+	}
+
+}
+
