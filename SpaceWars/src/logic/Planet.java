@@ -365,7 +365,7 @@ public class Planet extends UnicastRemoteObject implements PlanetIf {
 	 */
 	@Override
 	public void payCash() throws RemoteException {
-		this.getPlanetOwner().addCash(this.getGeneratedCreditsPerShip());
+		this.getPlanetOwner().addCash(this.getGeneratedCredits());
 		
 	}
 
