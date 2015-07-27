@@ -170,6 +170,12 @@ function submitUser() {
 		}
 	});
 }
+function backToMenu() {
+
+	window.location.href = "./menuMain.html";
+
+
+}
 function logout() {
 	data.logout = true;
 	$.ajax({

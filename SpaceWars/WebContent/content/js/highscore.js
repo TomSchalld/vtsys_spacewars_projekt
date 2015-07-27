@@ -16,12 +16,7 @@ function fillHighscoreTable(result) {
 						+ "</td></tr>");
 	});
 }
-function backToMenu() {
 
-			window.location.href = "./menuMain.html";
-
-	
-}
 $(document).ready(function() {
 
 	data.highscore = true;
