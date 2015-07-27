@@ -232,3 +232,10 @@ function chooseRace(race) {
 	window.location.href = "./menuKarte.html" + "?username=" + data.username;
 
 }
+
+$(document).ready(function(){
+    $('.InputTextBox').keypress(function(e){
+      if(e.keyCode==13)
+      $('.submitButton').click();
+    });
+});
