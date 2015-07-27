@@ -39,7 +39,9 @@
 		$(document).ready(function(){
 		    $('#username').keypress(function(e){
 		        if(e.keyCode==13){
-		        	$('#sendUname').click();
+		        	$('#sendUname').click(function{
+		        		submitUser();
+		        	});
 		        }
 		       
 		      });
