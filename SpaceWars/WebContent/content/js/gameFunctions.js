@@ -592,6 +592,9 @@ function finishGame() {
 		success : function(result) {
 			window.location.href = "./menuMain.html" + result;
 			// clearData();
+		},
+		error : function(error){
+			doError(error);
 		}
 	});
 }
@@ -605,6 +608,9 @@ function endRound() {
 			console.log(result)
 			setValues(result);
 			openReport();
+		},
+		error : function(error){
+			doError(error);
 		}
 	});
 

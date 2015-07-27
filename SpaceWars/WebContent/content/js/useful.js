@@ -44,6 +44,9 @@ function chooseUniverse(size) {
 		success : function(result) {
 			window.location.href = "./menuTeam.html" + result;
 			clearData();
+		},
+		error : function(error){
+			doError(error);
 		}
 	});
 }
@@ -60,6 +63,9 @@ function startPPVPC() {
 			// alert(result);
 			window.location.href = "./" + result;
 			clearData();
+		},
+		error : function(error){
+			doError(error);
 		}
 	});
 }
@@ -78,6 +84,9 @@ function startPVPC() {
 			// window.location.href = "./gameSeven.html" + result;
 			window.location.href = "./" + result;
 			clearData();
+		},
+		error : function(error){
+			doError(error);
 		}
 	});
 
@@ -95,6 +104,9 @@ function startPVP() {
 			// alert(result);
 			window.location.href = "./" + result;
 			clearData();
+		},
+		error : function(error){
+			doError(error);
 		}
 	});
 
@@ -121,6 +133,9 @@ function createGame() {
 		success : function(result) {
 			window.location.href = "./menuKarte.html" + result;
 			clearData();
+		},
+		error : function(error){
+			doError(error);
 		}
 	});
 }
@@ -164,6 +179,9 @@ function logout() {
 		success : function(result) {
 			window.location.href = "../index.html";
 			clearData();
+		},
+		error : function(error){
+			doError(error);
 		}
 	});
 }
@@ -179,6 +197,9 @@ function getListOfOpenGames() {
 			setListOfOpenGames(result);
 			clearData();
 
+		},
+		error : function(error){
+			doError(error);
 		}
 	});
 }
@@ -216,6 +237,9 @@ function joinIt(gameName) {
 		success : function(result) {
 			window.location.href = "./gameSeven.html" + result;
 			clearData();
+		},
+		error : function(error){
+			doError(error);
 		}
 	});
 }
@@ -240,10 +264,10 @@ function doError(error) {
 		clearData();
 	} else if (error.status === 1001) {
 		alert("Sie dürfen hier nicht sein, Sie sind nicht eingeloggt!");
-		window.location.href = "../index.html";
+		window.location.href = "html/menuMain.html"
 		clearData();
 	} else {
-		alert("Unable to login unknown error");
+		alert("unknown error "+error.status);
 	}
 
 
