@@ -2,11 +2,11 @@ var data = {
 	"username" : "",
 	"logout" : false,
 	"createGame" : false,
-	"getUsername":false,
+	"getUsername" : false,
 	"joinGame" : false,
 	"getGames" : false,
 	"gameData" : null,
-	"highscore":false,
+	"highscore" : false,
 	"gameName" : "",
 	"gamePw" : "",
 	"race" : "",
@@ -23,7 +23,6 @@ function closeShop() {
 	$('#shop').hide();
 }
 
-
 function openWait() {
 	noFight();
 	$('#wait').show();
@@ -32,7 +31,6 @@ function closeWait() {
 	$('#wait').hide();
 
 }
-
 
 function chooseUniverse(size) {
 	data.universeSize = size;
@@ -49,7 +47,7 @@ function chooseUniverse(size) {
 		}
 	});
 }
-function startPPVPC(){
+function startPPVPC() {
 	data.createGame = true;
 	data.gameName = getUrlParameter("gameName");
 	data.universeSize = getUrlParameter("universeSize");
@@ -59,7 +57,7 @@ function startPPVPC(){
 		type : "GET",
 		data : data,
 		success : function(result) {
-			//alert(result);
+			// alert(result);
 			window.location.href = "./" + result;
 			clearData();
 		}
@@ -77,7 +75,7 @@ function startPVPC() {
 		data : data,
 		success : function(result) {
 
-			//window.location.href = "./gameSeven.html" + result;
+			// window.location.href = "./gameSeven.html" + result;
 			window.location.href = "./" + result;
 			clearData();
 		}
@@ -94,7 +92,7 @@ function startPVP() {
 		type : "GET",
 		data : data,
 		success : function(result) {
-			//alert(result);
+			// alert(result);
 			window.location.href = "./" + result;
 			clearData();
 		}
@@ -140,8 +138,7 @@ function joinGame() {
 }
 function showManual() {
 
-	window.location.href = "./menuManual.html" + "?username="
-			+ data.username;
+	window.location.href = "./menuManual.html" + "?username=" + data.username;
 }
 function submitUser() {
 	data.username = $('#username').val();
@@ -206,7 +203,7 @@ function setListOfOpenGames(result) {
 
 }
 function joinIt(gameName) {
-	//alert("Join Game");
+	// alert("Join Game");
 	data.joinGame = true;
 	data.gameName = gameName;
 	$.ajax({
@@ -233,9 +230,10 @@ function chooseRace(race) {
 
 }
 
-$(document).ready(function(){
-    $('.InputTextBox').keypress(function(e){
-      if(e.keyCode==13)
-      $('.submitButton').click();
-    });
+$(document).ready(function() {
+	$('.InputTextBox').keypress(function(e) {
+		if (e.keyCode == 13){
+			$('.submitButton').click();
+		}
+	});
 });
