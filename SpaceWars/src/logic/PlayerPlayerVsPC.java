@@ -81,21 +81,21 @@ public class PlayerPlayerVsPC extends PlayerVsPlayer {
 	 * @see logic.PlayerVsPlayer#checkAndSetWinner()
 	 */
 	@Override
-	protected void checkAndSetWinner() throws RemoteException {
+	public void checkAndSetWinner() throws RemoteException {
 		System.out.println("check and set winner unterklasse");
 		EndReport er = (EndReport) this.getEndreport();
-		if (this.players[0].getAmountOfPlanets() == 0 && this.players[0].getCash() < Fighter.price) {
+		if (this.players[0].getAmountOfPlanets() == 0 && this.players[0].getCash() < Fighter.price  && this.players[0].getStock().size()==0) {
 			this.gameFinished = true;
 			er.addWinner(this.players[1]);
 			er.addLooser(this.players[0], this.players[2]);
 			System.out.println("game is over. Winner is: " + this.players[1].getUsername());
-		} else if (this.players[1].getAmountOfPlanets() == 0 && this.players[1].getCash() < Fighter.price) {
+		} else if (this.players[1].getAmountOfPlanets() == 0 && this.players[1].getCash() < Fighter.price  && this.players[1].getStock().size()==0) {
 			this.gameFinished = true;
 			er.addWinner(this.players[0], this.players[2]);
 			er.addLooser(this.players[1]);
 			System.out.println("game is over. Winner is: " + this.players[0].getUsername() + " and "
 					+ this.players[2].getUsername());
-		} else if (this.players[2].getAmountOfPlanets() == 0 && this.players[2].getCash() < Fighter.price) {
+		} else if (this.players[2].getAmountOfPlanets() == 0 && this.players[2].getCash() < Fighter.price  && this.players[2].getStock().size()==0) {
 			this.gameFinished = true;
 			er.addWinner(this.players[1]);
 			er.addLooser(this.players[0], this.players[2]);

@@ -185,15 +185,16 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	/**
 	 * @throws RemoteException
 	 */
-	protected void checkAndSetWinner() throws RemoteException {
+	@Override
+	public void checkAndSetWinner() throws RemoteException {
 		EndReport er = (EndReport) this.getEndreport();
-		if (this.players[0].getAmountOfPlanets() == 0 && this.players[0].getCash() < Fighter.price) {
+		if (this.players[0].getAmountOfPlanets() == 0 && this.players[0].getCash() < Fighter.price && this.players[0].getStock().size()==0) {
 			this.gameFinished = true;
 			this.winner = this.players[1];
 			er.addWinner(this.players[1]);
 			er.addLooser(this.players[0]);
 			System.out.println("game is over. Winner is: " + this.players[1].getUsername());
-		} else if (this.players[1].getAmountOfPlanets() == 0 && this.players[1].getCash() < Fighter.price) {
+		} else if (this.players[1].getAmountOfPlanets() == 0 && this.players[1].getCash() < Fighter.price  && this.players[1].getStock().size()==0) {
 			this.gameFinished = true;
 			this.winner = this.players[0];
 			er.addWinner(this.players[0]);
@@ -211,7 +212,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			this.winner = this.players[1];
 			er.addWinner(this.players[1]);
 			er.addLooser(this.players[0]);
-			System.out.println("game is over. Winner is: " + this.players[0].getUsername());
+			System.out.println("game is over. Winner is: " + this.players[1].getUsername());
 
 		}
 	}

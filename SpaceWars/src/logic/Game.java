@@ -95,4 +95,9 @@ public interface Game extends Remote {
 	 */
 	public String getWinnerByName() throws RemoteException;
 
+	/**
+	 * @throws RemoteException
+	 */
+	void checkAndSetWinner() throws RemoteException;
+
 }
