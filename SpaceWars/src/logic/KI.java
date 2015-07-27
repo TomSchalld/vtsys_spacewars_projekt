@@ -23,29 +23,32 @@ public class KI extends Human {
 		this.cash = 7500;
 	}
 
-	/** Rules the world.... automated user is doing its round
+	/**
+	 * Rules the world.... automated user is doing its round
+	 * 
 	 * @throws RemoteException
 	 */
 	public void ruleTheWorld() throws RemoteException {
 		if (this.gamePlaying != null) {
-			if(!this.gamePlaying.isGameFinished()){
-				if(this.gamePlaying.hasEnoughPlayer()){
-					this.buyNewShips();
-					for (int i = 0; i < 5; i++) {
-						this.sendShips();
-					}
-					this.setPlayerReady(true);
-					this.setCash(cash * 3);
-					System.out.println("Skynet is gonna rule");
+			if (!this.gamePlaying.isGameFinished()) {
+
+				this.buyNewShips();
+				for (int i = 0; i < 5; i++) {
+					this.sendShips();
 				}
-				
+				this.setPlayerReady(true);
+				this.setCash(cash * 3);
+				System.out.println("Skynet is gonna rule");
+
 			}
-			
+
 		}
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Human#setGamePlaying(logic.Game)
 	 */
 	@Override
@@ -60,7 +63,9 @@ public class KI extends Human {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Human#setPlayerReady(boolean)
 	 */
 	@Override
@@ -81,7 +86,9 @@ public class KI extends Human {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/**Sends ships to random planets
+	/**
+	 * Sends ships to random planets
+	 * 
 	 * @throws RemoteException
 	 */
 	private void sendShips() throws RemoteException {
@@ -138,7 +145,9 @@ public class KI extends Human {
 
 	}
 
-	/**Buys new ships after komplex calculations
+	/**
+	 * Buys new ships after komplex calculations
+	 * 
 	 * @throws RemoteException
 	 */
 	private void buyNewShips() throws RemoteException {
@@ -197,7 +206,9 @@ public class KI extends Human {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Human#sendAllShipsToStock(logic.PlanetIf)
 	 */
 	@Override
@@ -205,7 +216,9 @@ public class KI extends Human {
 		System.out.println("Skynet is not sending ships to stock");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Human#isKI()
 	 */
 	@Override

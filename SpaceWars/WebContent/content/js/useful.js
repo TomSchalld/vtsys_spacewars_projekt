@@ -24,12 +24,13 @@ function closeShop() {
 }
 
 function openWait() {
+	$('#endRoundButton').attr('disabled', 'disabled');
 	noFight();
 	$('#wait').show();
 }
 function closeWait() {
 	$('#wait').hide();
-
+	$('#endRoundButton').attr('enabled', 'enabled');
 }
 
 function chooseUniverse(size) {
