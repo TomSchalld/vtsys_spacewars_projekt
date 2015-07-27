@@ -127,9 +127,9 @@ public class Gaming extends HttpServlet {
 		for (String s : planets) {
 			planetObject = new JSONObject();
 			// System.out.println( params.get(s+"[newFighter]")[0]);
-			planetObject.put("newFighter", params.get(s + "[newFighter]")[0]);
-			planetObject.put("newBattlestar", params.get(s + "[newBattlestar]")[0]);
-			planetObject.put("sum", params.get(s + "[sum]")[0]);
+			planetObject.put("newFighter", Integer.parseInt((params.get(s + "[newFighter]")[0]).trim()));
+			planetObject.put("newBattlestar", Integer.parseInt((params.get(s + "[newBattlestar]")[0]).trim()));
+			planetObject.put("sum", Integer.parseInt((params.get(s + "[sum]")[0]).trim()));
 			roundObject.put(s, planetObject);
 		}
 		roundObject.put("fightersInStock", Integer.parseInt(params.get("fightersInStock")[0].trim()));
