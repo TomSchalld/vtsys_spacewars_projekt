@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,68 +16,506 @@
 <link href="../css/bootstrap.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-
-
+<link href="../css/signin.css" rel="stylesheet">
+<link href="../css/styles.css" rel="stylesheet">
 <link href="../css/game.css" rel="stylesheet">
+
 
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Navigation ein-/ausblenden</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <div class="navbar-form navbar-right">
-          <button type="button" class="btn btn-default  disabled"><span class="badge">4000</span> Dollas</button>
-          <button type="submit" class="btn btn-success">Runde Beenden <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-
-        </div>
-      </div><!--/.navbar-collapse -->
-    </div>
-  </nav>
-
-  
-    <div class="row">
-      <div class="col-md-4"><img src="../resources/images/planets/tatooin.png" alt="..." ></div>
-        
-       <button type="button" class="btn btn-default center-button disabled"><span class="badge">4</span> Schlachtschiffe schicken</button>
-          <div class="btn-group center-button">
-            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></button>
-           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></button>
-         </div><br/>
-         <button type="button" class="btn btn-default center-button disabled"><span class="badge">4</span> Jäger schicken</button>
-          <div class="btn-group center-button">
-            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></button>
-           <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></button>
-         </div> 
-       </div>
-      <div class="col-md-4"><img src="../resources/images/planets/tatooin.png" alt="..." ></div>
-      <div class="col-md-4 "><img src="../resources/images/planets/coruscant.png" alt="..." ></div>
-      
-    </div>
-    <div class="row">
-      <div class="col-md-3 "><img src="../resources/images/planets/caprica.png" alt="..." ></div>
-      <div class="col-md-3 "></div>
-      <div class="col-md-3 "><img src="../resources/images/planets/endor.png" alt="..." ></div> <div class="col-md-3 ">.</div>
-    </div>
-
-<!-- /container -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Navigation ein-/ausblenden</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
 
 
+				<div class="navbar-form navbar-center">
+					<button type="button" class="btn btn-danger" onclick="finishGame()">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true">
+						</span>Spiel beenden
+					</button>
+					<button type="button"
+						class="btn btn-default disabled disableButton">
+						Verfügbare Jäger <span id="fighter" class="badge">4</span>
+					</button>
+					<button type="button"
+						class="btn btn-default disabled disableButton">
+						Verfügbare Schlachtschiffe <span id="battlestar" class="badge">4</span>
+					</button>
+					<button type="button"
+						class="btn btn-default  disabled disableButton">
+						Guthaben <span id="credits" class="badge">4000 $</span>
+					</button>
+					<button type="button" class="btn btn-danger"
+						id="openReportButton disableButton" onclick="openReport()">
+						Report <span class="glyphicon glyphicon-list-alt"
+							aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-warning"
+						id="openShopButton disableButton" onclick="openShop()">
+						Schiffe kaufen <span class="glyphicon glyphicon-shopping-cart"
+							aria-hidden="true"></span>
+					</button>
+					<button type="button" id="endRoundButton"
+						class="btn btn-success disableButton" onclick="endRound()">
+						Runde Beenden<span class="glyphicon glyphicon-chevron-right"
+							aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+			<!--/.navbar-collapse -->
+		</div>
+	</nav>
+	<!----------------------------------------------------------Kaufmenü---------------------------------------------------------->
+	<div id="shop" class="fade in menu-box game-box popup">
 
- <!-- Bootstrap-JavaScript
+		<div class="row">
+
+			<div class="col-md-12">
+				<h2>
+					Schiffe kaufen
+					<button type="button" class="close" aria-label="Schließen"
+						onclick="closeShop()">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+				</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 belongs">
+				<img src="../resources/images/ships/battlestar_oukral.jpg" alt="..."
+					class="img-thumbnail">
+			</div>
+			<div class="col-md-8">
+				<h3>Schlachtschiff</h3>
+				<p>
+					<strong>Schlachtschiffe sind die Speerspitze Ihres
+						Imperiums!</strong><br />Sie sind im Kampf die ersten die angreifen, die
+					ersten, die Ihrer Stellungen halten. Jägern sind sie in
+					Durchschlagskraft und Panzerung weit überlegen und darum Ihr
+					wichtigster Schutz.<br /> Schlachtschiffe sind eine Investition,
+					aber ihr Geld absolut Wert.
+				</p>
+				<p>
+					Nach gewonnenen Schlachten können Ihre Schlachtschiffe vom Rang des
+					Captains bis zum Admiral of Fleet aufsteigen. Ihre Siegchancen
+					steigern somit nach jeder gewonnen Schlacht.<br /> <em>Ränge:</em>
+					Captain, Vice Admiral, Admiral, Admiral of Fleet
+				</p>
+
+			</div>
+			<div class="btn-group center-button">
+				<button type="button" class="btn btn-default"
+					onclick="buyBattlestar()">
+					<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default"
+					onclick="notBuyBattlestar()">
+					<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+				</button>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-4 belongs">
+				<img src="../resources/images/ships/fighter_oukral.jpg" alt="..."
+					class="img-thumbnail">
+			</div>
+			<div class="col-md-8">
+				<h3>Jäger</h3>
+				<p>
+					<strong>Jäger bieten strategische Möglichkeiten, die Sie
+						nicht unterschätzen sollten!</strong><br /> Sie sind günstige Einheiten
+					und Ihre schnellste Chance auf Erhöhung Ihrer Steuereinnahmen. So
+					mancher Jäger hat zudem in der letzten Not den entscheidenden
+					Unterschied in einer Schlacht machen können und das ein oder andere
+					Schlachtschiff vom Himmel geholt.
+				</p>
+				<p>
+					Nach gewonnenen Schlachten können Ihre Jäger vom Rang des
+					Lieutenants bis zum Captain aufsteigen. Ihre Siegchancen steigern
+					somit nach jeder gewonnen Schlacht. <br /> <em>Ränge:</em>Lieutenant,
+					Lieutenant Commander, Commander, Captain
+				</p>
+
+			</div>
+
+
+			<div class="btn-group center-button">
+				<button type="button" class="btn btn-default" onclick="buyFighter()">
+					<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default"
+					onclick="notBuyFighter()">
+					<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+				</button>
+			</div>
+
+		</div>
+
+	</div>
+	<!----------------------------------------------------------Endreport---------------------------------------------------------->
+	<div id="endreport" class="fade in menu-box  popup">
+
+		<div class="row">
+
+			<div class="col-md-12">
+				<h2>Spiel Beendet</h2>
+			</div>
+		</div>
+		<div class="row">
+
+			<div class="col-md-12">
+				<h2 id="winner-text">Du hast das Spiel nach 10 Runden gewonnen!
+				</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6"></div>
+			<div class="col-md-6"></div>
+
+		</div>
+		<div class="row">
+
+			<div class="col-md-12">
+				<button type="button" class="btn btn-danger btn-block"
+					onclick="finishGame()">
+					zurück zum Hauptmenü <span
+						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+
+
+	</div>
+
+
+	<!----------------------------------------------------------Report---------------------------------------------------------->
+	<div id="report" class="fade in menu-box game-box popup">
+
+
+		<div class="row">
+
+			<div class="col-md-12">
+				<h2>
+					Report
+					<button type="button" class="close" aria-label="Schließen"
+						onclick="closeReport()">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+				</h2>
+			</div>
+		</div>
+		<div>
+
+			<!-- Tabs-Navs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" id="erdeReportButton" class="repButton"><a
+					href="#erdeReport" role="tab" data-toggle="tab">Erde</a></li>
+
+
+				<li role="presentation" id="capricaReportButton" class="repButton"><a
+					href="#capricaReport" role="tab" data-toggle="tab">Caprica</a></li>
+
+				<li role="presentation" id="atlantisReportButton" class="repButton"><a
+					href="#atlantisReport" role="tab" data-toggle="tab">Atlantis</a></li>
+
+
+			</ul>
+
+			<!-- Tab-Inhalte -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane" id="erdeReport">
+
+					<div class="row">
+
+						<div class="col-md-2 belongs">
+							<br /> <img src="../resources/images/planets/erde1.png"
+								alt="..." class="img-thumbnail">
+						</div>
+						<div class="col-md-4">
+							<h3>
+								<span class="label label-default">Sieger: <span
+									id="winnerErde">es hat kein Kampf Stattgefunden</span></span>
+							</h3>
+
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="battlestarsLeftErde" class="badge textright">4</span>Verbleibende
+								Schlachtschiffe:
+							</button>
+							<br />
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="fightersLeftErde" class="badge textright">4</span>Verbleibende
+								Jäger
+							</button>
+						</div>
+						<div class="col-md-6">
+							<h3>Zerstörte Schiffe</h3>
+							<ul id="defeatedListErde">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+
+
+				<div role="tabpanel" class="tab-pane" id="capricaReport">
+					<div class="row">
+
+						<div class="col-md-2 belongs">
+							<br /> <img src="../resources/images/planets/caprica1.png"
+								alt="..." class="img-thumbnail">
+						</div>
+						<div class="col-md-4">
+							<h3>
+								<span class="label label-default">Sieger: <span
+									id="winnerCaprica">es hat kein Kampf Stattgefunden</span></span>
+							</h3>
+
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="battlestarsLeftCaprica" class="badge textright">4</span>Verbleibende
+								Schlachtschiffe:
+							</button>
+							<br />
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="fightersLeftCaprica" class="badge textright">4</span>Verbleibende
+								Jäger
+							</button>
+						</div>
+						<div class="col-md-6">
+							<h3>Zerstörte Schiffe</h3>
+							<ul id="defeatedListCaprica">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div role="tabpanel" class="tab-pane" id="atlantisReport">
+					<div class="row">
+
+						<div class="col-md-2 belongs">
+							<br /> <img src="../resources/images/planets/atlantis1.png"
+								alt="..." class="img-thumbnail">
+						</div>
+						<div class="col-md-4">
+							<h3>
+								<span class="label label-default">Sieger: <span
+									id="winnerAtlantis">es hat kein Kampf Stattgefunden</span></span>
+							</h3>
+
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="battlestarsLeftAtlantis" class="badge textright">4</span>Verbleibende
+								Schlachtschiffe:
+							</button>
+							<br />
+							<button type="button"
+								class="btn btn-default disabled samewidthplus">
+								<span id="fightersLeftAtlantis" class="badge textright">4</span>Verbleibende
+								Jäger
+							</button>
+						</div>
+						<div class="col-md-6">
+							<h3>Zerstörte Schiffe</h3>
+							<ul id="defeatedListAtlantis">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="noFight" class="row">
+
+				<div class="col-md-12">
+					<hr>
+					<h2>Es hat kein Kampf stattgefunden!</h2>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!----------------------------------------------------------Werbung---------------------------------------------------------->
+	<div id="wait" class="fade in menu-box game-box popup">
+
+
+		<div class="row">
+
+			<div class="col-md-12">
+				<h2>Warten auf Gegener</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 belongs"></div>
+			<div class="col-md-6 belongs">
+				<img src="../resources/images/werbung.png" alt="..."
+					class="img-thumbnail">
+			</div>
+			<div class="col-md-3 belongs"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">Während Sie warten, nutzen Sie die Zeit
+				und schauen Sie doch einmal bei einem unserer Sponsorn vorbei.</div>
+		</div>
+
+	</div>
+
+	<!----------------------------------------------------------Game---------------------------------------------------------->
+	<div>
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<br> <br> <br> <img
+					src="../resources/images/planets/erde.png" alt="...">
+				<h4 class="white">
+					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					Erde
+				</h4>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default "
+						onclick="battlestarPlus('erde')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-default"
+						onclick="battlestarMinus('erde')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button"
+						class="btn btn-default disabled same samewidth">
+						<span id="erdeBattlestar" class="badge textright">4</span>
+						Schlachtschiffe
+					</button>
+				</div>
+				<br>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default"
+						onclick="fighterPlus('erde')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-default"
+						onclick="fighterMinus('erde')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-default disabled samewidth">
+						<span id="erdeFighter" class="badge textright">4</span> Jäger
+					</button>
+				</div>
+			</div>
+
+
+
+
+		</div>
+		<div class="row">
+
+
+			<div class="col-md-6 text-center">
+				<br> <br> <br> <img
+					src="../resources/images/planets/caprica.png" alt="...">
+				<h4 class="white">
+					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					Caprica
+				</h4>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default "
+						onclick="battlestarPlus('caprica')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-default"
+						onclick="battlestarMinus('caprica')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button"
+						class="btn btn-default disabled same samewidth">
+						<span id="capricaBattlestar" class="badge textright">4</span>
+						Schlachtschiffe
+					</button>
+				</div>
+				<br>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default"
+						onclick="fighterPlus('caprica')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-default"
+						onclick="fighterMinus('caprica')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-default disabled samewidth">
+						<span id="capricaFighter" class="badge textright">4</span> Jäger
+					</button>
+				</div>
+			</div>
+
+
+
+
+			<div class="col-md-6 text-center">
+				<img src="../resources/images/planets/atlantis.png" alt="...">
+				<h4 class="white">
+					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					Atlantis
+				</h4>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default "
+						onclick="battlestarPlus('atlantis')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-default"
+						onclick="battlestarMinus('atlantis')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button"
+						class="btn btn-default disabled same samewidth">
+						<span id="atlantisBattlestar" class="badge textright">4</span>
+						Schlachtschiffe
+					</button>
+				</div>
+				<br>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default"
+						onclick="fighterPlus('atlantis')">
+						<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-default"
+						onclick="fighterMinus('atlantis')">
+						<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-default disabled samewidth">
+						<span id="atlantisFighter" class="badge textright">4</span> Jäger
+					</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- /container -->
+
+
+
+	<!-- Bootstrap-JavaScript
  ================================================== -->
- <!-- Am Ende des Dokuments platziert, damit Seiten schneller laden -->
- <script src="../js/jquery.js"></script>
- <script src="../js/bootstrap.js"></script>
- <!-- IE10-Anzeigefenster-Hack für Fehler auf Surface und Desktop-Windows-8 -->
- <script src="../js/ie10-viewport-bug-workaround.js"></script>
- <script src="../js/useful.js"></script>
- <script src="../js/loadUsername.js"></script>
-</body></html>
+	<!-- Am Ende des Dokuments platziert, damit Seiten schneller laden -->
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<!-- IE10-Anzeigefenster-Hack für Fehler auf Surface und Desktop-Windows-8 -->
+	<script src="../js/ie10-viewport-bug-workaround.js"></script>
+	<script src="../js/useful.js"></script>
+	<script src="../js/loadUsername.js"></script>
+	<script src="../js/recenter.js"></script>
+	<script src="../js/gameFunctions.js"></script>
+</body>
+</html>
