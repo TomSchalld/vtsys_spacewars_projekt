@@ -628,15 +628,13 @@ function closeReport() {
 		$('#endRoundButton').attr('disabled', 'disabled');
 		$('#openShopButton').attr('disabled', 'disabled');
 		$('#openReportButton').attr('disabled', 'disabled');
-		
+
 		$('#endreport').show();
 
 		$('#winner-text').text(
-					roundObject.endReport.winner
-							+ " nur  "
-							+ roundObject.endReport.roundCount
-							+ " Runden zum Sieg, Herzlichen Glückwunsch!");
-		
+				roundObject.endReport.winner + " nur  "
+						+ roundObject.endReport.roundCount
+						+ " Runden zum Sieg, Herzlichen Glückwunsch!");
 
 	}
 }
