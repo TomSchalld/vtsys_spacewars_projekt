@@ -8,49 +8,45 @@ import clientServer.Client;
 
 public interface PlanetIf extends Remote {
 
-	/**
-	 * @param ship
-	 * @throws RemoteException
-	 */
-	/**
+	/**Adds a ship to orbit
 	 * @param ship
 	 * @throws RemoteException
 	 */
 	void addShipToOrbit(SpaceshipIf ship) throws RemoteException;
 
-	/**
+	/**deletes all ships
 	 * @throws RemoteException
 	 */
 	void delShips() throws RemoteException;
 
-	/**
+	/**does the fight
 	 * @return
 	 * @throws RemoteException
 	 */
 	BattleReport fight() throws RemoteException;
 
 	/**
-	 * @return
+	 * @return the count of battlestars in orbit
 	 * @throws RemoteException
 	 */
 	int getBattlestarsInOrbit() throws RemoteException;
 
 	/**
 	 * @param owner
-	 * @return
+	 * @return battlestar count specified by its owner
 	 * @throws RemoteException
 	 */
 	int getBattlestarsInOrbit(Client owner) throws RemoteException;
 
 	/**
-	 * @return
+	 * @return fighter count
 	 * @throws RemoteException
 	 */
 	int getFighterInOrbit() throws RemoteException;
 
 	/**
 	 * @param owner
-	 * @return
+	 * @return fighter count specified by its owner
 	 * @throws RemoteException
 	 */
 	int getFighterInOrbit(Client owner) throws RemoteException;
