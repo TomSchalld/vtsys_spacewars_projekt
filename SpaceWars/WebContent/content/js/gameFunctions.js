@@ -362,20 +362,23 @@ function init() {
 		}
 	});
 	$('#credits').text(roundObject.playersCash + " $");
-	$('#fighter').text('0');
-	$('#battlestar').text('0');
+	$('#fighter').text(0);
+	$('#battlestar').text(0);
 }
 function refresh() {
 	var i = 0;
 	$.each(roundObject, function(key, val) {
 		if (i < 7) {
 			i++;
+			val.newBattlestar = parseInt(val.newBattlestar);
+			val.newFighter = parseInt(val.newFighter);
 			val.sum = val.newBattlestar + val.newFighter;
 		}
 	});
 }
 function setValues(result) {
 	roundObject = result;
+	refresh();
 	$('#atlantisFighter').text(roundObject.atlantis.newFighter);
 	$('#atlantisBattlestar').text(roundObject.atlantis.newBattlestar);
 	$('#capricaFighter').text(roundObject.caprica.newFighter);
