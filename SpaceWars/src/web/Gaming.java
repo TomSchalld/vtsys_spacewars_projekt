@@ -1,15 +1,10 @@
 package web;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +20,7 @@ import org.json.JSONObject;
 
 import clientServer.Client;
 import logic.BattleReport;
-import logic.Battlestar;
 import logic.EndReport;
-import logic.Fighter;
 import logic.Game;
 import logic.PlanetIf;
 import logic.Report;
@@ -56,6 +49,15 @@ public class Gaming extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		Client user = null;
+		try {
+			user = UserOnline.getUserById(request.getRequestedSessionId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("user is not logged in!");
+			response.sendError(1001);
+		}
 		response.setContentType("application/json");
 		if (!request.getParameter("closeGame").equals("true")) {
 			JSONObject roundObject = requestParamsToJSON(request);
@@ -63,7 +65,7 @@ public class Gaming extends HttpServlet {
 			System.out.println(roundObject.toString());
 			System.out.println("input::::::\n\n\n\n\n");
 			try {
-				doRound(roundObject, request.getRequestedSessionId());
+				doRound(roundObject, user);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -80,9 +82,9 @@ public class Gaming extends HttpServlet {
 			response.getWriter().close();
 		} else {
 			System.out.println("User is closing game...");
-			Client user = UserOnline.getUserById(request.getRequestedSessionId());
 			if (user.getGamePlaying() != null) {
 				user.closeGame();
+				System.out.println(user.getUsername()+" has closed the game");
 			}
 			response.setContentType("text/plain;charset=UTF-8");
 			response.getWriter().write("?username=" + user.getUsername());
@@ -125,10 +127,9 @@ public class Gaming extends HttpServlet {
 
 	}
 
-	private void doRound(JSONObject roundObject, String sID)
+	private void doRound(JSONObject roundObject, Client user)
 			throws RemoteException, JSONException, InterruptedException {
 		List<SpaceshipIf> tmpShips = new LinkedList<SpaceshipIf>();
-		Client user = UserOnline.getUserById(sID);
 		Game actual = user.getGamePlaying();
 		int actualRound = actual.getRound();
 		UniverseIf universe = user.getGamePlaying().getUniverse();
@@ -206,6 +207,8 @@ public class Gaming extends HttpServlet {
 				Thread.sleep(1000);
 				if (user.getGamePlaying().isGameFinished()) {
 					roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
+					this.generateHighscore(user.getGamePlaying().getEndreport());//?
+					break;
 				}
 				
 			}

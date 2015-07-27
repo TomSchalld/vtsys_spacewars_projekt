@@ -14,11 +14,11 @@ public class UserOnline {
 		}
 		return false;
 	}
-	public static Client getUserById(String uID){
+	public static Client getUserById(String uID) throws Exception{
 		if(isUserExisting(uID)){
 			return user.get(uID);
 		}
-		return null;
+		throw new Exception("User not Found Exception");
 	}
 	public static void addUser(String uID, Client newUser) {
 		user.put(uID, newUser);

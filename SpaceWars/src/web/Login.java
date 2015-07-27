@@ -48,21 +48,29 @@ public class Login extends HttpServlet {
 		response.setContentType("text/plain;charset=UTF-8");
 		HttpSession session = request.getSession();
 		String uID = session.getId();
-		Client user = UserOnline.getUserById(uID);
-		if (user == null) {
+		Client user = null;
+		try {
+			user = UserOnline.getUserById(uID);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("user is not logged in!");
 			String site = "http://www.google.com";
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site);
+			response.sendError(1001);
+		}
+		if (user == null) {
+			
 		} else {
 			String uname = user.getUsername();
 			PrintWriter out = response.getWriter();
 			if (request.getParameter("createGame").equals("true")) {
-				createGame(request, uID, out);
+				createGame(request, user, out);
 			} else if (request.getParameter("logout").equals("true")) {
 				logout(session, uname);
 			} else if (request.getParameter("joinGame").equals("true")) {
 				out.write("?username=" + uname);
-				UserOnline.getUserById(uID).joinGame(request.getParameter("gameName"));
+				user.joinGame(request.getParameter("gameName"));
 			} else if (request.getParameter("getGames").equals("true")) {
 				getGamesFromLobby(response, out);
 			} else if (request.getParameter("highscore").equals("true")) {
@@ -136,14 +144,15 @@ public class Login extends HttpServlet {
 
 	/**
 	 * @param request
-	 * @param uID
+	 * @param user
 	 * @param out
 	 * @throws NumberFormatException
 	 * @throws RemoteException
 	 */
-	private void createGame(HttpServletRequest request, String uID, PrintWriter out)
+	private void createGame(HttpServletRequest request, Client user, PrintWriter out)
 			throws NumberFormatException, RemoteException {
 		String gameName = request.getParameter("gameName");
+		
 		int variation = Integer.parseInt(request.getParameter("gameMode").trim()); // 0=pvp
 																					// 1=pvpc
 																					// 2=ppvpc
@@ -160,11 +169,11 @@ public class Login extends HttpServlet {
 			} else {
 				out.write("gameSeven.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
 			}
-			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
+			user.openGame(gameName, variation, universeSize);
 			System.out.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
 		} else if (variation == 1) {
 			out.write("gameSeven.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
-			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
+			user.openGame(gameName, variation, universeSize);
 			System.out.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
 		} else if (variation == 2) {
 			if (universeSize == 1) {
@@ -175,7 +184,7 @@ public class Login extends HttpServlet {
 			} else {
 				out.write("gameSeven.html?gameName=" + gameName + "&universeSize=" + universeSize + "&");
 			}
-			UserOnline.getUserById(uID).openGame(gameName, variation, universeSize);
+			user.openGame(gameName, variation, universeSize);
 			System.out.println("createGame: " + gameName + " mode: " + variation + " universeSize: " + universeSize);
 		} else {
 			out.write("?gameName=" + gameName + "&universeSize=" + universeSize + "&");
@@ -196,10 +205,15 @@ public class Login extends HttpServlet {
 		try {
 			if (!UserOnline.isUserExisting(sessionId)) {
 				UserOnline.addUser(sessionId, new Human(uname, "192.168.178.23"));
+			}else{
+				response.sendError(1000);
+				System.out.println("username is in use");
 			}
 		} catch (NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			response.sendError(2000);
+			System.out.println("Server not bound");
 		}
 		System.out.println(uname + " with iD: " + sessionId + " has logged in!");
 		// TODO log in user here!

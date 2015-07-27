@@ -54,11 +54,11 @@ public class EndReport implements Report {
 	}
 	private void addRoundReport(Report roundReport){
 		this.roundReports.add(roundReport);
-		this.roundCount++;
+		this.roundCount = ((RoundReport)roundReport).getRoundNumber();
 	}
 	@Override
 	public void addReport(Report report) {
-		this.addRoundReport((RoundReport)report);
+		this.addRoundReport(report);
 	}
 	public String getWinner(){
 		String winner = "";

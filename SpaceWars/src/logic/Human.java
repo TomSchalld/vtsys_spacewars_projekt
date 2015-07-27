@@ -52,7 +52,7 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	public void openGame(String gameName, int variation, int universeSize) throws RemoteException {
 
 		try {
-			this.server.openGameOnServer(gameName, variation, universeSize, this);
+			this.gamePlaying = this.server.openGameOnServer(gameName, variation, universeSize, this);
 			if (this.getGamePlaying().getVariation()==1) {
 				System.out.println("PvPC");
 				this.getGamePlaying().addPlayer(new KI("Computer", "192.168.178.23"));
@@ -79,7 +79,8 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	@Override
 	public void joinGame(String gameName) throws RemoteException {
 		// TODO just in case get game, manipulate, copy back and overwrite
-		this.server.getGameByName(gameName).addPlayer(this);
+		this.gamePlaying = this.server.getGameByName(gameName);
+		this.gamePlaying.addPlayer(this);
 		this.server.joinGame(gameName);
 
 	}

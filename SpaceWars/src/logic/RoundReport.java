@@ -36,6 +36,7 @@ public class RoundReport implements Report {
 	public JSONObject exportRoundToJSON(){
 		JSONObject jo = new JSONObject();
 		JSONObject val;
+		jo.put("roundNumber", this.round);
 		for(BattleReport br:this.reports.values()){
 			val = new JSONObject();
 			val.put("winner", br.getWinnersUsername());
