@@ -370,9 +370,9 @@ function refresh() {
 	$.each(roundObject, function(key, val) {
 		if (i < 7) {
 			i++;
-			val.newBattlestar = parseInt(val.newBattlestar);
-			val.newFighter = parseInt(val.newFighter);
-			val.sum = val.newBattlestar + val.newFighter;
+			val.newBattlestar = 0+parseInt(val.newBattlestar);
+			val.newFighter = 0+parseInt(val.newFighter);
+			val.sum = 0+ parseInt(val.newBattlestar + val.newFighter);
 		}
 	});
 }
