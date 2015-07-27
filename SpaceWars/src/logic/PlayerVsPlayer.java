@@ -189,6 +189,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			return report;
 
 		}
+		System.out.println("return null XXXXXXXXX");
 		return null;
 	}
 
