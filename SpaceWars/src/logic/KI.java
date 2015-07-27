@@ -12,8 +12,8 @@ import java.util.Random;
 
 public class KI extends Human {
 
-	public KI(String username, String serveraddress) throws MalformedURLException, RemoteException, NotBoundException {
-		super(username, serveraddress);
+	public KI(String username) throws MalformedURLException, RemoteException, NotBoundException {
+		super(username);
 		this.cash = 7500;
 	}
 

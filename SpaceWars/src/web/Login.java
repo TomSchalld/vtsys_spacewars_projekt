@@ -19,6 +19,9 @@ import org.json.*;
 import clientServer.Client;
 import clientServer.GameServer;
 import clientServer.Server;
+import helper.Highscore;
+import helper.NameHelper;
+import helper.UserOnline;
 import logic.Game;
 import logic.Human;
 import logic.PlayerVsPC;
@@ -103,7 +106,7 @@ public class Login extends HttpServlet {
 		System.out.println("Get Games");
 		JSONObject gamesList = null;
 		try {
-			Server gameServer = (Server) Naming.lookup("rmi://192.168.178.23:1099/GameServer");
+			Server gameServer = (Server) Naming.lookup(NameHelper.getServeraddress());
 			JSONObject val;
 			gamesList = new JSONObject();
 
@@ -204,7 +207,7 @@ public class Login extends HttpServlet {
 		String uname = request.getParameter("username");
 		try {
 			if (!UserOnline.isUserExisting(sessionId)) {
-				UserOnline.addUser(sessionId, new Human(uname, "192.168.178.23"));
+				UserOnline.addUser(sessionId, new Human(uname));
 			}else{
 				response.sendError(1000);
 				System.out.println("username is in use");

@@ -19,6 +19,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import clientServer.Client;
+import helper.Highscore;
+import helper.UserOnline;
 import logic.BattleReport;
 import logic.EndReport;
 import logic.Game;

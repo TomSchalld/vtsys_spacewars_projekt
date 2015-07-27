@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import clientServer.Client;
 import clientServer.Server;
+import helper.NameHelper;
 
 public class Human extends UnicastRemoteObject implements Serializable, Client {
 	/**
@@ -32,9 +33,9 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 	private JSONObject roundReport;
 	private String team;
 
-	public Human(String username, String serveraddress)
+	public Human(String username)
 			throws MalformedURLException, RemoteException, NotBoundException {
-		this.server = (Server) Naming.lookup("rmi://" + serveraddress + ":1099/GameServer");
+		this.server = (Server) Naming.lookup(NameHelper.getServeraddress());
 		this.username = username;
 		this.ownerId = userCount;
 		this.cash = 5000;
@@ -55,11 +56,11 @@ public class Human extends UnicastRemoteObject implements Serializable, Client {
 			this.gamePlaying = this.server.openGameOnServer(gameName, variation, universeSize, this);
 			if (this.getGamePlaying().getVariation()==1) {
 				System.out.println("PvPC");
-				this.getGamePlaying().addPlayer(new KI("Computer", "192.168.178.23"));
+				this.getGamePlaying().addPlayer(new KI("Computer"));
 				this.server.joinGame(gameName);
 			}else if(this.getGamePlaying().getVariation()==2){
 				System.out.println("Player, Player vs PC");
-				this.getGamePlaying().addPlayer(new KI("Computer", "192.168.178.23"));
+				this.getGamePlaying().addPlayer(new KI("Computer"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
