@@ -228,8 +228,8 @@ public class Gaming extends HttpServlet {
 				System.out.println("Schleifendurchläufe: " + count++ + "username: " + user.getUsername()+" actualRound: "+actualRound+" actual.GetRound: "+actual.getRound());
 				Thread.sleep(1000);
 				if (user.getGamePlaying().isGameFinished()) {
-					roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
-					this.generateHighscore(user.getGamePlaying().getEndreport());//?
+					//roundObject.put("endReport", ((EndReport) user.getGamePlaying().getEndreport()).endReportToJSON());
+					//this.generateHighscore(user.getGamePlaying().getEndreport());//?
 					break;
 				}
 				

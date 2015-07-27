@@ -49,7 +49,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		this.variation = variation;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#getVariation()
 	 */
 	@Override
@@ -57,7 +59,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return variation;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#setVariation(int)
 	 */
 	@Override
@@ -65,7 +69,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		this.variation = variation;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#addPlayer(clientServer.Client)
 	 */
 	@Override
@@ -95,7 +101,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		this.addPlayer(two);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#playersReady()
 	 */
 	@Override
@@ -117,7 +125,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		this.players[1].setPlayerReady(false);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#endRound()
 	 */
 	@Override
@@ -127,7 +137,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		System.out
 				.println("Round End ###########################################################################\n\n\n");
 		if (this.playersReady()) {
-			for(Client c:this.players){
+			for (Client c : this.players) {
 				c.setAmountOfPlanets(0);
 			}
 			System.out.println("nach if");
@@ -167,7 +177,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 
 				}
 			}
-			
+
 			System.out.println(
 					this.players[0].getUsername() + " anzahl planeten = " + this.players[0].getAmountOfPlanets());
 			System.out.println(
@@ -177,7 +187,7 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 			this.endReport.addReport(report);
 			this.round++;
 			return report;
-			
+
 		}
 		return null;
 	}
@@ -188,20 +198,21 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 	@Override
 	public void checkAndSetWinner() throws RemoteException {
 		EndReport er = (EndReport) this.getEndreport();
-		if (this.players[0].getAmountOfPlanets() == 0 && this.players[0].getCash() < Fighter.price && this.players[0].getStock().size()==0) {
+		if (this.players[0].getAmountOfPlanets() == 0 && this.players[0].getCash() < Fighter.price
+				&& this.players[0].getStock().size() == 0) {
 			this.gameFinished = true;
 			this.winner = this.players[1];
 			er.addWinner(this.players[1]);
 			er.addLooser(this.players[0]);
 			System.out.println("game is over. Winner is: " + this.players[1].getUsername());
-		} else if (this.players[1].getAmountOfPlanets() == 0 && this.players[1].getCash() < Fighter.price  && this.players[1].getStock().size()==0) {
+		} else if (this.players[1].getAmountOfPlanets() == 0 && this.players[1].getCash() < Fighter.price
+				&& this.players[1].getStock().size() == 0) {
 			this.gameFinished = true;
 			this.winner = this.players[0];
 			er.addWinner(this.players[0]);
 			er.addLooser(this.players[1]);
 			System.out.println("game is over. Winner is: " + this.players[0].getUsername());
-		}
-		if (this.players[0].getAmountOfPlanets() == this.getUniverse().getPlanets().keySet().size()) {
+		} else if (this.players[0].getAmountOfPlanets() == this.getUniverse().getPlanets().keySet().size()) {
 			this.gameFinished = true;
 			this.winner = this.players[0];
 			er.addWinner(this.players[0]);
@@ -217,7 +228,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#getUniverse()
 	 */
 	@Override
@@ -225,7 +238,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return this.universe;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#hasEnoughPlayer()
 	 */
 	@Override
@@ -233,7 +248,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return this.hasEnoughPlayer;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#isGameFinished()
 	 */
 	@Override
@@ -241,7 +258,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return this.gameFinished;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#getEndreport()
 	 */
 	@Override
@@ -249,7 +268,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return this.endReport;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#getGameName()
 	 */
 	@Override
@@ -257,7 +278,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return this.gameName;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#killAllReferences()
 	 */
 	@Override
@@ -273,7 +296,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#getRound()
 	 */
 	@Override
@@ -281,7 +306,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return round;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#getWinnerByName()
 	 */
 	@Override
@@ -290,7 +317,9 @@ public class PlayerVsPlayer extends UnicastRemoteObject implements Game {
 		return this.winner.getUsername();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see logic.Game#getHostName()
 	 */
 	@Override
