@@ -29,6 +29,9 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		this.lobby = new HashMap<String, Game>();
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Server#openGame(logic.Game)
+	 */
 	@Override
 	public void openGame(Game newGame) throws Exception, RemoteException {
 		// System.out.println("try to open new game");
@@ -47,6 +50,9 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Server#openGameOnServer(java.lang.String, int, int, clientServer.Client)
+	 */
 	@Override
 	public Game openGameOnServer(String gameName, int variation, int universeSize, Client player)
 			throws Exception, RemoteException {
@@ -93,6 +99,9 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		return newGame;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Server#joinGame(java.lang.String)
+	 */
 	@Override
 	public void joinGame(String gameName) throws RemoteException {
 		if (this.lobby.containsKey(gameName)) {
@@ -102,11 +111,18 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		}
 	}
 
+	/**<p>Takes the the game removes it from lobby and added it to the runnig games</p>
+	 * @param gameInLobby
+	 * @throws RemoteException
+	 */
 	public void bringGameToRun(Game gameInLobby) throws RemoteException {
 		this.runningGames.put(gameInLobby.getGameName(), this.lobby.remove(gameInLobby.getGameName()));
 		System.out.println("game is now running");
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Server#closeGame(java.lang.String)
+	 */
 	@Override
 	public boolean closeGame(String gameName) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -124,6 +140,9 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Server#getGameByName(java.lang.String)
+	 */
 	@Override
 	public Game getGameByName(String gameName) throws RemoteException {
 		if (this.runningGames.containsKey(gameName)) {
@@ -134,11 +153,17 @@ public class GameServer extends UnicastRemoteObject implements Server, Serializa
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see clientServer.Server#gamesInLobby()
+	 */
 	@Override
 	public Map<String, Game> gamesInLobby() throws RemoteException {
 		return this.lobby;
 	}
 
+	/**<p>Starts an instance of GameServer and binds it to NameService</p>
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Registry registry = null;
