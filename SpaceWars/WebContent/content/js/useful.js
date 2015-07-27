@@ -233,9 +233,3 @@ function chooseRace(race) {
 
 }
 
-$(document).ready(function(){
-    $('#username').keypress(function(e){
-      if(e.keyCode==13)
-      submitUser();
-    });
-});
