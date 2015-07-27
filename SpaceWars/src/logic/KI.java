@@ -28,13 +28,16 @@ public class KI extends Human {
 	 */
 	public void ruleTheWorld() throws RemoteException {
 		if (this.gamePlaying != null) {
-			this.buyNewShips();
-			for (int i = 0; i < 5; i++) {
-				this.sendShips();
+			if(!this.gamePlaying.isGameFinished()){
+				this.buyNewShips();
+				for (int i = 0; i < 5; i++) {
+					this.sendShips();
+				}
+				this.setPlayerReady(true);
+				this.setCash(cash * 3);
+				System.out.println("Skynet is gonna rule");
 			}
-			this.setPlayerReady(true);
-			this.setCash(cash * 3);
-			System.out.println("Skynet is gonna rule");
+			
 		}
 
 	}
